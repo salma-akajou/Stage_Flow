@@ -197,12 +197,9 @@ style: |
 ### 1. EMPATHIE
 
 <div class="img-container">
-  <div class="dt-card" style="border-top-color: #f39c12;">
-    <h4>Comprendre l'utilisateur</h4>
-    <blockquote style="font-style: italic; background: white; padding: 15px; border-radius: 8px;">
-      .
-    </blockquote>
-  </div>
+  <div class="img-container">
+  <img src="images/carte_d'empathie.png" class="img-methodo" alt="Design Thinking">
+</div>
 </div>
 
 ---
