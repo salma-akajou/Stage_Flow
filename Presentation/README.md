@@ -226,7 +226,9 @@ style: |
   <div class="dt-card" style="border-top-color: #f39c12;">
     <h4>Cadrage du problème</h4>
     <blockquote style="font-style: italic; background: white; padding: 15px; border-radius: 8px;">
-      .
+      <p>Comment pourrions-nous faciliter la recherche de stages pour les étudiants ?</p>
+      <p>Comment pourrions-nous aider les entreprises à publier et gérer efficacement leurs offres de stage ?</p>
+      <p>Comment pourrions-nous centraliser le processus de candidature et de suivi ?</p>
     </blockquote>
     .
   </div>
