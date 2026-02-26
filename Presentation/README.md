@@ -199,7 +199,21 @@ style: |
 
 <div class="img-container">
   <div class="img-container">
-  <img src="images/carte_d'empathie.png" class="img-methodo" alt="Design Thinking">
+  <h3>Carte d'empathie apprenant</h3>
+  <img src="images/carte_d'empathie_apprenant.png" class="img-methodo" alt="Design Thinking">
+</div>
+</div>
+
+---
+
+
+## Branche Fonctionnelle : Design Thinking
+### 1. EMPATHIE
+
+<div class="img-container">
+  <div class="img-container">
+  <h3>Carte d'empathie entreprise</h3>
+  <img src="images/carte_d'empathie_entreprise.png" class="img-methodo" alt="Design Thinking">
 </div>
 </div>
 
