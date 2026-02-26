@@ -167,7 +167,8 @@ style: |
 
 ---
 ## 1. Contexte du projet
-**La recherche de stage représente une étape essentielle dans le parcours académique des étudiants. Cependant, le processus reste souvent mal organisé, avec des offres dispersées et un suivi difficile des candidatures. Ce projet s’inscrit dans un contexte de digitalisation afin de proposer une solution web simple et structurée pour faciliter la gestion des stages.**
+**Dans le cadre de ma formation en développement web, nous devons réaliser un projet de fin de formation répondant à un besoin réel. En observant les difficultés des étudiants pour trouver des stages adaptés, j’ai constaté que les offres étaient dispersées et le suivi des candidatures compliqué.**
+**C’est ainsi qu’est née l’idée de StageFlow, une application web visant à centraliser les offres de stages, faciliter la recherche pour les étudiants et simplifier la gestion des candidatures pour les entreprises.**
 
 ---
 
