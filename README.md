@@ -1,0 +1,2 @@
+# Stage_Flow
+**StageFlow est une application web conçue pour simplifier et organiser le processus de recherche et de gestion des stages. La plateforme met en relation les étudiants et les entreprises dans un espace centralisé où les entreprises peuvent publier des offres et gérer les candidatures, tandis que les étudiants peuvent rechercher, filtrer, postuler et suivre l’état de leurs demandes. L’objectif est de rendre le processus de stage plus structuré, transparent et efficace pour les deux parties.**
