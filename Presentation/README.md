@@ -219,6 +219,19 @@ style: |
 
 ---
 
+
+## Branche Fonctionnelle : Design Thinking
+### 1. EMPATHIE
+
+<div class="img-container">
+  <div class="img-container">
+  <h3>Carte d'empathie formateur</h3>
+  <img src="images/carte_d'empathie_formateur.png" class="img-methodo" alt="Design Thinking">
+</div>
+</div>
+
+---
+
 ## Branche Fonctionnelle : Design Thinking
 ### 2. DÉFINITION
 
@@ -242,7 +255,12 @@ style: |
 <div class="img-container">
   <div class="dt-card" style="border-top-color: #f39c12;">
     <h4>Solutions retenues</h4>
-    
+    <ul>
+     <li>Plateforme web centralisée de gestion des stages.</li>
+     <li>Publication et gestion des offres par les entreprises.</li>
+     <li>Candidature en ligne avec suivi pour les étudiants.</li>
+     <li>Tableau de bord pour visualiser les candidatures.</li>
+    </ul>
   </div>
 </div>
 
@@ -250,14 +268,28 @@ style: |
 
 ## Branche Fonctionnelle : Cas d'utilisation
 
-
-
 <div class="img-container">
-  <h3>Interaction Utilisateur (UML)</h3>
-  
+  <img src="images/diagramme_use_case.png" class="img-usecase" alt="Global Use Case">
 </div>
 
 ---
+
+## Branche Fonctionnelle : Cas d'utilisation - Sprint 1
+
+<div class="img-container">
+  <img src="images/diagramme_use_case_sprint1.png" class="img-usecase" alt="Global Use Case">
+</div>
+
+---
+
+## Branche Fonctionnelle : Cas d'utilisation - Sprint 2
+
+<div class="img-container">
+  <img src="images/diagramme_use_case_sprint2.png" class="img-usecase" alt="Global Use Case">
+</div>
+
+---
+
 ## Branche Fonctionnelle : Maquettes (UI/UX)
 
 

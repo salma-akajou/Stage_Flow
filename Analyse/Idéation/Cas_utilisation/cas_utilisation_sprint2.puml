@@ -25,8 +25,8 @@ package "StageFlow - Sprint 2 : Fonctionnalités Avancées" {
     usecase "Recevoir notifications des candidatures" as UC13
     usecase "Suivi détaillé des candidatures" as UC14
 
-    E --> UC13
-    E --> UC14
+    E -- UC13
+    E -- UC14
 
     ' ========================
     ' Espace Entreprise
@@ -37,10 +37,10 @@ package "StageFlow - Sprint 2 : Fonctionnalités Avancées" {
     usecase "Gérer tableau de bord des offres et candidatures" as UC17
     usecase "Optimiser affichage et navigation" as UC18
 
-    Ent --> UC15
-    Ent --> UC16
-    Ent --> UC17
-    Ent --> UC18
+    Ent -- UC15
+    Ent -- UC16
+    Ent -- UC17
+    Ent -- UC18
 }
 
 @enduml

@@ -29,12 +29,12 @@ package "Sprint 1 – MVP (StageFlow)" {
     usecase "Téléverser CV & Photo Profil" as UC6
     usecase "Suivre l’état des candidatures" as UC7
 
-    E --> UC1
-    E --> UC2
-    E --> UC3
-    E --> UC4
-    E --> UC5
-    E --> UC7
+    E -- UC1
+    E -- UC2
+    E -- UC3
+    E -- UC4
+    E -- UC5
+    E -- UC7
 
     UC5 ..> UC6 : <<include>>
 
@@ -47,11 +47,11 @@ package "Sprint 1 – MVP (StageFlow)" {
     usecase "Gérer candidatures (Accepter / Refuser)" as UC11
     usecase "Consulter tableau de bord" as UC12
 
-    Ent --> UC8
-    Ent --> UC9
-    Ent --> UC10
-    Ent --> UC11
-    Ent --> UC12
+    Ent -- UC8
+    Ent -- UC9
+    Ent -- UC10
+    Ent -- UC11
+    Ent -- UC12
 }
 
 @enduml
