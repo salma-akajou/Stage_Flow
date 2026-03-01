@@ -1,0 +1,46 @@
+@startuml StageFlow_Cas_Utilisation_Sprint2
+skinparam actorStyle awesome
+left to right direction
+
+skinparam package {
+    BackgroundColor White
+    BorderColor #2C3E50
+}
+
+skinparam usecase {
+    BackgroundColor #E8F6F3
+    BorderColor #117864
+    ArrowColor #117864
+}
+
+actor "Étudiant" as E
+actor "Entreprise / admin" as Ent
+
+package "StageFlow - Sprint 2 : Fonctionnalités Avancées" {
+
+    ' ========================
+    ' Espace Étudiant
+    ' ========================
+
+    usecase "Recevoir notifications des candidatures" as UC13
+    usecase "Suivi détaillé des candidatures" as UC14
+
+    E --> UC13
+    E --> UC14
+
+    ' ========================
+    ' Espace Entreprise
+    ' ========================
+
+    usecase "Consulter statistiques des offres" as UC15
+    usecase "Consulter la liste des étudiants inscrits" as UC16
+    usecase "Gérer tableau de bord des offres et candidatures" as UC17
+    usecase "Optimiser affichage et navigation" as UC18
+
+    Ent --> UC15
+    Ent --> UC16
+    Ent --> UC17
+    Ent --> UC18
+}
+
+@enduml

@@ -1,4 +1,4 @@
-@startuml StageFlow_Cas_Utilisation_Global
+@startuml StageFlow_Sprint1
 skinparam actorStyle awesome
 left to right direction
 
@@ -14,14 +14,13 @@ skinparam usecase {
 }
 
 actor "Étudiant" as E
-actor "Entreprise / admin" as Ent
+actor "Entreprise / Admin" as Ent
 
-package "StageFlow - Plateforme de Gestion de Stages" {
+package "Sprint 1 – MVP (StageFlow)" {
 
     ' ========================
     ' Espace Étudiant
     ' ========================
-
     usecase "S'inscrire / Se connecter" as UC1
     usecase "Consulter offres" as UC2
     usecase "Rechercher & Filtrer offres" as UC3
@@ -29,7 +28,6 @@ package "StageFlow - Plateforme de Gestion de Stages" {
     usecase "Postuler à un stage" as UC5
     usecase "Téléverser CV & Photo Profil" as UC6
     usecase "Suivre l’état des candidatures" as UC7
-    usecase "Recevoir notifications" as UC8
 
     E --> UC1
     E --> UC2
@@ -37,31 +35,23 @@ package "StageFlow - Plateforme de Gestion de Stages" {
     E --> UC4
     E --> UC5
     E --> UC7
-    E --> UC8
 
     UC5 ..> UC6 : <<include>>
 
     ' ========================
     ' Espace Entreprise
     ' ========================
+    usecase "Se connecter (Entreprise / Admin)" as UC8
+    usecase "Gérer les offres (CRUD)" as UC9
+    usecase "Consulter candidatures reçues" as UC10
+    usecase "Gérer candidatures (Accepter / Refuser)" as UC11
+    usecase "Consulter tableau de bord" as UC12
 
-    usecase "Se connecter (Entreprise)" as UC9
-    usecase "Gérer les offres (CRUD)" as UC10
-    usecase "Consulter candidatures reçues" as UC11
-    usecase "Gérer candidatures" as UC12
-    usecase "Accepter candidature" as UC13
-    usecase "Refuser candidature" as UC14
-    usecase "Consulter tableau de bord" as UC15
-    usecase "Voir statistiques détaillées" as UC16
-
+    Ent --> UC8
     Ent --> UC9
     Ent --> UC10
     Ent --> UC11
     Ent --> UC12
-    Ent --> UC15
-    Ent --> UC16
-
-    UC12 ..> UC13 : <<include>>
-    UC12 ..> UC14 : <<include>>
 }
+
 @enduml
