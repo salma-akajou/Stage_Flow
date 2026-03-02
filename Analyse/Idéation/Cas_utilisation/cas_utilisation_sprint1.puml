@@ -14,13 +14,15 @@ skinparam usecase {
 }
 
 actor "Étudiant" as E
-actor "Entreprise / Admin" as Ent
+actor "Entreprise" as Ent
+actor "Administrateur Système" as Admin
 
 package "Sprint 1 – MVP (StageFlow)" {
 
     ' ========================
     ' Espace Étudiant
     ' ========================
+
     usecase "S'inscrire / Se connecter" as UC1
     usecase "Consulter offres" as UC2
     usecase "Rechercher & Filtrer offres" as UC3
@@ -41,7 +43,8 @@ package "Sprint 1 – MVP (StageFlow)" {
     ' ========================
     ' Espace Entreprise
     ' ========================
-    usecase "Se connecter (Entreprise / Admin)" as UC8
+
+    usecase "Se connecter (Entreprise)" as UC8
     usecase "Gérer les offres (CRUD)" as UC9
     usecase "Consulter candidatures reçues" as UC10
     usecase "Gérer candidatures (Accepter / Refuser)" as UC11
@@ -52,6 +55,14 @@ package "Sprint 1 – MVP (StageFlow)" {
     Ent -- UC10
     Ent -- UC11
     Ent -- UC12
+
+    ' ========================
+    ' Espace Administrateur
+    ' ========================
+
+    usecase "Gérer comptes utilisateurs" as UC13
+
+    Admin -- UC13
 }
 
 @enduml

@@ -14,7 +14,8 @@ skinparam usecase {
 }
 
 actor "Étudiant" as E
-actor "Entreprise / admin" as Ent
+actor "Entreprise" as Ent
+actor "Administrateur Système" as Admin
 
 package "StageFlow - Plateforme de Gestion de Stages" {
 
@@ -63,5 +64,18 @@ package "StageFlow - Plateforme de Gestion de Stages" {
 
     UC12 ..> UC13 : <<include>>
     UC12 ..> UC14 : <<include>>
+
+    ' ========================
+    ' Espace Administrateur
+    ' ========================
+
+    usecase "Gérer comptes utilisateurs" as UC17
+    usecase "Contrôler offres publiées" as UC18
+    usecase "Consulter statistiques globales" as UC19
+
+    Admin -- UC17
+    Admin -- UC18
+    Admin -- UC19
 }
+
 @enduml
