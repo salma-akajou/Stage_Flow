@@ -225,8 +225,8 @@ style: |
 
 <div class="img-container">
   <div class="img-container">
-  <h3>Carte d'empathie formateur</h3>
-  <img src="images/carte_d'empathie_formateur.png" class="img-methodo" alt="Design Thinking">
+  <h3>Carte d'empathie admin</h3>
+  <img src="images/carte_d'empathie_admin.png" class="img-methodo" alt="Design Thinking">
 </div>
 </div>
 
