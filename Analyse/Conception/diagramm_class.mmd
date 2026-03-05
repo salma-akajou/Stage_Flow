@@ -1,80 +1,131 @@
 classDiagram
+%% Diagramme de classes StageFlow 
 
+%% ====================
+%% Utilisateurs
+%% ====================
 class Utilisateur {
-  id: bigint
-  nom: string
-  email: string
-  mot_de_passe: string
-  date_creation: timestamp
+    +id : int
+    +nom : string
+    +email : string
+    +mot_de_passe : string
+    +date_creation : datetime
+    +connexion()
 }
 
-class Role {
-  id: bigint
-  nom: string
+class Etudiant {
+    +telephone : string
+    +ville : string
+    +filiere : string
+    +diplome : string
+    +bio : string
+    +github : string
+    +linkedin : string
+    +ajouter_favoris(offre : Offre)
+    +postuler_stage(offre : Offre, cv : string)
+    +suivre_candidatures()
 }
 
-class ProfilEtudiant {
-  id: bigint
-  utilisateur_id: bigint
-  telephone: string
-  cv: string
-  photo: string
-  ecole: string
-  niveau: string
+class Entreprise {
+    +nom_entreprise : string
+    +secteur : string
+    +ville : string
+    +adresse : string
+    +description : string
+    +site_web : string
+    +telephone : string
+    +ajouter_offre(offre : Offre)
+    +gerer_offres()
+    +consulter_candidatures()
+    +gerer_candidatures()
 }
 
-class ProfilEntreprise {
-  id: bigint
-  utilisateur_id: bigint
-  nom_entreprise: string
-  description: text
-  adresse: string
-  site_web: string
-  valide: boolean
+class Administrateur {
+    +gerer_comptes()
+    +moderation_offres()
+    +moderation_commentaires()
+    +voir_statistiques()
 }
 
-class OffreStage {
-  id: bigint
-  entreprise_id: bigint
-  titre: string
-  description: text
-  lieu: string
-  duree: string
-  statut: string
-  date_publication: timestamp
+%% ====================
+%% Stage / Offre
+%% ====================
+class Offre {
+    +id : int
+    +titre : string
+    +description : string
+    +date_debut : date
+    +date_fin : date
+    +entreprise_id : int
 }
 
 class Candidature {
-  id: bigint
-  etudiant_id: bigint
-  offre_id: bigint
-  statut: string
-  date_candidature: timestamp
+    +id : int
+    +etudiant_id : int
+    +offre_id : int
+    +cv : string
+    +statut : string
+    +date_postulation : datetime
+}
+
+class Favoris {
+    +id : int
+    +etudiant_id : int
+    +offre_id : int
+    +date_ajout : datetime
 }
 
 class Commentaire {
-  id: bigint
-  utilisateur_id: bigint
-  offre_id: bigint
-  contenu: text
-  date_creation: timestamp
+    +id : int
+    +utilisateur_id : int
+    +texte : string
+    +date_creation : datetime
 }
 
 class Notification {
-  id: bigint
-  utilisateur_id: bigint
-  message: string
-  lu: boolean
-  date_creation: timestamp
+    +id : int
+    +utilisateur_id : int
+    +message : string
+    +lu : bool
+    +date_creation : datetime
 }
 
-Utilisateur "1" --> "1" ProfilEtudiant
-Utilisateur "1" --> "1" ProfilEntreprise
-Utilisateur "*" --> "*" Role
-Utilisateur "1" --> "*" Commentaire
-Utilisateur "1" --> "*" Notification
+%% ====================
+%% Relations principales
+%% ====================
+Utilisateur <|-- Etudiant
+Utilisateur <|-- Entreprise
+Utilisateur <|-- Administrateur
 
-ProfilEntreprise "1" --> "*" OffreStage
-ProfilEtudiant "1" --> "*" Candidature
-OffreStage "1" --> "*" Candidature
-OffreStage "1" --> "*" Commentaire
+Etudiant "1" --> "*" Candidature : postule
+Etudiant "1" --> "*" Favoris : ajoute
+Etudiant "1" --> "*" Commentaire : écrit
+
+Entreprise "1" --> "*" Offre : publie
+Entreprise "1" --> "*" Commentaire : écrit
+Entreprise "1" --> "*" Candidature : reçoit
+
+Administrateur "1" --> "*" Commentaire : modère
+
+Utilisateur "1" --> "*" Notification : reçoit
+
+%% Relation Favoris - Offre
+Offre "1" --> "*" Favoris : contient
+
+%% ====================
+%% Spatie Roles / Permissions
+%% ====================
+class Role {
+    +id : int
+    +nom : string
+    +description : string
+}
+
+class Permission {
+    +id : int
+    +nom : string
+    +description : string
+}
+
+Utilisateur "*" --> "*" Role : possède
+Role "*" --> "*" Permission : contient
