@@ -7,6 +7,7 @@
     <title>Dashboard Admin - StageFlow</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -291,39 +292,30 @@
 
             <!-- Chart Section -->
             <div class="grid lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="150">
+                <!-- Preline Area Chart -->
                 <div class="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4">Activité des 7 derniers jours</h3>
-                    <div class="flex items-end justify-between h-48 gap-2">
-                        <div class="flex-1 flex flex-col items-center gap-2">
-                            <div class="w-full bg-indigo-200 rounded-t-lg chart-bar relative" style="height: 45%"></div>
-                            <span class="text-xs text-gray-500">Lun</span>
+                    <!-- Header -->
+                    <div class="flex flex-wrap justify-between items-center gap-2 mb-4">
+                        <div>
+                            <h2 class="text-sm text-gray-500">
+                                Activité des 7 derniers jours
+                            </h2>
+                            <p class="text-xl sm:text-2xl font-bold text-gray-900">
+                                2,847
+                            </p>
                         </div>
-                        <div class="flex-1 flex flex-col items-center gap-2">
-                            <div class="w-full bg-indigo-300 rounded-t-lg chart-bar relative" style="height: 62%"></div>
-                            <span class="text-xs text-gray-500">Mar</span>
-                        </div>
-                        <div class="flex-1 flex flex-col items-center gap-2">
-                            <div class="w-full bg-indigo-400 rounded-t-lg chart-bar relative" style="height: 78%"></div>
-                            <span class="text-xs text-gray-500">Mer</span>
-                        </div>
-                        <div class="flex-1 flex flex-col items-center gap-2">
-                            <div class="w-full bg-indigo-500 rounded-t-lg chart-bar relative" style="height: 55%"></div>
-                            <span class="text-xs text-gray-500">Jeu</span>
-                        </div>
-                        <div class="flex-1 flex flex-col items-center gap-2">
-                            <div class="w-full bg-indigo-600 rounded-t-lg chart-bar relative" style="height: 85%"></div>
-                            <span class="text-xs text-gray-500">Ven</span>
-                        </div>
-                        <div class="flex-1 flex flex-col items-center gap-2">
-                            <div class="w-full bg-indigo-400 rounded-t-lg chart-bar relative" style="height: 40%"></div>
-                            <span class="text-xs text-gray-500">Sam</span>
-                        </div>
-                        <div class="flex-1 flex flex-col items-center gap-2">
-                            <div class="w-full bg-indigo-300 rounded-t-lg chart-bar relative" style="height: 35%"></div>
-                            <span class="text-xs text-gray-500">Dim</span>
+                        <div>
+                            <span class="py-1.5 px-2 inline-flex items-center gap-x-1 text-xs font-medium rounded-md bg-emerald-100 text-emerald-800">
+                                <svg class="inline-block size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+                                +12%
+                            </span>
                         </div>
                     </div>
+                    <!-- End Header -->
+
+                    <div id="hs-single-area-chart" class="min-h-[240px]"></div>
                 </div>
+
                 <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
                     <h3 class="text-lg font-bold text-gray-900 mb-4">Répartition</h3>
                     <div class="space-y-4">
@@ -339,13 +331,13 @@
                         </div>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2">
-                                <div class="size-3 rounded-full bg-indigo-100"></div>
+                                <div class="size-3 rounded-full bg-indigo-300"></div>
                                 <span class="text-sm text-gray-600">Entreprises</span>
                             </div>
                             <span class="text-sm font-semibold text-gray-900">25%</span>
                         </div>
                         <div class="w-full bg-gray-100 rounded-full h-2">
-                            <div class="bg-indigo-100 h-2 rounded-full" style="width: 25%"></div>
+                            <div class="bg-indigo-300 h-2 rounded-full" style="width: 25%"></div>
                         </div>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2">
@@ -365,6 +357,66 @@
 
     <script>
         AOS.init({ duration: 700, once: true });
+
+        // Initialize ApexCharts Area Chart
+        document.addEventListener('DOMContentLoaded', function() {
+            var options = {
+                series: [{
+                    name: 'Activité',
+                    data: [320, 450, 580, 410, 720, 380, 290]
+                }],
+                chart: {
+                    type: 'area',
+                    height: 240,
+                    toolbar: { show: false },
+                    zoom: { enabled: false }
+                },
+                colors: ['#6366f1'],
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shadeIntensity: 1,
+                        opacityFrom: 0.4,
+                        opacityTo: 0.05,
+                        stops: [0, 100]
+                    }
+                },
+                stroke: {
+                    curve: 'smooth',
+                    width: 3
+                },
+                dataLabels: { enabled: false },
+                grid: {
+                    borderColor: '#f3f4f6',
+                    strokeDashArray: 4,
+                    padding: { top: 0, right: 0, bottom: 0, left: 10 }
+                },
+                xaxis: {
+                    categories: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+                    axisBorder: { show: false },
+                    axisTicks: { show: false },
+                    labels: {
+                        style: { colors: '#9ca3af', fontSize: '12px' }
+                    }
+                },
+                yaxis: {
+                    labels: {
+                        style: { colors: '#9ca3af', fontSize: '12px' }
+                    }
+                },
+                tooltip: {
+                    theme: 'light',
+                    y: {
+                        formatter: function(value) {
+                            return value + ' actions';
+                        }
+                    }
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#hs-single-area-chart"), options);
+            chart.render();
+        });
     </script>
 </body>
 
