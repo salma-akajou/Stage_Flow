@@ -1,0 +1,80 @@
+classDiagram
+
+class Utilisateur {
+  id: bigint
+  nom: string
+  email: string
+  mot_de_passe: string
+  date_creation: timestamp
+}
+
+class Role {
+  id: bigint
+  nom: string
+}
+
+class ProfilEtudiant {
+  id: bigint
+  utilisateur_id: bigint
+  telephone: string
+  cv: string
+  photo: string
+  ecole: string
+  niveau: string
+}
+
+class ProfilEntreprise {
+  id: bigint
+  utilisateur_id: bigint
+  nom_entreprise: string
+  description: text
+  adresse: string
+  site_web: string
+  valide: boolean
+}
+
+class OffreStage {
+  id: bigint
+  entreprise_id: bigint
+  titre: string
+  description: text
+  lieu: string
+  duree: string
+  statut: string
+  date_publication: timestamp
+}
+
+class Candidature {
+  id: bigint
+  etudiant_id: bigint
+  offre_id: bigint
+  statut: string
+  date_candidature: timestamp
+}
+
+class Commentaire {
+  id: bigint
+  utilisateur_id: bigint
+  offre_id: bigint
+  contenu: text
+  date_creation: timestamp
+}
+
+class Notification {
+  id: bigint
+  utilisateur_id: bigint
+  message: string
+  lu: boolean
+  date_creation: timestamp
+}
+
+Utilisateur "1" --> "1" ProfilEtudiant
+Utilisateur "1" --> "1" ProfilEntreprise
+Utilisateur "*" --> "*" Role
+Utilisateur "1" --> "*" Commentaire
+Utilisateur "1" --> "*" Notification
+
+ProfilEntreprise "1" --> "*" OffreStage
+ProfilEtudiant "1" --> "*" Candidature
+OffreStage "1" --> "*" Candidature
+OffreStage "1" --> "*" Commentaire
