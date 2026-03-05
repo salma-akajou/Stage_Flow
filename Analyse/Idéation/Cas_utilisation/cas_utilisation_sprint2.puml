@@ -1,6 +1,6 @@
 @startuml StageFlow_Sprint2
-skinparam actorStyle awesome
 left to right direction
+skinparam actorStyle awesome
 
 skinparam package {
     BackgroundColor White
@@ -17,37 +17,56 @@ actor "Étudiant" as E
 actor "Entreprise" as Ent
 actor "Administrateur Système" as Admin
 
+
 package "Sprint 2 – Fonctionnalités Avancées (StageFlow)" {
 
     ' ========================
     ' Améliorations Étudiant
     ' ========================
+    package "Améliorations Étudiant" {
 
-    usecase "Recevoir notifications" as UC1
-    usecase "Suivi détaillé des candidatures" as UC2
+        usecase "Recevoir notifications" as UC1
+        usecase "Suivi détaillé des candidatures" as UC2
+        usecase "Ajouter un commentaire" as UC3
+
+    }
 
     E -- UC1
     E -- UC2
+    E -- UC3
+
 
     ' ========================
     ' Améliorations Entreprise
     ' ========================
+    package "Améliorations Entreprise" {
 
-    usecase "Consulter tableau de bord avancé" as UC3
-    usecase "Voir statistiques détaillées" as UC4
+        usecase "Consulter tableau de bord avancé" as UC4
+        usecase "Voir statistiques détaillées" as UC5
+        usecase "Ajouter un commentaire" as UC6
 
-    Ent -- UC3
+    }
+
     Ent -- UC4
+    Ent -- UC5
+    Ent -- UC6
+
 
     ' ========================
     ' Améliorations Administrateur
     ' ========================
+    package "Améliorations Administrateur" {
 
-    usecase "Contrôler offres publiées" as UC5
-    usecase "Consulter statistiques globales" as UC6
+        usecase "Contrôler offres publiées" as UC7
+        usecase "Consulter statistiques globales" as UC8
+        usecase "Modérer les commentaires" as UC9
 
-    Admin -- UC5
-    Admin -- UC6
+    }
+
+    Admin -- UC7
+    Admin -- UC8
+    Admin -- UC9
+
 }
 
 @enduml

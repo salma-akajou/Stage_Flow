@@ -292,12 +292,8 @@ style: |
 
 ## Branche Fonctionnelle : Maquettes (UI/UX)
 
-
-
-<div class="maquette-grid">
-  <div style="text-align: center;">
-   
-  </div>
+<div class="img-container">
+  <img src="images/maquette_stageflow.png" class="img-methodo" alt="Maquettes UI">
 </div>
 
 ---
