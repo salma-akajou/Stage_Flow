@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-slate-900 border-x border-slate-200 shadow-2xl h-[100dvh] mx-auto w-full max-w-[430px] overflow-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>03. Recherche - StageFlow Mobile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../Charte_graphique/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: { 100: 'var(--color-primary-100)', 500: 'var(--color-primary-500)', 600: 'var(--color-primary-600)' },
+                        semantic: { success: 'var(--color-success-500)', warning: 'var(--color-warning-500)' }
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-slate-50 h-[100dvh] flex flex-col font-sans relative overflow-hidden">
+    <header class="bg-white px-5 pt-safe pb-4 border-b border-slate-200 shrink-0">
+        <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <svg class="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+            </div>
+            <input type="text" class="w-full py-3.5 pl-11 pr-12 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all" placeholder="Rechercher un stage...">
+            <button class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                <div class="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center active:scale-95 transition-transform">
+                    <svg class="w-4 h-4 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                    </svg>
+                </div>
+            </button>
+        </div>
+        <div class="flex gap-2 mt-3 overflow-x-auto hide-scrollbar">
+            <button class="px-3 py-1.5 bg-primary-100 text-primary-700 text-xs font-medium rounded-full whitespace-nowrap">Tous</button>
+            <button class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-medium rounded-full whitespace-nowrap">Développement</button>
+            <button class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-medium rounded-full whitespace-nowrap">Design</button>
+            <button class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-medium rounded-full whitespace-nowrap">Marketing</button>
+        </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto hide-scrollbar pb-24 px-5 py-4">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-lg font-bold text-slate-900">124 résultats</h2>
+            <button class="text-sm font-medium text-primary-600 flex items-center gap-1">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/>
+                </svg>
+                Filtrer
+            </button>
+        </div>
+
+        <div class="space-y-3">
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 active:scale-[0.98] transition-all">
+                <div class="flex gap-3">
+                    <div class="w-12 h-12 bg-primary-50 rounded-xl flex items-center justify-center shrink-0">
+                        <span class="text-lg font-bold text-primary-600">TC</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-sm font-bold text-slate-900 truncate">Développeur Full Stack</h3>
+                        <p class="text-xs text-slate-500">TechCorp • Casablanca</p>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] rounded-md">6 mois</span>
+                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] rounded-md">3000 MAD</span>
+                            <span class="px-2 py-0.5 bg-semantic-success/10 text-semantic-success text-[10px] rounded-md">Nouveau</span>
+                        </div>
+                    </div>
+                    <button class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center shrink-0 active:scale-95 transition-transform">
+                        <svg class="w-4 h-4 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 active:scale-[0.98] transition-all">
+                <div class="flex gap-3">
+                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center shrink-0">
+                        <span class="text-lg font-bold text-slate-600">DM</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-sm font-bold text-slate-900 truncate">Designer UI/UX</h3>
+                        <p class="text-xs text-slate-500">DesignMark • Rabat</p>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] rounded-md">4 mois</span>
+                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] rounded-md">Remote</span>
+                        </div>
+                    </div>
+                    <button class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 active:scale-95 transition-transform">
+                        <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 active:scale-[0.98] transition-all">
+                <div class="flex gap-3">
+                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center shrink-0">
+                        <span class="text-lg font-bold text-slate-600">WS</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-sm font-bold text-slate-900 truncate">Développeur Mobile React Native</h3>
+                        <p class="text-xs text-slate-500">WebStart • Marrakech</p>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] rounded-md">3 mois</span>
+                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] rounded-md">2500 MAD</span>
+                            <span class="px-2 py-0.5 bg-semantic-warning/10 text-semantic-warning text-[10px] rounded-md">Urgent</span>
+                        </div>
+                    </div>
+                    <button class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 active:scale-95 transition-transform">
+                        <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 active:scale-[0.98] transition-all">
+                <div class="flex gap-3">
+                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center shrink-0">
+                        <span class="text-lg font-bold text-slate-600">DS</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-sm font-bold text-slate-900 truncate">Data Scientist Junior</h3>
+                        <p class="text-xs text-slate-500">DataSol • Fès</p>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] rounded-md">6 mois</span>
+                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] rounded-md">4000 MAD</span>
+                        </div>
+                    </div>
+                    <button class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 active:scale-95 transition-transform">
+                        <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <nav class="fixed bottom-0 w-full max-w-[430px] bg-white border-t border-slate-200 z-50">
+        <div class="flex justify-around items-center h-[72px] px-4 pb-safe">
+            <a href="02-mobile-dashboard.html" class="flex flex-col items-center justify-center text-slate-400 gap-1">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+                <span class="text-[10px] font-medium uppercase tracking-wide">Accueil</span>
+            </a>
+            <a href="03-mobile-search.html" class="flex flex-col items-center justify-center text-primary-600 gap-1">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                <span class="text-[10px] font-bold uppercase tracking-wide">Recherche</span>
+            </a>
+            <a href="04-mobile-applications.html" class="flex flex-col items-center justify-center text-slate-400 gap-1">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                <span class="text-[10px] font-medium uppercase tracking-wide">Candidatures</span>
+            </a>
+            <a href="08-mobile-profile.html" class="flex flex-col items-center justify-center text-slate-400 gap-1">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                </svg>
+                <span class="text-[10px] font-medium uppercase tracking-wide">Profil</span>
+            </a>
+        </div>
+    </nav>
+</body>
+</html>

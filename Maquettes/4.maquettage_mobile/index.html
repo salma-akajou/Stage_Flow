@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-slate-900 border-x border-slate-200 shadow-2xl h-[100dvh] mx-auto w-full max-w-[430px] overflow-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>StageFlow Mobile UI Kit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="Charte_graphique/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: {
+                            50: 'var(--color-primary-50)', 100: 'var(--color-primary-100)', 200: 'var(--color-primary-200)',
+                            300: 'var(--color-primary-300)', 400: 'var(--color-primary-400)', 500: 'var(--color-primary-500)',
+                            600: 'var(--color-primary-600)', 700: 'var(--color-primary-700)', 800: 'var(--color-primary-800)', 900: 'var(--color-primary-900)'
+                        },
+                        semantic: {
+                            success: 'var(--color-success-500)',
+                            error: 'var(--color-error-500)',
+                            warning: 'var(--color-warning-500)',
+                            info: 'var(--color-info-500)'
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-slate-100 h-[100dvh] flex flex-col font-sans overflow-hidden">
+    <header class="bg-white px-5 pt-safe pb-4 shadow-[0_4px_10px_-4px_rgba(0,0,0,0.1)] z-20 shrink-0">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 flex items-center justify-center">
+                <img src="images/logo_app.png" alt="StageFlow Logo" class="w-full h-full object-contain">
+            </div>
+            <div>
+                <h1 class="text-2xl font-bold text-slate-900 leading-tight">StageFlow</h1>
+                <p class="text-xs font-semibold text-primary-600 uppercase tracking-widest">Mobile UI Kit</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto hide-scrollbar px-5 py-6">
+        <div class="mb-6">
+            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-slate-800"></span> Fondations
+            </h2>
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/50 space-y-3">
+                <a href="Charte_graphique/index.html" class="flex justify-between items-center bg-primary-50 p-3 rounded-xl active:bg-primary-100 transition-colors">
+                    <span class="text-sm font-semibold text-primary-700">Couleurs & Typographie</span>
+                    <svg class="w-4 h-4 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> Atoms
+            </h2>
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/50 space-y-3">
+                <a href="components/atoms/logo/index.html" class="flex justify-between items-center bg-slate-50 p-3 rounded-xl active:bg-slate-100 transition-colors">
+                    <span class="text-sm font-semibold text-slate-700">Logo App</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+                <a href="components/atoms/avatar/index.html" class="flex justify-between items-center bg-slate-50 p-3 rounded-xl active:bg-slate-100 transition-colors">
+                    <span class="text-sm font-semibold text-slate-700">Avatar</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+                <a href="components/atoms/button/index.html" class="flex justify-between items-center bg-slate-50 p-3 rounded-xl active:bg-slate-100 transition-colors">
+                    <span class="text-sm font-semibold text-slate-700">Button (Touch optimized)</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+                <a href="components/atoms/input/index.html" class="flex justify-between items-center bg-slate-50 p-3 rounded-xl active:bg-slate-100 transition-colors">
+                    <span class="text-sm font-semibold text-slate-700">Input Form</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+                <a href="components/atoms/radio-check/index.html" class="flex justify-between items-center bg-slate-50 p-3 rounded-xl active:bg-slate-100 transition-colors">
+                    <span class="text-sm font-semibold text-slate-700">Radio & Checkbox</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+                <a href="components/atoms/badge/index.html" class="flex justify-between items-center bg-slate-50 p-3 rounded-xl active:bg-slate-100 transition-colors">
+                    <span class="text-sm font-semibold text-slate-700">Badge & Indicators</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+                <a href="components/atoms/progress-bar/index.html" class="flex justify-between items-center bg-slate-50 p-3 rounded-xl active:bg-slate-100 transition-colors">
+                    <span class="text-sm font-semibold text-slate-700">Progress Bar</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+                <a href="components/atoms/icon/index.html" class="flex justify-between items-center bg-slate-50 p-3 rounded-xl active:bg-slate-100 transition-colors">
+                    <span class="text-sm font-semibold text-slate-700">Icon Button</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> Molecules
+            </h2>
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/50 space-y-3">
+                <a href="components/molecules/header-app/index.html" class="flex justify-between items-center bg-slate-50 p-3 rounded-xl active:bg-slate-100 transition-colors">
+                    <span class="text-sm font-semibold text-slate-700">Header App</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+                <a href="components/molecules/bottom-nav/index.html" class="flex justify-between items-center bg-slate-50 p-3 rounded-xl active:bg-slate-100 transition-colors">
+                    <span class="text-sm font-semibold text-slate-700">Bottom Navigation Bar</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+                <a href="components/molecules/card-offer/index.html" class="flex justify-between items-center bg-slate-50 p-3 rounded-xl active:bg-slate-100 transition-colors">
+                    <span class="text-sm font-semibold text-slate-700">Card Offer</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+                <a href="components/molecules/list-item/index.html" class="flex justify-between items-center bg-slate-50 p-3 rounded-xl active:bg-slate-100 transition-colors">
+                    <span class="text-sm font-semibold text-slate-700">List Item (Candidatures)</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+                <a href="components/molecules/stats-card/index.html" class="flex justify-between items-center bg-slate-50 p-3 rounded-xl active:bg-slate-100 transition-colors">
+                    <span class="text-sm font-semibold text-slate-700">Stats Card</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary-600"></span> App Screens - Espace Stagiaire
+            </h2>
+            <div class="grid gap-3">
+                <a href="mockups/01-mobile-login.html" class="flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm border border-slate-200/50 active:border-primary-500 transition-colors">
+                    <div class="w-10 h-10 bg-primary-50 text-primary-600 rounded-xl flex items-center justify-center shrink-0 font-bold">1</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-[15px] leading-snug">01. Connexion</h3>
+                        <p class="text-[11px] text-slate-500 font-medium">Authentification</p>
+                    </div>
+                </a>
+                <a href="mockups/02-mobile-dashboard.html" class="flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm border border-slate-200/50 active:border-primary-500 transition-colors">
+                    <div class="w-10 h-10 bg-primary-50 text-primary-600 rounded-xl flex items-center justify-center shrink-0 font-bold">2</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-[15px] leading-snug">02. Dashboard Stagiaire</h3>
+                        <p class="text-[11px] text-slate-500 font-medium">Accueil, Stats, Bottom Nav</p>
+                    </div>
+                </a>
+                <a href="mockups/03-mobile-search.html" class="flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm border border-slate-200/50 active:border-primary-500 transition-colors">
+                    <div class="w-10 h-10 bg-primary-50 text-primary-600 rounded-xl flex items-center justify-center shrink-0 font-bold">3</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-[15px] leading-snug">03. Recherche Stages</h3>
+                        <p class="text-[11px] text-slate-500 font-medium">Filtres, Liste des offres</p>
+                    </div>
+                </a>
+                <a href="mockups/04-mobile-applications.html" class="flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm border border-slate-200/50 active:border-primary-500 transition-colors">
+                    <div class="w-10 h-10 bg-primary-50 text-primary-600 rounded-xl flex items-center justify-center shrink-0 font-bold">4</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-[15px] leading-snug">04. Mes Candidatures</h3>
+                        <p class="text-[11px] text-slate-500 font-medium">Suivi des candidatures</p>
+                    </div>
+                </a>
+                <a href="mockups/05-mobile-offer-detail.html" class="flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm border border-slate-200/50 active:border-primary-500 transition-colors">
+                    <div class="w-10 h-10 bg-primary-50 text-primary-600 rounded-xl flex items-center justify-center shrink-0 font-bold">5</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-[15px] leading-snug">05. Détails Offre</h3>
+                        <p class="text-[11px] text-slate-500 font-medium">Description, Postuler</p>
+                    </div>
+                </a>
+                <a href="mockups/08-mobile-profile.html" class="flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm border border-slate-200/50 active:border-primary-500 transition-colors">
+                    <div class="w-10 h-10 bg-primary-50 text-primary-600 rounded-xl flex items-center justify-center shrink-0 font-bold">8</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-[15px] leading-snug">08. Profil Stagiaire</h3>
+                        <p class="text-[11px] text-slate-500 font-medium">Gestion du compte, CV</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span> App Screens - Espace Entreprise
+            </h2>
+            <div class="grid gap-3">
+                <a href="mockups/06-mobile-enterprise-dashboard.html" class="flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm border border-slate-200/50 active:border-primary-500 transition-colors">
+                    <div class="w-10 h-10 bg-slate-100 text-slate-600 rounded-xl flex items-center justify-center shrink-0 font-bold">6</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-[15px] leading-snug">06. Dashboard Entreprise</h3>
+                        <p class="text-[11px] text-slate-500 font-medium">Stats, Candidats, Offres</p>
+                    </div>
+                </a>
+                <a href="mockups/07-mobile-candidates.html" class="flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm border border-slate-200/50 active:border-primary-500 transition-colors">
+                    <div class="w-10 h-10 bg-slate-100 text-slate-600 rounded-xl flex items-center justify-center shrink-0 font-bold">7</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-[15px] leading-snug">07. Gestion Candidats</h3>
+                        <p class="text-[11px] text-slate-500 font-medium">Liste et traitement des CV</p>
+                    </div>
+                </a>
+                <a href="mockups/09-mobile-enterprise-profile.html" class="flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm border border-slate-200/50 active:border-primary-500 transition-colors">
+                    <div class="w-10 h-10 bg-slate-100 text-slate-600 rounded-xl flex items-center justify-center shrink-0 font-bold">9</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-[15px] leading-snug">09. Profil Entreprise</h3>
+                        <p class="text-[11px] text-slate-500 font-medium">Paramètres, Offres actives</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

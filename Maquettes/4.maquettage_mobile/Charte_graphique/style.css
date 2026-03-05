@@ -1,0 +1,95 @@
+/* Charte Graphique Mobile - StageFlow */
+/* Ton: Professionnel, Moderne, Épuré */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* =========================================
+     Palette Primaire (Indigo)
+     ========================================= */
+  --color-primary-50:  hsl(239, 100%, 96%);
+  --color-primary-100: hsl(239, 100%, 92%);
+  --color-primary-200: hsl(239, 95%, 85%);
+  --color-primary-300: hsl(239, 90%, 75%);
+  --color-primary-400: hsl(239, 85%, 70%);
+  --color-primary-500: hsl(239, 84%, 67%); /* #6366f1 */
+  --color-primary-600: hsl(239, 76%, 59%); /* #4f46e5 Principal */
+  --color-primary-700: hsl(239, 67%, 51%);
+  --color-primary-800: hsl(239, 60%, 42%);
+  --color-primary-900: hsl(239, 55%, 33%);
+
+  /* =========================================
+     Palette Neutre (Slate)
+     ========================================= */
+  --color-neutral-50:  hsl(210, 40%, 98%);
+  --color-neutral-100: hsl(210, 40%, 96%);
+  --color-neutral-200: hsl(214, 32%, 91%);
+  --color-neutral-300: hsl(213, 27%, 84%);
+  --color-neutral-400: hsl(215, 20%, 65%);
+  --color-neutral-500: hsl(215, 16%, 47%);
+  --color-neutral-600: hsl(215, 19%, 35%);
+  --color-neutral-700: hsl(215, 25%, 27%);
+  --color-neutral-800: hsl(217, 33%, 17%);
+  --color-neutral-900: hsl(222, 47%, 11%);
+
+  /* =========================================
+     Palette Sémantique
+     ========================================= */
+  --color-success-100: hsl(152, 76%, 90%);
+  --color-success-500: hsl(160, 84%, 39%); /* #10b981 */
+  --color-success-700: hsl(160, 84%, 25%);
+
+  --color-warning-100: hsl(48, 100%, 90%);
+  --color-warning-500: hsl(45, 93%, 47%); /* #f59e0b */
+  --color-warning-700: hsl(35, 92%, 33%);
+
+  --color-error-100: hsl(0, 93%, 94%);
+  --color-error-500: hsl(350, 89%, 60%); /* #f43f5e */
+  --color-error-700: hsl(350, 89%, 40%);
+
+  --color-info-100: hsl(214, 100%, 93%);
+  --color-info-500: hsl(217, 91%, 60%); /* #3b82f6 */
+  --color-info-700: hsl(217, 91%, 40%);
+
+  /* =========================================
+     Typographie
+     ========================================= */
+  --font-heading: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-neutral-800);
+  background-color: var(--color-neutral-50);
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-neutral-900);
+}
+
+/* Optimization for mobile touch targets */
+button, a {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Safe area utilities */
+.pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+}
+
+.pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* Hide scrollbar for mobile feel */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
