@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+</head>
+
+<body class="p-10 bg-white space-y-8">
+    <div class="space-y-4">
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Checkboxes</h3>
+        <div class="flex gap-x-6">
+            <div class="flex">
+                <input type="checkbox"
+                    class="shrink-0 mt-0.5 border-slate-200 rounded text-indigo-600 focus:ring-indigo-500"
+                    id="hs-checked-checkbox" checked>
+                <label for="hs-checked-checkbox" class="text-sm text-slate-500 ms-3">Option Check</label>
+            </div>
+            <div class="flex">
+                <input type="checkbox"
+                    class="shrink-0 mt-0.5 border-slate-200 rounded text-indigo-600 focus:ring-indigo-500"
+                    id="hs-default-checkbox">
+                <label for="hs-default-checkbox" class="text-sm text-slate-500 ms-3">Option Uncheck</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="space-y-4">
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Radio Groups (Rôles)</h3>
+        <div class="grid sm:grid-cols-2 gap-2">
+            <label for="hs-radio-group-1"
+                class="flex p-3 w-full bg-white border border-slate-200 rounded-xl text-sm focus:border-indigo-500 focus:ring-indigo-500 cursor-pointer">
+                <input type="radio" name="hs-radio-group"
+                    class="shrink-0 mt-0.5 border-slate-200 rounded-full text-indigo-600 focus:ring-indigo-500"
+                    id="hs-radio-group-1" checked>
+                <span class="text-sm text-slate-500 ms-3">Étudiant</span>
+            </label>
+            <label for="hs-radio-group-2"
+                class="flex p-3 w-full bg-white border border-slate-200 rounded-xl text-sm focus:border-indigo-500 focus:ring-indigo-500 cursor-pointer">
+                <input type="radio" name="hs-radio-group"
+                    class="shrink-0 mt-0.5 border-slate-200 rounded-full text-indigo-600 focus:ring-indigo-500"
+                    id="hs-radio-group-2">
+                <span class="text-sm text-slate-500 ms-3">Entreprise</span>
+            </label>
+        </div>
+    </div>
+</body>
+
+</html>

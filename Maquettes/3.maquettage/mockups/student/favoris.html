@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Favoris - StageFlow</title>
+    <!-- Frameworks -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js" defer></script>
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc', 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81', 950: '#1e1b4b' },
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        .sticker-float {
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        .bg-mesh {
+            background-color: #f8fafc;
+            background-image:
+                radial-gradient(at 0% 0%, hsla(253, 16%, 15%, 0.03) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(330, 40%, 40%, 0.03) 0, transparent 50%),
+                radial-gradient(at 50% 100%, hsla(217, 91%, 60%, 0.02) 0, transparent 50%);
+        }
+    </style>
+</head>
+
+<body class="bg-mesh h-full overflow-x-hidden pt-4 sm:pt-0">
+    <!-- Navbar (Strict Preline + Optimized Breadcrumb) -->
+    <header
+        class="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-[48] w-full bg-white/90 backdrop-blur-md border-b border-gray-200 text-sm py-2.5 sm:py-4 lg:ps-64">
+        <nav class="max-w-[85rem] mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between"
+            aria-label="Global">
+            <div class="flex items-center gap-x-3">
+                <!-- Sidebar Toggle -->
+                <button type="button"
+                    class="lg:hidden py-2 px-3 inline-flex justify-center items-center gap-x-2 text-start bg-white border border-gray-200 text-gray-800 text-sm font-medium rounded-lg shadow-sm hover:bg-gray-50 focus:outline-none"
+                    data-hs-overlay="#application-sidebar">
+                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="3" x2="21" y1="6" y2="6" />
+                        <line x1="3" x2="21" y1="12" y2="12" />
+                        <line x1="3" x2="21" y1="18" y2="18" />
+                    </svg>
+                </button>
+
+                <!-- Navbar Optimized Breadcrumbs -->
+                <ol class="flex items-center whitespace-nowrap min-w-0" aria-label="Breadcrumb">
+                    <li class="inline-flex items-center text-sm text-gray-400">
+                        Étudiant
+                        <svg class="shrink-0 mx-2 overflow-visible size-4 text-gray-300"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m9 18 6-6-6-6" />
+                        </svg>
+                    </li>
+                    <li class="inline-flex items-center text-sm font-semibold text-gray-800 truncate"
+                        aria-current="page">
+                        Favoris
+                    </li>
+                </ol>
+            </div>
+
+            <div class="flex flex-row items-center justify-end gap-x-2 sm:gap-x-4">
+                <!-- Notifications -->
+                <button type="button"
+                    class="relative inline-flex justify-center items-center size-9 text-sm font-semibold rounded-full text-gray-800 hover:bg-gray-100 transition"
+                    aria-label="Notifications">
+                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                    </svg>
+                    <span class="absolute top-1.5 right-1.5 size-2 bg-red-500 rounded-full ring-2 ring-white"></span>
+                </button>
+
+                <!-- Theme Toggle -->
+                <button type="button"
+                    class="hs-dark-mode-active:hidden block hs-dark-mode py-2 px-3 text-gray-600 hover:bg-gray-100 rounded-lg transition"
+                    data-hs-theme-click-value="dark">
+                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+                    </svg>
+                </button>
+                <div class="hs-dropdown [--placement:bottom-right] relative inline-flex">
+                    <button id="hs-dropdown-account" type="button"
+                        class="size-9 flex justify-center items-center text-sm font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 transition"
+                        aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                        <img class="shrink-0 size-full rounded-full"
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1587&auto=format&fit=facearea&facepad=3&w=320&h=320&q=80"
+                            alt="Avatar">
+                    </button>
+                    <div class="hs-dropdown-menu hs-dropdown-open:opacity-100 w-60 transition-[opacity,margin] duration opacity-0 hidden z-10 bg-white border border-gray-200 rounded-lg shadow-md p-1 mt-2"
+                        role="menu">
+                        <div class="py-3 px-5 -m-1 bg-gray-100 rounded-t-lg font-medium text-gray-800 text-sm">
+                            salma@emsi-edu.ma</div>
+                        <div class="p-1 space-y-0.5 mt-2 text-gray-800 text-sm">
+                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg hover:bg-gray-100"
+                                href="#">Profil</a>
+                            <div class="border-t border-gray-100 my-1"></div>
+                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-red-600 hover:bg-gray-100"
+                                href="../login.html">Déconnexion</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sidebar (Consistent) -->
+    <aside id="application-sidebar"
+        class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform fixed top-0 start-0 bottom-0 z-[60] w-64 bg-white border-e border-gray-200 flex flex-col pt-7 pb-10 overflow-hidden lg:block lg:translate-x-0 lg:end-auto lg:bottom-0">
+        <div class="px-6 pb-8">
+            <a class="flex-none text-xl font-bold inline-flex items-center gap-x-2" href="../landing.html"
+                aria-label="Brand">
+                <img src="../../images/logo_app.png" alt="Logo" class="size-8 object-contain">
+                <span class="text-gray-900 leading-none">StageFlow</span>
+            </a>
+        </div>
+
+        <nav class="flex-1 px-4 w-full flex flex-col flex-wrap overflow-y-auto">
+            <ul class="space-y-1.5">
+                <li>
+                    <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none"
+                        href="dashboard.html">
+                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            <polyline points="9 22 9 12 15 12 15 22" />
+                        </svg>
+                        Tableau de bord
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100"
+                        href="offers.html">
+                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="m21 21-4.3-4.3" />
+                        </svg>
+                        Catalogue des Offres
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100"
+                        href="candidatures.html">
+                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                        Candidatures
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-gray-700 rounded-lg"
+                        href="favoris.html">
+                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                        </svg>
+                        Favoris
+                    </a>
+                </li>
+
+                <li class="pt-5 pb-2 px-2.5">
+                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-widest">Compte</span>
+                </li>
+                <li>
+                    <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100"
+                        href="#">
+                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                        Mon Profil
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="px-4 mt-auto">
+            <div class="h-px bg-gray-100 mb-4 mx-2"></div>
+            <a class="flex items-center gap-x-3.5 py-3 px-3 text-sm font-semibold text-red-600 rounded-lg hover:bg-red-50 focus:outline-none transition"
+                href="../login.html">
+                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="m16 17 5-5-5-5" />
+                    <path d="M21 12H9" />
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                </svg>
+                Déconnexion
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="w-full h-full lg:ps-64">
+        <!-- GLOBAL Animated Stickers Background Decor -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden z-[-1] opacity-[0.05]">
+            <div class="absolute top-20 left-10 sticker-float"><svg class="size-48 text-indigo-600" fill="currentColor"
+                    viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                </svg></div>
+            <div class="absolute top-[30%] right-20 sticker-float" style="animation-delay: -2s"><svg
+                    class="size-32 text-pink-500" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                </svg></div>
+            <div class="absolute bottom-40 left-[10%] sticker-float" style="animation-delay: -5s"><svg
+                    class="size-60 text-indigo-400 rotate-12" fill="currentColor" viewBox="0 0 24 24">
+                    <rect x="4" y="4" width="16" height="16" rx="2" />
+                </svg></div>
+        </div>
+
+        <div class="p-4 sm:p-6 lg:p-8 space-y-8">
+
+            <!-- Content Title & Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4" data-aos="fade-down">
+                <div class="max-w-xl">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Mes Favoris</h2>
+                    <p class="mt-2 text-sm text-gray-600">Retrouvez ici toutes les offres de stage que vous avez
+                        repérées. Ne tardez pas trop à postuler, certaines expirent bientôt.</p>
+                </div>
+                <div class="flex gap-2 shrink-0">
+                    <span
+                        class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold bg-gray-100 text-gray-800">
+                        <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                        </svg>
+                        3 Sauvegardées
+                    </span>
+                    <span
+                        class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold bg-red-100 text-red-800">
+                        <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                        1 Expire bientôt
+                    </span>
+                </div>
+            </div>
+
+            <!-- Grille des Favoris (Atomes/Molecules) -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="100">
+
+                <!-- Favoris Card 1 -->
+                <div
+                    class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl p-6 hover:shadow-md transition relative">
+                    <!-- Icone Favoris Plein -->
+                    <button type="button"
+                        class="absolute top-4 right-4 text-red-500 hover:text-red-600 transition focus:outline-none"
+                        title="Retirer des favoris">
+                        <svg class="size-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                        </svg>
+                    </button>
+                    <div class="flex items-center gap-x-4 mb-4 text-sm font-bold text-indigo-700">Microsoft Corp</div>
+                    <div class="min-w-0 mb-4">
+                        <h4 class="font-bold text-gray-800 truncate group-hover:text-indigo-600">UI/UX Researcher &
+                            Designer</h4>
+                        <p class="text-xs text-gray-500">Microsoft Maroc • Rabat</p>
+                    </div>
+                    <p class="text-sm text-gray-600 line-clamp-2 mb-4">Contribuez au design de nos nouveaux produits
+                        éducatifs pour le marché EMEA...</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="py-1 px-2.5 rounded-lg text-xs font-semibold bg-indigo-50 text-indigo-700">Figma</span>
+                        <span class="py-1 px-2.5 rounded-lg text-xs font-semibold bg-gray-100 text-gray-600">PFE 6
+                            mois</span>
+                    </div>
+                    <div class="border-t border-gray-50 pt-4 flex items-center justify-between mt-auto">
+                        <!-- Alert Date (Expire bientôt) -->
+                        <span
+                            class="text-xs font-bold text-red-500 flex items-center gap-x-1 inline-flex bg-red-50 py-1 px-2 rounded">
+                            <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12 6 12 12 16 14" />
+                            </svg>
+                            Expire dans 2j
+                        </span>
+                        <a href="application-form.html"
+                            class="py-2 px-4 inline-flex items-center gap-x-2 text-xs font-bold rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition focus:outline-none">Postuler</a>
+                    </div>
+                </div>
+
+                <!-- Favoris Card 2 -->
+                <div
+                    class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl p-6 hover:shadow-md transition relative">
+                    <!-- Icone Favoris Plein -->
+                    <button type="button"
+                        class="absolute top-4 right-4 text-red-500 hover:text-red-600 transition focus:outline-none"
+                        title="Retirer des favoris">
+                        <svg class="size-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                        </svg>
+                    </button>
+                    <div class="flex items-center gap-x-4 mb-4 text-sm font-bold text-blue-600">Capgemini</div>
+                    <div class="min-w-0 mb-4">
+                        <h4 class="font-bold text-gray-800 truncate group-hover:text-indigo-600">Développeur Fullstack
+                            JS</h4>
+                        <p class="text-xs text-gray-500">Capgemini Eng • Casablanca</p>
+                    </div>
+                    <p class="text-sm text-gray-600 line-clamp-2 mb-4">Vous participerez à la refonte de notre
+                        plateforme interne dédiée aux employés...</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="py-1 px-2.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700">NodeJS</span>
+                        <span class="py-1 px-2.5 rounded-lg text-xs font-semibold bg-blue-50 text-blue-700">React</span>
+                        <span class="py-1 px-2.5 rounded-lg text-xs font-semibold bg-gray-100 text-gray-600">4
+                            mois</span>
+                    </div>
+                    <div class="border-t border-gray-50 pt-4 flex items-center justify-between mt-auto">
+                        <span class="text-xs text-gray-400 italic">Ajouté hier</span>
+                        <a href="offer-detail.html"
+                            class="py-2 px-4 inline-flex items-center gap-x-2 text-xs font-bold rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-100 transition">Voir
+                            détails</a>
+                    </div>
+                </div>
+
+                <!-- Favoris Card 3 -->
+                <div
+                    class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl p-6 hover:shadow-md transition relative">
+                    <!-- Icone Favoris Plein -->
+                    <button type="button"
+                        class="absolute top-4 right-4 text-red-500 hover:text-red-600 transition focus:outline-none"
+                        title="Retirer des favoris">
+                        <svg class="size-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                        </svg>
+                    </button>
+                    <div class="flex items-center gap-x-4 mb-4 text-sm font-bold text-orange-600">Orange Maroc</div>
+                    <div class="min-w-0 mb-4">
+                        <h4 class="font-bold text-gray-800 truncate group-hover:text-indigo-600">Data Analyst / BI</h4>
+                        <p class="text-xs text-gray-500">Orange Direction • Rabat</p>
+                    </div>
+                    <p class="text-sm text-gray-600 line-clamp-2 mb-4">Extraction et modélisation de la donnée client
+                        pour optimiser les campagnes marketing...</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="py-1 px-2.5 rounded-lg text-xs font-semibold bg-indigo-50 text-indigo-700">PowerBI</span>
+                        <span class="py-1 px-2.5 rounded-lg text-xs font-semibold bg-gray-100 text-gray-600">6
+                            mois</span>
+                    </div>
+                    <div class="border-t border-gray-50 pt-4 flex items-center justify-between mt-auto">
+                        <span class="text-xs text-gray-400 italic">Ajouté il y a 3j</span>
+                        <a href="offer-detail.html"
+                            class="py-2 px-4 inline-flex items-center gap-x-2 text-xs font-bold rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-100 transition">Voir
+                            détails</a>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+        </div>
+    </main>
+
+    <script>
+        AOS.init({ duration: 800, once: true });
+    </script>
+</body>
+
+</html>

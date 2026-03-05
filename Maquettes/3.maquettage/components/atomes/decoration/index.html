@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-float-delayed {
+            animation: float 8s ease-in-out infinite 1s;
+        }
+
+        .animate-float-slow {
+            animation: float 10s ease-in-out infinite 2s;
+        }
+    </style>
+</head>
+
+<body class="p-10 bg-slate-900 overflow-hidden relative min-h-screen">
+
+    <div class="space-y-10">
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Atomes : Décorations Animées (Stickers)
+        </h3>
+
+        <div class="flex gap-10 items-center">
+            <!-- Graduation Sticker -->
+            <div
+                class="animate-float p-4 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl shadow-2xl backdrop-blur-sm">
+                <span class="text-4xl">🎓</span>
+            </div>
+
+            <!-- Briefcase Sticker -->
+            <div
+                class="animate-float-delayed p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl shadow-2xl backdrop-blur-sm">
+                <span class="text-4xl">💼</span>
+            </div>
+
+            <!-- Rocket Sticker -->
+            <div
+                class="animate-float-slow p-4 bg-amber-500/10 border border-amber-500/20 rounded-2xl shadow-2xl backdrop-blur-sm">
+                <span class="text-4xl">🚀</span>
+            </div>
+
+            <!-- Heart/Like Sticker -->
+            <div
+                class="animate-float p-4 bg-rose-500/10 border border-rose-500/20 rounded-2xl shadow-2xl backdrop-blur-sm">
+                <span class="text-4xl">✨</span>
+            </div>
+        </div>
+
+        <p class="text-sm text-slate-500 italic max-w-sm">Ces éléments sont utilisés en arrière-plan pour dynamiser les
+            sections et renforcer le contexte académique/carrière.</p>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Preline Sidebar Molecule (Updated Link) -->
+    <aside id="application-sidebar"
+        class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform fixed top-0 start-0 bottom-0 z-[60] w-64 bg-white border-e border-gray-200 flex flex-col pt-7 pb-10 overflow-hidden lg:block lg:translate-x-0 lg:end-auto lg:bottom-0">
+        <div class="px-6 pb-8">
+            <a class="flex-none text-xl font-bold inline-flex items-center gap-x-2" href="../landing.html">
+                <img src="../../../images/logo_app.png" alt="Logo" class="size-8 object-contain">
+                <span class="text-gray-900 leading-none">StageFlow</span>
+            </a>
+        </div>
+
+        <nav class="flex-1 px-4 w-full flex flex-col flex-wrap overflow-y-auto">
+            <ul class="space-y-1.5 font-medium">
+                <li>
+                    <a class="flex items-center gap-x-3.5 py-2.5 px-3 text-sm text-gray-700 rounded-xl hover:bg-gray-100 transition"
+                        href="dashboard.html">
+                        <svg class="shrink-0 size-4" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            <polyline points="9 22 9 12 15 12 15 22" />
+                        </svg>
+                        Tableau de bord
+                    </a>
+                </li>
+                <li>
+                    <!-- Updated Label (Requested) -->
+                    <a class="flex items-center gap-x-3.5 py-2.5 px-3 bg-indigo-50 text-sm text-indigo-700 font-bold rounded-xl"
+                        href="offers.html">
+                        <svg class="shrink-0 size-4" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="m21 21-4.3-4.3" />
+                        </svg>
+                        Catalogue des Offres
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-x-3.5 py-2.5 px-3 text-sm text-gray-700 rounded-xl hover:bg-gray-100 transition"
+                        href="#">
+                        <svg class="shrink-0 size-4" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 1 0 0 7.75" />
+                        </svg>
+                        Candidatures
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-x-3.5 py-2.5 px-3 text-sm text-gray-700 rounded-xl hover:bg-gray-100 transition"
+                        href="#">
+                        <svg class="shrink-0 size-4" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                        </svg>
+                        Favoris
+                    </a>
+                </li>
+
+                <li class="pt-6 pb-2 px-3">
+                    <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Compte</span>
+                </li>
+
+                <li>
+                    <a class="flex items-center gap-x-3.5 py-2.5 px-3 text-sm text-gray-700 rounded-xl hover:bg-gray-100 transition"
+                        href="#">
+                        <svg class="shrink-0 size-4" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                        Mon Profil
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-x-3.5 py-2.5 px-3 text-sm text-gray-700 rounded-xl hover:bg-gray-100 transition"
+                        href="#">
+                        <svg class="shrink-0 size-4" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H2a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 3.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H22a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z" />
+                        </svg>
+                        Paramètres
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="px-4 mt-auto">
+            <div class="h-px bg-gray-100 mb-4 px-2"></div>
+            <a class="flex items-center gap-x-3.5 py-3 px-3 text-sm font-bold text-rose-600 rounded-xl hover:bg-rose-50 transition"
+                href="../login.html">
+                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="m16 17 5-5-5-5" />
+                    <path d="M21 12H9" />
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                </svg>
+                Déconnexion
+            </a>
+        </div>
+    </aside>
+</body>
+
+</html>

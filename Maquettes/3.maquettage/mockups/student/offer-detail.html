@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail de l'Offre - StageFlow</title>
+    <!-- Frameworks -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js" defer></script>
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc', 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81', 950: '#1e1b4b' },
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        .sticker-float {
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        .bg-mesh {
+            background-color: #f8fafc;
+            background-image:
+                radial-gradient(at 0% 0%, hsla(253, 16%, 15%, 0.03) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(225, 39%, 30%, 0.03) 0, transparent 50%),
+                radial-gradient(at 50% 100%, hsla(217, 91%, 60%, 0.02) 0, transparent 50%);
+        }
+    </style>
+</head>
+
+<body class="bg-mesh h-full overflow-x-hidden pt-4 sm:pt-0">
+    <!-- Navbar (Strict Preline + Optimized Breadcrumb) -->
+    <header
+        class="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-[48] w-full bg-white/90 backdrop-blur-md border-b border-gray-200 text-sm py-2.5 sm:py-4 lg:ps-64">
+        <nav class="max-w-[85rem] mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between"
+            aria-label="Global">
+            <div class="flex items-center gap-x-3">
+                <!-- Sidebar Toggle -->
+                <button type="button"
+                    class="lg:hidden py-2 px-3 inline-flex justify-center items-center gap-x-2 text-start bg-white border border-gray-200 text-gray-800 text-sm font-medium rounded-lg shadow-sm hover:bg-gray-50 focus:outline-none"
+                    data-hs-overlay="#application-sidebar">
+                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="3" x2="21" y1="6" y2="6" />
+                        <line x1="3" x2="21" y1="12" y2="12" />
+                        <line x1="3" x2="21" y1="18" y2="18" />
+                    </svg>
+                </button>
+
+                <!-- Navbar Optimized Breadcrumbs -->
+                <ol class="flex items-center whitespace-nowrap min-w-0" aria-label="Breadcrumb">
+                    <li class="inline-flex items-center text-sm text-gray-400 hover:text-indigo-600 transition">
+                        <a href="dashboard.html">Étudiant</a>
+                        <svg class="shrink-0 mx-2 overflow-visible size-4 text-gray-300"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m9 18 6-6-6-6" />
+                        </svg>
+                    </li>
+                    <li class="inline-flex items-center text-sm text-gray-400 hover:text-indigo-600 transition">
+                        <a href="offers.html">Catalogue</a>
+                        <svg class="shrink-0 mx-2 overflow-visible size-4 text-gray-300"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m9 18 6-6-6-6" />
+                        </svg>
+                    </li>
+                    <li class="inline-flex items-center text-sm font-semibold text-gray-800 truncate"
+                        aria-current="page">
+                        Détail de l'Offre
+                    </li>
+                </ol>
+            </div>
+
+            <div class="flex flex-row items-center justify-end gap-x-2 sm:gap-x-4">
+                <!-- Notifications -->
+                <button type="button"
+                    class="relative inline-flex justify-center items-center size-9 text-sm font-semibold rounded-full text-gray-800 hover:bg-gray-100 transition"
+                    aria-label="Notifications">
+                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                    </svg>
+                    <span class="absolute top-1.5 right-1.5 size-2 bg-red-500 rounded-full ring-2 ring-white"></span>
+                </button>
+
+                <!-- Theme Toggle -->
+                <button type="button"
+                    class="hs-dark-mode-active:hidden block hs-dark-mode py-2 px-3 text-gray-600 hover:bg-gray-100 rounded-lg transition"
+                    data-hs-theme-click-value="dark">
+                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+                    </svg>
+                </button>
+                <div class="hs-dropdown [--placement:bottom-right] relative inline-flex">
+                    <button id="hs-dropdown-account" type="button"
+                        class="size-9 flex justify-center items-center text-sm font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 transition"
+                        aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                        <img class="shrink-0 size-full rounded-full"
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1587&auto=format&fit=facearea&facepad=3&w=320&h=320&q=80"
+                            alt="Avatar">
+                    </button>
+                    <div class="hs-dropdown-menu hs-dropdown-open:opacity-100 w-60 transition-[opacity,margin] duration opacity-0 hidden z-10 bg-white border border-gray-200 rounded-lg shadow-md p-1 mt-2"
+                        role="menu">
+                        <div class="py-3 px-5 -m-1 bg-gray-100 rounded-t-lg font-medium text-gray-800 text-sm">
+                            salma@emsi-edu.ma</div>
+                        <div class="p-1 space-y-0.5 mt-2 text-gray-800 text-sm">
+                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg hover:bg-gray-100"
+                                href="#">Profil</a>
+                            <div class="border-t border-gray-100 my-1"></div>
+                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-red-600 hover:bg-gray-100"
+                                href="../login.html">Déconnexion</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sidebar (Consistent) -->
+    <aside id="application-sidebar"
+        class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform fixed top-0 start-0 bottom-0 z-[60] w-64 bg-white border-e border-gray-200 flex flex-col pt-7 pb-10 overflow-hidden lg:block lg:translate-x-0 lg:end-auto lg:bottom-0">
+        <div class="px-6 pb-8">
+            <a class="flex-none text-xl font-bold inline-flex items-center gap-x-2" href="../landing.html"
+                aria-label="Brand">
+                <img src="../../images/logo_app.png" alt="Logo" class="size-8 object-contain">
+                <span class="text-gray-900 leading-none">StageFlow</span>
+            </a>
+        </div>
+
+        <nav class="flex-1 px-4 w-full flex flex-col flex-wrap overflow-y-auto">
+            <ul class="space-y-1.5">
+                <li>
+                    <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none"
+                        href="dashboard.html">
+                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            <polyline points="9 22 9 12 15 12 15 22" />
+                        </svg>
+                        Tableau de bord
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-gray-700 rounded-lg"
+                        href="offers.html">
+                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="m21 21-4.3-4.3" />
+                        </svg>
+                        Catalogue des Offres
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100"
+                        href="#">
+                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                        Candidatures
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100"
+                        href="#">
+                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                        </svg>
+                        Favoris
+                    </a>
+                </li>
+
+                <li class="pt-5 pb-2 px-2.5">
+                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-widest">Compte</span>
+                </li>
+                <li>
+                    <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100"
+                        href="#">
+                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                        Mon Profil
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="px-4 mt-auto">
+            <div class="h-px bg-gray-100 mb-4 mx-2"></div>
+            <a class="flex items-center gap-x-3.5 py-3 px-3 text-sm font-semibold text-red-600 rounded-lg hover:bg-red-50 focus:outline-none transition"
+                href="../login.html">
+                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="m16 17 5-5-5-5" />
+                    <path d="M21 12H9" />
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                </svg>
+                Déconnexion
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="w-full h-full lg:ps-64">
+        <!-- GLOBAL Animated Stickers Background Decor -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden z-[-1] opacity-[0.05]">
+            <div class="absolute top-20 left-10 sticker-float"><svg class="size-48 text-indigo-600" fill="currentColor"
+                    viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                </svg></div>
+            <div class="absolute top-[60%] right-[-50px] sticker-float" style="animation-delay: -2s"><svg
+                    class="size-60 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" />
+                </svg></div>
+        </div>
+
+        <!-- Go Back Link -->
+        <div class="max-w-[85rem] px-4 pt-6 sm:px-6 lg:px-8 mx-auto" data-aos="fade-down">
+            <a class="inline-flex items-center gap-x-1.5 text-sm text-gray-600 decoration-2 hover:underline font-medium hover:text-indigo-600 transition"
+                href="offers.html">
+                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="m15 18-6-6 6-6" />
+                </svg>
+                Retour au catalogue
+            </a>
+        </div>
+
+        <div class="max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8 mx-auto space-y-8">
+
+            <!-- Header Profile/Offer -->
+            <div class="bg-white border border-gray-200 shadow-sm rounded-xl p-6 sm:p-10" data-aos="fade-up">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-6">
+                    <!-- Company & Role -->
+                    <div class="flex items-center gap-x-6">
+                        <div
+                            class="size-20 bg-gray-50 flex justify-center items-center rounded-2xl border border-gray-100 shrink-0">
+                            <img class="size-10 object-contain"
+                                src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+                                alt="Company Logo">
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-x-2 mb-1">
+                                <span class="text-sm font-bold text-gray-500 uppercase tracking-widest">Microsoft</span>
+                                <svg class="size-4 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 22S2 16 2 8V4l10-3 10 3v4c0 8-10 14-10 14Z" />
+                                </svg>
+                            </div>
+                            <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">UI/UX Researcher & Designer
+                            </h1>
+                            <ul
+                                class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500 font-medium">
+                                <li class="flex items-center gap-x-1.5">
+                                    <svg class="shrink-0 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                    Casablanca, Technopark
+                                </li>
+                                <li class="flex items-center gap-x-1.5">
+                                    <svg class="shrink-0 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                                        <line x1="16" x2="16" y1="2" y2="6" />
+                                        <line x1="8" x2="8" y1="2" y2="6" />
+                                        <line x1="3" x2="21" y1="10" y2="10" />
+                                    </svg>
+                                    Publié il y a 2h
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex sm:flex-col lg:flex-row items-center gap-3">
+                        <button type="button"
+                            class="w-full sm:w-auto py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none transition">
+                            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                            </svg>
+                            Sauvegarder
+                        </button>
+                        <a href="application-form.html"
+                            class="w-full sm:w-auto py-3 px-6 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-lg border border-transparent bg-indigo-600 text-white hover:bg-indigo-700 shadow-md shadow-indigo-600/20 focus:outline-none transition">
+                            Postuler maintenant
+                            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Layout Grid -->
+            <div class="grid lg:grid-cols-3 gap-8">
+
+                <!-- Main Detail Col -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- Overview -->
+                    <div class="bg-white border border-gray-200 shadow-sm rounded-xl p-6 sm:p-8" data-aos="fade-up">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">À propos de l'offre</h2>
+                        <div class="prose prose-sm text-gray-600 max-w-none">
+                            <p class="mb-4">
+                                Microsoft est à la recherche d'un(e) stagiaire UI/UX Researcher & Designer passionné(e)
+                                pour rejoindre notre équipe cloud innovation au Maroc. Dans ce rôle, vous travaillerez
+                                en étroite collaboration avec les product managers et les ingénieurs pour concevoir la
+                                prochaine génération d'interfaces pour nos outils Azure.
+                            </p>
+                            <p>
+                                Vous serez impliqué(e) dans l'ensemble du processus de conception, de la recherche
+                                utilisateur initiale à la création de prototypes haute fidélité. C'est une opportunité
+                                unique de travailler sur des produits à grande échelle, utilisés par des millions de
+                                développeurs à travers le monde.
+                            </p>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-gray-800 mt-8 mb-4">Vos responsabilités</h3>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li class="flex gap-x-3">
+                                <span
+                                    class="size-5 flex justify-center items-center rounded-full bg-indigo-50 text-indigo-600">
+                                    <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </span>
+                                Mener des recherches quantitatives et qualitatives pour comprendre les besoins des
+                                développeurs.
+                            </li>
+                            <li class="flex gap-x-3">
+                                <span
+                                    class="size-5 flex justify-center items-center rounded-full bg-indigo-50 text-indigo-600">
+                                    <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </span>
+                                Créer des wireframes, storyboards, flux utilisateurs et prototypes interactifs avec
+                                Figma.
+                            </li>
+                            <li class="flex gap-x-3">
+                                <span
+                                    class="size-5 flex justify-center items-center rounded-full bg-indigo-50 text-indigo-600">
+                                    <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </span>
+                                Participer à la maintenance et l'évolution de notre Design System global.
+                            </li>
+                            <li class="flex gap-x-3">
+                                <span
+                                    class="size-5 flex justify-center items-center rounded-full bg-indigo-50 text-indigo-600">
+                                    <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </span>
+                                Collaborer avec les développeurs front-end pour assurer l'intégration parfaite des
+                                maquettes.
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <!-- Profil Recherché (Pleine largeur de la colonne principale) -->
+                    <div class="bg-white border border-gray-200 shadow-sm rounded-xl p-6 sm:p-8" data-aos="fade-up"
+                        data-aos-delay="100">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">Profil recherché</h3>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li class="flex gap-x-3">
+                                <div class="h-1.5 w-1.5 bg-indigo-600 rounded-full mt-1.5 shrink-0"></div>
+                                Étudiant(e) en dernière année (PFE) ou césure en Design Numérique, HCI, ou domaine
+                                connexe.
+                            </li>
+                            <li class="flex gap-x-3">
+                                <div class="h-1.5 w-1.5 bg-indigo-600 rounded-full mt-1.5 shrink-0"></div>
+                                Un portfolio démontrant des compétences solides en UX et UI avec une réflexion
+                                orientée
+                                utilisateur.
+                            </li>
+                            <li class="flex gap-x-3">
+                                <div class="h-1.5 w-1.5 bg-indigo-600 rounded-full mt-1.5 shrink-0"></div>
+                                Excellente maîtrise des outils de design modernes (Figma de préférence).
+                            </li>
+                            <li class="flex gap-x-3">
+                                <div class="h-1.5 w-1.5 bg-indigo-600 rounded-full mt-1.5 shrink-0"></div>
+                                Bon niveau d'anglais obligatoire (travail dans une équipe internationale).
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Notice/Alert supprimé par demande de l'utilisateur -->
+                </div>
+
+                <!-- Side Info Col -->
+                <div class="space-y-6">
+
+                    <!-- Quick Facts Card -->
+                    <div class="bg-white border border-gray-200 shadow-sm rounded-xl p-6" data-aos="fade-up"
+                        data-aos-delay="100">
+                        <h3
+                            class="text-sm font-bold text-gray-900 uppercase tracking-widest mb-6 border-b border-gray-100 pb-4">
+                            Informations clés</h3>
+
+                        <div class="space-y-5">
+                            <div class="flex items-start gap-x-3">
+                                <div class="p-2 bg-indigo-50 text-indigo-600 rounded-lg">
+                                    <svg class="size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                                        <line x1="16" x2="16" y1="2" y2="6" />
+                                        <line x1="8" x2="8" y1="2" y2="6" />
+                                        <line x1="3" x2="21" y1="10" y2="10" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-medium text-gray-500">Durée</p>
+                                    <p class="text-sm font-bold text-gray-800">6 mois (PFE privilégié)</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-x-3">
+                                <div class="p-2 bg-indigo-50 text-indigo-600 rounded-lg">
+                                    <svg class="size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2v20" />
+                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-medium text-gray-500">Rémunération</p>
+                                    <p class="text-sm font-bold text-gray-800">Stage Rémunéré (Selon profil)</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-x-3">
+                                <div class="p-2 bg-indigo-50 text-indigo-600 rounded-lg">
+                                    <svg class="size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
+                                        <path d="M22 12A10 10 0 0 0 12 2v10z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-medium text-gray-500">Format</p>
+                                    <p class="text-sm font-bold text-gray-800">Hybride (2j Télétravail)</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-x-3">
+                                <div class="p-2 bg-indigo-50 text-indigo-600 rounded-lg">
+                                    <svg class="size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="m18 16 4-4-4-4" />
+                                        <path d="m6 8-4 4 4 4" />
+                                        <path d="m14.5 4-5 16" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-medium text-gray-500">Secteur</p>
+                                    <p class="text-sm font-bold text-gray-800">Design & Informatique</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Company Card -->
+                    <div class="bg-indigo-950 rounded-xl p-6 shadow-md relative overflow-hidden" data-aos="fade-up"
+                        data-aos-delay="200">
+                        <!-- Accent styling -->
+                        <div class="absolute top-0 right-0 p-4 opacity-10">
+                            <svg class="size-32 text-white" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                            </svg>
+                        </div>
+
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-x-3 mb-4">
+                                <div class="p-1 bg-white rounded-lg">
+                                    <img class="size-8 object-contain"
+                                        src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+                                        alt="Company Logo">
+                                </div>
+                                <h3 class="text-sm font-bold text-white uppercase tracking-wider">Microsoft Corp
+                                </h3>
+                            </div>
+                            <p class="text-xs text-indigo-200 mb-4 leading-relaxed">
+                                Notre mission est de donner à chaque individu et à chaque organisation les moyens de
+                                réaliser ses ambitions. Rejoignez Microsoft Maroc pour impacter.
+                            </p>
+                            <a href="#"
+                                class="inline-flex items-center gap-x-1.5 text-xs font-bold text-white hover:text-indigo-200 transition">
+                                Voir le profil de l'entreprise
+                                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14" />
+                                    <path d="m12 5 7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Compétences Requises -->
+                    <div class="bg-white border border-gray-200 shadow-sm rounded-xl p-6" data-aos="fade-up"
+                        data-aos-delay="300">
+                        <h3
+                            class="text-sm font-bold text-gray-900 uppercase tracking-widest mb-6 border-b border-gray-100 pb-4">
+                            Compétences techniques</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="py-1.5 px-3 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-lg border border-indigo-100">Figma</span>
+                            <span
+                                class="py-1.5 px-3 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-lg border border-indigo-100">UX
+                                Research</span>
+                            <span
+                                class="py-1.5 px-3 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-lg border border-indigo-100">Design
+                                System</span>
+                            <span
+                                class="py-1.5 px-3 bg-gray-50 text-gray-700 text-xs font-semibold rounded-lg border border-gray-200">Cloud/SaaS</span>
+                            <span
+                                class="py-1.5 px-3 bg-gray-50 text-gray-700 text-xs font-semibold rounded-lg border border-gray-200">Anglais
+                                Pro</span>
+                            <span
+                                class="py-1.5 px-3 bg-gray-50 text-gray-700 text-xs font-semibold rounded-lg border border-gray-200">Prototypage</span>
+                            <span
+                                class="py-1.5 px-3 bg-gray-50 text-gray-700 text-xs font-semibold rounded-lg border border-gray-200">Wireframing</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- End Grid Layout -->
+
+            <!-- Similar Offers -->
+            <div class="pt-8 border-t border-gray-200 mt-12" data-aos="fade-up">
+                <h2 class="text-xl font-bold text-gray-800 mb-6">Offres similaires qui pourraient vous plaire</h2>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Similar Card 1 -->
+                    <div
+                        class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl p-6 hover:shadow-md transition">
+                        <div class="flex items-center gap-x-4 mb-4 text-sm">
+                            <div
+                                class="size-10 bg-gray-50 flex items-center justify-center rounded-lg border border-gray-100 shrink-0">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+                                    class="size-6 object-contain">
+                            </div>
+                            <div class="min-w-0">
+                                <h4 class="font-bold text-gray-800 truncate group-hover:text-indigo-600 transition">
+                                    Product Designer Intern</h4>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Google •
+                                    Rabat
+                                </p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600 mb-4 line-clamp-2">Rejoignez l'équipe Google Workspace pour
+                            redéfinir l'expérience collaborative de demain. Stage focus sur l'ergonomie et
+                            l'accessibilité.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="py-1 px-2.5 rounded-lg text-[10px] font-bold bg-blue-50 text-blue-700">Figma</span>
+                            <span
+                                class="py-1 px-2.5 rounded-lg text-[10px] font-bold bg-gray-100 text-gray-600">PFE</span>
+                        </div>
+                        <div class="mt-auto border-t border-gray-100 pt-4">
+                            <a href="offer-detail.html"
+                                class="w-full py-2 px-3 inline-flex justify-center items-center gap-x-2 text-xs font-semibold rounded-lg border border-transparent bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition focus:outline-none">
+                                Voir Détails
+                                <svg class="shrink-0 size-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14" />
+                                    <path d="m12 5 7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Similar Card 2 -->
+                    <div
+                        class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl p-6 hover:shadow-md transition">
+                        <div class="flex items-center gap-x-4 mb-4 text-sm">
+                            <div
+                                class="size-10 bg-gray-50 flex items-center justify-center rounded-lg border border-gray-100 shrink-0 font-bold text-indigo-600">
+                                IBM
+                            </div>
+                            <div class="min-w-0">
+                                <h4 class="font-bold text-gray-800 truncate group-hover:text-indigo-600 transition">
+                                    UX
+                                    Research PFE</h4>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">IBM •
+                                    Casablanca</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600 mb-4 line-clamp-2">Menez des recherches approfondies sur
+                            l'utilisation de l'IA par les entreprises. Focus sur les parcours utilisateurs
+                            complexes.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="py-1 px-2.5 rounded-lg text-[10px] font-bold bg-orange-50 text-orange-700">Research</span>
+                            <span
+                                class="py-1 px-2.5 rounded-lg text-[10px] font-bold bg-emerald-50 text-emerald-700">Payé</span>
+                        </div>
+                        <div class="mt-auto border-t border-gray-100 pt-4">
+                            <a href="offer-detail.html"
+                                class="w-full py-2 px-3 inline-flex justify-center items-center gap-x-2 text-xs font-semibold rounded-lg border border-transparent bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition focus:outline-none">
+                                Voir Détails
+                                <svg class="shrink-0 size-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14" />
+                                    <path d="m12 5 7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Similar Card 3 -->
+                    <div
+                        class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl p-6 hover:shadow-md transition">
+                        <div class="flex items-center gap-x-4 mb-4 text-sm">
+                            <div
+                                class="size-10 bg-gray-50 flex items-center justify-center rounded-lg border border-gray-100 shrink-0 font-bold text-blue-500">
+                                META
+                            </div>
+                            <div class="min-w-0">
+                                <h4 class="font-bold text-gray-800 truncate group-hover:text-indigo-600 transition">
+                                    Digital Graphic Designer</h4>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Meta • Casa
+                                </p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600 mb-4 line-clamp-2">Créez des visuels percutants pour nos
+                            plateformes sociales. Opportunité de travailler sur des campagnes à fort impact.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="py-1 px-2.5 rounded-lg text-[10px] font-bold bg-indigo-50 text-indigo-700">Design</span>
+                            <span class="py-1 px-2.5 rounded-lg text-[10px] font-bold bg-gray-100 text-gray-600">3
+                                mois</span>
+                        </div>
+                        <div class="mt-auto border-t border-gray-100 pt-4">
+                            <a href="offer-detail.html"
+                                class="w-full py-2 px-3 inline-flex justify-center items-center gap-x-2 text-xs font-semibold rounded-lg border border-transparent bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition focus:outline-none">
+                                Voir Détails
+                                <svg class="shrink-0 size-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14" />
+                                    <path d="m12 5 7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        AOS.init({ duration: 800, once: true });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="p-10 bg-slate-100">
+    <!-- Filter Bar Molecule -->
+    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm flex flex-wrap gap-4 items-center">
+        <div class="relative flex-1 min-w-[200px]">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg class="size-4 text-slate-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.3-4.3" />
+                </svg>
+            </div>
+            <input type="text"
+                class="py-2 px-3 ps-10 block w-full border-slate-200 rounded-xl text-sm focus:border-indigo-500 focus:ring-indigo-500 border"
+                placeholder="Rechercher un stage...">
+        </div>
+        <select
+            class="py-2 px-3 block border-slate-200 rounded-xl text-sm focus:border-indigo-500 focus:ring-indigo-500 border min-w-[150px]">
+            <option>Toutes les villes</option>
+            <option>Casablanca</option>
+            <option>Tanger</option>
+            <option>Rabat</option>
+        </select>
+        <button
+            class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-xl border border-transparent bg-indigo-600 text-white hover:bg-indigo-700 transition-all">
+            Filtrer
+        </button>
+    </div>
+</body>
+
+</html>
