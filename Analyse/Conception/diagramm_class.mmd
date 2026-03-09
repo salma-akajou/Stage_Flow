@@ -1,131 +1,125 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#ffffff'}}}%%
 classDiagram
-%% Diagramme de classes StageFlow 
+    direction BT
 
-%% ====================
-%% Utilisateurs
-%% ====================
-class Utilisateur {
-    +id : int
-    +nom : string
-    +email : string
-    +mot_de_passe : string
-    +date_creation : datetime
-    +connexion()
-}
+    %% ====================
+    %% Classes de base
+    %% ====================
+    class Utilisateur {
+        +int id
+        +string nom
+        +string email
+        +string mot_de_passe
+        +datetime date_creation
+        +connexion()
+    }
 
-class Etudiant {
-    +telephone : string
-    +ville : string
-    +filiere : string
-    +diplome : string
-    +bio : string
-    +github : string
-    +linkedin : string
-    +ajouter_favoris(offre : Offre)
-    +postuler_stage(offre : Offre, cv : string)
-    +suivre_candidatures()
-}
+    class Etudiant {
+        +string telephone
+        +string ville
+        +string filiere
+        +string diplome
+        +string bio
+        +string github
+        +string linkedin
+        +ajouter_favoris()
+        +postuler_stage()
+    }
 
-class Entreprise {
-    +nom_entreprise : string
-    +secteur : string
-    +ville : string
-    +adresse : string
-    +description : string
-    +site_web : string
-    +telephone : string
-    +ajouter_offre(offre : Offre)
-    +gerer_offres()
-    +consulter_candidatures()
-    +gerer_candidatures()
-}
+    class Entreprise {
+        +string nom_entreprise
+        +string secteur
+        +string ville
+        +string adresse
+        +string telephone
+        +ajouter_offre()
+        +gerer_offres()
+    }
 
-class Administrateur {
-    +gerer_comptes()
-    +moderation_offres()
-    +moderation_commentaires()
-    +voir_statistiques()
-}
+    class Administrateur {
+        +gerer_comptes()
+        +moderation_offres()
+        +voir_statistiques()
+    }
 
-%% ====================
-%% Stage / Offre
-%% ====================
-class Offre {
-    +id : int
-    +titre : string
-    +description : string
-    +date_debut : date
-    +date_fin : date
-    +entreprise_id : int
-}
+    %% ====================
+    %% Entités Métier
+    %% ====================
+    class Offre {
+        +int id
+        +string titre
+        +string description
+        +date date_debut
+        +date date_fin
+        +int entreprise_id
+    }
 
-class Candidature {
-    +id : int
-    +etudiant_id : int
-    +offre_id : int
-    +cv : string
-    +statut : string
-    +date_postulation : datetime
-}
+    class Candidature {
+        +int id
+        +int etudiant_id
+        +int offre_id
+        +string statut
+        +datetime date_postulation
+    }
 
-class Favoris {
-    +id : int
-    +etudiant_id : int
-    +offre_id : int
-    +date_ajout : datetime
-}
+    %% CORRECTION 1: DocumentCV comme classe distincte
+    class DocumentCV {
+        +int id
+        +string image_path
+        +datetime date_upload
+    }
 
-class Commentaire {
-    +id : int
-    +utilisateur_id : int
-    +texte : string
-    +date_creation : datetime
-}
+    class Commentaire {
+        +int id
+        +int utilisateur_id
+        +string texte
+        +datetime date_creation
+    }
 
-class Notification {
-    +id : int
-    +utilisateur_id : int
-    +message : string
-    +lu : bool
-    +date_creation : datetime
-}
+    class Favoris {
+        +int id
+        +int etudiant_id
+        +int offre_id
+    }
 
-%% ====================
-%% Relations principales
-%% ====================
-Utilisateur <|-- Etudiant
-Utilisateur <|-- Entreprise
-Utilisateur <|-- Administrateur
+    class Role {
+        +int id
+        +string nom
+    }
 
-Etudiant "1" --> "*" Candidature : postule
-Etudiant "1" --> "*" Favoris : ajoute
-Etudiant "1" --> "*" Commentaire : écrit
+    class Permission {
+        +int id
+        +string nom
+    }
 
-Entreprise "1" --> "*" Offre : publie
-Entreprise "1" --> "*" Commentaire : écrit
-Entreprise "1" --> "*" Candidature : reçoit
+    %% ====================
+    %% Héritage
+    %% ====================
+    Utilisateur <|-- Etudiant
+    Utilisateur <|-- Entreprise
+    Utilisateur <|-- Administrateur
 
-Administrateur "1" --> "*" Commentaire : modère
+    %% ====================
+    %% Relations & Cardinalités
+    %% ====================
+    
+    Utilisateur "1" -- "n" Role : possède
+    Role "1" -- "n" Permission : contient
+    
+    Etudiant "1" -- "n" Candidature : postule
+    Etudiant "1" -- "n" Favoris : ajoute
+    Etudiant "1" -- "n" Commentaire : écrit
 
-Utilisateur "1" --> "*" Notification : reçoit
+    Entreprise "1" -- "n" Offre : publie
+    Entreprise "1" -- "n" Candidature : reçoit
+    Entreprise "1" -- "n" Commentaire : écrit
 
-%% Relation Favoris - Offre
-Offre "1" --> "*" Favoris : contient
+    %% CORRECTION 2: Relation explicite entre Offre et Candidature
+    Offre "1" -- "n" Candidature : concerne
+    
+    Offre "1" -- "n" Favoris : est ciblé par
+    
+    Administrateur "1" -- "n" Commentaire : modère
 
-%% ====================
-%% Spatie Roles / Permissions
-%% ====================
-class Role {
-    +id : int
-    +nom : string
-    +description : string
-}
-
-class Permission {
-    +id : int
-    +nom : string
-    +description : string
-}
-
-Utilisateur "*" --> "*" Role : possède
-Role "*" --> "*" Permission : contient
+    %% Relation pour la nouvelle classe DocumentCV
+    Candidature "1" -- "1" DocumentCV : possède

@@ -193,12 +193,19 @@ Même avec la motivation des étudiants et des entreprises, plusieurs obstacles 
 
 Le diagramme de cas d’utilisation de notre application StageFlow illustre les principales fonctionnalités accessibles aux trois acteurs du système : l’étudiant, l’entreprise et l’administrateur. Il présente les actions disponibles pour chaque rôle, telles que la consultation et la candidature aux offres de stage pour les étudiants, la publication et la gestion des offres et candidatures pour les entreprises, ainsi que la gestion des comptes, le contrôle des offres et la consultation des statistiques pour l’administrateur. Ce diagramme permet de visualiser l’organisation fonctionnelle globale de la plateforme et de comprendre les interactions entre les utilisateurs et le système avant la phase de développement.
 
+## Diagramme de cas d’utilisation globale : web
 **Espace Admin:**
-![Cas d'utilisation global](images/global_usecase_admin.png) 
+![Cas d'utilisation global web](images/global_usecase_admin.png) 
 
 **Espace public:**
-![Cas d'utilisation global](images/global_usecase_public.png) 
+![Cas d'utilisation global web](images/global_usecase_public.png) 
+
+## Diagramme de cas d’utilisation globale : mobile
+![Cas d'utilisation global mobile](images/global_usecase_mobile.png) 
+
 ---
+
+
 
 # Diagramme de cas d’utilisation Sprint 1
 - Ce premier sprint correspond au MVP de StageFlow.  
@@ -212,7 +219,7 @@ Le diagramme de cas d’utilisation de notre application StageFlow illustre les 
 
 # Diagramme de cas d’utilisation Sprint 2
 - Ce deuxième sprint introduit les fonctionnalités avancées de StageFlow.  
-- Il améliore l’expérience utilisateur en ajoutant un suivi plus détaillé des candidatures et des notifications pour les étudiants, un tableau de bord avancé et des statistiques pour les entreprises, ainsi que le contrôle des offres publiées et la consultation des statistiques globales pour l’administrateur.
+- Il améliore l’expérience utilisateur en ajoutant un suivi plus détaillé des notifications pour les étudiants et les entreprises et l'ajout ds commentaires, ainsi que  et la consultation des statistiques globales et la modération des commentaires pour l’administrateur .
 ![Cas d'utilisation global](images/usecase_sprint2.png) 
 
 - Ce sprint permet ainsi d’optimiser la gestion des stages et d’offrir une vision plus complète et structurée du processus.
@@ -223,7 +230,7 @@ Le diagramme de cas d’utilisation de notre application StageFlow illustre les 
 **Le diagramme de classes représente la structure interne de l’application StageFlow et illustre les différentes entités du système ainsi que les relations entre elles. Il met en évidence les classes principales telles que Utilisateur, Étudiant, Entreprise et Administrateur, qui représentent les différents acteurs de la plateforme.**
 ![Diagramme de Classe](Images/diagram_class.png)
 
-- Le diagramme de classes présente la structure interne de l’application StageFlow et les relations entre ses différentes entités. Il met en évidence les classes principales telles que Utilisateur, Étudiant, Entreprise et Administrateur, qui représentent les acteurs de la plateforme.
+- Le diagramme de classes présente la structure interne de l’application StageFlow et les relations entre ses différentes entités. Il met en évidence les classes principales telles que Étudiant, Entreprise et Administrateur, qui représentent les acteurs de la plateforme.
 
 - Les entreprises peuvent publier des offres de stage, tandis que les étudiants peuvent consulter les offres, postuler et suivre leurs candidatures via la classe Candidature. Le système inclut également des fonctionnalités comme les commentaires, les favoris et les notifications, ainsi qu’un mécanisme de gestion des rôles et des permissions pour contrôler les accès.
 
