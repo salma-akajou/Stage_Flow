@@ -194,35 +194,8 @@ style: |
 
 ---
 
-
-
-## 3. Branche Fonctionnelle : Design Thinking
-### 1. EMPATHIE
-
-<div class="img-container">
-  <div class="img-container">
-  <h3>Carte d'empathie apprenant</h3>
-  <img src="images/carte_d'empathie_apprenant.png" class="img-methodo" alt="Design Thinking">
-</div>
-</div>
-
----
-
-
 ## Branche Fonctionnelle : Design Thinking
-### 1. EMPATHIE
-
-<div class="img-container">
-  <div class="img-container">
-  <h3>Carte d'empathie entreprise</h3>
-  <img src="images/carte_d'empathie_entreprise.png" class="img-methodo" alt="Design Thinking">
-</div>
-</div>
-
----
-
-## Branche Fonctionnelle : Design Thinking
-### 2. DÉFINITION
+###  DÉFINITION
 
 <div class="img-container">
   <div class="dt-card" style="border-top-color: #f39c12;">
@@ -237,7 +210,7 @@ style: |
 
 ---
 
-## Branche Fonctionnelle : Cas d'utilisation
+## Branche Fonctionnelle : Cas d'utilisation global
 
 ### Diagramme cas d'utilisation global: Partie Public
 
@@ -294,34 +267,18 @@ style: |
 
 ---
 
-## Branche Fonctionnelle : Cas d'utilisation - Sprint 1
+## Branche Fonctionnelle : Maquette (partie publique)
 
 <div class="img-container">
-  <img src="images/usecase_sprint1.png" class="img-usecase" alt="Global Use Case">
+  <img src="images/landing.png"  alt="Maquettes UI">
 </div>
 
 ---
 
-## Branche Fonctionnelle : Cas d'utilisation - Sprint 2
+## Branche Fonctionnelle : Maquette (dashboard entreprise)
 
 <div class="img-container">
-  <img src="images/usecase_sprint2.png" class="img-usecase" alt="Global Use Case">
-</div>
-
----
-
-## Branche Fonctionnelle : Maquette web
-
-<div class="img-container">
-  <img src="images/maquette_web.png" class="img-methodo" alt="Maquettes UI">
-</div>
-
----
-
-## Branche Fonctionnelle : Maquette mobile
-
-<div class="img-container">
-  <img src="images/maquette_mobile.png" class="img-methodo" alt="Maquettes UI">
+  <img src="images/dashboard_entreprise.png"  alt="Maquettes UI">
 </div>
 
 ---
@@ -341,7 +298,7 @@ style: |
   <div class="dt-card" style="margin-top:0; border-top-color: #27ae60;">
     <h4>Frontend</h4>
     <ul>
-      <li><strong>Preline</strong></li>
+      <li><strong>Preline, tailwind Css</strong></li>
       <li><strong>Alpine.js</strong></li>
       <li><strong>AJAX</strong></li>
     </ul>

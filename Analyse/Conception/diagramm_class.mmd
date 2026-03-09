@@ -1,9 +1,9 @@
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#ffffff'}}}%%
 classDiagram
-    direction BT
+    direction LR
 
     %% ====================
-    %% Classes de base
+    %% Classes de base (Utilisateurs)
     %% ====================
     class Utilisateur {
         +int id
@@ -62,7 +62,6 @@ classDiagram
         +datetime date_postulation
     }
 
-    %% CORRECTION 1: DocumentCV comme classe distincte
     class DocumentCV {
         +int id
         +string image_path
@@ -93,7 +92,7 @@ classDiagram
     }
 
     %% ====================
-    %% Héritage
+    %% Héritage (Direction maintenue pour la cohérence)
     %% ====================
     Utilisateur <|-- Etudiant
     Utilisateur <|-- Entreprise
@@ -114,12 +113,9 @@ classDiagram
     Entreprise "1" -- "n" Candidature : reçoit
     Entreprise "1" -- "n" Commentaire : écrit
 
-    %% CORRECTION 2: Relation explicite entre Offre et Candidature
     Offre "1" -- "n" Candidature : concerne
-    
     Offre "1" -- "n" Favoris : est ciblé par
     
     Administrateur "1" -- "n" Commentaire : modère
 
-    %% Relation pour la nouvelle classe DocumentCV
     Candidature "1" -- "1" DocumentCV : possède

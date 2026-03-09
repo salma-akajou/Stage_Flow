@@ -94,9 +94,8 @@
                     <button id="hs-dropdown-account" type="button"
                         class="size-9 flex justify-center items-center text-sm font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none"
                         aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                        <img class="shrink-0 size-full rounded-full"
-                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1587&auto=format&fit=facearea&facepad=3&w=320&h=320&q=80"
-                            alt="Avatar">
+                        <span
+                            class="flex shrink-0 justify-center items-center size-full rounded-full bg-indigo-100 text-indigo-600 font-bold uppercase text-xs">SA</span>
                     </button>
 
                     <div class="hs-dropdown-menu hs-dropdown-open:opacity-100 w-60 transition-[opacity,margin] duration opacity-0 hidden z-10 bg-white border border-gray-200 rounded-lg shadow-md p-1 mt-2"
@@ -227,10 +226,10 @@
                         <h1 class="text-2xl font-bold text-gray-800">Bonjour, Salma 👋</h1>
                         <p class="text-xs text-gray-500 mt-1 font-bold">Étudiante Designer Digital @ EMSI</p>
                     </div>
-                    <button type="button"
-                        class="py-2.5 px-6 inline-flex items-center gap-x-2 text-xs font-bold rounded-lg border border-transparent bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50 disabled:pointer-events-none transition">
-                        Compléter mon profil
-                    </button>
+                    <a href="#recommended-offers"
+                        class="py-2.5 px-6 inline-flex items-center gap-x-2 text-xs font-bold rounded-lg border border-transparent bg-indigo-600 text-white hover:bg-indigo-700 transition">
+                        Voir les recommandations
+                    </a>
                 </div>
             </div>
 
@@ -286,7 +285,7 @@
             </div>
 
             <!-- Internship Offers Section -->
-            <div class="space-y-4" data-aos="fade-up">
+            <div id="recommended-offers" class="space-y-4" data-aos="fade-up">
                 <div class="flex justify-between items-center">
                     <h3 class="text-xl font-bold text-gray-800">Stages recommandés</h3>
                     <a class="text-xs font-bold text-indigo-600 hover:text-indigo-700 hover:underline"
@@ -396,55 +395,74 @@
 
             <!-- Bottom Side-by-Side: Activity & Feedback -->
             <div class="grid lg:grid-cols-2 gap-6" data-aos="fade-up">
-                <!-- Activity Timeline Card -->
+                <!-- Recent Applications Card -->
                 <div
                     class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl overflow-hidden min-h-[400px]">
-                    <div class="p-6 border-b border-gray-100 flex items-center gap-x-2">
-                        <h3 class="text-lg font-bold text-gray-800">Fil d'actualité</h3>
+                    <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+                        <h3 class="text-lg font-bold text-gray-800">Candidatures Récentes</h3>
+                        <a href="candidatures.html" class="text-xs font-bold text-indigo-600 hover:underline">Tout
+                            voir</a>
                     </div>
                     <div class="p-6 flex-grow">
-                        <!-- Timeline -->
-                        <div
-                            class="space-y-8 relative before:absolute before:inset-y-0 before:start-4 before:w-px before:bg-gray-100">
-                            <!-- Item -->
-                            <div class="relative ps-11">
-                                <span
-                                    class="absolute start-0 top-0 size-8 flex justify-center items-center rounded-full bg-indigo-50 text-indigo-600 border border-indigo-100 z-10">
-                                    <svg class="size-4" fill="none" stroke="currentColor" stroke-width="3"
-                                        viewBox="0 0 24 24">
-                                        <polyline points="20 6 9 17 4 12" />
-                                    </svg>
-                                </span>
-                                <div class="pt-0.5">
-                                    <h4 class="text-sm font-bold text-gray-900 leading-tight">Candidature acceptée</h4>
-                                    <p class="text-xs text-gray-500 mt-1 lowercase">L'entreprise Microsoft a validé
-                                        votre profil pour un entretien.</p>
-                                    <span class="text-[10px] font-bold text-gray-400 mt-2 block">Il y a 1h</span>
+                        <div class="space-y-6">
+                            <!-- App 1 -->
+                            <div class="flex items-center gap-x-4">
+                                <div
+                                    class="size-10 bg-gray-50 flex-none flex items-center justify-center rounded-lg border border-gray-100 overflow-hidden">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+                                        class="size-6 object-contain">
+                                </div>
+                                <div class="grow">
+                                    <h4 class="text-sm font-bold text-gray-800">UI Researcher</h4>
+                                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Microsoft
+                                    </p>
+                                </div>
+                                <div class="flex-none text-right">
+                                    <span
+                                        class="py-1 px-2.5 inline-flex items-center gap-x-1 text-[10px] font-bold bg-emerald-100 text-emerald-800 rounded-lg">
+                                        Acceptée
+                                    </span>
                                 </div>
                             </div>
-                            <!-- Item -->
-                            <div class="relative ps-11">
-                                <span
-                                    class="absolute start-0 top-0 size-8 flex justify-center items-center rounded-full bg-gray-50 text-gray-400 border border-gray-100 z-10">
-                                    <svg class="size-4" fill="none" stroke="currentColor" stroke-width="3"
-                                        viewBox="0 0 24 24">
-                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                                        <circle cx="9" cy="7" r="4" />
-                                    </svg>
-                                </span>
-                                <div class="pt-0.5">
-                                    <h4 class="text-sm font-bold text-gray-800 leading-tight">Profil mis à jour</h4>
-                                    <p class="text-xs text-gray-400 mt-1 lowercase">Nouvelle compétence ajoutée : Design
-                                        System.</p>
-                                    <span class="text-[10px] font-bold text-gray-400 mt-2 block">Hier</span>
+
+                            <!-- App 2 -->
+                            <div class="flex items-center gap-x-4">
+                                <div
+                                    class="size-10 bg-gray-50 flex-none flex items-center justify-center rounded-lg border border-gray-100 overflow-hidden">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+                                        class="size-6 object-contain">
+                                </div>
+                                <div class="grow">
+                                    <h4 class="text-sm font-bold text-gray-800">Product Designer</h4>
+                                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Google</p>
+                                </div>
+                                <div class="flex-none text-right">
+                                    <span
+                                        class="py-1 px-2.5 inline-flex items-center gap-x-1 text-[10px] font-bold bg-amber-100 text-amber-800 rounded-lg">
+                                        En attente
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- App 3 -->
+                            <div class="flex items-center gap-x-4">
+                                <div
+                                    class="size-10 bg-gray-50 flex-none flex items-center justify-center rounded-lg border border-gray-100 overflow-hidden">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+                                        class="size-6 object-contain">
+                                </div>
+                                <div class="grow">
+                                    <h4 class="text-sm font-bold text-gray-800">Front Developer</h4>
+                                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Netflix</p>
+                                </div>
+                                <div class="flex-none text-right">
+                                    <span
+                                        class="py-1 px-2.5 inline-flex items-center gap-x-1 text-[10px] font-bold bg-red-100 text-red-800 rounded-lg">
+                                        Refusée
+                                    </span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="p-6 pt-0 mt-auto">
-                        <button type="button"
-                            class="w-full py-2.5 px-4 text-center text-[10px] font-bold text-gray-400 bg-gray-50 rounded-lg hover:bg-gray-100 transition tracking-widest uppercase">Tout
-                            l'historique</button>
                     </div>
                 </div>
 

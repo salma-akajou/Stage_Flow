@@ -26,14 +26,27 @@
         .sticker-float {
             animation: stickerFloat 12s ease-in-out infinite;
         }
+
         .sticker-float-slow {
             animation: stickerFloat 18s ease-in-out infinite;
         }
+
         @keyframes stickerFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            33% { transform: translateY(-20px) rotate(5deg); }
-            66% { transform: translateY(10px) rotate(-3deg); }
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            33% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+
+            66% {
+                transform: translateY(10px) rotate(-3deg);
+            }
         }
+
         .bg-enterprise {
             background-color: #f8fafc;
             background-image:
@@ -41,12 +54,15 @@
                 radial-gradient(at 100% 0%, hsla(250, 90%, 68%, 0.05) 0, transparent 60%),
                 radial-gradient(at 50% 100%, hsla(220, 80%, 70%, 0.04) 0, transparent 60%);
         }
+
         .btn-action {
             transition: background .15s, color .15s, transform .15s;
         }
+
         .btn-action:hover {
             transform: scale(1.12);
         }
+
         .row-hover:hover {
             background-color: #f8f9ff;
         }
@@ -238,14 +254,17 @@
                         points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                 </svg></div>
         </div>
-        <div class="fixed top-0 right-0 w-96 h-96 bg-indigo-300/10 rounded-full blur-3xl pointer-events-none z-[-1]"></div>
-        <div class="fixed bottom-0 left-64 w-96 h-96 bg-blue-200/10 rounded-full blur-3xl pointer-events-none z-[-1]"></div>
+        <div class="fixed top-0 right-0 w-96 h-96 bg-indigo-300/10 rounded-full blur-3xl pointer-events-none z-[-1]">
+        </div>
+        <div class="fixed bottom-0 left-64 w-96 h-96 bg-blue-200/10 rounded-full blur-3xl pointer-events-none z-[-1]">
+        </div>
 
         <div class="p-4 sm:p-6 lg:p-8 max-w-[1400px] space-y-6">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" data-aos="fade-down">
                 <div>
                     <h1 class="text-2xl font-extrabold text-gray-900">Candidatures Reçues</h1>
-                    <p class="text-sm text-gray-500 mt-0.5">Gérez et traitez les candidatures pour vos offres de stage</p>
+                    <p class="text-sm text-gray-500 mt-0.5">Gérez et traitez les candidatures pour vos offres de stage
+                    </p>
                 </div>
             </div>
 
@@ -281,7 +300,8 @@
             <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden" data-aos="fade-up"
                 data-aos-delay="100">
                 <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-                    <p class="text-sm text-gray-500">Affichage de <span class="font-semibold text-gray-800">12</span> candidatures</p>
+                    <p class="text-sm text-gray-500">Affichage de <span class="font-semibold text-gray-800">12</span>
+                        candidatures</p>
                     <span class="text-xs text-gray-400">Mis à jour aujourd'hui</span>
                 </div>
                 <div class="overflow-x-auto">
@@ -289,24 +309,29 @@
                         <thead>
                             <tr class="bg-gray-50/80">
                                 <th scope="col"
-                                    class="px-6 py-3.5 text-start text-xs font-semibold text-gray-500 uppercase tracking-wider">Candidat</th>
+                                    class="px-6 py-3.5 text-start text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                                    Candidat</th>
                                 <th scope="col"
-                                    class="px-6 py-3.5 text-start text-xs font-semibold text-gray-500 uppercase tracking-wider">Offre</th>
+                                    class="px-6 py-3.5 text-start text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                                    Offre</th>
                                 <th scope="col"
-                                    class="px-6 py-3.5 text-start text-xs font-semibold text-gray-500 uppercase tracking-wider">Date</th>
+                                    class="px-6 py-3.5 text-start text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                                    Date</th>
                                 <th scope="col"
-                                    class="px-6 py-3.5 text-start text-xs font-semibold text-gray-500 uppercase tracking-wider">Statut</th>
+                                    class="px-6 py-3.5 text-start text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                                    Statut</th>
                                 <th scope="col"
-                                    class="px-6 py-3.5 text-end text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
+                                    class="px-6 py-3.5 text-end text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                                    Actions</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100 bg-white">
                             <tr class="row-hover transition">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center gap-3">
-                                        <img class="size-10 rounded-full ring-2 ring-white shadow-sm shrink-0"
-                                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=320&h=320&auto=format&fit=facearea&facepad=3"
-                                            alt="">
+                                        <div
+                                            class="size-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-xs shrink-0 ring-2 ring-white shadow-sm">
+                                            SA</div>
                                         <div>
                                             <p class="font-semibold text-gray-800">Salma Akajou</p>
                                             <p class="text-xs text-gray-400 mt-0.5">salma@emsi-edu.ma</p>
@@ -316,23 +341,34 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-gray-600">UI/UX Researcher & Designer</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-gray-600">02 Mars 2026</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center py-1 px-2.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">En attente</span>
+                                    <span
+                                        class="inline-flex items-center py-1 px-2.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">En
+                                        attente</span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-end">
                                     <div class="flex items-center justify-end gap-2">
-                                        <button class="btn-action p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg" title="Voir">
-                                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <button
+                                            class="btn-action p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg"
+                                            title="Voir">
+                                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                                 <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
                                                 <circle cx="12" cy="12" r="3" />
                                             </svg>
                                         </button>
-                                        <button class="btn-action p-2 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg" title="Accepter">
-                                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <button
+                                            class="btn-action p-2 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg"
+                                            title="Accepter">
+                                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                                 <path d="M20 6 9 17l-5-5" />
                                             </svg>
                                         </button>
-                                        <button class="btn-action p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg" title="Refuser">
-                                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <button
+                                            class="btn-action p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg"
+                                            title="Refuser">
+                                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                                 <path d="M18 6 6 18" />
                                                 <path d="m6 6 12 12" />
                                             </svg>
@@ -343,7 +379,9 @@
                             <tr class="row-hover transition">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center gap-3">
-                                        <div class="size-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-xs shrink-0">YB</div>
+                                        <div
+                                            class="size-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-xs shrink-0">
+                                            YB</div>
                                         <div>
                                             <p class="font-semibold text-gray-800">Yassine Benchekroun</p>
                                             <p class="text-xs text-gray-400 mt-0.5">yassine@emsi-edu.ma</p>
@@ -353,18 +391,25 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-gray-600">Développeur Cloud Azure</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-gray-600">28 Février 2026</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center py-1 px-2.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">Acceptée</span>
+                                    <span
+                                        class="inline-flex items-center py-1 px-2.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">Acceptée</span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-end">
                                     <div class="flex items-center justify-end gap-2">
-                                        <button class="btn-action p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg" title="Voir">
-                                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <button
+                                            class="btn-action p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg"
+                                            title="Voir">
+                                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                                 <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
                                                 <circle cx="12" cy="12" r="3" />
                                             </svg>
                                         </button>
-                                        <button class="btn-action p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg" title="Refuser">
-                                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <button
+                                            class="btn-action p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg"
+                                            title="Refuser">
+                                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                                 <path d="M18 6 6 18" />
                                                 <path d="m6 6 12 12" />
                                             </svg>
@@ -375,7 +420,9 @@
                             <tr class="row-hover transition">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center gap-3">
-                                        <div class="size-10 rounded-full bg-rose-100 flex items-center justify-center text-rose-600 font-bold text-xs shrink-0">NA</div>
+                                        <div
+                                            class="size-10 rounded-full bg-rose-100 flex items-center justify-center text-rose-600 font-bold text-xs shrink-0">
+                                            NA</div>
                                         <div>
                                             <p class="font-semibold text-gray-800">Nour Ait Mouss</p>
                                             <p class="text-xs text-gray-400 mt-0.5">nour@emsi-edu.ma</p>
@@ -385,23 +432,34 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-gray-600">UI/UX Researcher & Designer</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-gray-600">25 Février 2026</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center py-1 px-2.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">En attente</span>
+                                    <span
+                                        class="inline-flex items-center py-1 px-2.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">En
+                                        attente</span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-end">
                                     <div class="flex items-center justify-end gap-2">
-                                        <button class="btn-action p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg" title="Voir">
-                                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <button
+                                            class="btn-action p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg"
+                                            title="Voir">
+                                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                                 <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
                                                 <circle cx="12" cy="12" r="3" />
                                             </svg>
                                         </button>
-                                        <button class="btn-action p-2 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg" title="Accepter">
-                                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <button
+                                            class="btn-action p-2 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg"
+                                            title="Accepter">
+                                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                                 <path d="M20 6 9 17l-5-5" />
                                             </svg>
                                         </button>
-                                        <button class="btn-action p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg" title="Refuser">
-                                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <button
+                                            class="btn-action p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg"
+                                            title="Refuser">
+                                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                                 <path d="M18 6 6 18" />
                                                 <path d="m6 6 12 12" />
                                             </svg>
@@ -414,21 +472,29 @@
                 </div>
             </div>
 
-            <nav class="flex items-center justify-center gap-x-1 pt-10 border-t border-gray-200 mt-8" data-aos="fade-up">
+            <nav class="flex items-center justify-center gap-x-1 pt-10 border-t border-gray-200 mt-8"
+                data-aos="fade-up">
                 <button type="button"
                     class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
-                    <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
                         <path d="m15 18-6-6 6-6" />
                     </svg>
                 </button>
                 <div class="flex items-center gap-x-1">
-                    <button type="button" class="min-h-[38px] min-w-[38px] flex justify-center items-center bg-indigo-600 text-white text-sm font-medium rounded-lg focus:outline-none">1</button>
-                    <button type="button" class="min-h-[38px] min-w-[38px] flex justify-center items-center text-gray-800 hover:bg-gray-100 text-sm font-medium rounded-lg focus:outline-none">2</button>
-                    <button type="button" class="min-h-[38px] min-w-[38px] flex justify-center items-center text-gray-800 hover:bg-gray-100 text-sm font-medium rounded-lg focus:outline-none">3</button>
+                    <button type="button"
+                        class="min-h-[38px] min-w-[38px] flex justify-center items-center bg-indigo-600 text-white text-sm font-medium rounded-lg focus:outline-none">1</button>
+                    <button type="button"
+                        class="min-h-[38px] min-w-[38px] flex justify-center items-center text-gray-800 hover:bg-gray-100 text-sm font-medium rounded-lg focus:outline-none">2</button>
+                    <button type="button"
+                        class="min-h-[38px] min-w-[38px] flex justify-center items-center text-gray-800 hover:bg-gray-100 text-sm font-medium rounded-lg focus:outline-none">3</button>
                 </div>
                 <button type="button"
                     class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none">
-                    <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
                         <path d="m9 18 6-6-6-6" />
                     </svg>
                 </button>
