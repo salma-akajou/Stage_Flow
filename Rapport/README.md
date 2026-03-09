@@ -225,6 +225,258 @@ Le diagramme de cas d’utilisation de notre application StageFlow illustre les 
 - Ce sprint permet ainsi d’optimiser la gestion des stages et d’offrir une vision plus complète et structurée du processus.
 
 ---
+# Choix technologiques
+
+Dans ce projet, plusieurs technologies ont été choisies pour assurer **performance, maintenabilité, sécurité et rapidité de développement**.
+
+---
+
+## 🔹 Technologies Backend
+
+### PHP 8+
+Langage utilisé par Laravel, simple à apprendre, stable et largement supporté pour les applications web.
+
+### Laravel 12
+Framework backend basé sur le modèle **MVC**, qui apporte une structure claire à l’application.  
+Il facilite la gestion du **CRUD**, de l’**authentification**, des **middlewares** et améliore la **sécurité** globale du système.
+
+### Eloquent ORM
+Permet de gérer la base de données en utilisant des **modèles orientés objet** plutôt que des requêtes SQL manuelles.
+
+### Spatie Laravel Permission
+Package Laravel permettant de gérer les **rôles et permissions** (admin, éditeur, visiteur) de manière professionnelle et intégrée au système de **middleware**.
+
+---
+
+## 🔹 Technologies Frontend
+
+### Blade Templates
+Moteur de templates de Laravel permettant de créer des **pages dynamiques** avec des **layouts réutilisables**.
+
+### Tailwind CSS
+Framework CSS basé sur les **classes utilitaires** qui facilite la création d’un **design moderne, propre et rapide**.
+
+### JavaScript + jQuery
+JavaScript est utilisé pour les interactions côté client.  
+jQuery peut être utilisé en complément pour **simplifier certaines manipulations du DOM** ou les **requêtes AJAX**.
+
+### Preline
+Bibliothèque basée sur **Tailwind CSS** qui fournit des **composants UI prêts à l’emploi** (modals, menus, dropdowns, etc.) avec des interactions déjà intégrées, permettant de créer rapidement des interfaces modernes.
+
+🔗 https://preline.co/
+
+### Vite
+Vite est l’outil de **build moderne utilisé par défaut par Laravel** pour compiler les ressources frontend.
+
+Il offre :
+
+- un environnement de développement très rapide
+- le **Hot Module Replacement (HMR)** pour un rechargement instantané
+- une compilation optimisée pour la production
+- une gestion simplifiée des **assets (CSS, JavaScript, images)**
+
+Il s’intègre parfaitement avec **Blade, Tailwind CSS et les frameworks JavaScript modernes**.
+
+---
+
+## 🔹 Base de données
+
+### MySQL
+Base de données relationnelle fiable utilisée pour stocker les **utilisateurs, articles et commentaires**.
+
+### Migrations Laravel
+Les migrations permettent de **créer, modifier et versionner la structure de la base de données** de manière propre et organisée.
+
+---
+
+## 🔹 Outils externes
+
+## Tiptap (éditeur de texte)
+
+Tiptap est un **éditeur de texte moderne et hautement personnalisable** basé sur **ProseMirror**.
+
+Il permet d’intégrer facilement un **éditeur WYSIWYG avancé** dans l’application, offrant plusieurs fonctionnalités :
+
+- mise en forme du texte
+- insertion d’images
+- listes
+- citations
+- extensions via plugins
+
+Grâce à sa structure **flexible et modulaire**, Tiptap permet d’adapter l’expérience d’édition aux besoins spécifiques du projet tout en conservant une **interface intuitive pour l’utilisateur**.
+
+---
+
+## Architecture du projet
+
+Le projet du blog repose sur une architecture cohérente qui combine **trois niveaux d’organisation** :
+
+- Architecture **MVC**
+- Architecture **en couches (3-tiers / N-tiers)**
+- Architecture **globale du système**
+
+Cette structure garantit :
+
+- une **bonne séparation des responsabilités**
+- une **maintenance facilitée**
+- une **évolution future du système**
+
+---
+
+### 1. Architecture MVC
+
+L’application web est développée en suivant le modèle **MVC (Model - View - Controller)** fourni par le framework Laravel.
+
+Ce modèle organise le code en trois parties :
+
+#### Modèle (Model)
+
+Représente les **données du système** :
+
+- User
+- Offre
+- Candidature
+- Favori
+
+Les modèles :
+
+- gèrent les **relations entre les entités**
+- assurent l’accès à la base de données via **Eloquent ORM**
+
+#### Vue (View)
+
+Interface utilisateur construite avec :
+
+- Blade Templates
+- HTML5
+- Tailwind CSS
+- JavaScript / jQuery
+
+Les vues permettent d’afficher :
+
+- la liste des **offres de stage**
+- les **détails des offres**
+- le **formulaire One-Page** (ajout / modification)
+
+### Contrôleur (Controller)
+
+Les contrôleurs jouent le rôle **d’intermédiaire entre l’utilisateur et le système**.
+
+Ils permettent de :
+
+- gérer les **requêtes HTTP**
+- appliquer la **logique métier**
+- effectuer la **validation des données**
+- renvoyer les **données aux vues ou à l’API**
+
+Cette architecture MVC permet d’avoir une application **structurée, claire et facile à maintenir**.
+
+---
+
+## 2. Architecture 3-tiers
+
+En plus du MVC, le projet implémente une **architecture en couches (3-tiers)** qui sépare les responsabilités techniques.
+
+### a. Couche Présentation
+
+Elle correspond à la **partie visible par l’utilisateur**.
+
+Elle comprend :
+
+- pages du blog
+- affichage des articles
+- formulaires One-Page
+- partie publique de l’application
+
+Technologies utilisées :
+
+- Blade
+- HTML5
+- Tailwind CSS
+- JavaScript
+- jQuery
+
+Communication avec le backend via **HTTP ou AJAX**.
+
+---
+
+### b. Couche Logique Métier
+
+Cette couche gère :
+
+- la **validation**
+- les **règles métier**
+- la gestion des **articles**
+- la gestion des **utilisateurs**
+- la gestion des **catégories**
+
+Elle est implémentée dans :
+
+- les **Controllers**
+- éventuellement des **Services Laravel**
+
+Elle intègre également la gestion de **sécurité et des permissions** via **Spatie Laravel Permission**, permettant de contrôler l’accès aux différentes fonctionnalités.
+
+---
+
+### c. Couche Accès aux Données
+
+Cette couche est responsable de la **gestion des données**.
+
+Elle comprend :
+
+- les **modèles Eloquent**  
+  (User, Offre, Candidature, Favori…)
+
+Responsabilités :
+
+- gestion des **relations entre entités**
+- exécution des **requêtes SQL**
+- gestion de la **sécurité et de l’intégrité des données**
+
+Interaction directe avec la **base de données MySQL**.
+
+---
+
+## 3. Architecture globale
+
+L’architecture globale du projet est une **combinaison entre l’architecture MVC et l’architecture 3-tiers**.
+
+### Couche Présentation
+Inclut :
+
+- les **Vues Blade**
+- les **Controllers**
+
+Ces éléments gèrent :
+
+- l’interaction avec l’utilisateur
+- les requêtes HTTP
+
+### Couche Logique Métier
+Regroupe :
+
+- les **Services**
+- la **validation**
+- la gestion des **rôles et permissions** via Spatie
+
+### Couche Accès aux Données
+Contient :
+
+- les **modèles Eloquent**
+- la **base de données MySQL**
+
+Elle est responsable du **stockage et de la récupération des informations**.
+
+---
+
+Cette organisation permet d’avoir une application :
+
+- **modulaire**
+- **sécurisée**
+- **facile à maintenir**
+- capable de communiquer aussi bien avec une **application web** qu’une **application mobile**.
+---
 
 # Conception : Diagramme de classe
 **Le diagramme de classes représente la structure interne de l’application StageFlow et illustre les différentes entités du système ainsi que les relations entre elles. Il met en évidence les classes principales telles que Utilisateur, Étudiant, Entreprise et Administrateur, qui représentent les différents acteurs de la plateforme.**
