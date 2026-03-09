@@ -167,9 +167,6 @@ La carte d’empathie est un outil utilisé pour mieux comprendre les besoins, l
 
 ![Carte d'empathie d'entreprise](images/carte_d'empathie_entreprise.png) 
 
-**Administrateur :**
-
-![Carte d'empathie d'admin](images/carte_d'empathie_admin.png) 
 
 ---
 

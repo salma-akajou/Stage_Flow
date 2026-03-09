@@ -221,19 +221,6 @@ style: |
 
 ---
 
-
-## Branche Fonctionnelle : Design Thinking
-### 1. EMPATHIE
-
-<div class="img-container">
-  <div class="img-container">
-  <h3>Carte d'empathie admin</h3>
-  <img src="images/carte_d'empathie_admin.png" class="img-methodo" alt="Design Thinking">
-</div>
-</div>
-
----
-
 ## Branche Fonctionnelle : Design Thinking
 ### 2. DÉFINITION
 
