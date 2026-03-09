@@ -15,7 +15,7 @@ skinparam usecase {
 
 actor "Étudiant" as E
 actor "Entreprise" as Ent
-actor "Administrateur Système" as Admin
+actor "Administrateur" as Admin
 
 
 package "Sprint 2 – Fonctionnalités Avancées (StageFlow)" {
@@ -23,49 +23,42 @@ package "Sprint 2 – Fonctionnalités Avancées (StageFlow)" {
     ' ========================
     ' Améliorations Étudiant
     ' ========================
-    package "Améliorations Étudiant" {
-
         usecase "Recevoir notifications" as UC1
-        usecase "Suivi détaillé des candidatures" as UC2
-        usecase "Ajouter un commentaire" as UC3
-
-    }
+        usecase "Ajouter un commentaire" as UC2
 
     E -- UC1
     E -- UC2
-    E -- UC3
 
 
     ' ========================
     ' Améliorations Entreprise
     ' ========================
-    package "Améliorations Entreprise" {
+        usecase "recevoir notifications" as UC3
+        usecase "Ajouter un commentaire" as UC4
 
-        usecase "Consulter tableau de bord avancé" as UC4
-        usecase "Voir statistiques détaillées" as UC5
-        usecase "Ajouter un commentaire" as UC6
 
-    }
-
+    Ent -- UC3
     Ent -- UC4
-    Ent -- UC5
-    Ent -- UC6
+
 
 
     ' ========================
     ' Améliorations Administrateur
     ' ========================
-    package "Améliorations Administrateur" {
+        usecase "Consulter statistiques globales" as UC5
+        usecase "Modérer les commentaires" as UC6
 
-        usecase "Contrôler offres publiées" as UC7
-        usecase "Consulter statistiques globales" as UC8
-        usecase "Modérer les commentaires" as UC9
+    Admin -- UC5
+    Admin -- UC6
 
-    }
+    usecase "S'authentifier" as Auth
 
-    Admin -- UC7
-    Admin -- UC8
-    Admin -- UC9
+UC1 ..> Auth : <<include>>
+UC2 ..> Auth : <<include>>
+UC3 ..> Auth : <<include>>
+UC4 ..> Auth : <<include>>
+UC5 ..> Auth : <<include>>
+UC6 ..> Auth : <<include>>
 
 }
 

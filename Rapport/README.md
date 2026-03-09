@@ -43,17 +43,7 @@
 
 ---
 
-# Liste des figures
 
-. 
-
----
-
-# Remerciement
-
-.  
-
----
 
 # Introduction
 
@@ -66,12 +56,6 @@ De leur côté, les entreprises éprouvent des difficultés à gérer efficaceme
 
 Dans le cadre de ma formation en développement web, nous devons réaliser un projet de fin de formation qui reflète nos compétences et répond à un besoin réel. En discutant avec mes collègues et en observant les difficultés rencontrées par les étudiants de mon établissement, j’ai constaté que beaucoup avaient du mal à trouver un stage correspondant à leur profil.
 Les offres étaient dispersées sur plusieurs sites et réseaux sociaux, et il était difficile de suivre l’état des candidatures. Cette situation a inspiré l’idée du projet Stage Flow, une application web visant à centraliser les offres de stages, simplifier la recherche pour les étudiants et faciliter la gestion des candidatures pour les entreprises.
-
----
-
-# Objectif de Project
-
-.
 
 ---
 
@@ -89,6 +73,7 @@ StageFlow est une plateforme web centralisée qui permet aux étudiants de reche
 ## Utilisateurs et rôles
 1. **Étudiant** : consulter les offres, postuler et suivre ses candidatures.  
 2. **Entreprise / Admin** : publier, modifier, supprimer les offres, examiner les candidatures, suivre les statistiques.  
+3. **Admin** : Gérer les utilisateurs, Moderer les commentaires.  
 
 ## Fonctionnalités clés
 - Création de compte et authentification.  
@@ -132,38 +117,6 @@ Dans le cadre de ce projet, nous avons organisé le travail selon les principes 
 
 ---
 
-# La méthodologie 2TUP
-
-![Maquette application](images/2TUP.png)
-
-## Introduction
-La méthodologie **2TUP (Two-Tracks Unified Process)** est un processus de développement logiciel qui s’appuie sur une structure en forme de Y. Elle permet de séparer, puis de réunir, deux dimensions essentielles d’un projet :
-- **l’analyse fonctionnelle** (ce que doit faire le système)
-- **la conception technique** (comment le réaliser)
-Cette approche facilite une meilleure organisation du travail et garantit une compréhension claire des besoins avant la phase de développement. Le 2TUP est également **itératif et incrémental**, ce qui permet d’avancer progressivement avec des versions successives du produit.
-## Principes clés du 2TUP
-La méthode repose sur plusieurs fondements importants :
-- **Itératif et incrémental** : le développement se fait par cycles, en ajoutant des fonctionnalités au fur et à mesure.
-- **Piloté par les risques** : les éléments les plus critiques sont traités dès le début du projet.
-- **Séparation fonctionnel / technique** : cela évite les confusions et permet une meilleure organisation du travail.
-- **Architecture solide** : une base technique fiable est élaborée tôt dans le processus.
-- **Collaboration continue** : les utilisateurs sont impliqués régulièrement pour valider les besoins.
-## La structure en Y
-Le 2TUP est représenté par un schéma en Y, qui reflète les trois grandes étapes du processus :
-- **1- Phase initiale : Capture des besoins**
-
-Cette phase consiste à comprendre les objectifs du projet, identifier les acteurs, et préciser les exigences globales.
-- **2- Branche fonctionnelle (haut du Y)**
-
- Elle vise à analyser ce que doit faire le système : cas d’usage, processus métier, workflows, scénarios utilisateurs.
-- **3- Branche technique (bas du Y)**
-
- Elle concerne la manière dont la solution sera construite : architecture, technologies, base de données, API, composants techniques.
-- **4- Phase de convergence**
- Les deux branches se rejoignent pour lancer le développement, les tests, l’intégration et la livraison.
-
----
-
 # Design Thinking
 
 ![Maquette application](images/designThinking.png) 
@@ -204,6 +157,8 @@ Exemple : « Comment pourrions-nous aider l’utilisateur à… ? »
 # Branche fonctionnelle
 
 ## Carte d'empathie
+La carte d’empathie est un outil utilisé pour mieux comprendre les besoins, les attentes et les difficultés des différents utilisateurs du système. Dans le cadre du projet StageFlow, trois cartes d’empathie ont été réalisées pour les profils principaux de la plateforme : l’étudiant, l’entreprise (recruteur) et l’administrateur. Ces cartes permettent d’identifier ce que chaque utilisateur pense, ressent, voit et fait, afin de concevoir une solution qui répond au mieux à leurs besoins. Les figures suivantes présentent les différentes cartes d’empathie réalisées pour ces acteurs.
+
 **Apprenant :**
 
 ![Carte d'empathie d'apprenant](images/carte_d'empathie_apprenant.png) 
@@ -238,15 +193,18 @@ Même avec la motivation des étudiants et des entreprises, plusieurs obstacles 
 
 Le diagramme de cas d’utilisation de notre application StageFlow illustre les principales fonctionnalités accessibles aux trois acteurs du système : l’étudiant, l’entreprise et l’administrateur. Il présente les actions disponibles pour chaque rôle, telles que la consultation et la candidature aux offres de stage pour les étudiants, la publication et la gestion des offres et candidatures pour les entreprises, ainsi que la gestion des comptes, le contrôle des offres et la consultation des statistiques pour l’administrateur. Ce diagramme permet de visualiser l’organisation fonctionnelle globale de la plateforme et de comprendre les interactions entre les utilisateurs et le système avant la phase de développement.
 
-![Cas d'utilisation global](images/diagramme_use_case.png) 
+**Espace Admin:**
+![Cas d'utilisation global](images/global_usecase_admin.png) 
 
+**Espace public:**
+![Cas d'utilisation global](images/global_usecase_public.png) 
 ---
 
 # Diagramme de cas d’utilisation Sprint 1
 - Ce premier sprint correspond au MVP de StageFlow.  
 - Il met en place les fonctionnalités essentielles permettant aux étudiants de consulter et postuler aux offres de stage, aux entreprises de publier et gérer leurs offres et candidatures, et à l’administrateur de gérer les comptes utilisateurs de manière sécurisée.
 
-![Cas d'utilisation global](images/diagramme_use_case_sprint1.png) 
+![Cas d'utilisation sprint1](images/usecase_sprint1.png) 
 
 - Ce sprint établit ainsi le fonctionnement de base de la plateforme avant l’ajout des fonctionnalités avancées.
 
@@ -255,71 +213,36 @@ Le diagramme de cas d’utilisation de notre application StageFlow illustre les 
 # Diagramme de cas d’utilisation Sprint 2
 - Ce deuxième sprint introduit les fonctionnalités avancées de StageFlow.  
 - Il améliore l’expérience utilisateur en ajoutant un suivi plus détaillé des candidatures et des notifications pour les étudiants, un tableau de bord avancé et des statistiques pour les entreprises, ainsi que le contrôle des offres publiées et la consultation des statistiques globales pour l’administrateur.
-![Cas d'utilisation global](images/diagramme_use_case_sprint2.png) 
+![Cas d'utilisation global](images/usecase_sprint2.png) 
 
 - Ce sprint permet ainsi d’optimiser la gestion des stages et d’offrir une vision plus complète et structurée du processus.
 
 ---
 
-# Branche technique
+# Conception : Diagramme de classe
+**Le diagramme de classes représente la structure interne de l’application StageFlow et illustre les différentes entités du système ainsi que les relations entre elles. Il met en évidence les classes principales telles que Utilisateur, Étudiant, Entreprise et Administrateur, qui représentent les différents acteurs de la plateforme.**
+![Diagramme de Classe](Images/diagram_class.png)
 
-. 
+- Le diagramme de classes présente la structure interne de l’application StageFlow et les relations entre ses différentes entités. Il met en évidence les classes principales telles que Utilisateur, Étudiant, Entreprise et Administrateur, qui représentent les acteurs de la plateforme.
 
----
+- Les entreprises peuvent publier des offres de stage, tandis que les étudiants peuvent consulter les offres, postuler et suivre leurs candidatures via la classe Candidature. Le système inclut également des fonctionnalités comme les commentaires, les favoris et les notifications, ainsi qu’un mécanisme de gestion des rôles et des permissions pour contrôler les accès.
 
-# Choix technologiques
+**Cette représentation permet de mieux comprendre la logique métier de l’application avant son implémentation.**
 
-.
 
----
-
-# Architecture de projet
-
-.
-
----
-
-# Prototype (Fonctionnalités, Classes)
-
-.
-
----
-
-# Conception
-
-.
-
----
-
-# Diagramme de classe
-
-.
 
 ---
 
 # Maquettes
 
-.
+**Maquette web**
 
----
+![Maquette](Images/maquette_web.png)
 
-# Charte graphique
 
-.
+**Maquette web**
+![Maquette](Images/maquette_mobile.png)
 
----
-
-# Réalisation
-
-.
-
----
-
-# Interfaces
-
-.
-
----
 
 # Conclusion
 

@@ -1,0 +1,133 @@
+@startuml StageFlow_UseCase_Global
+left to right direction
+skinparam actorStyle awesome
+skinparam shadowing false
+
+skinparam usecase {
+    BackgroundColor #E8F6F3
+    BorderColor #117864
+}
+
+skinparam nodesep 40
+skinparam ranksep 50
+
+
+actor "Étudiant" as E
+actor "Entreprise" as Ent
+actor "Administrateur" as Admin
+actor "Mobile" as Mob
+
+
+'=====================
+' Étudiant Use Cases
+'=====================
+
+usecase "Tableau de bord" as UC1
+usecase "Consulter offres" as UC2
+usecase "Voir détails stage" as UC3
+usecase "Postuler stage" as UC4
+usecase "Téléverser CV" as UC5
+usecase "Suivre candidatures" as UC6
+usecase "Ajouter favoris" as UC7
+usecase "Ajouter commentaire" as UC8
+
+
+'=====================
+' Entreprise Use Cases
+'=====================
+
+usecase "Tableau de bord entreprise" as UC9
+usecase "Gérer offres" as UC10
+usecase "Consulter candidatures" as UC11
+usecase "Gérer candidatures" as UC12
+usecase "Ajouter commentaire" as UC13
+
+
+'=====================
+' Admin Use Cases
+'=====================
+
+usecase "Gérer comptes" as UC14
+usecase "Modérer commentaires" as UC15
+usecase "Voir statistiques" as UC16
+
+
+'=====================
+' Mobile API
+'=====================
+
+usecase "Consommer API" as API
+
+
+'=====================
+' Authentification
+'=====================
+
+usecase "S'authentifier" as Auth
+
+
+'=====================
+' Relations Étudiant
+'=====================
+
+E -- UC1
+E -- UC2
+E -- UC3
+E -- UC4
+E -- UC6
+E -- UC7
+E -- UC8
+
+UC4 ..> UC5 : <<include>>
+
+
+'=====================
+' Relations Entreprise
+'=====================
+
+Ent -- UC9
+Ent -- UC10
+Ent -- UC11
+Ent -- UC12
+Ent -- UC13
+
+
+'=====================
+' Relations Admin
+'=====================
+
+Admin -- UC14
+Admin -- UC15
+Admin -- UC16
+
+
+'=====================
+' Mobile
+'=====================
+
+Mob -- API
+
+
+
+'=====================
+' Authentification includes
+'=====================
+
+UC1 ..> Auth : <<include>>
+UC2 ..> Auth : <<include>>
+UC3 ..> Auth : <<include>>
+UC4 ..> Auth : <<include>>
+UC6 ..> Auth : <<include>>
+UC7 ..> Auth : <<include>>
+UC8 ..> Auth : <<include>>
+
+UC9 ..> Auth : <<include>>
+UC10 ..> Auth : <<include>>
+UC11 ..> Auth : <<include>>
+UC12 ..> Auth : <<include>>
+
+UC14 ..> Auth : <<include>>
+UC15 ..> Auth : <<include>>
+UC16 ..> Auth : <<include>>
+
+@enduml
