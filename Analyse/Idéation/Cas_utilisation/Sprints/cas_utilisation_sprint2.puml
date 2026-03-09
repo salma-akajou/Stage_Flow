@@ -23,33 +23,30 @@ package "Sprint 2 – Fonctionnalités Avancées (StageFlow)" {
     ' ========================
     ' Améliorations Étudiant
     ' ========================
-        usecase "Recevoir notifications" as UC1
-        usecase "Ajouter un commentaire" as UC2
+        
+        usecase "Ajouter un commentaire" as UC1
 
     E -- UC1
-    E -- UC2
 
 
     ' ========================
     ' Améliorations Entreprise
     ' ========================
-        usecase "recevoir notifications" as UC3
-        usecase "Ajouter un commentaire" as UC4
+        usecase "Ajouter un commentaire" as UC2
 
 
-    Ent -- UC3
-    Ent -- UC4
+    Ent -- UC2
 
 
 
     ' ========================
     ' Améliorations Administrateur
     ' ========================
-        usecase "Consulter statistiques globales" as UC5
-        usecase "Modérer les commentaires" as UC6
+        usecase "Consulter statistiques globales" as UC3
+        usecase "Modérer les commentaires" as UC4
 
-    Admin -- UC5
-    Admin -- UC6
+    Admin -- UC3
+    Admin -- UC4
 
     usecase "S'authentifier" as Auth
 
@@ -57,8 +54,6 @@ UC1 ..> Auth : <<include>>
 UC2 ..> Auth : <<include>>
 UC3 ..> Auth : <<include>>
 UC4 ..> Auth : <<include>>
-UC5 ..> Auth : <<include>>
-UC6 ..> Auth : <<include>>
 
 }
 
