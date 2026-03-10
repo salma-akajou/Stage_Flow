@@ -57,7 +57,6 @@ classDiagram
     class Candidature {
         +int id
         +int etudiant_id
-        +int offre_id
         +string statut
         +datetime date_postulation
     }
@@ -70,15 +69,12 @@ classDiagram
 
     class Commentaire {
         +int id
-        +int utilisateur_id
         +string texte
         +datetime date_creation
     }
 
     class Favoris {
         +int id
-        +int etudiant_id
-        +int offre_id
     }
 
     class Role {
