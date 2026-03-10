@@ -194,7 +194,7 @@ style: |
 
 ---
 
-## Branche Fonctionnelle : Design Thinking
+## 3. Branche Fonctionnelle : Design Thinking
 ###  DÉFINITION
 
 <div class="img-container">
