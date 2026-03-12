@@ -7,33 +7,36 @@ classDiagram
     %% ====================
     class Utilisateur {
         +int id
+        +string prenom
         +string nom
         +string email
         +string mot_de_passe
+        +string photo
         +datetime date_creation
-        +connexion()
     }
 
     class Etudiant {
-        +string telephone
-        +string ville
+        +int user_id
+        +int ville_id
+        +enum etablissement
         +string filiere
-        +string diplome
-        +string bio
+        +enum niveau_etudes
+        +text bio
         +string github
         +string linkedin
-        +ajouter_favoris()
-        +postuler_stage()
     }
 
     class Entreprise {
+        +int user_id
         +string nom_entreprise
-        +string secteur
-        +string ville
+        +enum secteur
+        +int ville_id
         +string adresse
-        +string telephone
-        +ajouter_offre()
-        +gerer_offres()
+        +string email_contact
+        +text bio
+        +string registre_commerce
+        +string logo
+        +enum taille
     }
 
     class Administrateur {
@@ -48,7 +51,18 @@ classDiagram
     class Offre {
         +int id
         +string titre
-        +string description
+        +text description
+        +enum type_stage
+        +string duree
+        +enum remuneration
+        +enum format
+        +enum secteur
+        +int ville_id
+        +text responsabilites
+        +text profil_recherche
+        +json competences_techniques
+        +enum status
+        +datetime date_publication
         +date date_debut
         +date date_fin
         +int entreprise_id
@@ -56,39 +70,44 @@ classDiagram
 
     class Candidature {
         +int id
-        +int etudiant_id
-        +string statut
+        +enum statut
+        +string telephone
+        +text message_motivation
         +datetime date_postulation
+        +int etudiant_id
+        +int offre_id
+        +int cv_id
     }
 
     class DocumentCV {
         +int id
-        +string image_path
+        +string file_path
         +datetime date_upload
+        +int etudiant_id
     }
 
-    class Commentaire {
+    class Feedback {
         +int id
-        +string texte
+        +text texte
+        +int note
+        +int auteur_id
         +datetime date_creation
     }
 
     class Favoris {
         +int id
+        +int etudiant_id
+        +int offre_id
+        +datetime date_ajout
     }
 
-    class Role {
-        +int id
-        +string nom
-    }
-
-    class Permission {
+    class Ville {
         +int id
         +string nom
     }
 
     %% ====================
-    %% Héritage (Direction maintenue pour la cohérence)
+    %% Héritage
     %% ====================
     Utilisateur <|-- Etudiant
     Utilisateur <|-- Entreprise
@@ -98,20 +117,21 @@ classDiagram
     %% Relations & Cardinalités
     %% ====================
     
-    Utilisateur "1" -- "n" Role : possède
-    Role "1" -- "n" Permission : contient
-    
+    Ville "1" -- "n" Etudiant : réside
+    Ville "1" -- "n" Entreprise : située
+    Ville "1" -- "n" Offre : localisée
+
     Etudiant "1" -- "n" Candidature : postule
     Etudiant "1" -- "n" Favoris : ajoute
-    Etudiant "1" -- "n" Commentaire : écrit
-
+    Etudiant "1" -- "n" DocumentCV : possède
+    Etudiant "1" -- "n" Feedback : écrit
+    
+    Entreprise "1" -- "n" Feedback : écrit
     Entreprise "1" -- "n" Offre : publie
-    Entreprise "1" -- "n" Candidature : reçoit
-    Entreprise "1" -- "n" Commentaire : écrit
-
+    
     Offre "1" -- "n" Candidature : concerne
     Offre "1" -- "n" Favoris : est ciblé par
     
-    Administrateur "1" -- "n" Commentaire : modère
+    Administrateur "1" -- "n" Feedback : modère
 
-    Candidature "1" -- "1" DocumentCV : possède
+    Candidature "1" -- "1" DocumentCV : utilise
