@@ -1,0 +1,6 @@
+prenom,nom,email,password,nom_entreprise,secteur,ville_nom,adresse,email_contact,bio,registre_commerce,taille
+Karim,Benani,contact@manpower.ma,password,Manpower Maroc,Informatique,Tanger,"Bd. Mohammed V",recrutement@manpower.ma,"Spécialiste du recrutement.",RC123456,TPE / PME
+Sarah,Mansouri,hr@ocp.ma,password,OCP Group,Industrie,Casablanca,"Bd. Moulay Youssef",recrutement@ocp.ma,"Leader mondial des phosphates.",RC987654,Grande Entreprise
+Omar,Tazi,jobs@capgemini.com,password,Capgemini,Informatique,Casablanca,"CasaNearShore",talent@capgemini.com,"Leader mondial du conseil.",RC555444,Multinationale
+Mehdi,Fahmi,info@attijari.ma,password,Attijariwafa Bank,Commerce,Casablanca,"Bd. Hassan II",contact@attijari.ma,"Première banque du Maroc.",RC111222,Grande Entreprise
+Laila,Idrissi,recrutement@iam.ma,password,Maroc Telecom,Informatique,Rabat,"Avenue Annakhil",hr@iam.ma,"Opérateur historique.",RC333444,Grande Entreprise

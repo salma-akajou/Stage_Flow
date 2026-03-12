@@ -1,0 +1,4 @@
+statut,telephone,message_motivation,etudiant_email,offer_title,cv_path
+En attente,0612345678,"Je suis très motivé pour ce stage.",salma@example.com,Développeur FullStack,cvs/salma_cv.pdf
+Accepté,0677889900,"Mon profil correspond parfaitement.",ahmed@example.com,Stage PFE Data Science,cvs/ahmed_cv.pdf
+Refusé,0600112233,"C'est une opportunité incroyable.",yassine@example.com,UX/UI Designer,cvs/yassine_cv.pdf
