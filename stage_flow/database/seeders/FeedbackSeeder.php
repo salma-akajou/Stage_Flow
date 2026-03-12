@@ -27,6 +27,7 @@ class FeedbackSeeder extends Seeder
                     'texte' => $data['texte'],
                     'note' => $data['note'],
                     'auteur_id' => $user->id,
+                    'valide' => true,
                 ]);
             }
         }

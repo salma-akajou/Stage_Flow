@@ -22,3 +22,4 @@ class EntrepriseService
         Entreprise::where('user_id', $id)->increment('vues');
     }
 }
+

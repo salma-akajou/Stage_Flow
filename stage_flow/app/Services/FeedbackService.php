@@ -10,16 +10,16 @@ class FeedbackService
     public function create(int $auteurId, array $data): Feedback
     {
         return Feedback::create([
-            'user_id' => $auteurId,
+            'auteur_id' => $auteurId,
             'note' => $data['note'],
-            'commentaire' => $data['commentaire'],
-            'valide' => false, // Requires admin validation
+            'texte' => $data['texte'],
+            'valide' => false,
         ]);
     }
 
     public function getLandingFeedbacks(int $limit = 3)
     {
-        return Feedback::with('user')->where('valide', true)->latest()->take($limit)->get();
+        return Feedback::with('auteur')->where('valide', true)->latest()->take($limit)->get();
     }
 
     public function moderate(int $id, string $action): bool
@@ -33,14 +33,10 @@ class FeedbackService
 
     public function search(array $filters = [], int $perPage = 10): LengthAwarePaginator
     {
-        $query = Feedback::with('user');
-
-        if (!empty($filters['role'])) {
-            // Logic to filter by user role (requires role relation or join)
-        }
+        $query = Feedback::with('auteur');
 
         if (!empty($filters['search'])) {
-            $query->where('commentaire', 'like', '%' . $filters['search'] . '%');
+            $query->where('texte', 'like', '%' . $filters['search'] . '%');
         }
 
         return $query->latest()->paginate($perPage);

@@ -9,6 +9,7 @@ use App\Models\Feedback;
 use App\Models\Candidature;
 use App\Models\User;
 
+
 class DashboardService
 {
     public function getLandingStats(): array

@@ -22,3 +22,4 @@ class EtudiantService
         Etudiant::where('user_id', $id)->increment('vues');
     }
 }
+

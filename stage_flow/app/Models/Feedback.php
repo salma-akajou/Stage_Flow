@@ -12,7 +12,7 @@ class Feedback extends Model
         'texte',
         'note',
         'auteur_id',
-        'entreprise_id',
+        'valide',
     ];
 
     public function auteur()

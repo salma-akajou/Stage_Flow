@@ -6,6 +6,7 @@ use App\Models\Candidature;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
 
+
 class CandidatureService
 {
     public function postuler(int $etudiantId, int $offreId, array $data): Candidature

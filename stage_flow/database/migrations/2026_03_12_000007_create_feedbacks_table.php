@@ -13,6 +13,7 @@ return new class extends Migration
             $table->text('texte');
             $table->integer('note');
             $table->foreignId('auteur_id')->constrained('users')->onDelete('cascade');
+            $table->boolean('valide')->default(false);
             $table->timestamps();
         });
     }
