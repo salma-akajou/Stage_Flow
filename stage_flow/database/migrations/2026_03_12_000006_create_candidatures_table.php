@@ -12,6 +12,8 @@ return new class extends Migration
             $table->id();
             $table->enum('statut', ['En attente', 'Accepté', 'Refusé'])->default('En attente');
             $table->string('telephone');
+            $table->string('photo')->nullable();
+            $table->string('portfolio_url')->nullable();
             $table->text('message_motivation');
             $table->timestamp('date_postulation')->useCurrent();
             $table->foreignId('etudiant_id')->constrained('etudiants', 'user_id')->onDelete('cascade');

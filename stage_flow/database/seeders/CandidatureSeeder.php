@@ -29,6 +29,8 @@ class CandidatureSeeder extends Seeder
                 Candidature::create([
                     'statut' => $data['statut'],
                     'telephone' => $data['telephone'],
+                    'photo' => $data['photo'] ?? null,
+                    'portfolio_url' => $data['portfolio_url'] ?? null,
                     'message_motivation' => $data['message_motivation'],
                     'date_postulation' => now(),
                     'etudiant_id' => $user->id,

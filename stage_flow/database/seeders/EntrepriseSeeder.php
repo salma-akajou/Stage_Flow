@@ -44,6 +44,7 @@ class EntrepriseSeeder extends Seeder
                     'bio' => $data['bio'],
                     'registre_commerce' => $data['registre_commerce'],
                     'taille' => $data['taille'],
+                    'vues' => $data['vues'] ?? 0,
                 ]
             );
         }

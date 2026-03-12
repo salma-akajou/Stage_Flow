@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->string('github')->nullable();
             $table->string('linkedin')->nullable();
+            $table->unsignedInteger('vues')->default(0);
             $table->timestamps();
         });
     }

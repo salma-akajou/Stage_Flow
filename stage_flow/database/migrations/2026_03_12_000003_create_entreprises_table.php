@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('registre_commerce');
             $table->string('logo')->nullable();
             $table->enum('taille', ['TPE / PME', 'Grande Entreprise', 'Multinationale']);
+            $table->unsignedInteger('vues')->default(0);
             $table->timestamps();
         });
     }
