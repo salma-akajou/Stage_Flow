@@ -25,4 +25,3 @@ class FavoriService
         return $etudiant->favoris()->with('entreprise')->latest()->paginate($perPage);
     }
 }
-

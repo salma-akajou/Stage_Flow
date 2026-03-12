@@ -27,4 +27,3 @@ class UtilisateurService
         return $user->delete();
     }
 }
-

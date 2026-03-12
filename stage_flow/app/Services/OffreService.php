@@ -57,4 +57,3 @@ class OffreService
         return Offre::with('entreprise')->where('status', 'Active')->latest()->take($limit)->get();
     }
 }
-
