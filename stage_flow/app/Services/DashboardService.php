@@ -39,7 +39,7 @@ class DashboardService
             'offres' => $entreprise->offres()->count(),
             'candidatures_recues' => Candidature::whereIn('offre_id', $entreprise->offres->pluck('id'))->count(),
             'en_attente' => Candidature::whereIn('offre_id', $entreprise->offres->pluck('id'))->where('statut', 'En attente')->count(),
-            'vues_offres' => $entreprise->vues, // Simplified mapping as per discussion
+            'vues_offres' => $entreprise->vues,
         ];
     }
 

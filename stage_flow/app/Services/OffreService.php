@@ -3,13 +3,18 @@
 namespace App\Services;
 
 use App\Models\Offre;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
-class OffreService
+class OffreService extends BaseService
 {
+    public function __construct()
+    {
+        $this->model = new Offre();
+    }
+
     public function search(array $filters = [], int $perPage = 9): LengthAwarePaginator
     {
-        $query = Offre::query();
+        $query = $this->model->with('entreprise', 'ville');
 
         if (!empty($filters['titre'])) {
             $query->where('titre', 'like', '%' . $filters['titre'] . '%');
@@ -27,33 +32,20 @@ class OffreService
             $query->where('status', $filters['status']);
         }
 
-        return $query->with('entreprise')->latest()->paginate($perPage);
+        if (!empty($filters['type_stage'])) {
+            $query->where('type_stage', $filters['type_stage']);
+        }
+
+        return $query->latest()->paginate($perPage);
     }
 
     public function getDetails(int $id): Offre
     {
-        return Offre::with('entreprise')->findOrFail($id);
+        return Offre::with('entreprise', 'ville')->findOrFail($id);
     }
 
-    public function create(array $data): Offre
+    public function getRecommended(int $limit = 3)
     {
-        return Offre::create($data);
-    }
-
-    public function update(int $id, array $data): bool
-    {
-        $offre = Offre::findOrFail($id);
-        return $offre->update($data);
-    }
-
-    public function delete(int $id): bool
-    {
-        $offre = Offre::findOrFail($id);
-        return $offre->delete();
-    }
-
-    public function getLandingFeatured(int $limit = 6)
-    {
-        return Offre::with('entreprise')->where('status', 'Active')->latest()->take($limit)->get();
+        return $this->model->with('entreprise')->where('status', 'Active')->latest()->take($limit)->get();
     }
 }

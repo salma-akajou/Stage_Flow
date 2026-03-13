@@ -3,37 +3,33 @@
 namespace App\Services;
 
 use App\Models\Feedback;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
-class FeedbackService
+class FeedbackService extends BaseService
 {
-    public function create(int $auteurId, array $data): Feedback
+    public function __construct()
     {
-        return Feedback::create([
-            'auteur_id' => $auteurId,
-            'note' => $data['note'],
-            'texte' => $data['texte'],
-            'valide' => false,
-        ]);
+        $this->model = new Feedback();
     }
 
     public function getLandingFeedbacks(int $limit = 3)
     {
-        return Feedback::with('auteur')->where('valide', true)->latest()->take($limit)->get();
+        return $this->model->with('auteur')->where('valide', true)->latest()->take($limit)->get();
     }
 
     public function moderate(int $id, string $action): bool
     {
-        $feedback = Feedback::findOrFail($id);
+        $feedback = $this->findOrFail($id);
         if ($action === 'valider') {
-            return $feedback->update(['valide' => true]);
+            $feedback->update(['valide' => true]);
+            return true;
         }
-        return $feedback->delete();
+        return (bool) $feedback->delete();
     }
 
     public function search(array $filters = [], int $perPage = 10): LengthAwarePaginator
     {
-        $query = Feedback::with('auteur');
+        $query = $this->model->with('auteur');
 
         if (!empty($filters['search'])) {
             $query->where('texte', 'like', '%' . $filters['search'] . '%');

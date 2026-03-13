@@ -3,27 +3,32 @@
 namespace App\Services;
 
 use App\Models\User;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
-class UtilisateurService
+class UtilisateurService extends BaseService
 {
+    public function __construct()
+    {
+        $this->model = new User();
+    }
+
     public function listUsers(array $filters = [], int $perPage = 10): LengthAwarePaginator
     {
-        $query = User::query();
+        $query = $this->model->newQuery();
 
         if (!empty($filters['search'])) {
-            $query->where(function($q) use ($filters) {
+            $query->where(function ($q) use ($filters) {
                 $q->where('nom', 'like', '%' . $filters['search'] . '%')
-                  ->orWhere('prenom', 'like', '%' . $filters['search'] . '%');
+                  ->orWhere('prenom', 'like', '%' . $filters['search'] . '%')
+                  ->orWhere('email', 'like', '%' . $filters['search'] . '%');
             });
         }
 
         return $query->latest()->paginate($perPage);
     }
 
-    public function deleteUser(int $id): bool
+    public function deleteUser(int $id): ?bool
     {
-        $user = User::findOrFail($id);
-        return $user->delete();
+        return $this->delete($id);
     }
 }

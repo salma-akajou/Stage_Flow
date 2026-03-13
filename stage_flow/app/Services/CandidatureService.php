@@ -3,11 +3,16 @@
 namespace App\Services;
 
 use App\Models\Candidature;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
 
-class CandidatureService
+class CandidatureService extends BaseService
 {
+    public function __construct()
+    {
+        $this->model = new Candidature();
+    }
+
     public function postuler(int $etudiantId, int $offreId, array $data): Candidature
     {
         if (isset($data['cv'])) {
@@ -15,32 +20,34 @@ class CandidatureService
         }
 
         if (isset($data['photo'])) {
-            $data['photo_path'] = $data['photo']->store('photos', 'public');
+            $data['photo'] = $data['photo']->store('photos/candidatures', 'public');
         }
 
-        return Candidature::create([
-            'etudiant_id' => $etudiantId,
-            'offre_id' => $offreId,
-            'statut' => 'En attente',
-            'telephone' => $data['telephone'],
+        return $this->create([
+            'etudiant_id'        => $etudiantId,
+            'offre_id'           => $offreId,
+            'statut'             => 'En attente',
+            'telephone'          => $data['telephone'],
             'message_motivation' => $data['message_motivation'],
-            'photo' => $data['photo_path'] ?? null,
-            'portfolio_url' => $data['portfolio_url'] ?? null,
-            'cv_path' => $data['cv_path'] ?? null, // Note: Logic depends on if we link to DocumentCv model or just path
+            'photo'              => $data['photo'] ?? null,
+            'portfolio_url'      => $data['portfolio_url'] ?? null,
         ]);
     }
 
     public function listEtudiantCandidatures(int $etudiantId, array $filters = [], int $perPage = 9): LengthAwarePaginator
     {
-        $query = Candidature::where('etudiant_id', $etudiantId)->with('offre.entreprise');
+        $query = $this->model->where('etudiant_id', $etudiantId)->with('offre.entreprise');
 
         if (!empty($filters['statut'])) {
             $query->where('statut', $filters['statut']);
         }
-        
+
         if (!empty($filters['search'])) {
-            $query->whereHas('offre', function($q) use ($filters) {
-                $q->where('titre', 'like', '%' . $filters['search'] . '%');
+            $query->whereHas('offre', function ($q) use ($filters) {
+                $q->where('titre', 'like', '%' . $filters['search'] . '%')
+                  ->orWhereHas('entreprise', function ($q2) use ($filters) {
+                      $q2->where('nom_entreprise', 'like', '%' . $filters['search'] . '%');
+                  });
             });
         }
 
@@ -49,7 +56,7 @@ class CandidatureService
 
     public function listEntrepriseCandidatures(int $entrepriseId, array $filters = [], int $perPage = 10): LengthAwarePaginator
     {
-        $query = Candidature::whereHas('offre', function($q) use ($entrepriseId) {
+        $query = $this->model->whereHas('offre', function ($q) use ($entrepriseId) {
             $q->where('entreprise_id', $entrepriseId);
         })->with(['etudiant.user', 'offre']);
 
@@ -66,13 +73,17 @@ class CandidatureService
 
     public function changeStatus(int $id, string $status): bool
     {
-        $candidature = Candidature::findOrFail($id);
-        return $candidature->update(['statut' => $status]);
+        return (bool) $this->update($id, ['statut' => $status]);
     }
 
-    public function delete(int $id): bool
+    public function delete(int $id): ?bool
     {
-        $candidature = Candidature::findOrFail($id);
+        $candidature = $this->findOrFail($id);
+
+        if ($candidature->photo && Storage::disk('public')->exists($candidature->photo)) {
+            Storage::disk('public')->delete($candidature->photo);
+        }
+
         return $candidature->delete();
     }
 }
