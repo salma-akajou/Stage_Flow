@@ -1,11 +1,5 @@
 # StageFlow — Plateforme Intégrée de Gestion des Stages
 
-[![Laravel 12.x](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
-[![Tailwind CSS 3.x](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
-[![MySQL 8.0](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com)
-[![Alpine.js](https://img.shields.io/badge/Alpine.js-3.x-8BC0D0?style=for-the-badge&logo=alpine.js&logoColor=white)](https://alpinejs.dev)
-[![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
-
 ## À Propos du Projet
 **StageFlow** est une plateforme web moderne conçue pour dynamiser et simplifier la mise en relation entre les étudiants et le monde professionnel. L'application transforme le processus traditionnel de recherche de stage en une expérience digitale fluide et structurée.
 
