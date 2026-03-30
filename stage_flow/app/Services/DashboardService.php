@@ -32,13 +32,27 @@ class DashboardService
         ];
     }
 
+    public function getEtudiantDashboardData(int $etudiantId): array
+    {
+        $etudiant = Etudiant::with(['user', 'ville'])->findOrFail($etudiantId);
+        
+        return [
+            'etudiant' => $etudiant,
+            'stats' => $this->getEtudiantStats($etudiantId),
+            'recommandations' => Offre::with('entreprise.user', 'ville')->latest()->take(3)->get(),
+            'candidatures_recentes' => $etudiant->candidatures()->with('offre.entreprise.user')->latest()->take(3)->get(),
+        ];
+    }
+
     public function getEntrepriseStats(int $entrepriseId): array
     {
         $entreprise = Entreprise::findOrFail($entrepriseId);
+        $offreIds = $entreprise->offres->pluck('id')->toArray();
+
         return [
             'offres' => $entreprise->offres()->count(),
-            'candidatures_recues' => Candidature::whereIn('offre_id', $entreprise->offres->pluck('id'))->count(),
-            'en_attente' => Candidature::whereIn('offre_id', $entreprise->offres->pluck('id'))->where('statut', 'En attente')->count(),
+            'candidatures_recues' => Candidature::whereIn('offre_id', $offreIds)->count(),
+            'en_attente' => Candidature::whereIn('offre_id', $offreIds)->where('statut', 'En attente')->count(),
             'vues_offres' => $entreprise->vues,
         ];
     }
@@ -53,7 +67,7 @@ class DashboardService
             'repartition_users' => [
                 'etudiants' => Etudiant::count(),
                 'entreprises' => Entreprise::count(),
-            ]
+            ],
         ];
     }
 }

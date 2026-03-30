@@ -1,0 +1,27 @@
+<header class="sticky top-0 inset-x-0 z-50 w-full bg-white/70 backdrop-blur-lg border-b border-slate-100 py-3">
+    <nav class="max-w-[85rem] w-full mx-auto px-4 flex items-center justify-between" aria-label="Global">
+        <a class="flex items-center gap-x-2 text-xl font-black font-heading tracking-tight flex-none" href="{{ route('landing') }}">
+            <!-- Logo réel maintenant appliqué -->
+            <img src="{{ asset('logo_app.png') }}" alt="Logo" class="size-8 object-contain" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/salma-akajou/php_native/main/logo_app.png';">
+            <span class="text-slate-900">StageFlow</span>
+        </a>
+
+        <div class="flex items-center gap-x-8">
+            <div class="hidden lg:flex items-center gap-x-8 mr-4 border-r border-slate-100 pr-8">
+                <a class="text-sm font-bold text-indigo-600" href="{{ route('landing') }}">Accueil</a>
+                <a class="text-sm font-semibold text-slate-500 hover:text-indigo-600 transition" href="{{ route('offres.index') }}">Offres</a>
+                <a class="text-sm font-semibold text-slate-500 hover:text-indigo-600 transition" href="#">Entreprises</a>
+                <a class="text-sm font-semibold text-slate-500 hover:text-indigo-600 transition" href="#">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-x-3">
+                @if(!$isNative)
+                <a href="#" class="py-2 px-4 text-sm font-bold text-slate-600 hover:text-indigo-600 transition">Connexion</a>
+                <a href="#" class="py-2.5 px-6 text-sm font-bold bg-indigo-600 text-white rounded-xl shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition active:scale-95">S'inscrire</a>
+                @else
+                <a href="{{ route('student.dashboard') }}" class="py-2.5 px-6 text-sm font-bold bg-indigo-600 text-white rounded-xl shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition">Mon Espace</a>
+                @endif
+            </div>
+        </div>
+    </nav>
+</header>
