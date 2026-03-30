@@ -32,14 +32,12 @@
                     </p>
 
                     <div class="flex flex-wrap gap-4 pt-2">
-                        @if(!$isNative)
                         <button class="py-4 px-8 inline-flex items-center gap-x-2 text-sm font-bold rounded-xl border border-transparent bg-indigo-600 text-white hover:bg-indigo-700 shadow-xl shadow-indigo-100 transition-all hover:scale-105 active:scale-95 group">
                             Rejoindre l'aventure
                             <svg class="size-4 group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="m9 18 6-6-6-6" />
                             </svg>
                         </button>
-                        @endif
                         <a href="{{ route('offres.index') }}" class="py-4 px-8 inline-flex items-center gap-x-2 text-sm font-bold rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-all">
                             Nos partenaires
                         </a>

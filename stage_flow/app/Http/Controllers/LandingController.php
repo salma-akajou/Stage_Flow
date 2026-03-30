@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Services\DashboardService;
+use App\Models\Etudiant;
+use App\Models\Offre;
+use App\Models\Feedback;
+use App\Models\Entreprise;
 use App\Services\OffreService;
 use App\Services\FeedbackService;
 use Illuminate\View\View;

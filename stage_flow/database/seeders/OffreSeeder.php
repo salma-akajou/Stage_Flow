@@ -36,6 +36,7 @@ class OffreSeeder extends Seeder
                     'ville_id' => $ville ? $ville->id : 1,
                     'responsabilites' => $data['responsabilites'],
                     'profil_recherche' => $data['profil_recherche'],
+                    'competences_techniques' => isset($data['competences_techniques']) ? explode('|', $data['competences_techniques']) : [],
                     'status' => $data['status'],
                     'date_debut' => $data['date_debut'],
                     'date_fin' => $data['date_fin'],

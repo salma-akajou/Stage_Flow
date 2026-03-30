@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Services\DashboardService;
 use App\Services\EtudiantService;
 use App\Services\FavoriService;
+use App\Models\Etudiant;
+use App\Models\Ville;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -26,18 +28,20 @@ class EtudiantController extends Controller
 
     public function dashboard(): View
     {
-        $etudiantId = 1; // Simulation d'utilisateur connecté
+        $etudiantId = 1;
+        $etudiant = Etudiant::find($etudiantId);
         $data = $this->dashboardService->getEtudiantDashboardData($etudiantId);
         
-        return view('student.dashboard', $data);
+        return view('student.dashboard', array_merge($data, ['etudiant' => $etudiant]));
     }
 
     public function profile(): View
     {
         $etudiantId = 1;
-        $etudiant = $this->etudiantService->findOrFail($etudiantId);
+        $etudiant = Etudiant::with('user', 'ville')->find($etudiantId);
+        $villes = Ville::all();
         
-        return view('student.profile', compact('etudiant'));
+        return view('student.profile', compact('etudiant', 'villes'));
     }
 
     public function updateProfile(Request $request)

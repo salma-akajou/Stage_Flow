@@ -17,10 +17,12 @@ Route::prefix('offres')->name('offres.')->group(function () {
 Route::prefix('student')->name('student.')->group(function () {
     Route::get('/dashboard', [EtudiantController::class, 'dashboard'])->name('dashboard');
     Route::get('/profile', [EtudiantController::class, 'profile'])->name('profile');
-    Route::post('/profile/update', [EtudiantController::class, 'updateProfile'])->name('profile.update');
+    Route::put('/profile/update', [EtudiantController::class, 'updateProfile'])->name('profile.update');
     
     Route::get('/candidatures', [CandidatureController::class, 'index'])->name('candidatures');
+    Route::get('/offres/{offreId}/postuler', [CandidatureController::class, 'create'])->name('candidatures.create');
     Route::post('/candidatures/{offreId}/postuler', [CandidatureController::class, 'store'])->name('candidatures.store');
+    Route::delete('/candidatures/{id}', [CandidatureController::class, 'destroy'])->name('candidatures.destroy');
     
     Route::get('/favoris', [FavoriController::class, 'index'])->name('favoris');
     Route::post('/favoris/{offreId}/toggle', [FavoriController::class, 'toggle'])->name('favoris.toggle');

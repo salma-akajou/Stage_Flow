@@ -15,12 +15,7 @@
             </div>
 
             <div class="flex items-center gap-x-3">
-                @if(!$isNative)
-                <a href="#" class="py-2 px-4 text-sm font-bold text-slate-600 hover:text-indigo-600 transition">Connexion</a>
-                <a href="#" class="py-2.5 px-6 text-sm font-bold bg-indigo-600 text-white rounded-xl shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition active:scale-95">S'inscrire</a>
-                @else
-                <a href="{{ route('student.dashboard') }}" class="py-2.5 px-6 text-sm font-bold bg-indigo-600 text-white rounded-xl shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition">Mon Espace</a>
-                @endif
+                <a href="#" class="py-2.5 px-6 text-sm font-bold bg-indigo-600 text-white rounded-xl shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition active:scale-95">Mon Espace</a>
             </div>
         </div>
     </nav>

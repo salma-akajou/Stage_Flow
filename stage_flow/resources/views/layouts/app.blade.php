@@ -47,13 +47,13 @@
 </head>
 <body class="bg-white overflow-x-hidden font-sans">
 
-    @include('layouts.partials.navbar')
+    @include('partials.navbar')
 
     <main class="relative z-10 transition-all duration-500">
         @yield('content')
     </main>
 
-    @include('layouts.partials.footer')
+    @include('partials.footer')
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

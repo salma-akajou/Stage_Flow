@@ -14,24 +14,25 @@ class EtudiantService extends BaseService
 
     public function updateProfile(int $id, array $data): Etudiant
     {
-        $etudiant = $this->findOrFail($id);
+        $etudiant = Etudiant::with('user')->findOrFail($id);
+        $user = $etudiant->user;
+
+        $userData = [];
+        if (isset($data['prenom'])) $userData['prenom'] = $data['prenom'];
+        if (isset($data['nom'])) $userData['nom'] = $data['nom'];
 
         if (isset($data['photo'])) {
-            if ($etudiant->photo && Storage::disk('public')->exists($etudiant->photo)) {
-                Storage::disk('public')->delete($etudiant->photo);
+            if ($user->photo && Storage::disk('public')->exists($user->photo)) {
+                Storage::disk('public')->delete($user->photo);
             }
-            $data['photo'] = $data['photo']->store('photos/etudiants', 'public');
+            $userData['photo'] = $data['photo']->store('photos/users', 'public');
         }
 
-        if (!empty($data['supprimer_photo'])) {
-            if ($etudiant->photo && Storage::disk('public')->exists($etudiant->photo)) {
-                Storage::disk('public')->delete($etudiant->photo);
-            }
-            $data['photo'] = null;
-            unset($data['supprimer_photo']);
+        if (!empty($userData)) {
+            $user->update($userData);
         }
 
-        return $this->update($id, array_filter([
+        $etudiant->update(array_filter([
             'ville_id'      => $data['ville_id'] ?? null,
             'etablissement' => $data['etablissement'] ?? null,
             'filiere'       => $data['filiere'] ?? null,
@@ -39,8 +40,9 @@ class EtudiantService extends BaseService
             'bio'           => $data['bio'] ?? null,
             'github'        => $data['github'] ?? null,
             'linkedin'      => $data['linkedin'] ?? null,
-            'photo'         => array_key_exists('photo', $data) ? $data['photo'] : $etudiant->photo,
         ], fn($val) => !is_null($val)));
+
+        return $etudiant;
     }
 
     public function incrementViews(int $id): void

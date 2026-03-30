@@ -31,10 +31,27 @@
         body { font-family: 'Inter', sans-serif; }
         .font-heading { font-family: 'Outfit', sans-serif; }
         [x-cloak] { display: none !important; }
+
+        .sticker-float {
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .bg-mesh {
+            background-color: #f8fafc;
+            background-image:
+                radial-gradient(at 0% 0%, hsla(253, 16%, 15%, 0.03) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(225, 39%, 30%, 0.03) 0, transparent 50%),
+                radial-gradient(at 50% 100%, hsla(217, 91%, 60%, 0.02) 0, transparent 50%);
+        }
     </style>
 </head>
-<body class="bg-gray-50 h-full overflow-x-hidden">
-    <!-- Navbar (Dashboard version) -->
+<body class="bg-mesh h-full overflow-x-hidden">
     <header class="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-[48] w-full bg-white border-b border-gray-200 text-sm py-2.5 sm:py-4 lg:ps-64">
         <nav class="max-w-[85rem] mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between" aria-label="Global">
             <div class="flex items-center gap-x-3">
@@ -79,11 +96,16 @@
         </nav>
     </header>
 
-    <!-- Sidebar -->
-    @include('layouts.partials.student-sidebar')
+    @include('partials.student-sidebar')
 
-    <!-- Content Area -->
-    <main class="w-full h-full lg:ps-64 bg-gray-50">
+    <main class="w-full h-full lg:ps-64 relative z-0">
+        <!-- Animated Stickers Background Decor -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden z-[-1] opacity-[0.05]">
+            <div class="absolute top-10 left-10 sticker-float"><svg class="size-48 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg></div>
+            <div class="absolute top-[50%] right-10 sticker-float" style="animation-delay: -2s"><svg class="size-32 text-indigo-500" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></div>
+            <div class="absolute bottom-20 left-[20%] sticker-float" style="animation-delay: -4s"><svg class="size-60 text-indigo-400 rotate-12" fill="currentColor" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div>
+        </div>
+
         <div class="p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-10">
             @yield('content')
         </div>

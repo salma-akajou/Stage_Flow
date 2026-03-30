@@ -5,7 +5,6 @@
 @section('breadcrumb', 'Tableau de bord')
 
 @section('content')
-<!-- Combined Hero & Banner -->
 <div class="bg-indigo-950 rounded-2xl p-8 sm:p-12 relative overflow-hidden shadow-lg" data-aos="zoom-in">
     <div class="relative z-10 max-w-2xl text-white">
         <div class="mb-8">
@@ -25,7 +24,6 @@
             </a>
         </div>
     </div>
-    <!-- Decorative SVG -->
     <div class="absolute -bottom-10 -right-10 opacity-10">
         <svg class="size-64 text-white" fill="none" stroke="currentColor" stroke-width="1"
             viewBox="0 0 24 24">
@@ -34,9 +32,7 @@
     </div>
 </div>
 
-<!-- Stats Grid -->
 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" data-aos="fade-up">
-    <!-- Card: Candidatures -->
     <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl p-5 hover:border-indigo-200 transition group">
         <div class="flex items-center justify-between mb-2">
             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Candidatures</p>
@@ -49,7 +45,6 @@
             <span class="text-emerald-500 text-[10px] font-bold">+15%</span>
         </div>
     </div>
-    <!-- Card: Vues -->
     <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl p-5 hover:border-indigo-200 transition group">
         <div class="flex items-center justify-between mb-2">
             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Vues Profil</p>
@@ -59,7 +54,6 @@
         </div>
         <div class="font-bold text-3xl text-gray-800 tracking-tight">{{ sprintf('%02d', $stats['vues']) }}</div>
     </div>
-    <!-- Card: Retenues -->
     <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl p-5 hover:border-indigo-200 transition group">
         <div class="flex items-center justify-between mb-2">
             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Offres Retenues</p>
@@ -69,7 +63,6 @@
         </div>
         <div class="font-bold text-3xl text-gray-800 tracking-tight">{{ sprintf('%02d', $stats['retenues']) }}</div>
     </div>
-    <!-- Card: Favoris -->
     <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl p-5 hover:border-indigo-200 transition group">
         <div class="flex items-center justify-between mb-2">
             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Favoris</p>
@@ -81,7 +74,6 @@
     </div>
 </div>
 
-<!-- Internship Offers Section -->
 <div id="recommended-offers" class="space-y-4" data-aos="fade-up">
     <div class="flex justify-between items-center">
         <h3 class="text-xl font-bold text-gray-800">Stages recommandés</h3>
@@ -127,9 +119,7 @@
     </div>
 </div>
 
-<!-- Bottom Side-by-Side: Activity & Feedback -->
 <div class="grid lg:grid-cols-2 gap-6" data-aos="fade-up">
-    <!-- Recent Applications Card -->
     <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl overflow-hidden min-h-[400px]">
         <div class="p-6 border-b border-gray-100 flex items-center justify-between">
             <h3 class="text-lg font-bold text-gray-800">Candidatures Récentes</h3>
@@ -166,7 +156,6 @@
         </div>
     </div>
 
-    <!-- Feedback Card -->
     <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl overflow-hidden min-h-[400px]">
         <div class="p-6 border-b border-gray-100 flex items-center gap-x-2">
             <h3 class="text-lg font-bold text-gray-800">Donnez votre Feedback</h3>
@@ -193,8 +182,8 @@
             </div>
             
             <div class="pt-0 mt-auto">
-                <button type="submit" @if($isNative) disabled @endif
-                    class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-xs font-bold rounded-lg @if($isNative) bg-gray-200 text-gray-400 cursor-not-allowed @else bg-indigo-600 text-white hover:bg-indigo-700 @endif transition">
+                <button type="submit"
+                    class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-xs font-bold rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition">
                     Envoyer mon avis
                 </button>
             </div>

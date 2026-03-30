@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\FeedbackService;
+use App\Models\Etudiant;
 use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
@@ -21,11 +22,14 @@ class FeedbackController extends Controller
             'note' => 'required|integer|min:1|max:5',
         ]);
 
-        $data['auteur_id'] = 1; // Simulation d'utilisateur (Salma)
-        $data['valide'] = false; // Nécessite modération par défaut
+        $etudiant = Etudiant::find($request->etudiant_id);
+        if ($etudiant) {
+            $data['auteur_id'] = $etudiant->user->id;
+        }
+        $data['valide'] = false;
 
         $this->feedbackService->create($data);
         
-        return back()->with('success', 'Merci pour votre feedback ! Il sera visible après modération.');
+        return back()->with('success', 'Merci pour votre feedback !');
     }
 }

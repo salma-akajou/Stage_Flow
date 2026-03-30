@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Candidature;
+use App\Models\DocumentCv;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,21 +16,30 @@ class CandidatureService extends BaseService
 
     public function postuler(int $etudiantId, int $offreId, array $data): Candidature
     {
+        $cvId = null;
         if (isset($data['cv'])) {
-            $data['cv_path'] = $data['cv']->store('cvs', 'public');
+            $path = $data['cv']->store('cvs', 'public');
+            $cv = DocumentCv::create([
+                'file_path' => $path,
+                'etudiant_id' => $etudiantId,
+                'date_upload' => now(),
+            ]);
+            $cvId = $cv->id;
         }
 
+        $photoPath = null;
         if (isset($data['photo'])) {
-            $data['photo'] = $data['photo']->store('photos/candidatures', 'public');
+            $photoPath = $data['photo']->store('photos/candidatures', 'public');
         }
 
         return $this->create([
             'etudiant_id'        => $etudiantId,
             'offre_id'           => $offreId,
+            'cv_id'              => $cvId,
             'statut'             => 'En attente',
-            'telephone'          => $data['telephone'],
-            'message_motivation' => $data['message_motivation'],
-            'photo'              => $data['photo'] ?? null,
+            'telephone'          => $data['telephone'] ?? 'Non renseigné',
+            'message_motivation' => $data['message_motivation'] ?? '',
+            'photo'              => $photoPath,
             'portfolio_url'      => $data['portfolio_url'] ?? null,
         ]);
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\FavoriService;
+use App\Models\Etudiant;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -18,14 +19,17 @@ class FavoriController extends Controller
     public function index(): View
     {
         $etudiantId = 1;
+        $etudiant = Etudiant::find($etudiantId);
         $favoris = $this->favoriService->list($etudiantId);
 
-        return view('student.favoris', compact('favoris'));
+        return view('student.favoris', compact('favoris', 'etudiant'));
     }
 
     public function toggle(int $offreId)
     {
         $etudiantId = 1;
-        return $this->favoriService->toggle($etudiantId, $offreId);
+        $this->favoriService->toggle($etudiantId, $offreId);
+        
+        return back()->with('success', 'Favoris mis à jour');
     }
 }
