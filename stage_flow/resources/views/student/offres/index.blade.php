@@ -83,7 +83,7 @@
                     </div>
 
                     <div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
-                        <span class="text-xs text-gray-400 italic">Posté {{ $offre->created_at->diffForHumans() }}</span>
+                        <span class="text-xs text-gray-400 italic">Publié {{ $offre->created_at->diffForHumans() }}</span>
                         <a href="{{ route('offres.show', $offre->id) }}" 
                            class="py-2 px-4 inline-flex items-center gap-x-2 text-xs font-bold rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition">
                             Voir Détails
