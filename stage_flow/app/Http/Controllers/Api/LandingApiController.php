@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Services\DashboardService;
 use App\Services\FeedbackService;
-use App\Models\Ville;
+use \App\Models\Ville;
 use Illuminate\Http\JsonResponse;
 
 class LandingApiController extends Controller
@@ -49,7 +49,7 @@ class LandingApiController extends Controller
     {
         return response()->json([
             'success' => true,
-            'data' => \App\Models\Ville::select('id', 'nom')->get()
+            'data' => Ville::select('id', 'nom')->get()
         ]);
     }
 }
