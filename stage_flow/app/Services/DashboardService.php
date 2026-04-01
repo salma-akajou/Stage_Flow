@@ -18,6 +18,7 @@ class DashboardService
             'offres_an' => Offre::where('created_at', '>=', now()->subYear())->count(),
             'etudiants' => Etudiant::count(),
             'satisfaction' => Feedback::where('valide', true)->avg('note') ?? 0,
+            'rep_moyenne' => '48h', 
         ];
     }
 

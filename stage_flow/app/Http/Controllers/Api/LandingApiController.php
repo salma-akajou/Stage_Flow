@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Services\DashboardService;
 use App\Services\FeedbackService;
+use App\Models\Ville;
 use Illuminate\Http\JsonResponse;
 
 class LandingApiController extends Controller
@@ -20,9 +21,6 @@ class LandingApiController extends Controller
         $this->feedbackService = $feedbackService;
     }
 
-    /**
-     * Retourne les données nécessaires pour construire la Landing Page Mobile
-     */
     public function index(): JsonResponse
     {
         try {
@@ -42,5 +40,16 @@ class LandingApiController extends Controller
                 'message' => 'Erreur lors de la récupération des données de la landing page'
             ], 500);
         }
+    }
+
+    /**
+     * Retourne la liste de toutes les villes pour le filtrage
+     */
+    public function villes(): JsonResponse
+    {
+        return response()->json([
+            'success' => true,
+            'data' => \App\Models\Ville::select('id', 'nom')->get()
+        ]);
     }
 }

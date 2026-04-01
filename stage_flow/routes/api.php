@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\LandingApiController;
 
 // --- Route pour la Landing Page ---
 Route::get('/landing', [LandingApiController::class, 'index']);
+Route::get('/villes', [LandingApiController::class, 'villes']);
 
 // --- Routes pour les Offres ---
 Route::prefix('offres')->group(function () {
