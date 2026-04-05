@@ -96,4 +96,24 @@ class CandidatureService extends BaseService
 
         return $candidature->delete();
     }
+
+    public function getRecentsCandidatures(int $etudiantId, int $limit = 3)
+    {
+        return $this->model->where('etudiant_id', $etudiantId)
+            ->with(['offre.entreprise.user'])
+            ->latest()
+            ->take($limit)
+            ->get();
+    }
+
+    public function getRecentByEntreprise(int $entrepriseId, int $limit = 4)
+    {
+        return $this->model->whereHas('offre', function ($q) use ($entrepriseId) {
+                $q->where('entreprise_id', $entrepriseId);
+            })
+            ->with(['etudiant.user', 'offre'])
+            ->latest()
+            ->take($limit)
+            ->get();
+    }
 }

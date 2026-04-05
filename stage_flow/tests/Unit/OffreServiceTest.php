@@ -108,5 +108,20 @@ class OffreServiceTest extends TestCase
         $result = $this->service->getRecommended(3);
 
         $this->assertGreaterThan(0, $result->count());
+        $this->assertTrue($result->first()->relationLoaded('entreprise'));
+        $this->assertTrue($result->first()->relationLoaded('ville'));
+    }
+
+    public function test_it_can_get_active_offers_by_entreprise()
+    {
+        $entreprise = Entreprise::first();
+        $result = $this->service->getActiveByEntreprise($entreprise->user_id, 3);
+
+        $this->assertNotNull($result);
+        foreach ($result as $offre) {
+            /** @var \App\Models\Offre $offre */
+            $this->assertEquals($entreprise->user_id, $offre->entreprise_id);
+            $this->assertEquals('Active', $offre->status);
+        }
     }
 }

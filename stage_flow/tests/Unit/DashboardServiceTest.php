@@ -7,6 +7,8 @@ use App\Models\Entreprise;
 use App\Models\Etudiant;
 use App\Models\Feedback;
 use App\Services\DashboardService;
+use App\Services\OffreService;
+use App\Services\CandidatureService;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class DashboardServiceTest extends TestCase
@@ -18,7 +20,8 @@ class DashboardServiceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->service = new DashboardService();
+        // Injection des dépendances réelles pour les tests unitaires
+        $this->service = new DashboardService(new OffreService(), new CandidatureService());
     }
 
     public function test_it_can_get_landing_stats()
@@ -44,6 +47,18 @@ class DashboardServiceTest extends TestCase
         $this->assertArrayHasKey('favoris', $stats);
     }
 
+    public function test_it_can_get_etudiant_dashboard_data()
+    {
+        $etudiant = Etudiant::first();
+        $data = $this->service->getEtudiantDashboardData($etudiant->user_id);
+
+        $this->assertArrayHasKey('etudiant', $data);
+        $this->assertArrayHasKey('stats', $data);
+        $this->assertArrayHasKey('recommandations', $data);
+        $this->assertArrayHasKey('candidatures_recentes', $data);
+        $this->assertEquals($etudiant->user_id, $data['etudiant']->user_id);
+    }
+
     public function test_it_can_get_entreprise_stats()
     {
         $entreprise = Entreprise::first();
@@ -53,6 +68,17 @@ class DashboardServiceTest extends TestCase
         $this->assertArrayHasKey('candidatures_recues', $stats);
         $this->assertArrayHasKey('en_attente', $stats);
         $this->assertArrayHasKey('vues_offres', $stats);
+    }
+
+    public function test_it_can_get_entreprise_dashboard_data()
+    {
+        $entreprise = Entreprise::first();
+        $data = $this->service->getEntrepriseDashboardData($entreprise->user_id);
+
+        $this->assertArrayHasKey('entreprise', $data);
+        $this->assertArrayHasKey('stats', $data);
+        $this->assertArrayHasKey('offres_actives', $data);
+        $this->assertArrayHasKey('candidatures_recentes', $data);
     }
 
     public function test_it_can_get_admin_stats()

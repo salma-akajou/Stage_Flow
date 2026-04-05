@@ -11,6 +11,15 @@ use App\Models\User;
 
 class DashboardService
 {
+    protected OffreService $offreService;
+    protected CandidatureService $candidatureService;
+
+    public function __construct(OffreService $offreService, CandidatureService $candidatureService)
+    {
+        $this->offreService = $offreService;
+        $this->candidatureService = $candidatureService;
+    }
+
     public function getLandingStats(): array
     {
         return [
@@ -32,7 +41,6 @@ class DashboardService
             'favoris' => $etudiant->favoris()->count(),
         ];
     }
-
     public function getEtudiantDashboardData(int $etudiantId): array
     {
         $etudiant = Etudiant::with(['user', 'ville'])->findOrFail($etudiantId);
@@ -40,8 +48,8 @@ class DashboardService
         return [
             'etudiant' => $etudiant,
             'stats' => $this->getEtudiantStats($etudiantId),
-            'recommandations' => Offre::with('entreprise.user', 'ville')->latest()->take(3)->get(),
-            'candidatures_recentes' => $etudiant->candidatures()->with('offre.entreprise.user')->latest()->take(3)->get(),
+            'recommandations' => $this->offreService->getRecommended(3),
+            'candidatures_recentes' => $this->candidatureService->getRecentsCandidatures($etudiantId, 3),
         ];
     }
 
@@ -55,6 +63,18 @@ class DashboardService
             'candidatures_recues' => Candidature::whereIn('offre_id', $offreIds)->count(),
             'en_attente' => Candidature::whereIn('offre_id', $offreIds)->where('statut', 'En attente')->count(),
             'vues_offres' => $entreprise->vues,
+        ];
+    }
+
+    public function getEntrepriseDashboardData(int $entrepriseId): array
+    {
+        $entreprise = Entreprise::with('user', 'ville')->findOrFail($entrepriseId);
+        
+        return [
+            'entreprise' => $entreprise,
+            'stats' => $this->getEntrepriseStats($entrepriseId),
+            'offres_actives' => $this->offreService->getActiveByEntreprise($entrepriseId, 3),
+            'candidatures_recentes' => $this->candidatureService->getRecentByEntreprise($entrepriseId, 4),
         ];
     }
 

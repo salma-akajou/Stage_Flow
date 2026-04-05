@@ -98,4 +98,34 @@ class CandidatureServiceTest extends TestCase
 
         $this->assertTrue(true);
     }
+
+    public function test_it_can_get_recents_candidatures()
+    {
+        $etudiant = Etudiant::first();
+        $result = $this->service->getRecentsCandidatures($etudiant->user_id, 3);
+
+        $this->assertNotNull($result);
+        foreach ($result as $candidature) {
+            /** @var \App\Models\Candidature $candidature */
+            $this->assertEquals($etudiant->user_id, $candidature->etudiant_id);
+            $this->assertTrue($candidature->relationLoaded('offre'));
+        }
+    }
+
+    public function test_it_can_get_recent_by_entreprise()
+    {
+        $candidature = Candidature::with('offre')->first();
+
+        if ($candidature) {
+            $entrepriseId = $candidature->offre->entreprise_id;
+            $result = $this->service->getRecentByEntreprise($entrepriseId, 4);
+
+            $this->assertNotNull($result);
+            foreach ($result as $c) {
+                /** @var \App\Models\Candidature $c */
+                $this->assertEquals($entrepriseId, $c->offre->entreprise_id);
+            }
+        }
+        $this->assertTrue(true);
+    }
 }

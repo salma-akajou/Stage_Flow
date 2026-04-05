@@ -46,6 +46,20 @@ class OffreService extends BaseService
 
     public function getRecommended(int $limit = 3)
     {
-        return $this->model->with('entreprise')->where('status', 'Active')->latest()->take($limit)->get();
+        return $this->model->with(['entreprise.user', 'ville'])
+            ->where('status', 'Active')
+            ->latest()
+            ->take($limit)
+            ->get();
+    }
+
+    public function getActiveByEntreprise(int $entrepriseId, int $limit = 3)
+    {
+        return $this->model->where('entreprise_id', $entrepriseId)
+            ->where('status', 'Active')
+            ->withCount('candidatures')
+            ->latest()
+            ->take($limit)
+            ->get();
     }
 }
