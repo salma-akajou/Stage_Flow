@@ -45,7 +45,7 @@
         [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-white overflow-x-hidden font-sans">
+<body class="bg-white overflow-x-hidden font-sans" x-data="{ activeLink: 'accueil' }">
 
     @include('partials.navbar')
 
