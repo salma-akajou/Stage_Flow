@@ -25,7 +25,8 @@ Ce README contient la planification complète et corrigée du projet, basée sur
 | 5       | 04.05.2026 – 08.05.2026 | Vacances                              |
 | 6       | 11.05.2026 – 15.05.2026 | Sprint 2 (Fonctionnalités avancées)   |
 | 7       | 18.05.2026 – 22.05.2026 | Réseau                                |
-| 8       | 25.05.2026 – 29.05.2026 | Veille technologique                  |
+| 8       | 25.05.2026 – 29.05.2026 | Vacances                |
+| 9       | 01.06.2026 – 06.06.2026 | Veille technologique                  |
 
 ---
 
