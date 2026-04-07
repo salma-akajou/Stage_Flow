@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\LandingController;
-use App\Http\Controllers\EtudiantController;
-use App\Http\Controllers\OffreController;
-use App\Http\Controllers\CandidatureController;
-use App\Http\Controllers\FavoriController;
-use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\Web\LandingController;
+use App\Http\Controllers\Web\EtudiantController;
+use App\Http\Controllers\Web\OffreController;
+use App\Http\Controllers\Web\CandidatureController;
+use App\Http\Controllers\Web\FavoriController;
+use App\Http\Controllers\Web\FeedbackController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 

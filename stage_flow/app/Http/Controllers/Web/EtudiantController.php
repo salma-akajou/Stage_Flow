@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Services\DashboardService;
 use App\Services\EtudiantService;
 use App\Services\FavoriService;
