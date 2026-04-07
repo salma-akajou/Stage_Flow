@@ -56,7 +56,7 @@ class CandidatureController extends Controller
     public function destroy(int $id)
     {
         $etudiantId = 1;
-        $candidature = $this->candidatureService->findOrFail($id);
+        $candidature = Candidature::findOrFail($id);
 
         if ($candidature->etudiant_id !== $etudiantId) {
             abort(403);
