@@ -15,9 +15,11 @@ class Etudiant extends Model
         'etablissement',
         'filiere',
         'niveau_etudes',
+        'photo',
         'bio',
         'github',
         'linkedin',
+        'vues',
     ];
 
     public function user()

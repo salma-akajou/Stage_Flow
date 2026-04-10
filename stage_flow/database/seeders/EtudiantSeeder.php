@@ -40,6 +40,7 @@ class EtudiantSeeder extends Seeder
                     'etablissement' => $data['etablissement'],
                     'filiere' => $data['filiere'],
                     'niveau_etudes' => $data['niveau_etudes'],
+                    'photo' => $data['photo'] ?? null,
                     'bio' => $data['bio'],
                     'vues' => $data['vues'] ?? 0,
                 ]

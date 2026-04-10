@@ -17,21 +17,24 @@ class EtudiantService extends BaseService
         $etudiant = Etudiant::with('user')->findOrFail($id);
         $user = $etudiant->user;
 
+        // Update user basic info
         $userData = [];
         if (isset($data['prenom'])) $userData['prenom'] = $data['prenom'];
         if (isset($data['nom'])) $userData['nom'] = $data['nom'];
-
-        if (isset($data['photo'])) {
-            if ($user->photo && Storage::disk('public')->exists($user->photo)) {
-                Storage::disk('public')->delete($user->photo);
-            }
-            $userData['photo'] = $data['photo']->store('photos/users', 'public');
-        }
 
         if (!empty($userData)) {
             $user->update($userData);
         }
 
+        // Handle photo upload (now in etudiants table)
+        if (isset($data['photo'])) {
+            if ($etudiant->photo && Storage::disk('public')->exists($etudiant->photo)) {
+                Storage::disk('public')->delete($etudiant->photo);
+            }
+            $data['photo'] = $data['photo']->store('photos/students', 'public');
+        }
+
+        // Update etudiant profile
         $etudiant->update(array_filter([
             'ville_id'      => $data['ville_id'] ?? null,
             'etablissement' => $data['etablissement'] ?? null,
@@ -40,6 +43,7 @@ class EtudiantService extends BaseService
             'bio'           => $data['bio'] ?? null,
             'github'        => $data['github'] ?? null,
             'linkedin'      => $data['linkedin'] ?? null,
+            'photo'         => $data['photo'] ?? $etudiant->photo,
         ], fn($val) => !is_null($val)));
 
         return $etudiant;

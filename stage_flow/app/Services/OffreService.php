@@ -14,7 +14,8 @@ class OffreService extends BaseService
 
     public function search(array $filters = [], int $perPage = 9): LengthAwarePaginator
     {
-        $query = $this->model->with('entreprise', 'ville');
+        // En eager loading, on charge 'entreprise' (qui contient le logo) et 'ville'
+        $query = $this->model->with(['entreprise', 'ville']);
 
         if (!empty($filters['titre'])) {
             $query->where('titre', 'like', '%' . $filters['titre'] . '%');
@@ -41,12 +42,13 @@ class OffreService extends BaseService
 
     public function getDetails(int $id): Offre
     {
-        return Offre::with('entreprise', 'ville')->findOrFail($id);
+        return Offre::with(['entreprise', 'ville'])->findOrFail($id);
     }
 
     public function getRecommended(int $limit = 3)
     {
-        return $this->model->with(['entreprise.user', 'ville'])
+        // Plus besoin de charger 'entreprise.user' pour le logo
+        return $this->model->with(['entreprise', 'ville'])
             ->where('status', 'Active')
             ->latest()
             ->take($limit)

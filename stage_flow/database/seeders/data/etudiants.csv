@@ -1,6 +1,6 @@
-prenom,nom,email,password,ville_nom,etablissement,filiere,niveau_etudes,bio,vues
-Salma,Akajou,salma@example.com,password,Tanger,Solicode,Développement Web,Bac+2,"Passionnée par le code et le design.",45
-Ahmed,Bakali,ahmed@example.com,password,Casablanca,EMSI,Génie Logiciel,Master,"Futur ingénieur en recherche de stage PFE.",120
-Yassine,Zaid,yassine@example.com,password,Rabat,Faculté,Informatique,Bac+3,"Développeur Python curieux.",32
-Sanaa,Naji,sanaa@example.com,password,Marrakech,ISTA,Design Graphique,Bac+2,"Créatrice visuelle à la recherche d'opportunités.",15
-Hamza,Alaoui,hamza@example.com,password,Fès,ENSI,Réseaux,Master,"Spécialiste en cybersécurité.",88
+prenom,nom,email,password,ville_nom,etablissement,filiere,niveau_etudes,bio,vues,photo
+Amal,El Chat,amal@example.com,password,Tanger,Solicode,Développement Web,Bac+2,"Passionnée par le code et le design.",45,avatars/amal.jpg
+Ahmed,Bakali,ahmed@example.com,password,Casablanca,EMSI,Génie Logiciel,Master,"Futur ingénieur en recherche de stage PFE.",120,avatars/ahmed.jpg
+Yassine,Zaid,yassine@example.com,password,Rabat,Faculté,Informatique,Bac+3,"Développeur Python curieux.",32,avatars/yassine.jpg
+Sanaa,Naji,sanaa@example.com,password,Marrakech,ISTA,Design Graphique,Bac+2,"Créatrice visuelle à la recherche d'opportunités.",15,avatars/sanaa.jpg
+Hamza,Alaoui,hamza@example.com,password,Fès,ENSI,Réseaux,Master,"Spécialiste en cybersécurité.",88,avatars/hamza.jpg

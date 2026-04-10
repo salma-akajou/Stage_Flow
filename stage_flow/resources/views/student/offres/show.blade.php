@@ -23,8 +23,8 @@
         <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-6">
             <div class="flex items-center gap-x-6">
                 <div class="size-20 bg-indigo-50 flex justify-center items-center rounded-2xl border border-indigo-100 shrink-0 overflow-hidden">
-                    @if($offre->entreprise->user->photo)
-                        <img class="size-full object-cover" src="{{ asset('storage/'.$offre->entreprise->user->photo) }}" alt="Logo">
+                    @if($offre->entreprise->logo)
+                        <img class="size-full object-cover" src="{{ asset('storage/'.$offre->entreprise->logo) }}" alt="Logo">
                     @else
                         <span class="text-indigo-600 font-bold text-2xl uppercase">{{ substr($offre->entreprise->nom_entreprise, 0, 1) }}</span>
                     @endif
@@ -156,7 +156,7 @@
                 </div>
                 <div class="relative z-10">
                     <div class="flex items-center gap-x-3 mb-4">
-                        <div class="p-2 bg-white rounded-xl"><img class="size-8 object-contain" src="{{ asset('storage/'.$offre->entreprise->user->photo ?? 'images/default-company.png') }}" onerror="this.src='https://ui-avatars.com/api/?name={{ urlencode($offre->entreprise->nom_entreprise) }}&background=fff&color=4f46e5'" alt="Logo"></div>
+                        <div class="p-2 bg-white rounded-xl"><img class="size-8 object-contain" src="{{ asset('storage/'.$offre->entreprise->logo ?? 'images/default-company.png') }}" onerror="this.src='https://ui-avatars.com/api/?name={{ urlencode($offre->entreprise->nom_entreprise) }}&background=fff&color=4f46e5'" alt="Logo"></div>
                         <h3 class="text-sm font-bold uppercase tracking-wider">{{ $offre->entreprise->nom_entreprise }}</h3>
                     </div>
                     <p class="text-xs text-indigo-100 mb-6 leading-relaxed">{{ Str::limit($offre->entreprise->bio, 120) }}</p>

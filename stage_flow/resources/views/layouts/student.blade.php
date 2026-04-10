@@ -72,8 +72,8 @@
             <div class="flex flex-row items-center justify-end gap-x-2 sm:gap-x-4">
                 <div class="hs-dropdown [--placement:bottom-right] relative inline-flex">
                     <button id="hs-dropdown-account" type="button" class="size-9 flex justify-center items-center text-sm font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none">
-                        @if($etudiant->user->photo)
-                            <img class="shrink-0 size-9 rounded-full object-cover" src="{{ asset('storage/'.$etudiant->user->photo) }}" alt="Avatar">
+                        @if($etudiant->photo)
+                            <img class="shrink-0 size-9 rounded-full object-cover" src="{{ asset('storage/'.$etudiant->photo) }}" alt="Avatar">
                         @else
                             <span class="flex shrink-0 justify-center items-center size-full rounded-full bg-indigo-100 text-indigo-600 font-bold uppercase text-xs">
                                 {{ substr($etudiant->user->prenom, 0, 1) }}{{ substr($etudiant->user->nom, 0, 1) }}

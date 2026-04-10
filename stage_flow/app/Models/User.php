@@ -22,7 +22,6 @@ class User extends Authenticatable
         'nom',
         'email',
         'password',
-        'photo',
     ];
 
     public function etudiant()

@@ -58,8 +58,8 @@
 
                     <div class="flex items-center gap-x-4 mb-4 text-sm">
                         <div class="size-12 bg-gray-50 flex items-center justify-center rounded-lg border border-gray-100 overflow-hidden shrink-0">
-                            @if($offre->entreprise->user->photo)
-                                <img src="{{ asset('storage/'.$offre->entreprise->user->photo) }}" class="size-7 object-contain" alt="Logo">
+                            @if($offre->entreprise->logo)
+                                <img src="{{ asset('storage/'.$offre->entreprise->logo) }}" class="size-7 object-contain" alt="Logo">
                             @else
                                 <span class="text-indigo-600 font-bold text-lg uppercase">{{ substr($offre->entreprise->nom_entreprise, 0, 1) }}</span>
                             @endif
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     
-                    <p class="text-sm text-gray-600 line-clamp-2 mb-4 leading-relaxed">
+                    <p class="text-sm text-gray-600 line-clamp-2 mb-4 leading-relaxed lowercase">
                         {{ $offre->description }}
                     </p>
 

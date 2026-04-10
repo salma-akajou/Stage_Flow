@@ -14,6 +14,7 @@ return new class extends Migration
             $table->enum('etablissement', ['Solicode', 'Faculté', 'ISTA', 'EMSI', 'ENSI', 'BTS', 'Autre']);
             $table->string('filiere');
             $table->enum('niveau_etudes', ['Bac+2', 'Bac+3', 'Master', 'Doctorat', 'Autre']);
+            $table->string('photo')->nullable();
             $table->text('bio')->nullable();
             $table->string('github')->nullable();
             $table->string('linkedin')->nullable();

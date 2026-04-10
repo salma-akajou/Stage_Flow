@@ -16,9 +16,11 @@
                 </div>
                 <p class="text-slate-600 italic mb-8 flex-1">"{{ $feedback->texte }}"</p>
                 <div class="flex items-center gap-4">
-                    <div class="size-12 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold overflow-hidden">
-                        @if($feedback->auteur->photo)
-                            <img src="{{ asset('storage/'.$feedback->auteur->photo) }}" class="size-full object-cover">
+                    <div class="size-12 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold overflow-hidden border border-slate-100 uppercase">
+                        @if($feedback->auteur->etudiant && $feedback->auteur->etudiant->photo)
+                            <img src="{{ asset('storage/'.$feedback->auteur->etudiant->photo) }}" class="size-full object-cover">
+                        @elseif($feedback->auteur->entreprise && $feedback->auteur->entreprise->logo)
+                            <img src="{{ asset('storage/'.$feedback->auteur->entreprise->logo) }}" class="size-full object-cover">
                         @else
                             {{ substr($feedback->auteur->prenom ?? 'U', 0, 1) }}{{ substr($feedback->auteur->nom ?? '', 0, 1) }}
                         @endif

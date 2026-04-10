@@ -100,7 +100,7 @@ class CandidatureService extends BaseService
     public function getRecentsCandidatures(int $etudiantId, int $limit = 3)
     {
         return $this->model->where('etudiant_id', $etudiantId)
-            ->with(['offre.entreprise.user'])
+            ->with(['offre.entreprise']) // On retire .user car le logo est dans entreprise
             ->latest()
             ->take($limit)
             ->get();
@@ -111,7 +111,7 @@ class CandidatureService extends BaseService
         return $this->model->whereHas('offre', function ($q) use ($entrepriseId) {
                 $q->where('entreprise_id', $entrepriseId);
             })
-            ->with(['etudiant.user', 'offre'])
+            ->with(['etudiant.user', 'offre']) // On garde etudiant pour la photo
             ->latest()
             ->take($limit)
             ->get();

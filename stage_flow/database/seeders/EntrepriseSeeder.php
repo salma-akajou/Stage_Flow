@@ -43,6 +43,7 @@ class EntrepriseSeeder extends Seeder
                     'email_contact' => $data['email_contact'],
                     'bio' => $data['bio'],
                     'registre_commerce' => $data['registre_commerce'],
+                    'logo' => $data['logo'] ?? null,
                     'taille' => $data['taille'],
                     'vues' => $data['vues'] ?? 0,
                 ]

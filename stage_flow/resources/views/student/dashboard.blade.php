@@ -85,8 +85,8 @@
         <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-2xl p-6 hover:shadow-md transition">
             <div class="flex items-center gap-x-4 mb-4">
                 <div class="size-12 bg-gray-50 flex items-center justify-center rounded-xl border border-gray-100 shrink-0 overflow-hidden">
-                    @if($offre->entreprise->user->photo)
-                        <img src="{{ asset('storage/'.$offre->entreprise->user->photo) }}" class="size-8 object-contain">
+                    @if($offre->entreprise->logo)
+                        <img src="{{ asset('storage/'.$offre->entreprise->logo) }}" class="size-8 object-contain">
                     @else
                         <span class="text-indigo-600 font-bold text-xs">{{ substr($offre->entreprise->nom_entreprise, 0, 1) }}</span>
                     @endif
@@ -130,8 +130,8 @@
                 @forelse($candidatures_recentes as $candidature)
                 <div class="flex items-center gap-x-4">
                     <div class="size-10 bg-gray-50 flex-none flex items-center justify-center rounded-lg border border-gray-100 overflow-hidden">
-                        @if($candidature->offre->entreprise->user->photo)
-                            <img src="{{ asset('storage/'.$candidature->offre->entreprise->user->photo) }}" class="size-6 object-contain">
+                        @if($candidature->offre->entreprise->logo)
+                            <img src="{{ asset('storage/'.$candidature->offre->entreprise->logo) }}" class="size-6 object-contain">
                         @else
                             <span class="text-indigo-600 font-bold text-[10px]">{{ substr($candidature->offre->entreprise->nom_entreprise, 0, 1) }}</span>
                         @endif

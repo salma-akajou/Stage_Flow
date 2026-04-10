@@ -30,8 +30,8 @@
 
                 <div class="flex items-center gap-x-3 mb-4">
                      <div class="size-10 bg-indigo-50 flex justify-center items-center rounded-lg border border-indigo-100 overflow-hidden">
-                        @if($offre->entreprise->user->photo)
-                            <img src="{{ asset('storage/'.$offre->entreprise->user->photo) }}" class="size-full object-cover">
+                        @if($offre->entreprise->logo)
+                            <img src="{{ asset('storage/'.$offre->entreprise->logo) }}" class="size-full object-cover">
                         @else
                             <span class="text-indigo-600 font-bold text-sm">{{ substr($offre->entreprise->nom_entreprise, 0, 1) }}</span>
                         @endif
