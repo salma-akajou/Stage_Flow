@@ -7,6 +7,7 @@ use App\Services\OffreService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
+
 class OffreApiController extends Controller
 {
     protected OffreService $offreService;

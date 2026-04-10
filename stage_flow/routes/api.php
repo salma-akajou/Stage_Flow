@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\EtudiantApiController;
 use App\Http\Controllers\Api\CandidatureApiController;
 use App\Http\Controllers\Api\LandingApiController;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes

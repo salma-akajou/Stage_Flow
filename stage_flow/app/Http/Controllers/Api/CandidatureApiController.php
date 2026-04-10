@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\CandidatureService;
 use Illuminate\Http\JsonResponse;
 
+
 class CandidatureApiController extends Controller
 {
     protected CandidatureService $candidatureService;

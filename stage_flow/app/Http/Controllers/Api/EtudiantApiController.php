@@ -8,6 +8,7 @@ use App\Services\DashboardService;
 use App\Models\Etudiant;
 use Illuminate\Http\JsonResponse;
 
+
 class EtudiantApiController extends Controller
 {
     protected EtudiantService $etudiantService;

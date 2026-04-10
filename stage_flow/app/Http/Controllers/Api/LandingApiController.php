@@ -8,6 +8,7 @@ use App\Services\FeedbackService;
 use \App\Models\Ville;
 use Illuminate\Http\JsonResponse;
 
+
 class LandingApiController extends Controller
 {
     protected DashboardService $dashboardService;
