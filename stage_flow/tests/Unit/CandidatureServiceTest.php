@@ -10,6 +10,7 @@ use App\Models\DocumentCv;
 use App\Services\CandidatureService;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
+
 class CandidatureServiceTest extends TestCase
 {
     use DatabaseTransactions;
