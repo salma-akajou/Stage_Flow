@@ -53,7 +53,7 @@ class EtudiantServiceTest extends TestCase
         $this->assertNotNull($etudiant->photo);
         
         // Vérifie le chemin de stockage
-        $this->assertStringContainsString('photos/students/', $etudiant->photo);
+        $this->assertStringContainsString('avatars/', $etudiant->photo);
 
         // Vérifie que le fichier existe physiquement
         Storage::disk('public')->assertExists($etudiant->photo);

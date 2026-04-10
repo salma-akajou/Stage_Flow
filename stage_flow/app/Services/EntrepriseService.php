@@ -31,7 +31,7 @@ class EntrepriseService extends BaseService
             if ($entreprise->logo && Storage::disk('public')->exists($entreprise->logo)) {
                 Storage::disk('public')->delete($entreprise->logo);
             }
-            $data['logo'] = $data['logo']->store('logos/entreprises', 'public');
+            $data['logo'] = $data['logo']->store('logos', 'public');
         }
 
         if (!empty($data['supprimer_logo'])) {

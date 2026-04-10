@@ -53,7 +53,7 @@ class EntrepriseServiceTest extends TestCase
         $this->assertNotNull($entreprise->logo);
         
         // Vérifie le chemin de stockage
-        $this->assertStringContainsString('logos/entreprises/', $entreprise->logo);
+        $this->assertStringContainsString('logos/', $entreprise->logo);
 
         // Vérifie que le fichier existe physiquement
         Storage::disk('public')->assertExists($entreprise->logo);
