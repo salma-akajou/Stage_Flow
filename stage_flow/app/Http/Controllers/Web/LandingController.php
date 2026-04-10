@@ -9,6 +9,7 @@ use Illuminate\View\View;
 
 class LandingController extends Controller
 {
+    
     /**
      * @var DashboardService
      */

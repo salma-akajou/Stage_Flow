@@ -31,7 +31,7 @@ class EtudiantService extends BaseService
             if ($etudiant->photo && Storage::disk('public')->exists($etudiant->photo)) {
                 Storage::disk('public')->delete($etudiant->photo);
             }
-            $data['photo'] = $data['photo']->store('photos/students', 'public');
+            $data['photo'] = $data['photo']->store('avatars', 'public');
         }
 
         // Update etudiant profile

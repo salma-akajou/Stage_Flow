@@ -25,7 +25,7 @@
                             <path d="m9 18 6-6-6-6" />
                         </svg>
                     </button>
-                    <a href="{{ route('offres.index') }}" class="py-4 px-8 inline-flex items-center gap-x-2 text-sm font-bold rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-all">
+                    <a href="#" class="py-4 px-8 inline-flex items-center gap-x-2 text-sm font-bold rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-all">
                         Nos partenaires
                     </a>
                 </div>

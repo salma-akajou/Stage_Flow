@@ -5,6 +5,7 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+
 @theme {
     --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;

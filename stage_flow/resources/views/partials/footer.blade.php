@@ -9,11 +9,12 @@
                 <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
                     Propulsez les talents de demain vers leur premier défi professionnel au Maroc.
                 </p>
+
             </div>
             <div>
                 <h4 class="text-xs font-bold uppercase tracking-widest text-white mb-6">Plateforme</h4>
                 <ul class="space-y-4 text-sm text-slate-400">
-                    <li><a href="{{ route('offres.index') }}" @click="activeLink = 'offres'" class="hover:text-indigo-400 transition">Offres de Stage</a></li>
+                    <li><a href="#" @click="activeLink = 'offres'" class="hover:text-indigo-400 transition">Offres de Stage</a></li>
                     <li><a href="#experience" 
                            @click.prevent="activeLink = 'propos'; document.getElementById('experience').scrollIntoView({ behavior: 'smooth' })" 
                            class="hover:text-indigo-400 transition">À propos</a></li>

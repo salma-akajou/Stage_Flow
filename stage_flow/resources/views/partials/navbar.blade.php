@@ -5,6 +5,7 @@
             <span class="text-slate-900">StageFlow</span>
         </a>
 
+
         <div class="flex items-center gap-x-8">
             <div class="hidden lg:flex items-center gap-x-8 mr-4 border-r border-slate-100 pr-8">
                 <a href="{{ route('landing') }}" 
@@ -17,7 +18,7 @@
                    :class="activeLink === 'propos' ? 'text-indigo-600 font-bold' : 'text-slate-500 font-semibold'"
                    class="text-sm transition">À propos</a>
 
-                <a href="{{ route('offres.index') }}" 
+                <a href="#" 
                    @click="activeLink = 'offres'"
                    :class="activeLink === 'offres' ? 'text-indigo-600 font-bold' : 'text-slate-500 font-semibold'"
                    class="text-sm transition">Offres</a>

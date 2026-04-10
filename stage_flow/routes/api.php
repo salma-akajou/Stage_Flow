@@ -27,6 +27,7 @@ Route::prefix('offres')->group(function () {
     Route::get('/{id}', [OffreApiController::class, 'show']);
 });
 
+
 // --- Routes pour l'Étudiant (Dashboard & Profil) ---
 Route::prefix('student/{etudiantId}')->group(function () {
     Route::get('/dashboard', [EtudiantApiController::class, 'dashboard']);

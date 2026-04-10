@@ -19,6 +19,7 @@ class EtudiantSeeder extends Seeder
         $header = array_shift($rows);
 
         foreach ($rows as $row) {
+            if (count($row) !== count($header)) continue;
             $data = array_combine($header, $row);
             
             // Create user first
