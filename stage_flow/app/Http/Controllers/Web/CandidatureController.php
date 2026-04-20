@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCandidatureRequest;
 use App\Models\Candidature;
 use App\Models\Etudiant;
 use App\Models\Offre;
@@ -45,10 +46,16 @@ class CandidatureController extends Controller
         return view('student.candidatures.create', compact('offre', 'etudiant'));
     }
 
-    public function store(Request $request, int $offreId)
+    public function store(StoreCandidatureRequest $request, int $offreId)
     {
         $etudiantId = 1;
-        $this->candidatureService->postuler($etudiantId, $offreId, $request->all());
+        $validated = $request->validated();
+        
+        // Add file objects to data array
+        $validated['cv'] = $request->file('cv');
+        $validated['photo'] = $request->file('photo');
+        
+        $this->candidatureService->postuler($etudiantId, $offreId, $validated);
         
         return redirect()->route('student.candidatures')->with('success', 'Candidature envoyée !');
     }

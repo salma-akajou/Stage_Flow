@@ -47,13 +47,13 @@
 </head>
 <body class="bg-white overflow-x-hidden font-sans" x-data="{ activeLink: 'accueil' }">
 
-    @include('partials.navbar')
+    @include('components.public.navbar')
 
     <main class="relative z-10 transition-all duration-500">
         @yield('content')
     </main>
 
-    @include('partials.footer')
+    @include('components.public.footer')
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

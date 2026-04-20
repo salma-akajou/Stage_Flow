@@ -75,6 +75,9 @@
                                 <span>•</span>
                                 <span>{{ $candidature->offre->ville->nom }}</span>
                             </div>
+                            <p class="text-xs text-gray-400 mt-1.5 line-clamp-1">
+                                {{ \Illuminate\Support\Str::limit($candidature->offre->description, 60) }}
+                            </p>
                         </div>
                     </div>
                     <div class="flex flex-wrap items-center sm:justify-end gap-3 sm:gap-6">
@@ -104,20 +107,15 @@
                                 <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                             </a>
                             @if($candidature->statut == 'En attente')
-                                <div class="hs-dropdown [--placement:bottom-right] relative inline-flex">
-                                    <button id="hs-table-dropdown-1" type="button" class="hs-dropdown-toggle p-2.5 inline-flex justify-center items-center rounded-xl border border-gray-200 bg-white text-gray-600 shadow-sm hover:bg-gray-50 hover:text-indigo-600 transition">
-                                        <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+                                <form action="{{ route('student.candidatures.destroy', $candidature->id) }}" method="POST" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="p-2.5 inline-flex justify-center items-center rounded-xl border border-gray-200 bg-white text-rose-500 shadow-sm hover:bg-rose-50 hover:text-rose-600 transition"
+                                        onclick="return confirm('Êtes-vous sûr de vouloir retirer cette candidature ?')"
+                                        title="Retirer la candidature">
+                                        <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
                                     </button>
-                                    <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden z-10 bg-white shadow-md rounded-lg p-2 mt-2 min-w-40" aria-labelledby="hs-table-dropdown-1">
-                                        <form action="{{ route('student.candidatures.destroy', $candidature->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 w-full text-left" onclick="return confirm('Êtes-vous sûr de vouloir retirer cette candidature ?')">
-                                                Retirer la candidature
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
+                                </form>
                             @endif
                         </div>
                     </div>
@@ -138,7 +136,7 @@
     </div>
 
     <div class="pt-10">
-        {{ $candidatures->links('partials.pagination') }}
+        {{ $candidatures->links('components.pagination') }}
     </div>
 </div>
 @endsection

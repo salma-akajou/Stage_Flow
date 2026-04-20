@@ -96,7 +96,7 @@
         </nav>
     </header>
 
-    @include('partials.student-sidebar')
+    @include('components.student.sidebar')
 
     <main class="w-full h-full lg:ps-64 relative z-0">
         <!-- Animated Stickers Background Decor -->
@@ -116,5 +116,6 @@
             AOS.init({ duration: 800, once: true });
         });
     </script>
+    @stack('scripts')
 </body>
 </html>

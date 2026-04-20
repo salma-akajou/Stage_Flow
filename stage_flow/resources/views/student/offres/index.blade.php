@@ -79,6 +79,8 @@
                         <span class="py-1 px-2.5 rounded-lg text-xs font-semibold bg-gray-100 text-gray-600">{{ $offre->duree }}</span>
                         @if ($offre->remuneration === 'Payé')
                             <span class="py-1 px-2.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700">Payé</span>
+                        @else
+                            <span class="py-1 px-2.5 rounded-lg text-xs font-semibold bg-rose-50 text-rose-700">Non payé</span>
                         @endif
                     </div>
 
@@ -95,7 +97,7 @@
 
         <!-- Pagination -->
         <div class="mt-10" data-aos="fade-up">
-            {{ $offres->links('partials.pagination') }}
+            {{ $offres->links('components.pagination') }}
         </div>
     @else
         <div class="bg-white border border-gray-200 rounded-xl p-12 text-center" data-aos="fade-up">

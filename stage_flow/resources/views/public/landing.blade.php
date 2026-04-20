@@ -3,11 +3,11 @@
 @section('title', 'StageFlow - Visez l\'excellence')
 
 @section('content')
-    @include('public.components.stickers')
-    @include('public.components.hero')
-    @include('public.components.stats')
-    @include('public.components.experience')
-    @include('public.components.testimonials')
-    @include('public.components.faq')
-    @include('public.components.cta')
+    @include('components.public.stickers')
+    @include('components.public.hero')
+    @include('components.public.stats')
+    @include('components.public.experience')
+    @include('components.public.testimonials')
+    @include('components.public.faq')
+    @include('components.public.cta')
 @endsection

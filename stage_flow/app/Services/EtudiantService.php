@@ -31,7 +31,7 @@ class EtudiantService extends BaseService
             if ($etudiant->photo && Storage::disk('public')->exists($etudiant->photo)) {
                 Storage::disk('public')->delete($etudiant->photo);
             }
-            $data['photo'] = $data['photo']->store('photos/students', 'public');
+            $data['photo'] = $data['photo']->store('avatars', 'public');
         }
 
         // Update etudiant profile
@@ -51,6 +51,6 @@ class EtudiantService extends BaseService
 
     public function incrementViews(int $id): void
     {
-        $this->model->where('user_id', $id)->increment('vues');
+        $this->model->where('id', $id)->increment('vues');
     }
 }

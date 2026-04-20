@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Services\OffreService;
-use App\Models\Offre;
 use App\Models\Etudiant;
 use App\Models\Ville;
+use App\Models\Offre;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
