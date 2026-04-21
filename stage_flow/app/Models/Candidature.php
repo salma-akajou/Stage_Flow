@@ -14,6 +14,8 @@ class Candidature extends Model
         'etudiant_id',
         'offre_id',
         'cv_id',
+        'photo',
+        'portfolio_url',
     ];
 
     protected $casts = [

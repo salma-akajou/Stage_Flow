@@ -15,7 +15,7 @@ class StoreCandidatureRequest extends FormRequest
     {
         return [
             'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'cv' => 'required|file|mimetypes:application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document|max:5120',
+            'cv' => 'required|file|mimetypes:application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document|max:20480',
             'message_motivation' => 'required|string|min:50|max:2000',
             'telephone' => 'required|string|regex:/^(0[5-7])[0-9]{8}$/',
             'portfolio_url' => 'nullable|url|max:255',
@@ -29,7 +29,7 @@ class StoreCandidatureRequest extends FormRequest
             'photo.max' => 'La photo ne doit pas dépasser 2MB.',
             'cv.required' => 'Le CV est obligatoire.',
             'cv.mimes' => 'Le CV doit être en format PDF, DOC ou DOCX.',
-            'cv.max' => 'Le CV ne doit pas dépasser 5MB.',
+            'cv.max' => 'Le CV ne doit pas dépasser 20MB.',
             'message_motivation.required' => 'La lettre de motivation est obligatoire.',
             'message_motivation.min' => 'La lettre de motivation doit faire au moins 50 caractères.',
             'telephone.required' => 'Le numéro de téléphone est obligatoire.',
