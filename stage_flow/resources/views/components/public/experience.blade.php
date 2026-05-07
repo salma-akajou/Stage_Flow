@@ -1,4 +1,3 @@
-<!-- Experience -->
 <section id="experience" class="py-32 relative">
     <div class="max-w-[85rem] mx-auto px-4">
         <div class="text-center mb-20" data-aos="fade-up">

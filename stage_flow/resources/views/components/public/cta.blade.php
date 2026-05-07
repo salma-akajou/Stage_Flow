@@ -1,4 +1,3 @@
-<!-- CTA -->
 <section class="py-24 px-4 overflow-hidden" data-aos="fade-up">
     <div class="max-w-4xl mx-auto relative bg-indigo-600 rounded-[3rem] p-12 lg:p-20 text-center shadow-2xl shadow-indigo-200 overflow-hidden">
         <h2 class="text-3xl lg:text-5xl font-black font-heading text-white mb-10 leading-tight">Prêt à décrocher votre futur stage ?</h2>

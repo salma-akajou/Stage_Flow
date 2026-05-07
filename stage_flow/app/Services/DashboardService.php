@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Entreprise;
 use App\Models\Offre;
+use App\Models\Ville;
 use App\Models\Etudiant;
 use App\Models\Feedback;
 use App\Models\Candidature;
@@ -70,11 +71,47 @@ class DashboardService
     {
         $entreprise = Entreprise::with('user', 'ville')->findOrFail($entrepriseId);
         
+        $offresActives = $this->offreService->getActiveByEntreprise($entrepriseId, 3);
+        $candidaturesRecentes = $this->candidatureService->getRecentByEntreprise($entrepriseId, 4);
+
+        $activites = collect()
+            ->merge($offresActives->map(fn($o) => [
+                'type' => 'offre',
+                'icon' => 'blue',
+                'titre' => 'Offre publiée',
+                'description' => 'Nouvelle offre "' . $o->titre . '" mise en ligne',
+                'date' => $o->created_at,
+                'lien' => route('entreprise.offres.index')
+            ]))
+            ->merge($candidaturesRecentes->map(fn($c) => [
+                'type' => $c->statut === 'En attente' ? 'candidature' : ($c->statut === 'Accepté' ? 'acceptation' : 'refus'),
+                'icon' => $c->statut === 'En attente' ? 'indigo' : ($c->statut === 'Accepté' ? 'emerald' : 'rose'),
+                'titre' => $c->statut === 'En attente' ? 'Nouvelle candidature reçue' : ($c->statut === 'Accepté' ? 'Candidature acceptée' : 'Candidature refusée'),
+                'description' => $c->etudiant->user->prenom . ' ' . $c->etudiant->user->nom . ($c->statut === 'En attente' ? ' a postulé au poste ' : ' pour ') . $c->offre->titre,
+                'date' => $c->statut === 'En attente' ? $c->created_at : $c->updated_at,
+                'lien' => route('entreprise.candidatures.index')
+            ]))
+            ->sortByDesc('date')
+            ->take(3);
+
+        // Données pour le modale de publication
+        $villes = Ville::all();
+        $secteurs = Offre::distinct()->pluck('secteur');
+        $existingCompetences = Offre::whereNotNull('competences_techniques')
+            ->pluck('competences_techniques')
+            ->flatten()
+            ->unique()
+            ->values();
+
         return [
             'entreprise' => $entreprise,
             'stats' => $this->getEntrepriseStats($entrepriseId),
-            'offres_actives' => $this->offreService->getActiveByEntreprise($entrepriseId, 3),
-            'candidatures_recentes' => $this->candidatureService->getRecentByEntreprise($entrepriseId, 4),
+            'offres_actives' => $offresActives,
+            'candidatures_recentes' => $candidaturesRecentes,
+            'activites' => $activites,
+            'villes' => $villes,
+            'secteurs' => $secteurs,
+            'existingCompetences' => $existingCompetences
         ];
     }
 

@@ -2,10 +2,17 @@
     <div class="p-6 border-b border-gray-100 flex items-center gap-x-2">
         <h3 class="text-lg font-bold text-gray-800">Donnez votre Feedback</h3>
     </div>
-    <form action="{{ route('feedback.store') }}" method="POST" class="p-6 flex-grow flex flex-col space-y-4">
+    <form action="{{ route('student.feedback.store') }}" method="POST" class="p-6 flex-grow flex flex-col space-y-4">
         @csrf
         <p class="text-xs text-gray-500 font-bold lowercase">Partagez vos suggestions pour améliorer StageFlow.</p>
-        <textarea name="texte"
+        
+        @if($errors->hasAny(['note', 'commentaire']))
+            <div class="p-4 bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold rounded-xl">
+                Erreur : {{ $errors->first('commentaire') ?: $errors->first('note') }}
+            </div>
+        @endif
+
+        <textarea name="commentaire" required
             class="py-3 px-4 block w-full bg-gray-50 border-gray-200 rounded-xl text-sm focus:border-indigo-600 focus:ring-0 transition-all outline-none min-h-[140px]"
             placeholder="Votre avis sur l'application..."></textarea>
         

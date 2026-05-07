@@ -10,6 +10,11 @@ abstract class BaseService
 {
     protected $model;
 
+    public function getModel()
+    {
+        return $this->model;
+    }
+
     public function all(): Collection
     {
         return $this->model->all();

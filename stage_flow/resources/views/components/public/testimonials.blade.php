@@ -1,4 +1,3 @@
-<!-- Testimonials -->
 <section class="py-32 bg-slate-50 relative overflow-hidden">
     <div class="absolute top-0 right-0 p-20 opacity-5 text-9xl">💡</div>
     <div class="max-w-[85rem] mx-auto px-4 relative z-10">
@@ -40,7 +39,6 @@
                 </div>
             </div>
             @empty
-            <!-- Mockup default testimonials (Photo 2 look) -->
             <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100" data-aos="fade-up">
                 <div class="flex gap-1 text-amber-400 mb-4">★★★★★</div>
                 <p class="text-slate-600 italic mb-8">"StageFlow m'a permis de décrocher mon stage de fin d'études chez OCP en moins de deux semaines. Une expérience fluide et premium !"</p>

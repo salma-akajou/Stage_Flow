@@ -1,4 +1,3 @@
-<!-- FAQ -->
 <section id="faq" class="py-24" data-aos="fade-up">
     <div class="max-w-[85rem] mx-auto px-4">
         <div class="max-w-2xl mx-auto text-center mb-16">

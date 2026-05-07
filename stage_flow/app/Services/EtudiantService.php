@@ -17,7 +17,6 @@ class EtudiantService extends BaseService
         $etudiant = Etudiant::with('user')->findOrFail($id);
         $user = $etudiant->user;
 
-        // Update user basic info
         $userData = [];
         if (isset($data['prenom'])) $userData['prenom'] = $data['prenom'];
         if (isset($data['nom'])) $userData['nom'] = $data['nom'];
@@ -26,7 +25,6 @@ class EtudiantService extends BaseService
             $user->update($userData);
         }
 
-        // Handle photo upload (now in etudiants table)
         if (isset($data['photo'])) {
             if ($etudiant->photo && Storage::disk('public')->exists($etudiant->photo)) {
                 Storage::disk('public')->delete($etudiant->photo);
@@ -34,7 +32,7 @@ class EtudiantService extends BaseService
             $data['photo'] = $data['photo']->store('avatars', 'public');
         }
 
-        // Update etudiant profile
+
         $etudiant->update(array_filter([
             'ville_id'      => $data['ville_id'] ?? null,
             'etablissement' => $data['etablissement'] ?? null,
@@ -51,6 +49,6 @@ class EtudiantService extends BaseService
 
     public function incrementViews(int $id): void
     {
-        $this->model->where('id', $id)->increment('vues');
+        $this->model->where('user_id', $id)->increment('vues');
     }
 }

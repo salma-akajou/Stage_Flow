@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\Web\Student;
 
 use App\Http\Controllers\Controller;
 use App\Services\OffreService;
 use App\Models\Etudiant;
-use App\Models\Ville;
-use App\Models\Offre;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -22,25 +20,25 @@ class OffreController extends Controller
     public function index(Request $request): View
     {
         $filters = $request->only(['titre', 'secteur', 'ville_id', 'type_stage']);
-        $offres = $this->offreService->search($filters);
-        
-        $villes = Ville::all();
-        $secteurs = Offre::select('secteur')->distinct()->pluck('secteur');
+        $data = $this->offreService->search($filters, 9, true);
 
         $etudiantId = 1;
         $etudiant = Etudiant::find($etudiantId);
 
-        return view('student.offres.index', compact('offres', 'villes', 'secteurs', 'etudiant'));
+        return view('student.offres.index', array_merge($data, [
+            'etudiant' => $etudiant
+        ]));
     }
+
+
 
     public function show(int $id): View
     {
         $offre = $this->offreService->getDetails($id);
-        $similaires = $this->offreService->getRecommended(3);
 
         $etudiantId = 1;
         $etudiant = Etudiant::find($etudiantId);
 
-        return view('student.offres.show', compact('offre', 'similaires', 'etudiant'));
+        return view('student.offres.show', compact('offre', 'etudiant'));
     }
 }
