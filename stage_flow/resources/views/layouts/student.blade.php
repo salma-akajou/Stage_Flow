@@ -99,7 +99,6 @@
     @include('components.student.sidebar')
 
     <main class="w-full h-full lg:ps-64 relative z-0">
-        <!-- Animated Stickers Background Decor -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden z-[-1] opacity-[0.05]">
             <div class="absolute top-10 left-10 sticker-float"><svg class="size-48 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg></div>
             <div class="absolute top-[50%] right-10 sticker-float" style="animation-delay: -2s"><svg class="size-32 text-indigo-500" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></div>

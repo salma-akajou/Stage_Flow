@@ -3,8 +3,9 @@
 namespace App\Services;
 
 use App\Models\Offre;
+use App\Models\Ville;
 use Illuminate\Pagination\LengthAwarePaginator;
-
+use Illuminate\Support\Collection;
 class OffreService extends BaseService
 {
     public function __construct()
@@ -12,10 +13,16 @@ class OffreService extends BaseService
         $this->model = new Offre();
     }
 
-    public function search(array $filters = [], int $perPage = 9): LengthAwarePaginator
+    /**
+     * Recherche avancée avec filtres (Utilisée par Étudiant et Entreprise)
+     */
+    public function search(array $filters = [], int $perPage = 9, bool $includeMeta = false): LengthAwarePaginator|array
     {
-        // En eager loading, on charge 'entreprise' (qui contient le logo) et 'ville'
-        $query = $this->model->with(['entreprise', 'ville']);
+        $query = $this->model->newQuery()->with(['entreprise', 'ville'])->withCount('candidatures');
+
+        if (!empty($filters['entreprise_id'])) {
+            $query->where('entreprise_id', $filters['entreprise_id']);
+        }
 
         if (!empty($filters['titre'])) {
             $query->where('titre', 'like', '%' . $filters['titre'] . '%');
@@ -37,17 +44,35 @@ class OffreService extends BaseService
             $query->where('type_stage', $filters['type_stage']);
         }
 
-        return $query->latest()->paginate($perPage);
+        $results = $query->latest()->paginate($perPage);
+
+        if ($includeMeta) {
+            return [
+                'offres' => $results,
+                'villes' => Ville::all(),
+                'secteurs' => $this->model->distinct()->pluck('secteur'),
+                'existingCompetences' => $this->model->whereNotNull('competences_techniques')
+                    ->pluck('competences_techniques')
+                    ->flatten()
+                    ->unique()
+                    ->values(),
+            ];
+        }
+
+        return $results;
     }
 
+
+    /**
+     * Détails complets d'une offre 
+     */
     public function getDetails(int $id): Offre
     {
-        return Offre::with(['entreprise', 'ville'])->findOrFail($id);
+        return $this->model->with(['entreprise', 'ville'])->findOrFail($id);
     }
 
-    public function getRecommended(int $limit = 3)
+    public function getRecommended(int $limit = 3): Collection
     {
-        // Plus besoin de charger 'entreprise.user' pour le logo
         return $this->model->with(['entreprise', 'ville'])
             ->where('status', 'Active')
             ->latest()
@@ -55,7 +80,7 @@ class OffreService extends BaseService
             ->get();
     }
 
-    public function getActiveByEntreprise(int $entrepriseId, int $limit = 3)
+    public function getActiveByEntreprise(int $entrepriseId, int $limit = 3): Collection
     {
         return $this->model->where('entreprise_id', $entrepriseId)
             ->where('status', 'Active')
@@ -64,4 +89,5 @@ class OffreService extends BaseService
             ->take($limit)
             ->get();
     }
+
 }

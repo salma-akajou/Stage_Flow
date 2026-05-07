@@ -1,8 +1,6 @@
-<!-- Hero Section -->
 <section class="relative overflow-hidden pt-6 lg:pt-12 min-h-[85vh] flex items-center">
     <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div class="grid lg:grid-cols-2 gap-10 items-center">
-            <!-- Text Content -->
             <div class="space-y-4" data-aos="fade-right">
                 <div class="inline-flex items-center gap-x-2 py-1.5 px-4 rounded-full bg-indigo-50 border border-indigo-100">
                     <span class="size-2 rounded-full bg-indigo-600 animate-pulse"></span>
@@ -25,18 +23,16 @@
                             <path d="m9 18 6-6-6-6" />
                         </svg>
                     </button>
-                    <a href="{{ route('offres.index') }}" class="py-4 px-8 inline-flex items-center gap-x-2 text-sm font-bold rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-all">
+                    <a href="{{ route('entreprise.dashboard') }}" class="py-4 px-8 inline-flex items-center gap-x-2 text-sm font-bold rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-all">
                         Nos partenaires
                     </a>
                 </div>
             </div>
 
-            <!-- Visual Content -->
             <div class="relative" data-aos="fade-left">
                 <div class="relative z-10 w-full rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white ring-1 ring-slate-100">
                     <img src="https://i.pinimg.com/1200x/e0/1e/8c/e01e8c03de998fc0aa35b45fafd88cea.jpg" alt="Professional workspace" class="w-full h-auto object-cover aspect-[4/3] transform hover:scale-105 transition-transform duration-700">
                     
-                    <!-- Floating Badge -->
                     <div class="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-float border border-white">
                         <div class="size-8 bg-emerald-100 rounded-lg flex items-center justify-center">
                             <svg class="size-4 text-emerald-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">

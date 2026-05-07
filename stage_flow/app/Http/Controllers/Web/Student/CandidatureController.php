@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\Web\Student;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCandidatureRequest;
+use App\Http\Requests\Student\StoreCandidatureRequest;
 use App\Models\Candidature;
 use App\Models\Etudiant;
-use App\Models\Offre;
 use App\Services\CandidatureService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -23,35 +22,21 @@ class CandidatureController extends Controller
     public function index(Request $request): View
     {
         $etudiantId = 1;
-        $etudiant = Etudiant::find($etudiantId);
         $filters = $request->only(['statut', 'search']);
-        $candidatures = $this->candidatureService->listEtudiantCandidatures($etudiantId, $filters);
-
-        $stats = [
-            'total' => Candidature::where('etudiant_id', $etudiantId)->count(),
-            'attente' => Candidature::where('etudiant_id', $etudiantId)->where('statut', 'En attente')->count(),
-            'accepte' => Candidature::where('etudiant_id', $etudiantId)->where('statut', 'Accepté')->count(),
-            'refuse' => Candidature::where('etudiant_id', $etudiantId)->where('statut', 'Refusé')->count(),
-        ];
-
-        return view('student.candidatures.index', compact('candidatures', 'etudiant', 'stats'));
-    }
-
-    public function create(int $offreId): View
-    {
-        $etudiantId = 1;
-        $etudiant = Etudiant::find($etudiantId);
-        $offre = Offre::with('entreprise')->findOrFail($offreId);
         
-        return view('student.candidatures.create', compact('offre', 'etudiant'));
+        $data = $this->candidatureService->listEtudiantCandidatures($etudiantId, $filters, 9, true);
+        
+        $etudiant = Etudiant::find($etudiantId);
+
+        return view('student.candidatures.index', array_merge($data, ['etudiant' => $etudiant]));
     }
+
 
     public function store(StoreCandidatureRequest $request, int $offreId)
     {
         $etudiantId = 1;
         $validated = $request->validated();
         
-        // Add file objects to data array
         $validated['cv'] = $request->file('cv');
         $validated['photo'] = $request->file('photo');
         

@@ -17,7 +17,6 @@ class EntrepriseService extends BaseService
         $entreprise = Entreprise::with('user')->findOrFail($id);
         $user = $entreprise->user;
 
-        // Update user basic info
         $userData = [];
         if (isset($data['prenom'])) $userData['prenom'] = $data['prenom'];
         if (isset($data['nom'])) $userData['nom'] = $data['nom'];
@@ -26,7 +25,7 @@ class EntrepriseService extends BaseService
             $user->update($userData);
         }
 
-        // Handle logo upload
+        
         if (isset($data['logo'])) {
             if ($entreprise->logo && Storage::disk('public')->exists($entreprise->logo)) {
                 Storage::disk('public')->delete($entreprise->logo);
@@ -41,7 +40,6 @@ class EntrepriseService extends BaseService
             $data['logo'] = null;
         }
 
-        // Update entreprise profile
         $entreprise->update(array_filter([
             'nom_entreprise'    => $data['nom_entreprise'] ?? null,
             'secteur'           => $data['secteur'] ?? null,

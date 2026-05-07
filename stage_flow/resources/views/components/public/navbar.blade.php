@@ -22,10 +22,10 @@
                    :class="activeLink === 'offres' ? 'text-indigo-600 font-bold' : 'text-slate-500 font-semibold'"
                    class="text-sm transition">Offres</a>
 
-                <a href="#" 
-                   @click="activeLink = 'entreprises'"
-                   :class="activeLink === 'entreprises' ? 'text-indigo-600 font-bold' : 'text-slate-500 font-semibold'"
-                   class="text-sm transition">Entreprises</a>
+                <a href="{{ route('entreprise.candidatures.index') }}" 
+                   @click="activeLink = 'candidatures'"
+                   :class="activeLink === 'candidatures' ? 'text-indigo-600 font-bold' : 'text-slate-500 font-semibold'"
+                   class="text-sm transition">Candidatures</a>
             </div>
 
             <div class="flex items-center gap-x-6">

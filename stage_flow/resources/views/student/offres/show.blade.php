@@ -5,7 +5,6 @@
 
 @section('content')
 <div class="max-w-5xl mx-auto space-y-8">
-    <!-- Go Back Link -->
     <div data-aos="fade-down">
         <a class="inline-flex items-center gap-x-1.5 text-sm text-gray-600 decoration-2 hover:underline font-medium hover:text-indigo-600 transition"
             href="{{ route('offres.index') }}">
@@ -18,7 +17,6 @@
         </a>
     </div>
 
-    <!-- Header Card -->
     <div class="bg-white border border-gray-200 shadow-sm rounded-2xl p-6 sm:p-10" data-aos="fade-up">
         <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-6">
             <div class="flex items-center gap-x-6">
@@ -75,7 +73,6 @@
     </div>
 
     <div class="grid lg:grid-cols-3 gap-8">
-        <!-- Main Content -->
         <div class="lg:col-span-2 space-y-8">
             <div class="bg-white border border-gray-200 shadow-sm rounded-2xl p-6 sm:p-8" data-aos="fade-up">
                 <h2 class="text-xl font-bold text-gray-800 mb-6 font-heading">À propos de l'offre</h2>
@@ -86,35 +83,44 @@
                 <div class="border-t border-gray-100 pt-10">
                     <h3 class="text-lg font-bold text-gray-800 mb-6 font-heading">Vos responsabilités</h3>
                     <ul class="space-y-5 text-sm text-gray-600">
-                        @foreach(explode('|', $offre->responsabilites) as $resp)
-                            <li class="flex gap-x-3">
-                                <span class="size-6 flex justify-center items-center rounded-full bg-indigo-50 text-indigo-600 shrink-0">
-                                    <svg class="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                </span>
-                                <span class="pt-0.5 leading-relaxed">{{ trim($resp) }}</span>
-                            </li>
+                        @php
+                            $resps = preg_split('/[\n|]+/', $offre->responsabilites);
+                        @endphp
+                        @foreach($resps as $resp)
+                            @php $resp = trim(ltrim(trim($resp), '-•*')); @endphp
+                            @if(!empty($resp))
+                                <li class="flex gap-x-3">
+                                    <span class="size-6 flex justify-center items-center rounded-full bg-indigo-50 text-indigo-600 shrink-0">
+                                        <svg class="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    </span>
+                                    <span class="pt-0.5 leading-relaxed">{{ $resp }}</span>
+                                </li>
+                            @endif
                         @endforeach
                     </ul>
                 </div>
             </div>
 
-            <!-- Profil Recherché (Separated) -->
             <div class="bg-white border border-gray-200 shadow-sm rounded-2xl p-6 sm:p-8" data-aos="fade-up">
                 <h3 class="text-xl font-bold text-gray-800 mb-6 font-heading">Profil recherché</h3>
                 <ul class="space-y-4 text-sm text-gray-600">
-                    @foreach(explode('|', $offre->profil_recherche) as $profil)
-                        <li class="flex gap-x-3">
-                            <div class="h-2 w-2 bg-indigo-600 rounded-full mt-2 shrink-0 shadow-sm shadow-indigo-200"></div>
-                            <span class="pt-0.5">{{ trim($profil) }}</span>
-                        </li>
+                    @php
+                        $profils = preg_split('/[\n|]+/', $offre->profil_recherche);
+                    @endphp
+                    @foreach($profils as $profil)
+                        @php $profil = trim(ltrim(trim($profil), '-•*')); @endphp
+                        @if(!empty($profil))
+                            <li class="flex gap-x-3">
+                                <div class="h-2 w-2 bg-indigo-600 rounded-full mt-2 shrink-0 shadow-sm shadow-indigo-200"></div>
+                                <span class="pt-0.5">{{ $profil }}</span>
+                            </li>
+                        @endif
                     @endforeach
                 </ul>
             </div>
         </div>
 
-        <!-- Sidebar Info -->
         <div class="space-y-6">
-            <!-- Quick Facts -->
             <div class="bg-white border border-gray-200 shadow-sm rounded-2xl p-6" data-aos="fade-up" data-aos-delay="100">
                 <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6 border-b border-gray-50 pb-4">Informations clés</h3>
                 <div class="space-y-5">
@@ -149,7 +155,6 @@
                 </div>
             </div>
 
-            <!-- Company Card -->
             <div class="bg-indigo-900 rounded-2xl p-6 shadow-xl relative overflow-hidden text-white" data-aos="fade-up" data-aos-delay="200">
                 <div class="absolute top-0 right-0 p-4 opacity-10">
                     <svg class="size-32 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
@@ -167,7 +172,6 @@
                 </div>
             </div>
 
-            <!-- Skills -->
             @if($offre->competences_techniques)
                 <div class="bg-white border border-gray-200 shadow-sm rounded-2xl p-6" data-aos="fade-up" data-aos-delay="300">
                     <h3 class="text-xs font-black text-gray-800 uppercase tracking-widest font-heading mb-4">Compétences Techniques</h3>
@@ -182,7 +186,10 @@
                                 'bg-emerald-50 text-emerald-600 border-emerald-100',
                             ];
                         @endphp
-                        @foreach($offre->competences_techniques as $index => $skill)
+                        @php
+                            $skills = is_array($offre->competences_techniques) ? $offre->competences_techniques : json_decode($offre->competences_techniques, true) ?? [];
+                        @endphp
+                        @foreach($skills as $index => $skill)
                             <span class="py-2 px-4 {{ $skillBgs[$index % count($skillBgs)] }} text-xs font-bold rounded-xl border transition-colors hover:shadow-sm">
                                 {{ $skill }}
                             </span>
@@ -194,231 +201,9 @@
     </div>
 </div>
 
-<!-- Modal Container (Dynamically moved to body) -->
-<div id="entreprise-modal-wrapper" style="display:none;" class="fixed inset-0 z-[100] transition-opacity duration-300 opacity-0">
-    <!-- Backdrop inside wrapper -->
-    <div id="entreprise-modal-backdrop" class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeEntrepriseModal()"></div>
+    @include('components.student.profil-entreprise-modal')
 
-    <!-- Modal Panel -->
-    <div id="entreprise-modal-panel" class="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6 pointer-events-none z-10 overflow-y-auto">
-        <div id="entreprise-modal-card" class="bg-white w-full max-w-xl rounded-2xl shadow-xl flex flex-col max-h-[90vh] pointer-events-auto transform scale-95 transition-all duration-300 my-auto">
-            
-            <!-- Header -->
-            <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
-                <h3 class="text-base font-bold text-gray-900" id="modal-header-title">Profil d'entreprise</h3>
-                <button onclick="closeEntrepriseModal()" class="text-gray-400 hover:text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-full p-1.5 transition focus:outline-none">
-                    <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                </button>
-            </div>
-
-            <!-- Scrollable Content -->
-            <div class="flex-1 overflow-y-auto p-6 relative">
-                <!-- Loading -->
-                <div id="modal-loading-spinner" class="absolute inset-0 bg-white/90 z-20 flex flex-col items-center justify-center">
-                    <div class="animate-spin size-8 border-4 border-indigo-100 border-t-indigo-600 rounded-full mb-3"></div>
-                    <p class="text-sm font-semibold text-gray-500 tracking-wide">Chargement...</p>
-                </div>
-
-                <div id="modal-content-container" class="opacity-0 transition-opacity duration-300">
-                    
-                    <!-- Top Info: Logo, Name, Badges -->
-                    <div class="flex flex-col items-center sm:items-start sm:flex-row gap-5 mb-8">
-                        <div class="size-20 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center p-2 mb-2 sm:mb-0">
-                            <img id="modal-entreprise-logo" src="" class="size-full object-contain hidden" alt="Logo">
-                            <span id="modal-entreprise-initial" class="text-3xl font-black text-indigo-600 hidden uppercase"></span>
-                        </div>
-                        <div class="text-center sm:text-left flex-1">
-                            <h4 id="modal-entreprise-name" class="text-xl sm:text-2xl font-bold text-gray-900 mb-2.5"></h4>
-                            <div class="flex flex-wrap justify-center sm:justify-start gap-2">
-                                <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100"><span id="modal-entreprise-secteur"></span></span>
-                                <span class="bg-gray-50 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-md border border-gray-200"><span id="modal-entreprise-taille"></span></span>
-                                <span class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-emerald-100"><span id="modal-entreprise-ville"></span></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Layout for stats : 3 distinct key infos -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                        <!-- RC -->
-                        <div id="modal-contact-rc" class="hidden bg-gray-50/80 p-4 rounded-xl border border-gray-100 flex flex-col items-center text-center gap-2 transition hover:bg-white hover:shadow-sm">
-                            <div class="p-2.5 rounded-full shadow-sm text-amber-500 bg-white border border-amber-50">
-                                <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                            </div>
-                            <div>
-                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wide">Registre Commerce</p>
-                                <p id="modal-rc-text" class="text-xs font-bold text-gray-800 break-all"></p>
-                            </div>
-                        </div>
-
-                        <!-- Adresse -->
-                        <div id="modal-contact-adresse" class="hidden bg-gray-50/80 p-4 rounded-xl border border-gray-100 flex flex-col items-center text-center gap-2 transition hover:bg-white hover:shadow-sm">
-                            <div class="p-2.5 rounded-full shadow-sm text-emerald-500 bg-white border border-emerald-50">
-                                <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.242-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                            </div>
-                            <div>
-                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wide">Adresse</p>
-                                <p id="modal-adresse-text" class="text-xs font-bold text-gray-800 leading-snug"></p>
-                            </div>
-                        </div>
-
-                         <!-- Contact -->
-                        <div id="modal-contact-email" class="hidden bg-gray-50/80 p-4 rounded-xl border border-gray-100 flex flex-col items-center text-center gap-2 transition hover:bg-white hover:shadow-sm">
-                             <div class="p-2.5 rounded-full shadow-sm text-blue-500 bg-white border border-blue-50">
-                                <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                            </div>
-                            <div class="w-full">
-                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wide">Email</p>
-                                <a id="modal-email-text" href="#" class="text-xs font-bold text-blue-600 hover:underline truncate block mx-auto max-w-full"></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bio -->
-                    <div class="mb-8" id="modal-section-bio">
-                        <h5 class="text-sm font-bold text-gray-900 mb-3 border-b border-gray-100 pb-2">À propos</h5>
-                        <p id="modal-entreprise-bio" class="text-sm text-gray-600 leading-relaxed"></p>
-                    </div>
-
-                     <!-- Offers -->
-                    <div class="mb-2">
-                        <h5 class="text-sm font-bold text-gray-900 mb-4 border-b border-gray-100 pb-2">Opportunités actuelles</h5>
-                        <div id="modal-offres-list" class="space-y-3"></div>
-                        <div id="modal-offres-empty" class="hidden text-center py-6 bg-gray-50 rounded-xl border border-dashed border-gray-200">
-                            <p class="text-xs font-semibold text-gray-500 mt-2">Aucune offre disponible.</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Candidature (Dynamically moved to body) -->
-<div id="candidature-modal-wrapper" style="display:none;" class="fixed inset-0 z-[100] transition-opacity duration-300 opacity-0">
-    <!-- Backdrop inside wrapper -->
-    <div id="candidature-modal-backdrop" class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeCandidatureModal()"></div>
-
-    <!-- Modal Panel -->
-    <div id="candidature-modal-panel" class="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6 pointer-events-none z-10 overflow-y-auto w-full">
-        <div id="candidature-modal-card" class="bg-white w-full max-w-xl mx-auto rounded-2xl shadow-xl flex flex-col max-h-[90vh] min-h-[50vh] pointer-events-auto transform scale-95 transition-all duration-300 my-auto">
-            
-            <!-- Header -->
-            <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
-                <div>
-                    <h3 class="text-lg font-black text-gray-900 font-heading" id="modal-candidature-title">Formulaire de candidature</h3>
-                    <p class="text-[11px] text-gray-500 font-bold uppercase tracking-widest mt-0.5">Offre : {{ $offre->titre }}</p>
-                </div>
-                <button onclick="closeCandidatureModal()" class="text-gray-400 hover:text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-full p-2 transition focus:outline-none">
-                    <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                </button>
-            </div>
-
-            <!-- Scrollable Form Content -->
-            <div class="flex-1 overflow-y-auto p-6 sm:p-8 relative">
-                <form id="candidature-form" action="{{ route('student.candidatures.store', $offre->id) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="space-y-8">
-
-                        <!-- Photo Upload avec Preview -->
-                        <div x-data="{ photoUrl: '', photoName: '' }">
-                            <label class="block text-sm font-bold mb-3 text-gray-800">Photo de profil pour cette candidature</label>
-                            <div class="flex items-center gap-5">
-                                <div class="shrink-0">
-                                    <div class="size-20 rounded-full bg-gray-100 border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden shadow-sm">
-                                        <template x-if="photoUrl">
-                                            <img :src="photoUrl" class="size-full object-cover">
-                                        </template>
-                                        <template x-if="!photoUrl">
-                                            <span class="text-xl font-black text-gray-400 uppercase">{{ substr($etudiant->user->prenom ?? 'A', 0, 1) }}{{ substr($etudiant->user->nom ?? 'A', 0, 1) }}</span>
-                                        </template>
-                                    </div>
-                                </div>
-                                <div class="flex-1">
-                                    <label for="form-photo-upload" class="group flex items-center gap-2 cursor-pointer text-indigo-600 hover:text-indigo-700 font-bold text-sm">
-                                        <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                                        <span x-text="photoName || 'Choisir une photo'"></span>
-                                    </label>
-                                    <p class="text-xs font-semibold text-gray-400 mt-1">JPG, PNG – Max 2MB</p>
-                                    @error('photo')
-                                        <p class="text-sm text-rose-600 font-semibold mt-1">{{ $message }}</p>
-                                    @enderror
-                                    <input id="form-photo-upload" name="photo" type="file" accept="image/*" class="hidden"
-                                        @change="const file = $event.target.files[0]; if(file) { photoUrl = URL.createObjectURL(file); photoName = file.name; }">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- CV Upload -->
-                        <div x-data="{ fileName: '' }">
-                            <label class="block text-sm font-bold mb-2 text-gray-800">Votre CV (PDF) <span class="text-rose-500">*</span></label>
-                            <label for="cv-upload-form"
-                                class="group p-6 flex flex-col items-center justify-center cursor-pointer text-center border-2 border-dashed border-gray-200 rounded-xl bg-gray-50 hover:bg-indigo-50/50 hover:border-indigo-300 transition-all">
-                                <input id="cv-upload-form" name="cv" type="file" accept=".pdf" class="sr-only"
-                                    @change="fileName = $event.target.files[0]?.name || ''">
-                                <svg class="size-8 text-indigo-300 group-hover:text-indigo-500 transition-colors mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
-                                <span class="block text-sm text-indigo-700 font-bold mb-1" x-text="fileName || 'Télécharger le CV'"></span>
-                                <span class="block text-xs font-bold text-gray-400 uppercase tracking-widest">Formats : PDF (Max. 20MB)</span>
-                            </label>
-                            @error('cv')
-                                <p class="text-sm text-rose-600 font-semibold mt-2">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <!-- Motivation Letter -->
-                        <div>
-                            <label class="block text-sm font-bold mb-2 text-gray-800">Lettre de motivation <span class="text-rose-500">*</span></label>
-                            <textarea name="message_motivation" rows="4"
-                                class="py-3.5 px-4 block w-full border-gray-200 rounded-xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition shadow-sm @error('message_motivation') border-rose-300 focus:border-rose-500 focus:ring-rose-500 @enderror"
-                                placeholder="Présentez brièvement vos atouts pour ce poste, vos motivations...">{{ old('message_motivation') }}</textarea>
-                            @error('message_motivation')
-                                <p class="text-sm text-rose-600 font-semibold mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <!-- Phone Number -->
-                        <div>
-                            <label class="block text-sm font-bold mb-2 text-gray-800">Numéro de téléphone <span class="text-rose-500">*</span></label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-4">
-                                    <svg class="shrink-0 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                                </div>
-                                <input type="tel" name="telephone" value="{{ old('telephone') }}"
-                                    class="py-3 px-4 ps-11 block w-full border-gray-200 rounded-xl text-sm font-semibold focus:border-indigo-500 focus:ring-indigo-500 shadow-sm @error('telephone') border-rose-300 focus:border-rose-500 focus:ring-rose-500 @enderror"
-                                    placeholder="06XXXXXXXX">
-                            </div>
-                            @error('telephone')
-                                <p class="text-sm text-rose-600 font-semibold mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <!-- Portfolio Link -->
-                        <div>
-                            <label class="block text-sm font-bold mb-2 text-gray-800">Lien du Portfolio</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-4">
-                                    <svg class="shrink-0 size-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
-                                </div>
-                                <input type="url" name="portfolio_url" value="{{ old('portfolio_url') }}"
-                                    class="py-3 px-4 ps-11 block w-full border-gray-200 rounded-xl text-sm font-semibold focus:border-indigo-500 focus:ring-indigo-500 shadow-sm @error('portfolio_url') border-rose-300 focus:border-rose-500 focus:ring-rose-500 @enderror"
-                                    placeholder="https://votresite.com">
-                            </div>
-                            @error('portfolio_url')
-                                <p class="text-sm text-rose-600 font-semibold mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-                </form>
-            </div>
-            
-            <!-- Footer -->
-            <div class="px-6 py-4 border-t border-gray-100 bg-gray-50 rounded-b-2xl flex justify-end shrink-0 gap-3">
-                 <button onclick="closeCandidatureModal()" class="px-5 py-2.5 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-bold shadow-sm hover:bg-gray-50 transition focus:outline-none">Annuler</button>
-                 <button onclick="document.getElementById('candidature-form').submit()" class="px-5 py-2.5 bg-indigo-600 border border-transparent text-white rounded-xl text-sm font-bold shadow-md shadow-indigo-200 hover:bg-indigo-700 transition focus:outline-none">Soumettre</button>
-            </div>
-        </div>
-    </div>
-</div>
+    @include('components.student.candidatures.modal-form-candidature')
 
 @endsection
 
@@ -430,7 +215,6 @@
         const content = document.getElementById('modal-content-container');
         const spinner = document.getElementById('modal-loading-spinner');
 
-        // Teleport the entire wrapper to body to escape ANY relative/z-index issues.
         if (wrapper.parentElement !== document.body) { 
             document.body.appendChild(wrapper); 
         }
@@ -441,7 +225,6 @@
         wrapper.style.display = 'block';
         document.body.style.overflow = 'hidden';
 
-        // Trigger animations
         setTimeout(() => {
             wrapper.classList.remove('opacity-0');
             wrapper.classList.add('opacity-100');
@@ -455,7 +238,6 @@
                 if (!res.success) return;
                 const { entreprise: ent, offres } = res.data;
 
-                // Logo
                 const logoImg  = document.getElementById('modal-entreprise-logo');
                 const initSpan = document.getElementById('modal-entreprise-initial');
                 if (ent.logoUrl) {
@@ -473,7 +255,6 @@
                 document.getElementById('modal-entreprise-taille').textContent  = ent.taille || 'Non défini';
                 document.getElementById('modal-entreprise-ville').textContent   = ent.ville ? ent.ville.nom : 'Non définie';
 
-                // BIO: Check if empty, hide securely
                 const bioSection = document.getElementById('modal-section-bio');
                 if (ent.bio && ent.bio.trim() !== '') {
                     document.getElementById('modal-entreprise-bio').textContent = ent.bio;
@@ -482,19 +263,16 @@
                     bioSection.classList.add('hidden');
                 }
 
-                // Info: RC
                 const rcRow = document.getElementById('modal-contact-rc');
                 if (ent.registre_commerce) { document.getElementById('modal-rc-text').textContent = ent.registre_commerce; rcRow.classList.remove('hidden'); }
                 else { rcRow.classList.add('hidden'); }
 
-                // Info: Adresse
                 const adresseRow = document.getElementById('modal-contact-adresse');
                 if (ent.adresse || (ent.ville && ent.ville.nom)) { 
                     document.getElementById('modal-adresse-text').textContent = ent.adresse || ent.ville.nom; 
                     adresseRow.classList.remove('hidden'); 
                 } else { adresseRow.classList.add('hidden'); }
 
-                // Info: Email
                 const emailRow = document.getElementById('modal-contact-email');
                 if (ent.email_contact) {
                     const emailEl = document.getElementById('modal-email-text');
@@ -503,7 +281,6 @@
                     emailRow.classList.remove('hidden');
                 } else { emailRow.classList.add('hidden'); }
 
-                // Offres
                 const list  = document.getElementById('modal-offres-list');
                 const empty = document.getElementById('modal-offres-empty');
                 list.innerHTML = '';
@@ -558,12 +335,10 @@
         }, 300);
     }
 
-    // Modal Candidature logic
     function openCandidatureModal() {
         const wrapper = document.getElementById('candidature-modal-wrapper');
         const card    = document.getElementById('candidature-modal-card');
 
-        // Teleport to body
         if (wrapper.parentElement !== document.body) { 
             document.body.appendChild(wrapper); 
         }
@@ -594,7 +369,7 @@
         }, 300);
     }
 
-    @if($errors->any() && old('telephone') !== null)
+    @if($errors->any())
         document.addEventListener('DOMContentLoaded', () => {
             openCandidatureModal();
         });

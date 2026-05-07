@@ -44,7 +44,7 @@ class CandidatureService extends BaseService
         ]);
     }
 
-    public function listEtudiantCandidatures(int $etudiantId, array $filters = [], int $perPage = 9): LengthAwarePaginator
+    public function listEtudiantCandidatures(int $etudiantId, array $filters = [], int $perPage = 9, bool $includeStats = false): LengthAwarePaginator|array
     {
         $query = $this->model->where('etudiant_id', $etudiantId)->with('offre.entreprise');
 
@@ -61,10 +61,24 @@ class CandidatureService extends BaseService
             });
         }
 
-        return $query->latest()->paginate($perPage);
+        $results = $query->latest()->paginate($perPage);
+
+        if ($includeStats) {
+            return [
+                'candidatures' => $results,
+                'stats' => [
+                    'total' => $this->model->where('etudiant_id', $etudiantId)->count(),
+                    'attente' => $this->model->where('etudiant_id', $etudiantId)->where('statut', 'En attente')->count(),
+                    'accepte' => $this->model->where('etudiant_id', $etudiantId)->where('statut', 'Accepté')->count(),
+                    'refuse' => $this->model->where('etudiant_id', $etudiantId)->where('statut', 'Refusé')->count(),
+                ]
+            ];
+        }
+
+        return $results;
     }
 
-    public function listEntrepriseCandidatures(int $entrepriseId, array $filters = [], int $perPage = 10): LengthAwarePaginator
+    public function listEntrepriseCandidatures(int $entrepriseId, array $filters = [], int $perPage = 9): LengthAwarePaginator
     {
         $query = $this->model->whereHas('offre', function ($q) use ($entrepriseId) {
             $q->where('entreprise_id', $entrepriseId);
@@ -76,6 +90,13 @@ class CandidatureService extends BaseService
 
         if (!empty($filters['statut'])) {
             $query->where('statut', $filters['statut']);
+        }
+
+        if (!empty($filters['search'])) {
+            $query->whereHas('etudiant.user', function ($q) use ($filters) {
+                $q->where('prenom', 'like', '%' . $filters['search'] . '%')
+                  ->orWhere('nom', 'like', '%' . $filters['search'] . '%');
+            });
         }
 
         return $query->latest()->paginate($perPage);
@@ -97,23 +118,28 @@ class CandidatureService extends BaseService
         return $candidature->delete();
     }
 
-    public function getRecentsCandidatures(int $etudiantId, int $limit = 3)
+    public function getRecentsCandidatures(int $etudiantId, int $limit = 3): \Illuminate\Support\Collection
     {
         return $this->model->where('etudiant_id', $etudiantId)
-            ->with(['offre.entreprise']) // On retire .user car le logo est dans entreprise
+            ->with(['offre.entreprise']) 
             ->latest()
             ->take($limit)
             ->get();
     }
 
-    public function getRecentByEntreprise(int $entrepriseId, int $limit = 4)
+    public function getRecentByEntreprise(int $entrepriseId, int $limit = 4): \Illuminate\Support\Collection
     {
         return $this->model->whereHas('offre', function ($q) use ($entrepriseId) {
                 $q->where('entreprise_id', $entrepriseId);
             })
-            ->with(['etudiant.user', 'offre']) // On garde etudiant pour la photo
+            ->with(['etudiant.user', 'offre'])
             ->latest()
             ->take($limit)
             ->get();
+    }
+
+    public function findWithDetails(int $id): Candidature
+    {
+        return Candidature::with(['offre', 'etudiant.user', 'cv'])->findOrFail($id);
     }
 }
