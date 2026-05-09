@@ -19,8 +19,11 @@ class UpdateProfileRequest extends FormRequest
             'ville_id'      => 'required|exists:villes,id',
             'etablissement' => 'required|string|max:255',
             'filiere'       => 'required|string|max:255',
+            'niveau_etudes' => 'required|string|max:255',
             'bio'           => 'nullable|string|max:1000',
-            'photo'         => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'github'        => 'nullable|url|max:255',
+            'linkedin'      => 'nullable|url|max:255',
+            'photo'         => 'nullable|max:2048',
         ];
     }
 

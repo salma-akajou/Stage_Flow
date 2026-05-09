@@ -10,8 +10,10 @@
 </div>
 
 @if(session('success'))
-    <div class="mb-6 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm p-4 rounded-xl flex items-center gap-3" role="alert" data-aos="fade-in">
-        <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-        {{ session('success') }}
+    <div class="mb-6 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl p-4 shadow-sm" role="alert" data-aos="fade-in">
+        <div class="flex items-center gap-x-3">
+            <svg class="size-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <p class="text-sm font-bold">{{ session('success') }}</p>
+        </div>
     </div>
 @endif

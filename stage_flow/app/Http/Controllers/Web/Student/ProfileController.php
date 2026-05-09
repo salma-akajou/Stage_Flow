@@ -26,17 +26,17 @@ class ProfileController extends Controller
 
     public function index(): View
     {
-        $etudiantId = 1;
-        $etudiant = Etudiant::with('user', 'ville')->find($etudiantId);
-        $villes = Ville::all();
+        $etudiant = Etudiant::with('user', 'ville')->first(); // Plus sûr pour les tests
+        if (!$etudiant) abort(404, "Aucun étudiant trouvé. Lancez le seeder !");
         
+        $villes = Ville::all();
         return view('student.profile', compact('etudiant', 'villes'));
     }
 
     public function update(UpdateProfileRequest $request)
     {
-        $etudiantId = 1;
-        $this->etudiantService->updateProfile($etudiantId, $request->validated());
+        $etudiant = Etudiant::first();
+        $this->etudiantService->updateProfile($etudiant->user_id, $request->validated());
         
         return back()->with('success', 'Profil mis à jour !');
     }

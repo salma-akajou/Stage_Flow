@@ -117,15 +117,55 @@ class DashboardService
 
     public function getAdminStats(): array
     {
+        $feedbacksAModerer = Feedback::where('valide', false)->count(); // Feedbacks non validés
+        $nouveauxUsersCeMois = User::whereMonth('created_at', now()->month)->count();
+        $nouvellesOffresCeMois = Offre::whereMonth('created_at', now()->month)->count();
+
         return [
             'total_utilisateurs' => User::count(),
+            'nouveaux_users_mois' => $nouveauxUsersCeMois,
+            
             'total_offres' => Offre::count(),
+            'nouvelles_offres_mois' => $nouvellesOffresCeMois,
+            
             'total_commentaires' => Feedback::count(),
+            'feedbacks_a_moderer' => $feedbacksAModerer,
+            
             'total_candidatures' => Candidature::count(),
+            'candidatures_semaine' => Candidature::where('created_at', '>=', now()->subWeek())->count(),
+            
             'repartition_users' => [
                 'etudiants' => Etudiant::count(),
                 'entreprises' => Entreprise::count(),
+                'admins' => 1,
             ],
+        ];
+    }
+
+    public function getAdminChartData(): array
+    {
+        $days = [];
+        $data = [];
+        $totalSemaine = 0;
+
+        for ($i = 6; $i >= 0; $i--) {
+            $date = now()->subDays($i);
+            $days[] = $date->translatedFormat('D'); 
+
+            $usersCount = User::whereDate('created_at', $date->toDateString())->count();
+            $candidaturesCount = Candidature::whereDate('created_at', $date->toDateString())->count();
+            $offresCount = Offre::whereDate('created_at', $date->toDateString())->count();
+            $feedbacksCount = Feedback::whereDate('created_at', $date->toDateString())->count();
+            
+            $totalJour = $usersCount + $candidaturesCount + $offresCount + $feedbacksCount;
+            $data[] = $totalJour;
+            $totalSemaine += $totalJour;
+        }
+
+        return [
+            'categories' => $days,
+            'series' => $data,
+            'total' => $totalSemaine,
         ];
     }
 }

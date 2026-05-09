@@ -28,12 +28,16 @@ class FeedbackService extends BaseService
         return (bool) $feedback->delete();
     }
 
-    public function search(array $filters = [], int $perPage = 10): LengthAwarePaginator
+    public function search(array $filters = [], int $perPage = 9): LengthAwarePaginator
     {
-        $query = $this->model->with('auteur');
+        $query = $this->model->with(['auteur.etudiant', 'auteur.entreprise']);
 
         if (!empty($filters['search'])) {
             $query->where('texte', 'like', '%' . $filters['search'] . '%');
+        }
+
+        if (isset($filters['valide']) && $filters['valide'] !== '') {
+            $query->where('valide', $filters['valide']);
         }
 
         return $query->latest()->paginate($perPage);

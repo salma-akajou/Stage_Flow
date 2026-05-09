@@ -14,6 +14,9 @@ use App\Http\Controllers\Web\Entreprise\OffreController as EntrepriseOffre;
 use App\Http\Controllers\Web\Entreprise\CandidatureController as EntrepriseCandidature;
 use App\Http\Controllers\Web\Entreprise\StudentController as EntrepriseStudent;
 use App\Http\Controllers\Web\Entreprise\ProfileController as EntrepriseProfile;
+use App\Http\Controllers\Web\Admin\DashboardController as AdminDashboard;
+use App\Http\Controllers\Web\Admin\UtilisateurController;
+use App\Http\Controllers\Web\Admin\FeedbackController as AdminFeedback;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
@@ -61,5 +64,25 @@ Route::prefix('entreprise')->name('entreprise.')->group(function () {
 
     Route::get('profile', [EntrepriseProfile::class, 'index'])->name('profile');
     Route::put('profile', [EntrepriseProfile::class, 'update'])->name('profile.update');
+});
+
+// Espace Admin
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('dashboard', [App\Http\Controllers\Web\Admin\DashboardController::class, 'index'])->name('dashboard');
+    
+    // Gestion des utilisateurs
+    Route::prefix('users')->name('users.')->group(function () {
+        Route::get('', [App\Http\Controllers\Web\Admin\UtilisateurController::class, 'index'])->name('index');
+        Route::get('{id}', [App\Http\Controllers\Web\Admin\UtilisateurController::class, 'show'])->name('show');
+        Route::post('{id}/suspend', [App\Http\Controllers\Web\Admin\UtilisateurController::class, 'suspend'])->name('suspend');
+        Route::post('{id}/reactivate', [App\Http\Controllers\Web\Admin\UtilisateurController::class, 'reactivate'])->name('reactivate');
+        Route::delete('{id}', [App\Http\Controllers\Web\Admin\UtilisateurController::class, 'destroy'])->name('destroy');
+    });
+    // Gestion des feedbacks
+    Route::prefix('feedbacks')->name('feedbacks.')->group(function () {
+        Route::get('', [App\Http\Controllers\Web\Admin\FeedbackController::class, 'index'])->name('index');
+        Route::post('{id}/approve', [App\Http\Controllers\Web\Admin\FeedbackController::class, 'approve'])->name('approve');
+        Route::delete('{id}', [App\Http\Controllers\Web\Admin\FeedbackController::class, 'destroy'])->name('destroy');
+    });
 });
 

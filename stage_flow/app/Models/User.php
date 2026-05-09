@@ -24,6 +24,8 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected $appends = ['role', 'avatar_url'];
+
     public function etudiant()
     {
         return $this->hasOne(Etudiant::class);
@@ -37,6 +39,29 @@ class User extends Authenticatable
     public function feedbacks()
     {
         return $this->hasMany(Feedback::class, 'auteur_id');
+    }
+
+    public function getRoleAttribute(): string
+    {
+        if ($this->etudiant) return 'etudiant';
+        if ($this->entreprise) return 'entreprise';
+        
+        // Fallback si non chargé
+        if ($this->etudiant()->exists()) return 'etudiant';
+        if ($this->entreprise()->exists()) return 'entreprise';
+        
+        return 'admin';
+    }
+
+    public function getAvatarUrlAttribute(): ?string
+    {
+        if ($this->role === 'etudiant' && $this->etudiant) {
+            return $this->etudiant->photo;
+        }
+        if ($this->role === 'entreprise' && $this->entreprise) {
+            return $this->entreprise->logo;
+        }
+        return null;
     }
 
     /**

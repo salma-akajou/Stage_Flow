@@ -21,17 +21,17 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $entrepriseId = 6; 
-        $entreprise = Entreprise::with('user', 'ville')->findOrFail($entrepriseId);
-        $villes = Ville::all();
+        $entreprise = Entreprise::with('user', 'ville')->first();
+        if (!$entreprise) abort(404, "Aucune entreprise trouvée.");
 
+        $villes = Ville::all();
         return view('entreprise.profile', compact('entreprise', 'villes'));
     }
 
     public function update(UpdateProfileRequest $request)
     {
-        $entrepriseId = 6;
-        $this->entrepriseService->updateProfile($entrepriseId, $request->validated());
+        $entreprise = Entreprise::first();
+        $this->entrepriseService->updateProfile($entreprise->user_id, $request->validated());
 
         return redirect()->back()->with('success', 'Profil mis à jour avec succès.');
     }

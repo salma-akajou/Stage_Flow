@@ -21,6 +21,25 @@
         </div>
 
         <div class="flex-1 w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Informations du Responsable -->
+            <div class="md:col-span-2 flex items-center gap-2 mb-2">
+                <span class="size-2 rounded-full bg-indigo-600"></span>
+                <h4 class="text-sm font-black uppercase text-gray-800 tracking-wider">Informations du responsable</h4>
+            </div>
+            <div>
+                <label class="block text-xs font-black uppercase text-gray-400 mb-2 tracking-widest">Prénom du responsable</label>
+                <input type="text" name="prenom" value="{{ $entreprise->user->prenom }}" required class="py-3 px-4 block w-full border-gray-100 bg-gray-50/50 rounded-xl text-sm font-bold focus:border-indigo-500 focus:ring-indigo-500">
+            </div>
+            <div>
+                <label class="block text-xs font-black uppercase text-gray-400 mb-2 tracking-widest">Nom du responsable</label>
+                <input type="text" name="nom" value="{{ $entreprise->user->nom }}" required class="py-3 px-4 block w-full border-gray-100 bg-gray-50/50 rounded-xl text-sm font-bold focus:border-indigo-500 focus:ring-indigo-500">
+            </div>
+
+            <!-- Informations de l'Entreprise -->
+            <div class="md:col-span-2 flex items-center gap-2 mt-4 mb-2 border-t border-gray-100 pt-6">
+                <span class="size-2 rounded-full bg-indigo-600"></span>
+                <h4 class="text-sm font-black uppercase text-gray-800 tracking-wider">Informations de l'entreprise</h4>
+            </div>
             <div>
                 <label class="block text-xs font-black uppercase text-gray-400 mb-2 tracking-widest">Nom de l'entreprise</label>
                 <input type="text" name="nom_entreprise" value="{{ $entreprise->nom_entreprise }}" required class="py-3 px-4 block w-full border-gray-100 bg-gray-50/50 rounded-xl text-sm font-bold focus:border-indigo-500 focus:ring-indigo-500">

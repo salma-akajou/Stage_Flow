@@ -14,15 +14,18 @@ class UpdateProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nom_entreprise' => 'required|string|max:255',
-            'secteur'        => 'required|string|max:255',
-            'ville_id'       => 'required|exists:villes,id',
-            'adresse'        => 'nullable|string|max:255',
-            'description'    => 'nullable|string',
-            'site_web'       => 'nullable|url|max:255',
-            'logo'           => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'prenom'         => 'required|string|max:255',
-            'nom'            => 'required|string|max:255',
+            'nom_entreprise'    => 'required|string|max:255',
+            'secteur'           => 'required|string|max:255',
+            'ville_id'          => 'required|exists:villes,id',
+            'adresse'           => 'nullable|string|max:255',
+            'bio'               => 'nullable|string',
+            'email_contact'     => 'nullable|email|max:255',
+            'site_web'          => 'nullable|url|max:255',
+            'registre_commerce' => 'nullable|string|max:255',
+            'taille'            => 'nullable|string|max:255',
+            'logo'              => 'nullable|max:2048',
+            'prenom'            => 'required|string|max:255',
+            'nom'               => 'required|string|max:255',
         ];
     }
 
