@@ -2,15 +2,16 @@
     <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-md" onclick="closeStudentProfileModal()"></div>
 
     <div class="absolute inset-0 flex flex-col items-center justify-center p-4 z-10 overflow-hidden">
-        <div id="student-profile-modal-card" class="bg-white w-full max-w-xl rounded-[3rem] shadow-2xl flex flex-col max-h-[92vh] pointer-events-auto transform scale-95 transition-all duration-300 my-auto overflow-hidden border border-gray-100 relative">
+        <div id="student-profile-modal-card" class="bg-white w-full max-w-lg rounded-[2.5rem] shadow-2xl flex flex-col max-h-[90vh] pointer-events-auto transform scale-95 transition-all duration-300 my-auto overflow-hidden border border-gray-100 relative">
             
-            <div class="absolute top-5 right-5 z-[100]">
-                <button type="button" onclick="closeStudentProfileModal()" class="text-gray-400 hover:text-gray-900 transition-all bg-white/80 hover:bg-white backdrop-blur-md rounded-full p-2.5 shadow-lg border border-gray-100">
-                    <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path d="M6 18L18 6M6 6l12 12"/></svg>
+            <div class="flex items-center justify-between px-8 py-5 border-b border-gray-50 shrink-0 bg-white z-20">
+                <h3 class="text-[10px] font-black text-indigo-500 uppercase tracking-[0.4em]">Fiche Profil</h3>
+                <button type="button" onclick="closeStudentProfileModal()" class="text-gray-400 hover:text-gray-900 transition-all bg-gray-50 hover:bg-gray-100 rounded-full p-2 shadow-sm border border-gray-100">
+                    <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
             </div>
 
-            <div class="flex-1 overflow-y-auto scrollbar-none">
+            <div class="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-100">
                 
                 <div class="relative mb-16">
                     <div class="h-32 bg-gradient-to-r from-indigo-600 to-violet-600 w-full"></div>
@@ -85,10 +86,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="bg-gray-50 px-8 py-4 border-t border-gray-100 flex items-center justify-center shrink-0">
-                    <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest"><span id="stu-vues">0</span> vues profil au total</span>
-                </div>
+            <div class="bg-gray-50 px-8 py-4 border-t border-gray-100 flex items-center justify-center shrink-0">
+                <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest"><span id="stu-vues">0</span> vues profil au total</span>
             </div>
         </div>
     </div>

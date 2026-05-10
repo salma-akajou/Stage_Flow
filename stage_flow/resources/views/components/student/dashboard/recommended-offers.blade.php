@@ -1,7 +1,7 @@
 <div id="recommended-offers" class="space-y-4" data-aos="fade-up">
     <div class="flex justify-between items-center">
-        <h3 class="text-xl font-bold text-gray-800">Stages recommandés</h3>
-        <a class="text-xs font-bold text-indigo-600 hover:text-indigo-700 hover:underline" href="{{ route('offres.index') }}">Tout voir</a>
+        <h3 class="text-xl font-bold text-gray-800">Dernières offres de stage</h3>
+        <a class="text-xs font-bold text-indigo-600 hover:text-indigo-700 hover:underline" href="{{ route('student.offres.index') }}">Tout voir</a>
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-gray-800">
@@ -36,7 +36,7 @@
             </div>
             <div class="mt-auto flex items-center justify-between pt-4 border-t border-gray-50">
                 <span class="text-[10px] font-bold text-gray-400 italic">{{ $offre->created_at->diffForHumans() }}</span>
-                <a href="{{ route('offres.show', $offre->id) }}" class="py-2 px-4 inline-flex items-center gap-x-2 text-xs font-bold rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition">Voir Détails</a>
+                <a href="{{ route('student.offres.show', $offre->id) }}" class="py-2 px-4 inline-flex items-center gap-x-2 text-xs font-bold rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition">Voir Détails</a>
             </div>
         </div>
         @endforeach

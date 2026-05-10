@@ -15,20 +15,20 @@ use App\Http\Controllers\Web\Entreprise\CandidatureController as EntrepriseCandi
 use App\Http\Controllers\Web\Entreprise\StudentController as EntrepriseStudent;
 use App\Http\Controllers\Web\Entreprise\ProfileController as EntrepriseProfile;
 use App\Http\Controllers\Web\Admin\DashboardController as AdminDashboard;
-use App\Http\Controllers\Web\Admin\UtilisateurController;
+use App\Http\Controllers\Web\Admin\UtilisateurController as AdminUser;
 use App\Http\Controllers\Web\Admin\FeedbackController as AdminFeedback;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 
-Route::prefix('offres')->name('offres.')->group(function () {
-    Route::get('/', [OffreController::class, 'index'])->name('index');
-    Route::get('/{id}', [OffreController::class, 'show'])->name('show');
-});
+Route::middleware(['auth', 'role:etudiant'])->prefix('student')->name('student.')->group(function () {
+    Route::prefix('offres')->name('offres.')->group(function () {
+        Route::get('/', [OffreController::class, 'index'])->name('index');
+        Route::get('/{id}', [OffreController::class, 'show'])->name('show');
+    });
 
-Route::get('/entreprises/{id}/profile', [EntrepriseController::class, 'showAjax'])->name('entreprises.profile.ajax');
-
-Route::prefix('student')->name('student.')->group(function () {
+    Route::get('/entreprises/{id}/profile', [EntrepriseController::class, 'showAjax'])->name('entreprises.profile.ajax');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
@@ -42,8 +42,8 @@ Route::prefix('student')->name('student.')->group(function () {
     Route::post('/feedback/store', [StudentFeedback::class, 'store'])->name('feedback.store');
 });
 
-// Espace Entreprise (Sans Auth pour le moment)
-Route::prefix('entreprise')->name('entreprise.')->group(function () {
+// Espace Entreprise
+Route::middleware(['auth', 'role:entreprise'])->prefix('entreprise')->name('entreprise.')->group(function () {
     Route::get('dashboard', [EntrepriseDashboard::class, 'index'])->name('dashboard');
     Route::post('/feedback/store', [EntrepriseFeedback::class, 'store'])->name('feedback.store');
     
@@ -66,23 +66,32 @@ Route::prefix('entreprise')->name('entreprise.')->group(function () {
     Route::put('profile', [EntrepriseProfile::class, 'update'])->name('profile.update');
 });
 
-// Espace Admin
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('dashboard', [App\Http\Controllers\Web\Admin\DashboardController::class, 'index'])->name('dashboard');
-    
-    // Gestion des utilisateurs
+// Espace Admin (accessible par admin ET modérateur)
+Route::middleware(['auth', 'role:admin|moderateur'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
+
+    // Gestion des utilisateurs - lecture seule pour tous (admin + modérateur)
     Route::prefix('users')->name('users.')->group(function () {
-        Route::get('', [App\Http\Controllers\Web\Admin\UtilisateurController::class, 'index'])->name('index');
-        Route::get('{id}', [App\Http\Controllers\Web\Admin\UtilisateurController::class, 'show'])->name('show');
-        Route::post('{id}/suspend', [App\Http\Controllers\Web\Admin\UtilisateurController::class, 'suspend'])->name('suspend');
-        Route::post('{id}/reactivate', [App\Http\Controllers\Web\Admin\UtilisateurController::class, 'reactivate'])->name('reactivate');
-        Route::delete('{id}', [App\Http\Controllers\Web\Admin\UtilisateurController::class, 'destroy'])->name('destroy');
+        Route::get('', [AdminUser::class, 'index'])->name('index');
+        Route::get('{id}', [AdminUser::class, 'show'])->name('show');
+
+        // Actions réservées à ceux qui ont la permission gerer-utilisateurs (admin seulement)
+        Route::middleware('can:gerer-utilisateurs')->group(function () {
+            Route::post('{id}/suspend', [AdminUser::class, 'suspend'])->name('suspend');
+            Route::post('{id}/reactivate', [AdminUser::class, 'reactivate'])->name('reactivate');
+            Route::delete('{id}', [AdminUser::class, 'destroy'])->name('destroy');
+        });
     });
-    // Gestion des feedbacks
-    Route::prefix('feedbacks')->name('feedbacks.')->group(function () {
-        Route::get('', [App\Http\Controllers\Web\Admin\FeedbackController::class, 'index'])->name('index');
-        Route::post('{id}/approve', [App\Http\Controllers\Web\Admin\FeedbackController::class, 'approve'])->name('approve');
-        Route::delete('{id}', [App\Http\Controllers\Web\Admin\FeedbackController::class, 'destroy'])->name('destroy');
+
+    // Gestion des feedbacks (permission: gerer-feedbacks)
+    Route::prefix('feedbacks')->name('feedbacks.')->middleware('can:gerer-feedbacks')->group(function () {
+        Route::get('', [AdminFeedback::class, 'index'])->name('index');
+        Route::post('{id}/approve', [AdminFeedback::class, 'approve'])->name('approve');
+        Route::delete('{id}', [AdminFeedback::class, 'destroy'])->name('destroy');
     });
 });
 
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');

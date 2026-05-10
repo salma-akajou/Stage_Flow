@@ -40,6 +40,18 @@ class FeedbackService extends BaseService
             $query->where('valide', $filters['valide']);
         }
 
+        if (!empty($filters['role'])) {
+            if ($filters['role'] === 'etudiant') {
+                $query->whereHas('auteur', function($q) {
+                    $q->has('etudiant');
+                });
+            } elseif ($filters['role'] === 'entreprise') {
+                $query->whereHas('auteur', function($q) {
+                    $q->has('entreprise');
+                });
+            }
+        }
+
         return $query->latest()->paginate($perPage);
     }
 }

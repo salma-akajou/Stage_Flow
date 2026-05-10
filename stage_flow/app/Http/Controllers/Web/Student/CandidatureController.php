@@ -21,12 +21,12 @@ class CandidatureController extends Controller
 
     public function index(Request $request): View
     {
-        $etudiantId = 1;
+        $etudiantId = auth()->id();
         $filters = $request->only(['statut', 'search']);
         
         $data = $this->candidatureService->listEtudiantCandidatures($etudiantId, $filters, 9, true);
         
-        $etudiant = Etudiant::find($etudiantId);
+        $etudiant = auth()->user()->etudiant;
 
         return view('student.candidatures.index', array_merge($data, ['etudiant' => $etudiant]));
     }
@@ -34,7 +34,7 @@ class CandidatureController extends Controller
 
     public function store(StoreCandidatureRequest $request, int $offreId)
     {
-        $etudiantId = 1;
+        $etudiantId = auth()->id();
         $validated = $request->validated();
         
         $validated['cv'] = $request->file('cv');
@@ -47,7 +47,7 @@ class CandidatureController extends Controller
 
     public function destroy(int $id)
     {
-        $etudiantId = 1;
+        $etudiantId = auth()->id();
         $candidature = Candidature::findOrFail($id);
 
         if ($candidature->etudiant_id !== $etudiantId) {

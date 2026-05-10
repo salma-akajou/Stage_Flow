@@ -7,7 +7,7 @@
         <h2 class="text-4xl font-black mb-6 leading-tight">Propulse ton potentiel avec StageFlow.</h2>
         <p class="text-indigo-200 text-lg mb-8 leading-relaxed">Trouve le stage de tes rêves parmi des centaines d'opportunités exclusives et adaptées à ton profil.</p>
         <div class="flex flex-wrap gap-4">
-            <a href="{{ route('offres.index') }}"
+            <a href="{{ route('student.offres.index') }}"
                 class="py-3 px-8 inline-flex items-center gap-x-2 text-sm font-bold rounded-lg bg-white text-indigo-950 hover:bg-indigo-50 transition">
                 Explorer les offres
             </a>

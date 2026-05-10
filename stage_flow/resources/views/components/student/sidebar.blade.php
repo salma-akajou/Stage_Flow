@@ -6,6 +6,22 @@
         </a>
     </div>
 
+    <div class="px-4 mb-6">
+        <div class="bg-gradient-to-br from-indigo-50 to-indigo-50 border border-indigo-100 rounded-xl p-3 flex items-center gap-3">
+            <div class="shrink-0 size-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm overflow-hidden">
+                @if(auth()->user()->avatar_url)
+                    <img class="size-full object-cover" src="{{ asset('storage/' . auth()->user()->avatar_url) }}" alt="Avatar">
+                @else
+                    {{ strtoupper(substr(auth()->user()->prenom, 0, 1) . substr(auth()->user()->nom, 0, 1)) }}
+                @endif
+            </div>
+            <div class="min-w-0">
+                <p class="text-sm font-bold text-gray-800 truncate">{{ auth()->user()->prenom }} {{ auth()->user()->nom }}</p>
+                <p class="text-[11px] text-indigo-600 font-medium capitalize">Étudiant</p>
+            </div>
+        </div>
+    </div>
+
     <nav class="flex-1 px-4 w-full flex flex-col flex-wrap overflow-y-auto">
         <ul class="space-y-1.5 font-medium text-gray-700">
             <li>
@@ -15,7 +31,7 @@
                 </a>
             </li>
             <li>
-                <a class="flex items-center gap-x-3.5 py-2 px-2.5 {{ request()->routeIs('offres.*') ? 'bg-indigo-50 text-indigo-600' : 'hover:bg-gray-100' }} text-sm rounded-lg" href="{{ route('offres.index') }}">
+                <a class="flex items-center gap-x-3.5 py-2 px-2.5 {{ request()->routeIs('student.offres.*') ? 'bg-indigo-50 text-indigo-600' : 'hover:bg-gray-100' }} text-sm rounded-lg" href="{{ route('student.offres.index') }}">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                     Catalogue des Offres
                 </a>
@@ -46,9 +62,14 @@
     </nav>
     <div class="px-4 mt-auto">
         <div class="h-px bg-gray-100 mb-4 mx-2"></div>
-        <a class="flex items-center gap-x-3.5 py-3 px-3 text-sm font-semibold text-red-600 rounded-lg hover:bg-red-50 focus:outline-none transition" href="#">
+        <a class="flex items-center gap-x-3.5 py-3 px-3 text-sm font-semibold text-red-600 rounded-lg hover:bg-red-50 focus:outline-none transition" 
+           href="{{ route('logout') }}" 
+           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
             Déconnexion
         </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+            @csrf
+        </form>
     </div>
 </aside>

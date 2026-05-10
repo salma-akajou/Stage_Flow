@@ -12,10 +12,16 @@
     
     <div class="px-4 mb-6">
         <div class="bg-gradient-to-br from-indigo-50 to-indigo-50 border border-indigo-100 rounded-xl p-3 flex items-center gap-3">
-            <div class="shrink-0 size-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm">AD</div>
+            <div class="shrink-0 size-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm overflow-hidden">
+                @if(auth()->user()->avatar_url)
+                    <img class="size-full object-cover" src="{{ asset('storage/' . auth()->user()->avatar_url) }}" alt="Avatar">
+                @else
+                    {{ strtoupper(substr(auth()->user()->prenom, 0, 1) . substr(auth()->user()->nom, 0, 1)) }}
+                @endif
+            </div>
             <div class="min-w-0">
-                <p class="text-sm font-bold text-gray-800 truncate">Admin Principal</p>
-                <p class="text-[11px] text-indigo-600 font-medium">Super Administrateur</p>
+                <p class="text-sm font-bold text-gray-800 truncate">{{ auth()->user()->prenom }} {{ auth()->user()->nom }}</p>
+                <p class="text-[11px] text-indigo-600 font-medium capitalize">{{ auth()->user()->getRoleNames()->first() }}</p>
             </div>
         </div>
     </div>
@@ -56,7 +62,9 @@
     </nav>
     <div class="px-4 mt-auto">
         <div class="h-px bg-gray-100 mb-4 mx-2"></div>
-        <a class="flex items-center gap-x-3.5 py-2.5 px-2.5 text-sm font-semibold text-red-600 rounded-lg hover:bg-red-50 transition" href="#">
+        <a class="flex items-center gap-x-3.5 py-2.5 px-2.5 text-sm font-semibold text-red-600 rounded-lg hover:bg-red-50 transition" 
+           href="{{ route('logout') }}" 
+           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path d="m16 17 5-5-5-5" />
                 <path d="M21 12H9" />
@@ -64,5 +72,8 @@
             </svg>
             Déconnexion
         </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+            @csrf
+        </form>
     </div>
 </aside>

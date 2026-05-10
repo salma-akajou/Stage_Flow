@@ -29,7 +29,9 @@
         <div class="flex items-center gap-x-2 sm:gap-x-4">
             <div class="hs-dropdown [--placement:bottom-right] relative inline-flex">
                 <button type="button" class="size-9 flex justify-center items-center rounded-full border border-gray-200 bg-white shadow-sm hover:bg-gray-50 transition">
-                    <div class="size-full rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-xs">AD</div>
+                    <div class="size-full rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-xs">
+                        {{ strtoupper(substr(auth()->user()->prenom, 0, 1) . substr(auth()->user()->nom, 0, 1)) }}
+                    </div>
                 </button>
                 <div class="hs-dropdown-menu hs-dropdown-open:opacity-100 w-56 opacity-0 hidden z-10 bg-white border border-gray-200 rounded-lg shadow-md p-1 mt-2">
                     <div class="py-3 px-4 -m-1 bg-indigo-50 rounded-t-lg font-medium text-gray-800 text-sm">Administrateur</div>

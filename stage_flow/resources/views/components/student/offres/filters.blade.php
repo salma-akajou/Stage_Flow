@@ -1,5 +1,5 @@
 <div class="bg-white border border-gray-200 rounded-xl p-4 sm:p-6 shadow-sm relative z-50" data-aos="fade-up">
-    <form action="{{ route('offres.index') }}" method="GET" class="flex flex-col lg:flex-row items-center gap-4">
+    <form action="{{ route('student.offres.index') }}" method="GET" class="flex flex-col lg:flex-row items-center gap-4">
         <div class="relative w-full lg:flex-1">
             <div class="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none">
                 <svg class="size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>

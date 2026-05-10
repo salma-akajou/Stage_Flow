@@ -18,8 +18,8 @@ class CandidatureController extends Controller
 
     public function index(Request $request)
     {
-        $entrepriseId = 6; 
-        $entreprise = Entreprise::findOrFail($entrepriseId);
+        $entrepriseId = auth()->id(); 
+        $entreprise = auth()->user()->entreprise;
         
         $filters = $request->only(['offre_id', 'statut', 'search']);
         $candidatures = $this->candidatureService->listEntrepriseCandidatures($entrepriseId, $filters);

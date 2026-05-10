@@ -21,7 +21,7 @@ class DashboardController extends Controller
      */
     public function index(): View
     {
-        $etudiantId = 1; 
+        $etudiantId = auth()->id(); 
         $data = $this->dashboardService->getEtudiantDashboardData($etudiantId);
         
         return view('student.dashboard', $data);

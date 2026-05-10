@@ -41,7 +41,7 @@
 
                 <div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
                     <span class="text-xs text-gray-400 italic">Publié {{ $offre->created_at->diffForHumans() }}</span>
-                    <a href="{{ route('offres.show', $offre->id) }}" 
+                    <a href="{{ route('student.offres.show', $offre->id) }}" 
                        class="py-2 px-4 inline-flex items-center gap-x-2 text-xs font-bold rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition">
                         Voir Détails
                     </a>
@@ -60,7 +60,7 @@
         </div>
         <h3 class="text-xl font-bold text-gray-800 mb-2">Aucune offre trouvée</h3>
         <p class="text-gray-500">Essayez d'ajuster vos filtres pour trouver plus de résultats.</p>
-        <a href="{{ route('offres.index') }}" class="mt-6 inline-flex items-center text-sm font-bold text-indigo-600 hover:text-indigo-700 uppercase tracking-wider">
+        <a href="{{ route('student.offres.index') }}" class="mt-6 inline-flex items-center text-sm font-bold text-indigo-600 hover:text-indigo-700 uppercase tracking-wider">
             Réinitialiser les filtres
         </a>
     </div>

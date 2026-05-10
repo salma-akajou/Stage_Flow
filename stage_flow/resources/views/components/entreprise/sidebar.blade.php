@@ -12,16 +12,16 @@
 
     <div class="px-4 mb-6">
         <div class="bg-gradient-to-br from-indigo-50 to-blue-50 border border-indigo-100 rounded-xl p-3 flex items-center gap-3">
-            <div class="shrink-0 size-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm">
-                @if($entreprise && $entreprise->logo)
-                    <img class="size-10 rounded-full object-cover" src="{{ asset('storage/'.$entreprise->logo) }}" alt="Logo">
+            <div class="shrink-0 size-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm overflow-hidden">
+                @if(auth()->user()->avatar_url)
+                    <img class="size-full object-cover" src="{{ asset('storage/' . auth()->user()->avatar_url) }}" alt="Logo">
                 @else
-                    {{ substr($entreprise->nom_entreprise ?? 'EN', 0, 2) }}
+                    {{ strtoupper(substr(auth()->user()->entreprise->nom_entreprise ?? 'EN', 0, 2)) }}
                 @endif
             </div>
             <div class="min-w-0">
-                <p class="text-sm font-bold text-gray-800 truncate">{{ $entreprise->nom_entreprise ?? 'Entreprise' }}</p>
-                <p class="text-[11px] text-indigo-600 font-medium">Compte Entreprise</p>
+                <p class="text-sm font-bold text-gray-800 truncate">{{ auth()->user()->entreprise->nom_entreprise ?? 'Mon Entreprise' }}</p>
+                <p class="text-[11px] text-indigo-600 font-medium capitalize">Compte Entreprise</p>
             </div>
         </div>
     </div>
@@ -66,10 +66,14 @@
 
     <div class="px-4 mt-auto">
         <div class="h-px bg-gray-100 mb-4 px-2"></div>
-        <a class="flex items-center gap-x-3.5 py-3 px-3 text-sm font-bold text-rose-600 rounded-xl hover:bg-rose-50 transition"
-            href="#">
+        <a class="flex items-center gap-x-3.5 py-3 px-3 text-sm font-bold text-rose-600 rounded-xl hover:bg-rose-50 transition" 
+           href="{{ route('logout') }}" 
+           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path d="m16 17 5-5-5-5" /><path d="M21 12H9" /><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /></svg>
             Déconnexion
         </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+            @csrf
+        </form>
     </div>
 </aside>

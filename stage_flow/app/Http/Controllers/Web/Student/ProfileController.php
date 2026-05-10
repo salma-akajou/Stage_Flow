@@ -26,8 +26,8 @@ class ProfileController extends Controller
 
     public function index(): View
     {
-        $etudiant = Etudiant::with('user', 'ville')->first(); // Plus sûr pour les tests
-        if (!$etudiant) abort(404, "Aucun étudiant trouvé. Lancez le seeder !");
+        $etudiant = auth()->user()->etudiant()->with('ville')->first();
+        if (!$etudiant) abort(404, "Profil étudiant introuvable.");
         
         $villes = Ville::all();
         return view('student.profile', compact('etudiant', 'villes'));
@@ -35,8 +35,7 @@ class ProfileController extends Controller
 
     public function update(UpdateProfileRequest $request)
     {
-        $etudiant = Etudiant::first();
-        $this->etudiantService->updateProfile($etudiant->user_id, $request->validated());
+        $this->etudiantService->updateProfile(auth()->id(), $request->validated());
         
         return back()->with('success', 'Profil mis à jour !');
     }

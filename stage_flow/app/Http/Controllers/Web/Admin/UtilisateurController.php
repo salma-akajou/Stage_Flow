@@ -21,7 +21,7 @@ class UtilisateurController extends Controller
         $users = $this->utilisateurService->listUsers($filters, 9);
         
         if ($request->ajax()) {
-            return view('admin.users.table_partial', compact('users'))->render();
+            return view('components.admin.users.table', compact('users'))->render();
         }
 
         return view('admin.users.index', compact('users'));

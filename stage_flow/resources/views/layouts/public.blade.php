@@ -45,7 +45,13 @@
         [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-white overflow-x-hidden font-sans" x-data="{ activeLink: 'accueil' }">
+<body class="bg-[#fafbfc] overflow-x-hidden font-sans" x-data="{ activeLink: 'accueil' }">
+
+    <!-- Background Decor (Marble Style) -->
+    <div class="fixed inset-0 pointer-events-none z-0 text-indigo-500/10">
+        <div class="absolute top-[-15%] left-[-10%] size-[800px] bg-gradient-to-br from-indigo-500/15 via-purple-500/10 to-transparent rounded-full blur-[140px] animate-pulse"></div>
+        <div class="absolute bottom-[-15%] right-[-10%] size-[800px] bg-gradient-to-tr from-purple-500/15 via-indigo-500/10 to-transparent rounded-full blur-[140px] animate-pulse" style="animation-delay: 3s;"></div>
+    </div>
 
     @include('components.public.navbar')
 

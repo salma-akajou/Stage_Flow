@@ -22,22 +22,18 @@ class OffreController extends Controller
         $filters = $request->only(['titre', 'secteur', 'ville_id', 'type_stage']);
         $data = $this->offreService->search($filters, 9, true);
 
-        $etudiantId = 1;
-        $etudiant = Etudiant::find($etudiantId);
+        $etudiant = auth()->user() ? auth()->user()->etudiant : null;
 
         return view('student.offres.index', array_merge($data, [
             'etudiant' => $etudiant
         ]));
     }
 
-
-
     public function show(int $id): View
     {
         $offre = $this->offreService->getDetails($id);
 
-        $etudiantId = 1;
-        $etudiant = Etudiant::find($etudiantId);
+        $etudiant = auth()->user() ? auth()->user()->etudiant : null;
 
         return view('student.offres.show', compact('offre', 'etudiant'));
     }

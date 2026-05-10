@@ -17,7 +17,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $entrepriseId = 6; 
+        $entrepriseId = auth()->id(); 
         $data = $this->dashboardService->getEntrepriseDashboardData($entrepriseId);
         
         return view('entreprise.dashboard', $data);

@@ -13,11 +13,24 @@
             <div>
                 <h4 class="text-xs font-bold uppercase tracking-widest text-white mb-6">Plateforme</h4>
                 <ul class="space-y-4 text-sm text-slate-400">
-                    <li><a href="{{ route('offres.index') }}" @click="activeLink = 'offres'" class="hover:text-indigo-400 transition">Offres de Stage</a></li>
+                    @php
+                        $role = auth()->user() ? auth()->user()->getRoleNames()->first() : null;
+                        $offresRoute = match($role) {
+                            'entreprise' => route('entreprise.offres.index'),
+                            'etudiant' => route('student.offres.index'),
+                            default => route('register')
+                        };
+                        $candidaturesRoute = match($role) {
+                            'entreprise' => route('entreprise.candidatures.index'),
+                            'etudiant' => route('student.candidatures'),
+                            default => route('register')
+                        };
+                    @endphp
+                    <li><a href="{{ $offresRoute }}" class="hover:text-indigo-400 transition">Offres de Stage</a></li>
                     <li><a href="#experience" 
-                           @click.prevent="activeLink = 'propos'; document.getElementById('experience').scrollIntoView({ behavior: 'smooth' })" 
+                           @click.prevent="document.getElementById('experience').scrollIntoView({ behavior: 'smooth' })" 
                            class="hover:text-indigo-400 transition">À propos</a></li>
-                    <li><a href="#" @click="activeLink = 'entreprises'" class="hover:text-indigo-400 transition">Entreprises</a></li>
+                    <li><a href="{{ $candidaturesRoute }}" class="hover:text-indigo-400 transition">Candidatures</a></li>
                 </ul>
             </div>
             <div>
@@ -26,8 +39,8 @@
                     <li><a href="#faq" 
                            @click.prevent="document.getElementById('faq').scrollIntoView({ behavior: 'smooth' })"
                            class="hover:text-indigo-400 transition">Centre d'aide (FAQ)</a></li>
-                    <li><a href="#" class="hover:text-indigo-400 transition">Connexion</a></li>
-                    <li><a href="#" class="hover:text-indigo-400 transition">Inscription</a></li>
+                    <li><a href="{{ route('login') }}" class="hover:text-indigo-400 transition">Connexion</a></li>
+                    <li><a href="{{ route('register') }}" class="hover:text-indigo-400 transition">Inscription</a></li>
                 </ul>
             </div>
             <div class="col-span-full lg:col-span-1">

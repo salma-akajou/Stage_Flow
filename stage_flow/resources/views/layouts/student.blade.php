@@ -70,6 +70,7 @@
             </div>
 
             <div class="flex flex-row items-center justify-end gap-x-2 sm:gap-x-4">
+                @if($etudiant)
                 <div class="hs-dropdown [--placement:bottom-right] relative inline-flex">
                     <button id="hs-dropdown-account" type="button" class="size-9 flex justify-center items-center text-sm font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none">
                         @if($etudiant->photo)
@@ -88,10 +89,16 @@
                         <div class="p-1 space-y-0.5 mt-2 text-gray-800 text-sm">
                             <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg hover:bg-gray-100" href="{{ route('student.profile') }}">Mon profil</a>
                             <div class="border-t border-gray-100 my-1"></div>
-                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-red-600 hover:bg-gray-100" href="#">Déconnexion</a>
+                            <form action="{{ route('logout') }}" method="POST" class="m-0 p-0">
+                                @csrf
+                                <button type="submit" class="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-red-600 hover:bg-gray-100">Déconnexion</button>
+                            </form>
                         </div>
                     </div>
                 </div>
+                @else
+                <a href="{{ route('login') }}" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-bold rounded-xl border border-transparent bg-indigo-600 text-white hover:bg-indigo-700 transition">Connexion</a>
+                @endif
             </div>
         </nav>
     </header>

@@ -19,7 +19,8 @@ class FeedbackController extends Controller
     {
         $filters = [
             'search' => $request->input('search'),
-            'valide' => $request->input('valide')
+            'valide' => $request->input('valide'),
+            'role' => $request->input('role')
         ];
 
         $feedbacks = $this->feedbackService->search($filters, 9);

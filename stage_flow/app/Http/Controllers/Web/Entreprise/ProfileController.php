@@ -21,8 +21,8 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $entreprise = Entreprise::with('user', 'ville')->first();
-        if (!$entreprise) abort(404, "Aucune entreprise trouvée.");
+        $entreprise = auth()->user()->entreprise()->with('ville')->first();
+        if (!$entreprise) abort(404, "Profil entreprise introuvable.");
 
         $villes = Ville::all();
         return view('entreprise.profile', compact('entreprise', 'villes'));
@@ -30,8 +30,7 @@ class ProfileController extends Controller
 
     public function update(UpdateProfileRequest $request)
     {
-        $entreprise = Entreprise::first();
-        $this->entrepriseService->updateProfile($entreprise->user_id, $request->validated());
+        $this->entrepriseService->updateProfile(auth()->id(), $request->validated());
 
         return redirect()->back()->with('success', 'Profil mis à jour avec succès.');
     }

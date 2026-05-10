@@ -11,7 +11,7 @@
                         @endif
                     </div>
                     <div class="grow">
-                        <a href="{{ route('offres.show', $candidature->offre_id) }}"
+                        <a href="{{ route('student.offres.show', $candidature->offre_id) }}"
                             class="inline-block font-bold text-gray-800 hover:text-indigo-600 transition font-heading">{{ $candidature->offre->titre }}</a>
                         <div class="flex flex-wrap items-center gap-x-2 text-xs text-gray-500 mt-1">
                             <span class="font-bold text-gray-400 lowercase tracking-tight">{{ $candidature->offre->entreprise->nom_entreprise }}</span>
@@ -44,7 +44,7 @@
                         <p class="text-[11px] text-gray-400 mt-1.5 italic font-medium">Postulé {{ $candidature->created_at->diffForHumans() }}</p>
                     </div>
                     <div class="flex items-center gap-x-2">
-                        <a href="{{ route('offres.show', $candidature->offre_id) }}"
+                        <a href="{{ route('student.offres.show', $candidature->offre_id) }}"
                             class="p-2.5 inline-flex justify-center items-center rounded-xl border border-gray-200 bg-white text-gray-600 shadow-sm hover:bg-gray-50 hover:text-indigo-600 transition"
                             title="Voir l'offre">
                             <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
@@ -71,7 +71,7 @@
             </div>
             <h3 class="text-lg font-bold text-gray-800 font-heading">Aucune candidature pour le moment</h3>
             <p class="text-gray-500 mt-2">Explorez nos offres et postulez pour lancer votre carrière !</p>
-            <a href="{{ route('offres.index') }}" class="mt-6 inline-flex items-center gap-x-2 py-3 px-6 text-sm font-bold rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-lg shadow-indigo-100">
+            <a href="{{ route('student.offres.index') }}" class="mt-6 inline-flex items-center gap-x-2 py-3 px-6 text-sm font-bold rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-lg shadow-indigo-100">
                 Voir le catalogue
             </a>
         </div>

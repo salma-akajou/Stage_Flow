@@ -1,9 +1,9 @@
 <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm flex flex-wrap gap-3 items-center mb-8" 
      x-data="{ 
     search: '', 
-    valide: '',
+    role: '',
     updateTable() {
-        fetch(`{{ route('admin.feedbacks.index') }}?search=${this.search}&valide=${this.valide}`, {
+        fetch(`{{ route('admin.feedbacks.index') }}?search=${this.search}&role=${this.role}`, {
             headers: { 'X-Requested-With': 'XMLHttpRequest' }
         })
         .then(res => res.text())
@@ -26,14 +26,14 @@
     <div class="relative min-w-[150px]" x-data="{ open: false, options: { '': 'Tous les rôles', 'etudiant': 'Étudiant', 'entreprise': 'Entreprise' } }">
         <button @click="open = !open" @click.away="open = false" type="button" 
                 class="py-2.5 px-4 w-full flex items-center justify-between gap-4 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:border-indigo-500 transition-all">
-            <span x-text="options[valide] || 'Tous les rôles'"></span>
+            <span x-text="options[role] || 'Tous les rôles'"></span>
             <svg :class="{ 'rotate-180': open }" class="size-4 text-gray-400 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
         </button>
         <div x-show="open" x-transition.opacity style="display: none;" class="absolute top-full right-0 mt-2 z-[50] w-full bg-white shadow-xl rounded-xl p-2 border border-gray-100">
             <template x-for="(label, value) in options">
-                <button @click="valide = value; open = false; updateTable()" 
+                <button @click="role = value; open = false; updateTable()" 
                         class="flex items-center w-full py-2 px-3 rounded-lg text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition font-medium mb-0.5"
-                        :class="valide === value ? 'bg-indigo-50 text-indigo-700' : ''"
+                        :class="role === value ? 'bg-indigo-50 text-indigo-700' : ''"
                         x-text="label"></button>
             </template>
         </div>

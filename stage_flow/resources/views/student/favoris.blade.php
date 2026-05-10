@@ -53,7 +53,7 @@
 
                 <div class="border-t border-gray-50 pt-4 flex items-center justify-between">
                     <span class="text-[10px] text-gray-400 font-medium italic">Ajouté {{ $offre->pivot->created_at->diffForHumans() }}</span>
-                    <a href="{{ route('offres.show', $offre->id) }}"
+                    <a href="{{ route('student.offres.show', $offre->id) }}"
                         class="py-2.5 px-5 inline-flex items-center gap-x-2 text-[11px] font-bold rounded-xl bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition shadow-sm">
                         Voir détails
                     </a>
@@ -66,7 +66,7 @@
                 </div>
                 <h3 class="text-lg font-bold text-gray-800 font-heading">Votre coup de cœur n'est pas encore là</h3>
                 <p class="text-gray-500 mt-2">Explorez le catalogue et sauvez les offres qui vous inspirent !</p>
-                <a href="{{ route('offres.index') }}" class="mt-6 inline-flex items-center gap-x-2 py-3 px-6 text-sm font-bold rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-lg shadow-indigo-100">
+                <a href="{{ route('student.offres.index') }}" class="mt-6 inline-flex items-center gap-x-2 py-3 px-6 text-sm font-bold rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-lg shadow-indigo-100">
                     Découvrir les offres
                 </a>
             </div>

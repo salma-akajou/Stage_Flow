@@ -16,6 +16,11 @@ class UtilisateurService extends BaseService
     {
         $query = $this->model->newQuery();
 
+        // Ne pas afficher les administrateurs dans la liste de gestion
+        $query->whereDoesntHave('roles', function($q) {
+            $q->where('name', 'admin');
+        });
+
         if (!empty($filters['search'])) {
             $query->where(function ($q) use ($filters) {
                 $q->where('nom', 'like', '%' . $filters['search'] . '%')

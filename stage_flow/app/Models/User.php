@@ -6,11 +6,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -46,7 +47,7 @@ class User extends Authenticatable
         if ($this->etudiant) return 'etudiant';
         if ($this->entreprise) return 'entreprise';
         
-        // Fallback si non chargé
+
         if ($this->etudiant()->exists()) return 'etudiant';
         if ($this->entreprise()->exists()) return 'entreprise';
         

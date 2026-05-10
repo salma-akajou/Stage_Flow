@@ -67,29 +67,39 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                                     <div class="flex items-center justify-end gap-x-1">
-                                        @if($user->statut === 'actif')
-                                            <form action="{{ route('admin.users.suspend', $user->id) }}" method="POST" class="inline">
+                                        @can('gerer-utilisateurs')
+                                            @if($user->statut === 'actif')
+                                                <form action="{{ route('admin.users.suspend', $user->id) }}" method="POST" class="inline">
+                                                    @csrf
+                                                    <button type="submit" class="p-2 inline-flex justify-center items-center rounded-lg text-gray-400 hover:text-amber-600 hover:bg-amber-50 transition" title="Suspendre">
+                                                        <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <form action="{{ route('admin.users.reactivate', $user->id) }}" method="POST" class="inline">
+                                                    @csrf
+                                                    <button type="submit" class="p-2 inline-flex justify-center items-center rounded-lg text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 transition" title="Réactiver">
+                                                        <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V7a5 5 0 0 1 9.9-1"/><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/></svg>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline" onsubmit="return confirm('Supprimer définitivement cet utilisateur ?')">
                                                 @csrf
-                                                <button type="submit" class="p-2 inline-flex justify-center items-center rounded-lg text-gray-400 hover:text-amber-600 hover:bg-amber-50 transition" title="Suspendre">
-                                                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                                @method('DELETE')
+                                                <button type="submit" class="p-2 inline-flex justify-center items-center rounded-lg text-gray-400 hover:text-rose-600 hover:bg-rose-50 transition" title="Supprimer">
+                                                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
                                                 </button>
                                             </form>
-                                        @else
-                                            <form action="{{ route('admin.users.reactivate', $user->id) }}" method="POST" class="inline">
-                                                @csrf
-                                                <button type="submit" class="p-2 inline-flex justify-center items-center rounded-lg text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 transition" title="Réactiver">
-                                                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V7a5 5 0 0 1 9.9-1"/><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/></svg>
-                                                </button>
-                                            </form>
-                                        @endif
+                                        @endcan
 
-                                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline" onsubmit="return confirm('Supprimer définitivement cet utilisateur ?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="p-2 inline-flex justify-center items-center rounded-lg text-gray-400 hover:text-rose-600 hover:bg-rose-50 transition" title="Supprimer">
+                                        @cannot('gerer-utilisateurs')
+                                            <button type="button" disabled class="p-2 inline-flex justify-center items-center rounded-lg text-gray-200 cursor-not-allowed" title="Action non autorisée">
+                                                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                            </button>
+                                            <button type="button" disabled class="p-2 inline-flex justify-center items-center rounded-lg text-gray-200 cursor-not-allowed" title="Action non autorisée">
                                                 <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
                                             </button>
-                                        </form>
+                                        @endcannot
                                     </div>
                                 </td>
                             </tr>

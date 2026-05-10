@@ -62,15 +62,15 @@
                     </a>
                 </div>
 
-                <div class="space-y-4 pb-8">
+                <div class="space-y-4 pb-8 overflow-hidden">
                     <h5 class="text-[10px] font-black text-gray-300 uppercase tracking-[0.4em] text-center">Motivation</h5>
-                    <div class="p-8 bg-gray-50/30 rounded-[2.5rem] border border-gray-100 leading-relaxed text-sm text-gray-600 font-medium italic text-center">
+                    <div class="p-8 bg-gray-50/30 rounded-[2.5rem] border border-gray-100 leading-relaxed text-sm text-gray-600 font-medium italic text-center break-words overflow-hidden">
                         <div id="det-motivation-skeleton" class="space-y-2">
                             <div class="h-3 bg-gray-100 animate-pulse w-full rounded"></div>
                             <div class="h-3 bg-gray-100 animate-pulse w-5/6 mx-auto rounded"></div>
                             <div class="h-3 bg-gray-100 animate-pulse w-4/6 mx-auto rounded"></div>
                         </div>
-                        <p id="det-motivation" style="display:none;"></p>
+                        <p id="det-motivation" style="display:none;" class="break-words"></p>
                     </div>
                 </div>
             </div>

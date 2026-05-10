@@ -23,7 +23,7 @@ class OffreController extends Controller
      */
     public function index(Request $request)
     {
-        $entrepriseId = 6; // Simulation 
+        $entrepriseId = auth()->id();
         
         $filters = $request->all();
         $filters['entreprise_id'] = $entrepriseId;
@@ -36,7 +36,7 @@ class OffreController extends Controller
             return view('components.entreprise.offres.table', ['offres' => $data])->render();
         }
 
-        $entreprise = Entreprise::findOrFail($entrepriseId);
+        $entreprise = auth()->user()->entreprise;
 
         return view('entreprise.offres.index', array_merge([
             'entreprise' => $entreprise
@@ -49,10 +49,9 @@ class OffreController extends Controller
     public function store(StoreOffreRequest $request)
     {
         $data = $request->validated();
-        $entrepriseId = 6; // Simulation
-        $entreprise = Entreprise::findOrFail($entrepriseId);
+        $entreprise = auth()->user()->entreprise;
         
-        $data['entreprise_id'] = $entrepriseId;
+        $data['entreprise_id'] = auth()->id();
         $data['secteur'] = $entreprise->secteur;
 
         $this->offreService->create($data);
@@ -76,8 +75,7 @@ class OffreController extends Controller
     public function update(UpdateOffreRequest $request, int $id)
     {
         $data = $request->validated();
-        $entrepriseId = 6; // Simulation
-        $entreprise = Entreprise::findOrFail($entrepriseId);
+        $entreprise = auth()->user()->entreprise;
         $data['secteur'] = $entreprise->secteur;
 
         $this->offreService->update($id, $data);

@@ -19,8 +19,8 @@ class FavoriController extends Controller
 
     public function index(): View
     {
-        $etudiantId = 1;
-        $etudiant = Etudiant::find($etudiantId);
+        $etudiantId = auth()->id();
+        $etudiant = auth()->user()->etudiant;
         $favoris = $this->favoriService->list($etudiantId);
 
         return view('student.favoris', compact('favoris', 'etudiant'));
@@ -28,7 +28,7 @@ class FavoriController extends Controller
 
     public function toggle(int $offreId)
     {
-        $etudiantId = 1;
+        $etudiantId = auth()->id();
         $this->favoriService->toggle($etudiantId, $offreId);
         
         return back()->with('success', 'Favoris mis à jour');

@@ -2,7 +2,7 @@
     <div id="entreprise-modal-backdrop" class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeEntrepriseModal()"></div>
 
     <div id="entreprise-modal-panel" class="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6 pointer-events-none z-10 overflow-y-auto">
-        <div id="entreprise-modal-card" class="bg-white w-full max-w-xl rounded-2xl shadow-xl flex flex-col max-h-[90vh] pointer-events-auto transform scale-95 transition-all duration-300 my-auto">
+        <div id="entreprise-modal-card" class="bg-white w-full max-w-xl rounded-2xl shadow-xl flex flex-col max-h-[90vh] pointer-events-auto transform scale-95 transition-all duration-300 my-auto overflow-hidden">
             
             <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
                 <h3 class="text-base font-bold text-gray-900" id="modal-header-title">Profil d'entreprise</h3>
@@ -11,7 +11,7 @@
                 </button>
             </div>
 
-            <div class="flex-1 overflow-y-auto p-6 relative">
+            <div class="flex-1 overflow-y-auto p-6 pb-10 relative">
                 <div id="modal-loading-spinner" class="absolute inset-0 bg-white/90 z-20 flex flex-col items-center justify-center">
                     <div class="animate-spin size-8 border-4 border-indigo-100 border-t-indigo-600 rounded-full mb-3"></div>
                     <p class="text-sm font-semibold text-gray-500 tracking-wide">Chargement...</p>
@@ -81,6 +81,7 @@
 
                 </div>
             </div>
+            <div class="h-1.5 w-full bg-gradient-to-r from-indigo-500 to-purple-600 shrink-0"></div>
         </div>
     </div>
 </div>
