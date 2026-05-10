@@ -24,6 +24,7 @@ usecase "Voir détails d’un stage" as UC3
 usecase "Postuler à un stage" as UC4
 usecase "Suivre l’état des candidatures" as UC5
 usecase "Ajouter aux favoris" as UC6
+usecase "Ajouter un commentaire" as UC12
 
 E -- UC1
 E -- UC2
@@ -31,6 +32,7 @@ E -- UC3
 E -- UC4
 E -- UC5
 E -- UC6
+E -- UC12
 
 
 ' =========================
@@ -40,10 +42,12 @@ E -- UC6
 usecase "Consulter tableau de bord entreprise" as UC7
 usecase "Gérer les offres de stage (CRUD)" as UC8
 usecase "Gérer candidatures reçues(Accepter / Refuser)" as UC9
+usecase "Ajouter un commentaire" as UC13
 
 Ent -- UC7
 Ent -- UC8
 Ent -- UC9
+Ent -- UC13
 
 
 
@@ -53,9 +57,11 @@ Ent -- UC9
 
 usecase "Gérer comptes utilisateurs" as UC10
 usecase "Consulter statistiques globales" as UC11
+usecase "Modérer les commentaires" as UC14
 
 Admin -- UC10
 Admin -- UC11
+Admin -- UC14
 
 
 ' =========================
@@ -84,5 +90,8 @@ UC8 ..> Auth : <<include>>
 UC9 ..> Auth : <<include>>
 UC10 ..> Auth : <<include>>
 UC11 ..> Auth : <<include>>
+UC12 ..> Auth : <<include>>
+UC13 ..> Auth : <<include>>
+UC14 ..> Auth : <<include>>
 
 @enduml
