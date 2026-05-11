@@ -115,25 +115,25 @@
 
     <aside id="sidebar"
         class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform fixed top-0 start-0 bottom-0 z-[60] w-64 bg-white border-e border-gray-200 flex flex-col pt-7 pb-10 overflow-hidden lg:block lg:translate-x-0 lg:end-auto lg:bottom-0">
-        <div class="px-6 pb-8">
+        <div class="px-6 pb-6">
             <a class="flex-none text-xl font-bold inline-flex items-center gap-x-2" href="../../index.html"
                 aria-label="Brand">
                 <img src="../../images/logo_app.png" alt="Logo StageFlow" class="size-8 object-contain">
                 <div>
-                    <span class="text-gray-900 leading-none block">StageFlow</span>
-                    <span class="text-[10px] font-medium text-indigo-500 uppercase tracking-widest">Entreprise</span>
+                    <span class="text-gray-900 leading-none block font-heading">StageFlow</span>
                 </div>
             </a>
         </div>
+
+        <!-- Company Card (from Laravel sidebar component) -->
         <div class="px-4 mb-6">
-            <div
-                class="bg-gradient-to-br from-indigo-50 to-blue-50 border border-indigo-100 rounded-xl p-3 flex items-center gap-3">
-                <div
-                    class="shrink-0 size-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm">
-                    MS</div>
+            <div class="bg-gradient-to-br from-indigo-50 to-blue-50 border border-indigo-100 rounded-xl p-3 flex items-center gap-3">
+                <div class="shrink-0 size-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm overflow-hidden">
+                    <span class="flex shrink-0 justify-center items-center size-full rounded-full bg-indigo-100 text-indigo-600 font-bold uppercase text-xs">MS</span>
+                </div>
                 <div class="min-w-0">
                     <p class="text-sm font-bold text-gray-800 truncate">Microsoft Maroc</p>
-                    <p class="text-[11px] text-indigo-600 font-medium">Compte Entreprise</p>
+                    <p class="text-[11px] text-indigo-600 font-medium capitalize">Compte Entreprise</p>
                 </div>
             </div>
         </div>
@@ -161,8 +161,6 @@
                             <polyline points="14 2 14 8 20 8" />
                         </svg>
                         Mes Offres
-                        <span
-                            class="ms-auto py-0.5 px-2 bg-indigo-100 text-indigo-600 text-xs font-semibold rounded-full">3</span>
                     </a>
                 </li>
                 <li>
@@ -176,8 +174,6 @@
                             <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                         </svg>
                         Candidatures Reçues
-                        <span
-                            class="ms-auto py-0.5 px-2 bg-red-100 text-red-600 text-xs font-semibold rounded-full">12</span>
                     </a>
                 </li>
                 <li class="pt-5 pb-2 px-2.5">

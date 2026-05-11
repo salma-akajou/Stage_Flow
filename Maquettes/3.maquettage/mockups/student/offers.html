@@ -147,8 +147,21 @@
             <a class="flex-none text-xl font-bold inline-flex items-center gap-x-2" href="../landing.html"
                 aria-label="Brand">
                 <img src="../../images/logo_app.png" alt="Logo" class="size-8 object-contain">
-                <span class="text-gray-900 leading-none">StageFlow</span>
+                <span class="text-gray-900 leading-none font-heading">StageFlow</span>
             </a>
+        </div>
+
+        <!-- User Profile Card (from Laravel component) -->
+        <div class="px-4 mb-6">
+            <div class="bg-gradient-to-br from-indigo-50 to-indigo-50 border border-indigo-100 rounded-xl p-3 flex items-center gap-3">
+                <div class="shrink-0 size-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm overflow-hidden">
+                    <span class="flex shrink-0 justify-center items-center size-full rounded-full bg-indigo-100 text-indigo-600 font-bold uppercase text-xs">SA</span>
+                </div>
+                <div class="min-w-0">
+                    <p class="text-sm font-bold text-gray-800 truncate">Salma Akajou</p>
+                    <p class="text-[11px] text-indigo-600 font-medium capitalize">Étudiant</p>
+                </div>
+            </div>
         </div>
 
         <nav class="flex-1 px-4 w-full flex flex-col flex-wrap overflow-y-auto">
@@ -293,21 +306,30 @@
 
                     <!-- Selects -->
                     <div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
-                        <select
-                            class="py-3 px-4 pe-9 block w-full sm:w-48 border-gray-200 rounded-lg text-sm font-medium text-gray-500 focus:border-indigo-500 focus:ring-indigo-500">
-                            <option selected>Ville</option>
-                            <option>Casablanca</option>
-                            <option>Rabat</option>
-                            <option>Tanger</option>
-                        </select>
-
-                        <select
-                            class="py-3 px-4 pe-9 block w-full sm:w-48 border-gray-200 rounded-lg text-sm font-medium text-gray-500 focus:border-indigo-500 focus:ring-indigo-500">
-                            <option selected>Secteur</option>
-                            <option>Informatique</option>
-                            <option>Design</option>
-                            <option>Marketing</option>
-                        </select>
+                        <div class="relative" data-hs-dropdown="{&quot;placement&quot;:&quot;bottom-right&quot;}">
+                            <button id="hs-dropdown-ville" type="button" class="hs-dropdown-toggle py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 focus:outline-none w-full sm:w-48 justify-between">
+                                Ville
+                                <svg class="hs-dropdown-open:rotate-180 size-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="m6 9 6 6 6-6"/></svg>
+                            </button>
+                            <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-[12rem] bg-white shadow-lg rounded-lg p-2 mt-2" aria-labelledby="hs-dropdown-ville">
+                                <a class="flex items-center gap-x-2 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100" href="#">Ville</a>
+                                <a class="flex items-center gap-x-2 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100" href="#">Casablanca</a>
+                                <a class="flex items-center gap-x-2 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100" href="#">Rabat</a>
+                                <a class="flex items-center gap-x-2 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100" href="#">Tanger</a>
+                            </div>
+                        </div>
+                        <div class="relative" data-hs-dropdown="{&quot;placement&quot;:&quot;bottom-right&quot;}">
+                            <button id="hs-dropdown-secteur" type="button" class="hs-dropdown-toggle py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 focus:outline-none w-full sm:w-48 justify-between">
+                                Secteur
+                                <svg class="hs-dropdown-open:rotate-180 size-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="m6 9 6 6 6-6"/></svg>
+                            </button>
+                            <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-[12rem] bg-white shadow-lg rounded-lg p-2 mt-2" aria-labelledby="hs-dropdown-secteur">
+                                <a class="flex items-center gap-x-2 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100" href="#">Secteur</a>
+                                <a class="flex items-center gap-x-2 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100" href="#">Informatique</a>
+                                <a class="flex items-center gap-x-2 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100" href="#">Design</a>
+                                <a class="flex items-center gap-x-2 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100" href="#">Marketing</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
