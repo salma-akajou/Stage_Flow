@@ -24,7 +24,7 @@ usecase "Voir détails d’un stage" as UC3
 usecase "Postuler à un stage" as UC4
 usecase "Suivre l’état des candidatures" as UC5
 usecase "Ajouter aux favoris" as UC6
-usecase "Ajouter un commentaire" as UC12
+usecase "Ajouter un feedback" as UC12
 
 E -- UC1
 E -- UC2
@@ -42,7 +42,7 @@ E -- UC12
 usecase "Consulter tableau de bord entreprise" as UC7
 usecase "Gérer les offres de stage (CRUD)" as UC8
 usecase "Gérer candidatures reçues(Accepter / Refuser)" as UC9
-usecase "Ajouter un commentaire" as UC13
+usecase "Ajouter un feedback" as UC13
 
 Ent -- UC7
 Ent -- UC8
@@ -57,7 +57,7 @@ Ent -- UC13
 
 usecase "Gérer comptes utilisateurs" as UC10
 usecase "Consulter statistiques globales" as UC11
-usecase "Modérer les commentaires" as UC14
+usecase "Modérer les feedbacks" as UC14
 
 Admin -- UC10
 Admin -- UC11
