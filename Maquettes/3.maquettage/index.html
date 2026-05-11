@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Kit Gallery - StageFlow</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js" defer></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#eef2ff', 100: '#e0e7ff', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' },
+                        secondary: { 500: '#14b8a6' }
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .nav-btn {
+            @apply w-full text-left text-sm px-3 py-2.5 rounded-xl text-slate-600 hover:bg-primary-50 hover:text-primary-700 transition-all duration-200 flex items-center gap-2;
+        }
+
+        .nav-btn.active {
+            @apply bg-primary-100 text-primary-700 font-semibold shadow-sm;
+        }
+
+        #preview-frame {
+            transition: opacity 0.2s ease, width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100 flex h-full overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-72 bg-white border-r border-slate-200 flex flex-col h-full flex-shrink-0 shadow-xl z-20">
+        <!-- Header -->
+        <div class="p-6 border-b border-slate-100">
+            <div class="flex items-center gap-3 mb-6">
+                <!-- User logo from image -->
+                <div class="size-10 rounded-xl overflow-hidden shadow-lg border border-slate-100">
+                    <img src="images/logo_app.png" alt="Logo" class="w-full h-full object-contain p-1">
+                </div>
+                <div>
+                    <h1 class="text-lg font-heading font-bold text-slate-900 leading-tight">StageFlow</h1>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">UI Kit Gallery</p>
+                </div>
+            </div>
+            <!-- Viewport buttons -->
+            <div class="flex bg-slate-100 rounded-xl p-1 text-[11px] font-semibold">
+                <button onclick="resizeIframe('100%', this)"
+                    class="flex-1 py-2 rounded-lg bg-white shadow-sm text-primary-700 vp-btn active-vp">Desktop</button>
+                <button onclick="resizeIframe('768px', this)"
+                    class="flex-1 py-2 rounded-lg hover:bg-white/50 text-slate-500 transition-all vp-btn">Tablet</button>
+                <button onclick="resizeIframe('390px', this)"
+                    class="flex-1 py-2 rounded-lg hover:bg-white/50 text-slate-500 transition-all vp-btn">Mobile</button>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav id="sidebar-nav" class="flex-1 overflow-y-auto p-4 space-y-8 scrollbar-thin scrollbar-thumb-slate-200">
+            <!-- Style Guide -->
+            <div>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 pl-2">🎨 Guide de Style
+                </p>
+                <button onclick="loadComponent('charte_graphique/index.html', '🎨 Charte Graphique', this)"
+                    class="nav-btn"><span>✨</span> Design Tokens</button>
+            </div>
+
+            <!-- Atomes -->
+            <div>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 pl-2">⚛️ Atomes</p>
+                <div class="space-y-1">
+                    <button onclick="loadComponent('components/atomes/button/index.html', '⚛️ Atome: Button', this)"
+                        class="nav-btn"><span>🔘</span> Buttons</button>
+                    <button onclick="loadComponent('components/atomes/input/index.html', '⚛️ Atome: Input', this)"
+                        class="nav-btn"><span>📝</span> Form Inputs</button>
+                    <button
+                        onclick="loadComponent('components/atomes/checkbox-radio/index.html', '⚛️ Atome: Checkbox/Radio', this)"
+                        class="nav-btn"><span>✅</span> Checkbox/Radio</button>
+                    <button
+                        onclick="loadComponent('components/atomes/decoration/index.html', '⚛️ Atome: Decoration', this)"
+                        class="nav-btn"><span>✨</span> Static/Animated Decor</button>
+                    <button onclick="loadComponent('components/atomes/badge/index.html', '⚛️ Atome: Badge', this)"
+                        class="nav-btn"><span>🏷️</span> Badges</button>
+                    <button onclick="loadComponent('components/atomes/avatar/index.html', '⚛️ Atome: Avatar', this)"
+                        class="nav-btn"><span>👤</span> Avatars</button>
+                    <button onclick="loadComponent('components/atomes/spinner/index.html', '⚛️ Atome: Spinner', this)"
+                        class="nav-btn"><span>⌛</span> Spinners</button>
+                    <button
+                        onclick="loadComponent('components/atomes/breadcrumb/index.html', '⚛️ Atome: Breadcrumb', this)"
+                        class="nav-btn"><span>🛤️</span> Breadcrumb</button>
+                </div>
+            </div>
+
+            <!-- Molecules -->
+            <div>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 pl-2">🧩 Molécules</p>
+                <div class="space-y-1">
+                    <button
+                        onclick="loadComponent('components/molecules/navbar/index.html', '🧩 Molécule: Navbar', this)"
+                        class="nav-btn"><span>🧭</span> Navbar</button>
+                    <button
+                        onclick="loadComponent('components/molecules/sidebar/index.html', '🧩 Molécule: Sidebar', this)"
+                        class="nav-btn"><span>📋</span> Sidebar</button>
+                    <button
+                        onclick="loadComponent('components/molecules/footer/index.html', '🧩 Molécule: Footer', this)"
+                        class="nav-btn"><span>⚓</span> Footer</button>
+                    <button
+                        onclick="loadComponent('components/molecules/accordion/index.html', '🧩 Molécule: Accordion', this)"
+                        class="nav-btn"><span>📂</span> Accordion (FAQ)</button>
+                    <button
+                        onclick="loadComponent('components/molecules/dropdown/index.html', '🧩 Molécule: Dropdown', this)"
+                        class="nav-btn"><span>🔽</span> Dropdown</button>
+                    <button
+                        onclick="loadComponent('components/molecules/auth-card/index.html', '🧩 Molécule: Auth Card', this)"
+                        class="nav-btn"><span>🔒</span> Auth Card</button>
+                    <button
+                        onclick="loadComponent('components/molecules/stage-card/index.html', '🧩 Molécule: Stage Card', this)"
+                        class="nav-btn"><span>💼</span> Stage Card</button>
+                    <button
+                        onclick="loadComponent('components/molecules/stats-card/index.html', '🧩 Molécule: Stats Card', this)"
+                        class="nav-btn"><span>📊</span> Stats Card</button>
+                    <button onclick="loadComponent('components/molecules/alert/index.html', '🧩 Molécule: Alert', this)"
+                        class="nav-btn"><span>⚠️</span> Alert</button>
+                    <button onclick="loadComponent('components/molecules/modal/index.html', '🧩 Molécule: Modal', this)"
+                        class="nav-btn"><span>🪟</span> Modal</button>
+                    <button
+                        onclick="loadComponent('components/molecules/filter-bar/index.html', '🧩 Molécule: Filter Bar', this)"
+                        class="nav-btn"><span>🔍</span> Filter Bar</button>
+                    <button
+                        onclick="loadComponent('components/molecules/pagination/index.html', '🧩 Molécule: Pagination', this)"
+                        class="nav-btn"><span>🔢</span> Pagination</button>
+                    <button onclick="loadComponent('components/molecules/steps/index.html', '🧩 Molécule: Steps', this)"
+                        class="nav-btn"><span>🛤️</span> Steps</button>
+                    <button
+                        onclick="loadComponent('components/molecules/table-row/index.html', '🧩 Molécule: Table Row', this)"
+                        class="nav-btn"><span>📜</span> Table Row</button>
+                    <button
+                        onclick="loadComponent('components/molecules/file-upload/index.html', '🧩 Molécule: File Upload', this)"
+                        class="nav-btn"><span>📤</span> File Upload</button>
+                </div>
+            </div>
+
+            <!-- Mockups -->
+            <div>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 pl-2">🖥️ Mockups
+                    (Validés)</p>
+                <div class="space-y-1">
+                    <button onclick="loadComponent('mockups/landing.html', '🖥️ Mockup: Landing Page', this)"
+                        class="nav-btn"><span>🏠</span> Landing Page</button>
+                    <button onclick="loadComponent('mockups/login.html', '🖥️ Mockup: Connexion', this)"
+                        class="nav-btn"><span>🔐</span> Connexion</button>
+                    <button onclick="loadComponent('mockups/register.html', '🖥️ Mockup: Inscription', this)"
+                        class="nav-btn"><span>📝</span> Inscription</button>
+                    <button onclick="loadComponent('mockups/forgot-password.html', '🖥️ Mockup: Récupération', this)"
+                        class="nav-btn"><span>🔑</span> Récupération</button>
+
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 mt-4 pl-2">🎓 Espace
+                        Étudiant</p>
+                    <button
+                        onclick="loadComponent('mockups/student/dashboard.html', '🎓 Mockup: Dashboard (Étudiant)', this)"
+                        class="nav-btn"><span>📊</span> Dashboard</button>
+                    <button onclick="loadComponent('mockups/student/offers.html', '🎓 Mockup: Catalogue Offres', this)"
+                        class="nav-btn"><span>💼</span> Catalogue Offres</button>
+                    <button
+                        onclick="loadComponent('mockups/student/offer-detail.html', '🎓 Mockup: Détail Offre', this)"
+                        class="nav-btn"><span>📄</span> Détail Offre</button>
+                    <button
+                        onclick="loadComponent('mockups/student/candidatures.html', '🎓 Mockup: Mes Candidatures', this)"
+                        class="nav-btn"><span>📨</span> Mes Candidatures</button>
+                    <button onclick="loadComponent('mockups/student/favoris.html', '🎓 Mockup: Mes Favoris', this)"
+                        class="nav-btn"><span>❤️</span> Mes Favoris</button>
+                    <button
+                        onclick="loadComponent('mockups/student/application-form.html', '🎓 Mockup: Postuler', this)"
+                        class="nav-btn"><span>📨</span> Formulaire de Postulation</button>
+                    <button onclick="loadComponent('mockups/student/profile.html', '🎓 Mockup: Mon Profil', this)"
+                        class="nav-btn"><span>👤</span> Mon Profil</button>
+
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 mt-4 pl-2">🏢 Espace
+                        Entreprise</p>
+                    <button
+                        onclick="loadComponent('mockups/enterprise/dashboard.html', '🏢 Mockup: Dashboard (Entreprise)', this)"
+                        class="nav-btn"><span>📊</span> Dashboard</button>
+                    <button onclick="loadComponent('mockups/enterprise/offers.html', '🏢 Mockup: Mes Offres', this)"
+                        class="nav-btn"><span>💼</span> Mes Offres</button>
+                    <button
+                        onclick="loadComponent('mockups/enterprise/candidatures.html', '🏢 Mockup: Candidatures Reçues', this)"
+                        class="nav-btn"><span>📨</span> Candidatures Reçues</button>
+                    <button
+                        onclick="loadComponent('mockups/enterprise/form-offer.html', '🏢 Mockup: Nouvelle Offre', this)"
+                        class="nav-btn"><span>➕</span> Nouvelle Offre</button>
+                    <button
+                        onclick="loadComponent('mockups/enterprise/profile.html', '🏢 Mockup: Profil Entreprise', this)"
+                        class="nav-btn"><span>🏢</span> Profil Entreprise</button>
+
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 mt-4 pl-2">⚙️ Espace
+                        Admin</p>
+                    <button
+                        onclick="loadComponent('mockups/admin/dashboard.html', '⚙️ Mockup: Dashboard (Admin)', this)"
+                        class="nav-btn"><span>📊</span> Dashboard</button>
+                    <button onclick="loadComponent('mockups/admin/users.html', '⚙️ Mockup: Utilisateurs', this)"
+                        class="nav-btn"><span>👥</span> Utilisateurs</button>
+                    <button onclick="loadComponent('mockups/admin/offers.html', '⚙️ Mockup: Modération Offres', this)"
+                        class="nav-btn"><span>💼</span> Modération Offres</button>
+                    <button
+                        onclick="loadComponent('mockups/admin/comments.html', '⚙️ Mockup: Modération Commentaires', this)"
+                        class="nav-btn"><span>💬</span> Modération Commentaires</button>
+                    <button onclick="loadComponent('mockups/admin/settings.html', '⚙️ Mockup: Paramètres', this)"
+                        class="nav-btn"><span>⚙️</span> Paramètres</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="p-6 border-t border-slate-100 bg-slate-50/50">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic">Phase: Component Validation
+            </p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-full bg-slate-100 overflow-hidden relative">
+        <div
+            class="bg-white/80 backdrop-blur-md border-b border-slate-200 px-6 py-4 flex justify-between items-center shadow-sm z-10 shrink-0">
+            <div class="flex items-center gap-4 min-w-0">
+                <div id="component-icon"
+                    class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-sm shrink-0">👋</div>
+                <h2 id="component-title" class="text-sm font-bold text-slate-800 truncate">Sélectionnez un composant
+                </h2>
+            </div>
+            <a id="open-new-tab" href="#" target="_blank"
+                class="hidden shrink-0 text-xs px-4 py-2 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 text-slate-600 flex items-center gap-2 transition-all shadow-sm">
+                <span>Plein écran</span>
+            </a>
+        </div>
+
+        <div class="flex-1 overflow-hidden flex items-stretch justify-center relative p-8"
+            style="background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 24px 24px;">
+            <div id="welcome-state"
+                class="absolute inset-0 flex flex-col items-center justify-center gap-6 text-center z-0">
+                <h2 class="font-heading font-bold text-3xl text-slate-900">Bibliothèque StageFlow</h2>
+                <p class="text-slate-500 text-sm max-w-md">Veuillez explorer les atomes et molécules validés.</p>
+            </div>
+            <iframe id="preview-frame" src=""
+                class="w-full h-full border-0 bg-white shadow-2xl rounded-2xl opacity-0 relative z-10"></iframe>
+        </div>
+    </main>
+
+    <script>
+        let currentBtn = null;
+        function loadComponent(path, title, btn) {
+            const frame = document.getElementById('preview-frame');
+            const titleEl = document.getElementById('component-title');
+            const welcome = document.getElementById('welcome-state');
+            const iconEl = document.getElementById('component-icon');
+            const openLink = document.getElementById('open-new-tab');
+
+            if (currentBtn) currentBtn.classList.remove('active');
+            btn.classList.add('active');
+            currentBtn = btn;
+
+            welcome.style.display = 'none';
+            frame.classList.add('opacity-0');
+
+            setTimeout(() => {
+                frame.src = path;
+                titleEl.textContent = title;
+                iconEl.textContent = btn.querySelector('span').textContent;
+                openLink.href = path;
+                openLink.classList.remove('hidden');
+                frame.onload = () => frame.classList.remove('opacity-0');
+            }, 100);
+        }
+        function resizeIframe(width, btn) {
+            document.querySelectorAll('.vp-btn').forEach(b => b.classList.remove('bg-white', 'shadow-sm', 'text-primary-700'));
+            btn.classList.add('bg-white', 'shadow-sm', 'text-primary-700');
+            document.getElementById('preview-frame').style.width = width;
+        }
+    </script>
+</body>
+
+</html>

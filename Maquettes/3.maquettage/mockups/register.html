@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - StageFlow</title>
+    <!-- Frameworks -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js" defer></script>
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc', 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81', 950: '#1e1b4b' },
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Outfit', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-heading {
+            font-family: 'Outfit', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-[#fafbfc] min-h-full flex flex-col items-center justify-center relative overflow-x-hidden py-12">
+
+    <!-- Background Decor (Marble Style) -->
+    <div class="fixed inset-0 pointer-events-none z-0 text-indigo-500/10">
+        <div
+            class="absolute top-[-15%] left-[-10%] size-[800px] bg-gradient-to-br from-indigo-500/15 via-purple-500/10 to-transparent rounded-full blur-[140px] animate-pulse">
+        </div>
+        <div class="absolute bottom-[-15%] right-[-10%] size-[800px] bg-gradient-to-tr from-purple-500/15 via-indigo-500/10 to-transparent rounded-full blur-[140px] animate-pulse"
+            style="animation-delay: 3s;"></div>
+    </div>
+
+    <main class="w-full max-w-xl p-6 relative z-10" data-aos="fade-up">
+        <!-- Logo -->
+        <div class="text-center mb-10">
+            <a href="landing.html" class="inline-flex items-center gap-x-3 group">
+                <img src="../images/logo_app.png" alt="Logo"
+                    class="size-10 object-contain group-hover:rotate-12 transition-transform">
+                <span class="text-2xl font-black font-heading text-slate-900 tracking-tight">StageFlow</span>
+            </a>
+        </div>
+
+        <!-- Auth Card (Molecule: auth-card) -->
+        <div
+            class="bg-white rounded-[3rem] shadow-2xl shadow-indigo-100/50 border border-slate-100 p-8 lg:p-12 relative overflow-hidden">
+            <!-- Decoration Gradient (from molecule) -->
+            <div class="absolute -top-10 -right-10 w-64 h-64 bg-indigo-50/50 rounded-full blur-3xl opacity-50"></div>
+            <div class="text-center mb-10">
+                <h1 class="text-3xl font-black font-heading text-slate-900 mb-2">Créez votre futur Profil</h1>
+                <p class="text-sm font-medium text-slate-500">Rejoignez l'élite des stagiaires et recruteurs au Maroc
+                </p>
+            </div>
+
+            <form action="#" class="space-y-6">
+                <!-- Common Fields -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label
+                            class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Prénom</label>
+                        <input type="text"
+                            class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all font-medium"
+                            placeholder="Prénom" required>
+                    </div>
+                    <div>
+                        <label
+                            class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Nom</label>
+                        <input type="text"
+                            class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all font-medium"
+                            placeholder="Nom" required>
+                    </div>
+                </div>
+
+                <div>
+                    <label
+                        class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Email</label>
+                    <input type="email"
+                        class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all font-medium"
+                        placeholder="nom@exemple.com" required>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Mot de
+                        passe</label>
+                    <input type="password"
+                        class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all font-medium"
+                        placeholder="••••••••" required>
+                </div>
+
+                <!-- Role Selection -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-3 ml-1">Je suis
+                        un(e)...</label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <label for="role-student"
+                            class="flex items-center p-3 w-full bg-white border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 cursor-pointer hover:bg-slate-50 transition-all group">
+                            <input type="radio" name="role" id="role-student" value="student"
+                                class="shrink-0 border-slate-200 rounded-full text-indigo-600 focus:ring-indigo-500"
+                                checked onchange="toggleFields()">
+                            <span
+                                class="text-sm font-bold text-slate-700 ms-3 group-hover:text-indigo-600 transition">Étudiant</span>
+                        </label>
+                        <label for="role-company"
+                            class="flex items-center p-3 w-full bg-white border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 cursor-pointer hover:bg-slate-50 transition-all group">
+                            <input type="radio" name="role" id="role-company" value="company"
+                                class="shrink-0 border-slate-200 rounded-full text-indigo-600 focus:ring-indigo-500"
+                                onchange="toggleFields()">
+                            <span
+                                class="text-sm font-bold text-slate-700 ms-3 group-hover:text-indigo-600 transition">Entreprise</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Dynamic Student Fields -->
+                <div id="student-fields" class="space-y-6 animate-fade-in">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label
+                                class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">École
+                                / Université</label>
+                            <input type="text"
+                                class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                placeholder="ex: Solicode">
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Filière</label>
+                            <input type="text"
+                                class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                placeholder="ex: Génie Logiciel">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label
+                                class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Niveau
+                                d'études</label>
+                            <select
+                                class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                <option>Bac +2</option>
+                                <option>Bac +3</option>
+                                <option>Bac +5</option>
+                                <option>Autre</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Ville</label>
+                            <input type="text"
+                                class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                placeholder="ex: Tanger">
+                        </div>
+                    </div>
+
+                    <!-- New Fields Additions -->
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">À
+                                propos de moi (Bio)</label>
+                            <textarea
+                                class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all font-medium"
+                                rows="3"
+                                placeholder="Parlez brièvement de vos compétences, ce que vous cherchez..."></textarea>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label
+                                    class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">LinkedIn</label>
+                                <input type="url"
+                                    class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all font-medium"
+                                    placeholder="https://linkedin.com/in/...">
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">GitHub
+                                    / Portfolio</label>
+                                <input type="url"
+                                    class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all font-medium"
+                                    placeholder="https://github.com/...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Company Fields -->
+                <div id="company-fields" class="hidden space-y-6 animate-fade-in">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label
+                                class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Nom
+                                Entreprise</label>
+                            <input type="text"
+                                class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                placeholder="ex: OCP Group">
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Secteur</label>
+                            <input type="text"
+                                class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                placeholder="ex: Technologie">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label
+                                class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Taille</label>
+                            <select
+                                class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                <option>TPE / PME</option>
+                                <option>Grande Entreprise</option>
+                                <option>Multinationale</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Siège
+                                Social</label>
+                            <input type="text"
+                                class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                placeholder="ex: Casablanca">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="w-full py-4 px-6 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-2xl border border-transparent bg-indigo-600 text-white hover:bg-indigo-700 shadow-xl shadow-indigo-100 transition-all hover:scale-[1.02] active:scale-[0.98]">
+                    Créer mon compte
+                </button>
+            </form>
+
+            <!-- Footer -->
+            <p class="mt-8 text-center text-sm font-medium text-slate-500 border-t border-slate-50 pt-6">
+                Déjà membre ?
+                <a class="text-indigo-600 font-bold hover:text-indigo-700 transition" href="login.html">
+                    Se connecter
+                </a>
+            </p>
+        </div>
+
+        <div class="mt-8 text-center">
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">© 2026 StageFlow Maroc</p>
+        </div>
+    </main>
+
+    <script>
+        AOS.init({ once: true, duration: 800 });
+
+        function toggleFields() {
+            const studentFields = document.getElementById('student-fields');
+            const companyFields = document.getElementById('company-fields');
+            const isStudent = document.getElementById('role-student').checked;
+
+            if (isStudent) {
+                studentFields.classList.remove('hidden');
+                companyFields.classList.add('hidden');
+            } else {
+                studentFields.classList.add('hidden');
+                companyFields.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+
+</html>

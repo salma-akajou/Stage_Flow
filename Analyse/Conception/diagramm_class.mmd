@@ -1,0 +1,137 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#ffffff'}}}%%
+classDiagram
+    direction LR
+
+    %% ====================
+    %% Classes de base (Utilisateurs)
+    %% ====================
+    class Utilisateur {
+        +int id
+        +string prenom
+        +string nom
+        +string email
+        +string mot_de_passe
+        +string photo
+        +datetime date_creation
+    }
+
+    class Etudiant {
+        +int user_id
+        +int ville_id
+        +enum etablissement
+        +string filiere
+        +enum niveau_etudes
+        +text bio
+        +string github
+        +string linkedin
+    }
+
+    class Entreprise {
+        +int user_id
+        +string nom_entreprise
+        +enum secteur
+        +int ville_id
+        +string adresse
+        +string email_contact
+        +text bio
+        +string registre_commerce
+        +string logo
+        +enum taille
+    }
+
+    class Administrateur {
+        +gerer_comptes()
+        +moderation_offres()
+        +voir_statistiques()
+    }
+
+    %% ====================
+    %% Entités Métier
+    %% ====================
+    class Offre {
+        +int id
+        +string titre
+        +text description
+        +enum type_stage
+        +string duree
+        +enum remuneration
+        +enum format
+        +enum secteur
+        +int ville_id
+        +text responsabilites
+        +text profil_recherche
+        +json competences_techniques
+        +enum status
+        +datetime date_publication
+        +date date_debut
+        +date date_fin
+        +int entreprise_id
+    }
+
+    class Candidature {
+        +int id
+        +enum statut
+        +string telephone
+        +text message_motivation
+        +datetime date_postulation
+        +int etudiant_id
+        +int offre_id
+        +int cv_id
+    }
+
+    class DocumentCV {
+        +int id
+        +string file_path
+        +datetime date_upload
+        +int etudiant_id
+    }
+
+    class Feedback {
+        +int id
+        +text texte
+        +int note
+        +int auteur_id
+        +datetime date_creation
+    }
+
+    class Favoris {
+        +int id
+        +int etudiant_id
+        +int offre_id
+        +datetime date_ajout
+    }
+
+    class Ville {
+        +int id
+        +string nom
+    }
+
+    %% ====================
+    %% Héritage
+    %% ====================
+    Utilisateur <|-- Etudiant
+    Utilisateur <|-- Entreprise
+    Utilisateur <|-- Administrateur
+
+    %% ====================
+    %% Relations & Cardinalités
+    %% ====================
+    
+    Ville "1" -- "n" Etudiant : réside
+    Ville "1" -- "n" Entreprise : située
+    Ville "1" -- "n" Offre : localisée
+
+    Etudiant "1" -- "n" Candidature : postule
+    Etudiant "1" -- "n" Favoris : ajoute
+    Etudiant "1" -- "n" DocumentCV : possède
+    Etudiant "1" -- "n" Feedback : écrit
+    
+    Entreprise "1" -- "n" Feedback : écrit
+    Entreprise "1" -- "n" Offre : publie
+    
+    Offre "1" -- "n" Candidature : concerne
+    Offre "1" -- "n" Favoris : est ciblé par
+    
+    Administrateur "1" -- "n" Feedback : modère
+
+    Candidature "1" -- "1" DocumentCV : utilise

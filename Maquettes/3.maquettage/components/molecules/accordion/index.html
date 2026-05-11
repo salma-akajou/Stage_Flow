@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js" defer></script>
+</head>
+
+<body class="p-10 bg-white space-y-8">
+
+    <div class="max-w-2xl mx-auto space-y-4">
+        <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">Molécule : FAQ Accordion (Style
+            Premium)</h3>
+
+        <div class="hs-accordion-group space-y-3">
+            <!-- Item 1 -->
+            <div class="hs-accordion active bg-white border border-slate-200 rounded-2xl overflow-hidden transition-all hover:border-indigo-500"
+                id="hs-basic-active-heading">
+                <button
+                    class="hs-accordion-toggle hs-accordion-active:text-indigo-600 inline-flex justify-between items-center gap-x-3 w-full font-bold text-start text-slate-800 py-4 px-5 hover:bg-slate-50 transition-all"
+                    aria-controls="hs-basic-active-collapse">
+                    Comment postuler à un stage ?
+                    <svg class="hs-accordion-active:hidden size-4 text-slate-400" xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m6 9 6 6 6-6" />
+                    </svg>
+                    <svg class="hs-accordion-active:block hidden size-4 text-indigo-600"
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m18 15-6-6-6 6" />
+                    </svg>
+                </button>
+                <div id="hs-basic-active-collapse"
+                    class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300"
+                    aria-labelledby="hs-basic-active-heading">
+                    <div class="pb-4 px-5">
+                        <p class="text-slate-500 text-sm leading-relaxed">Dès votre compte créé, complétez votre profil
+                            avec votre CV, puis cliquez sur "Postuler" sur l'offre qui vous intéresse.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="hs-accordion bg-white border border-slate-200 rounded-2xl overflow-hidden transition-all hover:border-indigo-500"
+                id="hs-basic-heading-two">
+                <button
+                    class="hs-accordion-toggle hs-accordion-active:text-indigo-600 inline-flex justify-between items-center gap-x-3 w-full font-bold text-start text-slate-800 py-4 px-5 hover:bg-slate-50 transition-all"
+                    aria-controls="hs-basic-collapse-two">
+                    Est-ce que la plateforme est gratuite ?
+                    <svg class="hs-accordion-active:hidden size-4 text-slate-400" xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m6 9 6 6 6-6" />
+                    </svg>
+                    <svg class="hs-accordion-active:block hidden size-4 text-indigo-600"
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m18 15-6-6-6 6" />
+                    </svg>
+                </button>
+                <div id="hs-basic-collapse-two"
+                    class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300"
+                    aria-labelledby="hs-basic-heading-two">
+                    <div class="pb-4 px-5">
+                        <p class="text-slate-500 text-sm leading-relaxed">Oui, StageFlow est entièrement gratuit pour
+                            tous les étudiants et stagiaire au Maroc, sans frais cachés.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

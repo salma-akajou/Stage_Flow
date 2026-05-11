@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="p-10 bg-white space-y-12">
+
+    <!-- Standard Inputs -->
+    <div class="max-w-sm space-y-4">
+        <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">Champs Texte</h3>
+        <div class="relative">
+            <input type="text"
+                class="peer p-4 block w-full border-slate-200 rounded-2xl text-sm placeholder:text-transparent focus:border-indigo-500 focus:ring-indigo-500 focus:pt-6 focus:pb-2 [&:not(:placeholder-shown)]:pt-6 [&:not(:placeholder-shown)]:pb-2 border transition-all"
+                placeholder="Nom complet" id="floating-name">
+            <label for="floating-name"
+                class="absolute top-0 start-0 p-4 h-full text-sm font-medium text-slate-400 truncate pointer-events-none transition-all duration-200 peer-focus:text-xs peer-focus:-translate-y-1.5 peer-focus:text-indigo-600 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:-translate-y-1.5 peer-[:not(:placeholder-shown)]:text-indigo-600">Nom
+                complet</label>
+        </div>
+    </div>
+
+    <!-- Reverting to previous Working Select (Simpler but functional) -->
+    <div class="max-w-sm space-y-4">
+        <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">Sélecteur de Type (Standard
+            Refined)</h3>
+        <div class="relative">
+            <select
+                class="py-3 px-4 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 border bg-white shadow-sm appearance-none">
+                <option value="">Sélectionner le type de stage</option>
+                <option value="pfe">🎓 Stage PFE / Fin d'études</option>
+                <option value="ete">☀️ Stage d'été / Immigration</option>
+                <option value="prep">💼 Stage de pré-embauche</option>
+                <option value="dist">💻 Télétravail / Distanciel</option>
+            </select>
+            <div class="absolute inset-y-0 end-0 flex items-center pointer-events-none pe-4">
+                <svg class="size-4 text-slate-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Creative Radio Buttons (Cards) -->
+    <div class="max-w-md space-y-4">
+        <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">Choix du Rôle (Design Primes)
+        </h3>
+        <div class="grid grid-cols-2 gap-4">
+            <!-- Student Radio -->
+            <label for="role-student"
+                class="relative block p-4 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-indigo-500 transition-all has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50/50 group">
+                <input type="radio" name="role" id="role-student"
+                    class="absolute top-4 right-4 text-indigo-600 focus:ring-indigo-500 size-4 border-slate-300"
+                    checked>
+                <div class="flex flex-col items-center text-center gap-2">
+                    <span class="text-3xl">🎓</span>
+                    <span class="text-sm font-bold text-slate-900 font-['Outfit']">Étudiant</span>
+                    <span class="text-[10px] text-slate-500">Trouvez votre stage idéal</span>
+                </div>
+            </label>
+
+            <!-- Company Radio -->
+            <label for="role-company"
+                class="relative block p-4 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-indigo-500 transition-all has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50/50 group">
+                <input type="radio" name="role" id="role-company"
+                    class="absolute top-4 right-4 text-indigo-600 focus:ring-indigo-500 size-4 border-slate-300">
+                <div class="flex flex-col items-center text-center gap-2">
+                    <span class="text-3xl">🏢</span>
+                    <span class="text-sm font-bold text-slate-900 font-['Outfit']">Entreprise</span>
+                    <span class="text-[10px] text-slate-500">Recrutez vos futurs talents</span>
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <!-- Elegant Toggle Switch -->
+    <div class="flex items-center gap-3">
+        <div class="relative inline-block w-11 h-6">
+            <input type="checkbox" id="toggle" class="peer hidden">
+            <label for="toggle"
+                class="absolute inset-0 bg-slate-200 rounded-full cursor-pointer transition-colors peer-checked:bg-indigo-600 before:content-[''] before:absolute before:size-5 before:bg-white before:rounded-full before:top-0.5 before:left-0.5 before:transition-transform peer-checked:before:translate-x-5"></label>
+        </div>
+        <span class="text-sm text-slate-600">Recevoir des notifications</span>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Atom: Logo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../Charte_graphique/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: { 500: 'var(--color-primary-500)', 600: 'var(--color-primary-600)' }
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="p-6 bg-slate-50">
+    <div class="max-w-sm mx-auto space-y-6">
+        <h2 class="text-lg font-bold text-slate-900 mb-4">Logo StageFlow</h2>
+        
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 flex items-center justify-center">
+                <img src="../../images/logo_app.png" alt="StageFlow Logo" class="w-full h-full object-contain">
+            </div>
+            <div class="flex flex-col">
+                <span class="text-xl font-bold text-slate-900 tracking-tight">StageFlow</span>
+                <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Mobile</span>
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 flex items-center justify-center">
+                <img src="../../images/logo_app.png" alt="StageFlow Logo" class="w-full h-full object-contain">
+            </div>
+            <div class="flex flex-col">
+                <span class="text-2xl font-bold text-slate-900 tracking-tight">StageFlow</span>
+                <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Espace Entreprise</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

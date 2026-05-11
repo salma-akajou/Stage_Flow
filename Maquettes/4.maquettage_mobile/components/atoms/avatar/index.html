@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Atom: Avatar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../Charte_graphique/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: {
+                            50: 'var(--color-primary-50)', 100: 'var(--color-primary-100)', 200: 'var(--color-primary-200)',
+                            300: 'var(--color-primary-300)', 400: 'var(--color-primary-400)', 500: 'var(--color-primary-500)',
+                            600: 'var(--color-primary-600)', 700: 'var(--color-primary-700)', 800: 'var(--color-primary-800)', 900: 'var(--color-primary-900)'
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="p-6 bg-slate-50">
+    <div class="max-w-sm mx-auto space-y-6">
+        <h2 class="text-lg font-bold text-slate-900 mb-4">Avatar Sizes</h2>
+        
+        <!-- Small -->
+        <div class="flex items-center gap-3">
+            <img class="w-8 h-8 rounded-full object-cover border border-slate-200" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=facearea&facepad=2&w=100&h=100" alt="Avatar">
+            <span class="text-sm text-slate-600">Small (32px)</span>
+        </div>
+        
+        <!-- Medium (Default) -->
+        <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover border border-slate-200" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=facearea&facepad=2&w=100&h=100" alt="Avatar">
+            <span class="text-sm text-slate-600">Medium (40px)</span>
+        </div>
+        
+        <!-- Large -->
+        <div class="flex items-center gap-3">
+            <img class="w-12 h-12 rounded-full object-cover border border-slate-200" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=facearea&facepad=2&w=100&h=100" alt="Avatar">
+            <span class="text-sm text-slate-600">Large (48px)</span>
+        </div>
+        
+        <!-- XL -->
+        <div class="flex items-center gap-3">
+            <img class="w-16 h-16 rounded-full object-cover border-2 border-primary-500" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=facearea&facepad=2&w=100&h=100" alt="Avatar">
+            <span class="text-sm text-slate-600">XL (64px) - With border</span>
+        </div>
+        
+        <!-- Placeholder -->
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-bold text-sm">JD</div>
+            <span class="text-sm text-slate-600">Initials placeholder</span>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Atom: Radio & Checkbox</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../Charte_graphique/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: { 500: 'var(--color-primary-500)', 600: 'var(--color-primary-600)' }
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="p-6 bg-slate-50">
+    <div class="max-w-sm mx-auto space-y-6">
+        <h2 class="text-lg font-bold text-slate-900 mb-4">Radio & Checkbox</h2>
+        
+        <!-- Checkboxes -->
+        <div class="space-y-3">
+            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 active:bg-slate-50 transition-colors">
+                <input type="checkbox" checked class="w-5 h-5 rounded-lg border-slate-300 text-primary-600 focus:ring-primary-500">
+                <span class="text-sm font-medium text-slate-800">Développement Web</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 active:bg-slate-50 transition-colors">
+                <input type="checkbox" class="w-5 h-5 rounded-lg border-slate-300 text-primary-600 focus:ring-primary-500">
+                <span class="text-sm font-medium text-slate-800">Mobile Development</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 active:bg-slate-50 transition-colors">
+                <input type="checkbox" class="w-5 h-5 rounded-lg border-slate-300 text-primary-600 focus:ring-primary-500">
+                <span class="text-sm font-medium text-slate-800">Data Science</span>
+            </label>
+        </div>
+        
+        <!-- Radio Buttons -->
+        <div class="space-y-3">
+            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 active:bg-slate-50 transition-colors">
+                <input type="radio" name="type" checked class="w-5 h-5 border-slate-300 text-primary-600 focus:ring-primary-500">
+                <span class="text-sm font-medium text-slate-800">Stage</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 active:bg-slate-50 transition-colors">
+                <input type="radio" name="type" class="w-5 h-5 border-slate-300 text-primary-600 focus:ring-primary-500">
+                <span class="text-sm font-medium text-slate-800">Alternance</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 active:bg-slate-50 transition-colors">
+                <input type="radio" name="type" class="w-5 h-5 border-slate-300 text-primary-600 focus:ring-primary-500">
+                <span class="text-sm font-medium text-slate-800">Emploi</span>
+            </label>
+        </div>
+        
+        <!-- Toggle Switch -->
+        <div class="flex items-center justify-between p-3 bg-white rounded-xl border border-slate-200">
+            <span class="text-sm font-medium text-slate-800">Notifications push</span>
+            <button type="button" class="relative inline-flex h-6 w-11 items-center rounded-full bg-primary-600 transition-colors">
+                <span class="translate-x-6 inline-block h-4 w-4 transform rounded-full bg-white transition-transform"></span>
+            </button>
+        </div>
+    </div>
+</body>
+</html>

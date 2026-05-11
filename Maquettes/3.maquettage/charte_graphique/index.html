@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charte Graphique - StageFlow</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js" defer></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-slate-50 font-sans text-slate-900 p-8 md:p-12">
+    <div class="max-w-5xl mx-auto space-y-16">
+
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-slate-200">
+            <div class="space-y-2">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                    Design System v1.0
+                </div>
+                <h1 class="text-4xl md:text-5xl font-heading font-bold text-slate-900">Charte Graphique</h1>
+                <p class="text-slate-500 text-lg max-w-xl">Principes visuels et tokens pour la plateforme StageFlow.
+                    Basé sur Tailwind CSS et Preline UI.</p>
+            </div>
+            <div class="flex gap-4">
+                <div
+                    class="w-16 h-16 rounded-2xl bg-primary-600 shadow-xl shadow-primary-200 flex items-center justify-center text-white font-bold text-2xl">
+                    SF</div>
+            </div>
+        </header>
+
+        <!-- Couleurs -->
+        <section class="space-y-8">
+            <div class="space-y-1">
+                <h2 class="text-2xl font-heading font-bold">Couleurs</h2>
+                <p class="text-slate-500 text-sm">Notre palette est centrée sur le sérieux et la confiance.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Primary -->
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest leading-none">Couleur Primaire
+                        (Indigo)</h3>
+                    <div class="grid grid-cols-5 gap-2">
+                        <div class="space-y-2">
+                            <div class="h-16 bg-primary-100 rounded-xl border border-slate-200"></div>
+                            <span class="text-[10px] text-slate-500 block text-center">100</span>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-16 bg-primary-300 rounded-xl border border-slate-200"></div>
+                            <span class="text-[10px] text-slate-500 block text-center">300</span>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-16 bg-primary-500 rounded-xl border border-slate-200"></div>
+                            <span class="text-[10px] text-slate-500 block text-center">500</span>
+                        </div>
+                        <div class="space-y-2 shadow-xl shadow-primary-100">
+                            <div class="h-16 bg-primary-600 rounded-xl border border-slate-200"></div>
+                            <span class="text-[10px] font-bold text-primary-600 block text-center uppercase">600
+                                (Main)</span>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-16 bg-primary-800 rounded-xl border border-slate-200"></div>
+                            <span class="text-[10px] text-slate-500 block text-center">800</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status -->
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest leading-none">Couleurs de
+                        Statut</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div
+                            class="p-4 bg-emerald-50 rounded-2xl border border-emerald-100 flex flex-col items-center gap-2">
+                            <div class="w-10 h-10 rounded-full bg-emerald-500 shadow-lg shadow-emerald-100"></div>
+                            <span class="text-[10px] font-bold text-emerald-700 uppercase">Succès</span>
+                        </div>
+                        <div
+                            class="p-4 bg-amber-50 rounded-2xl border border-amber-100 flex flex-col items-center gap-2">
+                            <div class="w-10 h-10 rounded-full bg-amber-500 shadow-lg shadow-amber-100"></div>
+                            <span class="text-[10px] font-bold text-amber-700 uppercase">Attente</span>
+                        </div>
+                        <div class="p-4 bg-rose-50 rounded-2xl border border-rose-100 flex flex-col items-center gap-2">
+                            <div class="w-10 h-10 rounded-full bg-rose-500 shadow-lg shadow-rose-100"></div>
+                            <span class="text-[10px] font-bold text-rose-700 uppercase">Refusé</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typographie -->
+        <section class="space-y-8">
+            <div class="space-y-1">
+                <h2 class="text-2xl font-heading font-bold">Typographie</h2>
+                <p class="text-slate-500 text-sm">Utilisation des polices Inter (UI/Corps) et Outfit (Titres/Marque).
+                </p>
+            </div>
+
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+                <div class="space-y-6">
+                    <div>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase mb-2">Heading 1 - Outfit Bold</p>
+                        <h1 class="text-5xl font-heading font-bold text-slate-900 tracking-tight">Bonjour StageFlow</h1>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase mb-2">Heading 2 - Outfit SemiBold</p>
+                        <h2 class="text-3xl font-heading font-bold text-slate-800">Candidatures en cours</h2>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase mb-2">Heading 3 - Outfit SemiBold</p>
+                        <h3 class="text-xl font-heading font-bold text-slate-800">Détails de l'offre</h3>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase mb-2">Body Large - Inter Regular</p>
+                        <p class="text-lg text-slate-600 leading-relaxed">Trouvez un stage qui vous ressemble et lancez
+                            votre carrière aujourd'hui.</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase mb-2">Body Normal - Inter Regular</p>
+                        <p class="text-sm text-slate-500 leading-relaxed">La plateforme StageFlow permet aux entreprises
+                            de poster des offres gratuitement et aux étudiants de postuler en un seul clic.</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase mb-2">Small Text - Inter Medium</p>
+                        <p class="text-[11px] font-medium text-slate-400 uppercase tracking-widest leading-relaxed">©
+                            2024 StageFlow - Tous droits réservés.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Composants Preview -->
+        <section class="space-y-8 pb-10">
+            <div class="space-y-1">
+                <h2 class="text-2xl font-heading font-bold">Composants (Aperçu)</h2>
+                <p class="text-slate-500 text-sm">Variantes de base des boutons et badges.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Buttons -->
+                <div class="p-8 bg-white rounded-3xl border border-slate-200 space-y-6 shadow-sm">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">Boutons</h4>
+                    <div class="flex flex-wrap gap-4">
+                        <button
+                            class="py-3 px-5 inline-flex items-center gap-x-2 text-sm font-semibold rounded-xl border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none shadow-sm shadow-primary-200 transition-all">Principal</button>
+                        <button
+                            class="py-3 px-5 inline-flex items-center gap-x-2 text-sm font-semibold rounded-xl border border-slate-200 bg-white text-slate-800 hover:bg-slate-50 disabled:opacity-50 disabled:pointer-events-none shadow-sm transition-all">Secondaire</button>
+                        <button
+                            class="py-3 px-5 inline-flex items-center gap-x-2 text-sm font-semibold rounded-xl border border-transparent text-primary-600 hover:bg-primary-50 disabled:opacity-50 disabled:pointer-events-none transition-all">Lien
+                            / Ghost</button>
+                    </div>
+                </div>
+
+                <!-- Badges -->
+                <div class="p-8 bg-white rounded-3xl border border-slate-200 space-y-6 shadow-sm">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">Badges</h4>
+                    <div class="flex flex-wrap gap-4">
+                        <span
+                            class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-primary-100 text-primary-800">Nouveau</span>
+                        <span
+                            class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">Accepté</span>
+                        <span
+                            class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-amber-100 text-amber-800">En
+                            attente</span>
+                        <span
+                            class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-rose-100 text-rose-800">Refusé</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</body>
+
+</html>

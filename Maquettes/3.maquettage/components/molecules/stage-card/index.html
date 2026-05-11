@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="p-10 bg-slate-100 flex flex-wrap gap-6">
+    <!-- Stage Card Molecule -->
+    <div
+        class="group flex flex-col h-full bg-white border border-slate-200 shadow-sm rounded-3xl p-6 max-w-sm hover:shadow-md transition-all">
+        <div class="flex items-center gap-4 mb-4">
+            <div
+                class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center border border-slate-100 shrink-0">
+                <img class="w-8 h-8 object-contain"
+                    src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Company Logo">
+            </div>
+            <div class="min-w-0">
+                <h3 class="text-lg font-bold text-slate-900 truncate group-hover:text-indigo-600 transition-colors">
+                    Développeur FullStack Junior</h3>
+                <p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Microsoft • Casablanca</p>
+            </div>
+        </div>
+
+        <p class="text-sm text-slate-600 line-clamp-2 mb-4">Rejoignez notre équipe pour travailler sur des solutions
+            Azure innovantes avec React et Node.js...</p>
+
+        <div class="flex flex-wrap gap-2 mb-6">
+            <span
+                class="inline-flex items-center gap-x-1.5 py-1 px-2.5 rounded-lg text-xs font-medium bg-indigo-50 text-indigo-700">IT
+                / Digital</span>
+            <span
+                class="inline-flex items-center gap-x-1.5 py-1 px-2.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">
+                <svg class="size-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                </svg>
+                6 mois
+            </span>
+        </div>
+
+        <div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-100">
+            <span class="text-xs text-slate-400 italic">Il y a 2 jours</span>
+            <button
+                class="py-2 px-4 inline-flex items-center gap-x-2 text-xs font-bold rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition-all shadow-sm shadow-indigo-100">
+                Voir détails
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>

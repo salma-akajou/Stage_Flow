@@ -167,7 +167,10 @@ style: |
 
 ---
 ## 1. Contexte du projet
-**La recherche de stage représente une étape essentielle dans le parcours académique des étudiants. Cependant, le processus reste souvent mal organisé, avec des offres dispersées et un suivi difficile des candidatures. Ce projet s’inscrit dans un contexte de digitalisation afin de proposer une solution web simple et structurée pour faciliter la gestion des stages.**
+
+<div class="img-container">
+  <img src="images/contexte.png" class="img-methodo" alt="Scrum">
+</div>
 
 ---
 
@@ -191,96 +194,116 @@ style: |
 
 ---
 
-
-
 ## 3. Branche Fonctionnelle : Design Thinking
-### 1. EMPATHIE
-
-<div class="img-container">
-  <div class="dt-card" style="border-top-color: #f39c12;">
-    <h4>Comprendre l'utilisateur</h4>
-    <blockquote style="font-style: italic; background: white; padding: 15px; border-radius: 8px;">
-      .
-    </blockquote>
-  </div>
-</div>
-
----
-
-## Branche Fonctionnelle : Design Thinking
-### 2. DÉFINITION
+###  DÉFINITION
 
 <div class="img-container">
   <div class="dt-card" style="border-top-color: #f39c12;">
     <h4>Cadrage du problème</h4>
     <blockquote style="font-style: italic; background: white; padding: 15px; border-radius: 8px;">
-      .
+      <p>Les étudiants rencontrent des difficultés à trouver des stages adaptés et à suivre leurs candidatures, tandis que les entreprises manquent d’un moyen simple pour publier et gérer leurs offres, ce qui rend le processus de stage dispersé et inefficace.</p>
+      <h5>How Might We:</h5><p>Comment pourrions-nous centraliser la recherche de stages et simplifier la gestion des offres et des candidatures pour les étudiants et les entreprises ?</p>
     </blockquote>
-    .
-  </div>
-</div>
-
----
-
-## Branche Fonctionnelle : Design Thinking
-### 3. IDÉATION
-
-<div class="img-container">
-  <div class="dt-card" style="border-top-color: #f39c12;">
-    <h4>Solutions retenues</h4>
     
   </div>
 </div>
 
 ---
 
-## Branche Fonctionnelle : Cas d'utilisation
+## Branche Fonctionnelle : Cas d'utilisation global
 
-
+### Diagramme cas d'utilisation global: Partie Public
 
 <div class="img-container">
-  <h3>Interaction Utilisateur (UML)</h3>
-  
+  <img src="images/global_usecase_public.png" class="img-usecase" alt="Global Use Case public">
 </div>
 
 ---
-## Branche Fonctionnelle : Maquettes (UI/UX)
+
+## Branche Fonctionnelle : Cas d'utilisation
+
+### Diagramme cas d'utilisation global: Partie Admin
+
+**Espace Entreprise**
+
+<div class="img-container">
+  <img src="images/global_usecase_admin_entreprise.puml.png" class="img-usecase" alt="Global Use Case admin">
+</div>
+
+---
+
+## Branche Fonctionnelle : Cas d'utilisation
+
+### Diagramme cas d'utilisation global: Partie Admin
+
+**Espace Admin**
+
+<div class="img-container">
+  <img src="images/global_use_case_admin.png" class="img-usecase" alt="Global Use Case admin">
+</div>
+
+---
+
+## Branche Fonctionnelle : Cas d'utilisation
+
+### Diagramme cas d'utilisation global: Partie Admin
+
+**Espace Etudiant**
+
+<div class="img-container">
+  <img src="images/global_usecase_admin_etudiant.png" class="img-usecase" alt="Global Use Case admin">
+</div>
+
+---
+
+## Branche Fonctionnelle : Cas d'utilisation
+
+### Diagramme cas d'utilisation global: Mobile
 
 
+<div class="img-container">
+  <img src="images/global_usecase_mobile.png" class="img-usecase" alt="Global Use Case mobile">
+</div>
 
-<div class="maquette-grid">
-  <div style="text-align: center;">
-   
-  </div>
+---
+
+## Branche Fonctionnelle : Maquette (partie publique)
+
+<div class="img-container">
+  <img src="images/landing.png"  alt="Maquettes UI">
+</div>
+
+---
+
+## Branche Fonctionnelle : Maquette (dashboard entreprise)
+
+<div class="img-container">
+  <img src="images/dashboard_entreprise.png"  alt="Maquettes UI">
 </div>
 
 ---
 
 ## 4. Branche Technique : Tech Stack
 <div class="sommaire-grid">
+
   <div class="dt-card" style="margin-top:0;">
-    <h4>Les technologies à utiliser</h4>
+    <h4>Backend</h4>
     <ul>
-      <li><strong>Base de données:</strong> MySQL </li>
-      <li><strong>Framework:</strong> Laravel 12</li>
-      <li><strong>Architecture:</strong> N-Tiers</li>
-      <strong>Controller:</strong> Requêtes HTTP
-      <strong>Service:</strong> Logique métier
-      <strong>Model:</strong> Base de données
-      <li><strong>Architecture:</strong> MVC</li>
-      <li><strong> Blade :</strong>Templates réutilisables (components, layouts).</li>
+      <li><strong>Framework :</strong> Laravel 12</li>
+      <li><strong>Base de données :</strong> MySQL</li>
+      <li><strong>Architecture :</strong> MVC / N-Tiers</li>
     </ul>
   </div>
+
   <div class="dt-card" style="margin-top:0; border-top-color: #27ae60;">
+    <h4>Frontend</h4>
     <ul>
-      <li><strong> AJAX :</strong> Interactions dynamiques (ex: Modales) sans rechargement de page.</li>
-      <li><strong>Alpine.js :</strong>  Librairie JavaScript pour les interactions dynamiques.</li>
-      <li><strong>Spatie :</strong> Librairie pour la gestion des permissions et rôles.</li>
-      <li><strong>Vite :</strong>   Outil de build rapide.</li>
-      <li><strong>Lucide :</strong> Librairie d'icônes.</li>
-      <li><strong>Tailwind CSS :</strong>Développement rapide, responsive.</li>
+      <li><strong>Preline, tailwind Css</strong></li>
+      <li><strong>Alpine.js</strong></li>
+      <li><strong>AJAX</strong></li>
     </ul>
   </div>
+
 </div>
 
 ---
@@ -288,38 +311,14 @@ style: |
 
 ## 5. Conception : Diagramme de classe
 
-
- <h3>Modélisation des données (MLD)</h3>
+<h3>Modélisation des données</h3>
 <div class="img-container">
- 
-  
+  <img src="images/diagram_class.png" class="img-diagram-class" alt="MLD Diagram">
 </div>
+
 
 ---
 
-## 5. Démonstration : Environnement & Outils
-
-<div class="sommaire-grid">
-  <div class="dt-card" style="margin-top:0;">
-    <h4>Environnement de Développement</h4>
-    <ul>
-      <li><strong>IDE :</strong> VS Code & Antigravity </li>
-      <li><strong>Monitoring DB :</strong> Workbench Sql</li>
-    </ul>
-  </div>
-  <div class="dt-card" style="margin-top:0; border-top-color: #27ae60;">
-    <h4>Gestion & Déploiement</h4>
-    <ul>
-      <li><strong>Modelisation UML :</strong>Mermaid/PlantUML</li>
-      <li><strong>Gestion de version :</strong> Git (GitHub)</li>
-      <li><strong>Navigateur :</strong> Chrome DevTools</li>
-    </ul>
-  </div>
-</div>
-
-<br>
-
----
 ## 6. Conclusion
 
 

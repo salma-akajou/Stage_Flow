@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="p-10 bg-slate-50">
+    <!-- Activity Feed Molecule -->
+    <div class="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-sm">
+        <div class="flex items-center justify-between mb-8">
+            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-3">
+                Activité récente ⚡
+            </h3>
+            <a href="#" class="text-xs font-bold text-indigo-600 hover:underline uppercase tracking-widest">Tout
+                voir</a>
+        </div>
+
+        <div
+            class="space-y-8 relative before:absolute before:inset-y-0 before:start-[1.125rem] before:w-0.5 before:bg-slate-100">
+            <!-- Item 1 -->
+            <div class="relative ps-10 group">
+                <span
+                    class="absolute start-0 top-0 size-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center ring-4 ring-white z-10 transition-transform group-hover:scale-110">
+                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                </span>
+                <div>
+                    <div class="flex justify-between items-center mb-1">
+                        <p class="text-sm font-bold text-slate-800">Candidature Acceptée</p>
+                        <span class="text-[10px] font-bold text-slate-400">12:45</span>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium">TechSolutions a retenu votre dossier pour le poste de
+                        Développeur.</p>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="relative ps-10 group">
+                <span
+                    class="absolute start-0 top-0 size-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center ring-4 ring-white z-10 transition-transform group-hover:scale-110">
+                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                        <circle cx="12" cy="12" r="3" />
+                    </svg>
+                </span>
+                <div>
+                    <div class="flex justify-between items-center mb-1">
+                        <p class="text-sm font-bold text-slate-800">Profil Consulté</p>
+                        <span class="text-[10px] font-bold text-slate-400">Hier</span>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium">Creative Agency a examiné votre profil et vos
+                        compétences.</p>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="relative ps-10 group">
+                <span
+                    class="absolute start-0 top-0 size-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center ring-4 ring-white z-10 transition-transform group-hover:scale-110">
+                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M12 2v20" />
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg>
+                </span>
+                <div>
+                    <div class="flex justify-between items-center mb-1">
+                        <p class="text-sm font-bold text-slate-800">Offre Favorisée</p>
+                        <span class="text-[10px] font-bold text-slate-400">2 jours</span>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium">Vous avez ajouté "UX Designer" à vos favoris.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

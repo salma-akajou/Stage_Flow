@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js" defer></script>
+</head>
+
+<body class="p-10 bg-slate-100">
+    <div class="space-y-4">
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Dropdown User</h3>
+
+        <div class="hs-dropdown relative inline-flex">
+            <button id="hs-dropdown-basic" type="button"
+                class="hs-dropdown-toggle py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-xl border border-slate-200 bg-white text-slate-800 shadow-sm hover:bg-slate-50 disabled:opacity-50 disabled:pointer-events-none">
+                <img class="size-6 rounded-full"
+                    src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+                    alt="User">
+                Salma Akajou
+                <svg class="hs-dropdown-open:rotate-180 size-4 text-slate-600" xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6" />
+                </svg>
+            </button>
+
+            <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-2xl p-2 mt-2 border border-slate-200"
+                aria-labelledby="hs-dropdown-basic">
+                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-slate-800 hover:bg-slate-100 focus:outline-none focus:bg-slate-100"
+                    href="#">
+                    <span>👤 Mon Profil</span>
+                </a>
+                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-slate-800 hover:bg-slate-100 focus:outline-none focus:bg-slate-100"
+                    href="#">
+                    <span>⚙️ Paramètres</span>
+                </a>
+                <div class="py-2 border-t border-slate-200">
+                    <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-rose-600 hover:bg-rose-50 focus:outline-none focus:bg-rose-100 font-semibold"
+                        href="#">
+                        <span>🚪 Déconnexion</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

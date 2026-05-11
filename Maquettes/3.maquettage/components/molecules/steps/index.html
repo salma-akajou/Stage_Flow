@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="p-10 bg-white">
+    <div class="space-y-4">
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Step Indicator</h3>
+        <ul class="relative flex flex-row gap-x-2">
+            <!-- Item -->
+            <li class="flex items-center gap-x-2 shrink basis-0 flex-1 group">
+                <div class="min-w-7 min-h-7 inline-flex justify-center items-center text-xs align-middle">
+                    <span
+                        class="size-7 flex justify-center items-center flex-shrink-0 bg-indigo-600 font-medium text-white rounded-full">1</span>
+                    <span class="ms-2 block text-sm font-medium text-slate-800">Rôle</span>
+                </div>
+                <div class="w-full h-px flex-1 bg-slate-200 group-last:hidden"></div>
+            </li>
+            <!-- Item -->
+            <li class="flex items-center gap-x-2 shrink basis-0 flex-1 group">
+                <div class="min-w-7 min-h-7 inline-flex justify-center items-center text-xs align-middle">
+                    <span
+                        class="size-7 flex justify-center items-center flex-shrink-0 bg-slate-100 font-medium text-slate-800 rounded-full">2</span>
+                    <span class="ms-2 block text-sm font-medium text-slate-500">Profil</span>
+                </div>
+                <div class="w-full h-px flex-1 bg-slate-200 group-last:hidden"></div>
+            </li>
+            <!-- Item -->
+            <li class="flex items-center gap-x-2 shrink basis-0 flex-1 group">
+                <div class="min-w-7 min-h-7 inline-flex justify-center items-center text-xs align-middle">
+                    <span
+                        class="size-7 flex justify-center items-center flex-shrink-0 bg-slate-100 font-medium text-slate-800 rounded-full">3</span>
+                    <span class="ms-2 block text-sm font-medium text-slate-500">Final</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

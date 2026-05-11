@@ -1,0 +1,7 @@
+statut,telephone,message_motivation,etudiant_email,offer_title,cv_path,photo,portfolio_url
+En attente,0612345678,"Je suis très motivé pour ce stage.",amal@example.com,Développeur FullStack,cvs/amal_cv.pdf,photos/salma_apply.jpg,github.com/salma-akajou
+Accepté,0677889900,"Mon profil correspond parfaitement.",ahmed@example.com,Stage PFE Data Science,cvs/ahmed_cv.pdf,photos/ahmed_apply.jpg,behance.net/ahmed
+Refusé,0600112233,"C'est une opportunité incroyable.",yassine@example.com,UX/UI Designer,cvs/yassine_cv.pdf,photos/yassine_apply.jpg,yassine.dev
+En attente,0612345678,"Passionnée par Laravel.",amal@example.com,Développeur Mobile Flutter,cvs/amal_cv2.pdf,photos/salma_apply.jpg,github.com/amal-dev
+Accepté,0612345678,"Hâte de rejoindre l'équipe Orange.",amal@example.com,Community Manager,cvs/amal_cv3.pdf,photos/salma_apply.jpg,github.com/amal-dev
+Refusé,0612345678,"Design est ma passion.",amal@example.com,Web Designer Créatif,cvs/amal_cv4.pdf,photos/salma_apply.jpg,github.com/amal-dev
