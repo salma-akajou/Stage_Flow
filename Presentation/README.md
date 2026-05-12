@@ -227,7 +227,7 @@ style: |
 **Espace Entreprise**
 
 <div class="img-container">
-  <img src="images/global_usecase_admin_entreprise.puml.png" class="img-usecase" alt="Global Use Case admin">
+  <img src="images/global_usecase_admin_entreprise.png" class="img-usecase" alt="Global Use Case admin">
 </div>
 
 ---
@@ -267,15 +267,7 @@ style: |
 
 ---
 
-## Branche Fonctionnelle : Maquette (partie publique)
-
-<div class="img-container">
-  <img src="images/landing.png"  alt="Maquettes UI">
-</div>
-
----
-
-## Branche Fonctionnelle : Maquette (dashboard entreprise)
+## Branche Fonctionnelle : Maquettes Mobile
 
 <div class="img-container">
   <img src="images/dashboard_entreprise.png"  alt="Maquettes UI">
@@ -283,6 +275,13 @@ style: |
 
 ---
 
+## Branche Fonctionnelle : Maquettes Web
+
+<div class="img-container">
+  <img src="images/maquette_mobile.png"  alt="Maquettes UI">
+</div>
+
+---
 ## 4. Branche Technique : Tech Stack
 <div class="sommaire-grid">
 

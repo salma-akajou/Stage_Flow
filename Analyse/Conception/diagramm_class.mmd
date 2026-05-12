@@ -10,9 +10,9 @@ classDiagram
         +string prenom
         +string nom
         +string email
-        +string mot_de_passe
-        +string photo
-        +datetime date_creation
+        +string password
+        +enum statut
+        +datetime created_at
     }
 
     class Etudiant {
@@ -21,9 +21,11 @@ classDiagram
         +enum etablissement
         +string filiere
         +enum niveau_etudes
+        +string photo
         +text bio
         +string github
         +string linkedin
+        +int vues
     }
 
     class Entreprise {
@@ -37,11 +39,12 @@ classDiagram
         +string registre_commerce
         +string logo
         +enum taille
+        +int vues
     }
 
     class Administrateur {
         +gerer_comptes()
-        +moderation_offres()
+        +moderer_feedbacks()
         +voir_statistiques()
     }
 
@@ -73,7 +76,7 @@ classDiagram
         +enum statut
         +string telephone
         +text message_motivation
-        +datetime date_postulation
+        +datetime created_at
         +int etudiant_id
         +int offre_id
         +int cv_id
@@ -82,7 +85,7 @@ classDiagram
     class DocumentCV {
         +int id
         +string file_path
-        +datetime date_upload
+        +datetime created_at
         +int etudiant_id
     }
 
@@ -91,14 +94,15 @@ classDiagram
         +text texte
         +int note
         +int auteur_id
-        +datetime date_creation
+        +boolean valide
+        +datetime created_at
     }
 
     class Favoris {
         +int id
         +int etudiant_id
         +int offre_id
-        +datetime date_ajout
+        +datetime created_at
     }
 
     class Ville {
@@ -107,7 +111,7 @@ classDiagram
     }
 
     %% ====================
-    %% Héritage
+    %% Héritage (Logique)
     %% ====================
     Utilisateur <|-- Etudiant
     Utilisateur <|-- Entreprise
@@ -117,21 +121,21 @@ classDiagram
     %% Relations & Cardinalités
     %% ====================
     
-    Ville "1" -- "n" Etudiant : réside
-    Ville "1" -- "n" Entreprise : située
-    Ville "1" -- "n" Offre : localisée
+    Ville "1" -- "*" Etudiant : réside
+    Ville "1" -- "*" Entreprise : située
+    Ville "1" -- "*" Offre : localisée
 
-    Etudiant "1" -- "n" Candidature : postule
-    Etudiant "1" -- "n" Favoris : ajoute
-    Etudiant "1" -- "n" DocumentCV : possède
-    Etudiant "1" -- "n" Feedback : écrit
+    Etudiant "1" -- "*" Candidature : postule
+    Etudiant "1" -- "*" Favoris : ajoute
+    Etudiant "1" -- "*" DocumentCV : possède
+    Etudiant "1" -- "0..*" Feedback : écrit
     
-    Entreprise "1" -- "n" Feedback : écrit
-    Entreprise "1" -- "n" Offre : publie
+    Entreprise "1" -- "0..*" Feedback : écrit
+    Entreprise "1" -- "*" Offre : publie
     
-    Offre "1" -- "n" Candidature : concerne
-    Offre "1" -- "n" Favoris : est ciblé par
+    Offre "1" -- "*" Candidature : concerne
+    Offre "1" -- "*" Favoris : est ciblé par
     
-    Administrateur "1" -- "n" Feedback : modère
+    Administrateur "1" -- "*" Feedback : modère
 
     Candidature "1" -- "1" DocumentCV : utilise

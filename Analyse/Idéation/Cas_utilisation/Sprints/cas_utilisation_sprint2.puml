@@ -36,6 +36,8 @@ package "Sprint 2 – Fonctionnalités Avancées (StageFlow)" {
 
 
     Ent -- UC2
+    usecase "Exporter candidatures (PDF/Excel)" as UC4
+    Ent -- UC4
 
 
 
@@ -45,12 +47,16 @@ package "Sprint 2 – Fonctionnalités Avancées (StageFlow)" {
         usecase "Consulter statistiques avancées" as UC3
 
     Admin -- UC3
+    usecase "Exporter les données (utilisateurs)" as UC5
+    Admin -- UC5
 
     usecase "S'authentifier" as Auth
 
 UC1 ..> Auth : <<include>>
 UC2 ..> Auth : <<include>>
 UC3 ..> Auth : <<include>>
+UC4 ..> Auth : <<include>>
+UC5 ..> Auth : <<include>>
 
 }
 
