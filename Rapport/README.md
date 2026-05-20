@@ -130,7 +130,7 @@ Dans le cadre de ce projet, nous avons organisé le travail selon les principes 
 - **Inspection :** Chaque sprint est évalué pour détecter les améliorations possibles.
 - **Adaptation :** L’équipe ajuste le plan de travail selon les résultats des sprints précédents.
 
-![Scrum](images/scrum.jpg)
+![Scrum](images/scrum.png)
 
 ### Design thinking
 Le Design Thinking est une méthodologie de conception centrée sur l’utilisateur, qui vise à comprendre ses besoins réels afin de proposer des solutions innovantes et adaptées. Cette approche favorise la créativité, la collaboration et la résolution efficace de problèmes complexes en plaçant l’expérience de l’utilisateur au cœur du processus.

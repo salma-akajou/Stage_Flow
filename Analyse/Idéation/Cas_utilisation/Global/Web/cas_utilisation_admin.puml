@@ -31,6 +31,7 @@ usecase "Suivre candidatures" as UC6
 usecase "Ajouter favoris" as UC7
 usecase "Ajouter un feedback" as UC8
 usecase "Recevoir des notifications" as UC17
+usecase "Utiliser le chatbot" as UC22
 
 
 '=====================
@@ -44,6 +45,7 @@ usecase "Gérer candidatures" as UC12
 usecase "Ajouter un feedback" as UC13
 usecase "Recevoir des notifications" as UC18
 usecase "Exporter candidatures (PDF/Excel)" as UC20
+usecase "Utiliser le chatbot" as UC23
 
 
 '=====================
@@ -83,6 +85,7 @@ E -- UC6
 E -- UC7
 E -- UC8
 E -- UC17
+E -- UC22
 
 UC4 ..> UC5 : <<include>>
 
@@ -98,6 +101,7 @@ Ent -- UC12
 Ent -- UC13
 Ent -- UC18
 Ent -- UC20
+Ent -- UC23
 
 
 '=====================

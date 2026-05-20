@@ -189,7 +189,7 @@ style: |
 
 
 <div class="img-container">
-  <img src="images/scrum.jpg" class="img-methodo" alt="Scrum">
+  <img src="images/scrum.png" class="img-methodo" alt="Scrum">
 </div>
 
 ---
@@ -267,21 +267,7 @@ style: |
 
 ---
 
-## Branche Fonctionnelle : Maquettes Mobile
 
-<div class="img-container">
-  <img src="images/dashboard_entreprise.png"  alt="Maquettes UI">
-</div>
-
----
-
-## Branche Fonctionnelle : Maquettes Web
-
-<div class="img-container">
-  <img src="images/maquette_mobile.png"  alt="Maquettes UI">
-</div>
-
----
 ## 4. Branche Technique : Tech Stack
 <div class="sommaire-grid">
 
