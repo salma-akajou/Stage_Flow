@@ -288,8 +288,28 @@ style: |
       <li><strong>AJAX</strong></li>
     </ul>
   </div>
-
+  
 </div>
+
+---
+
+## Branche Technique : Architecture de projet
+<div class="sommaire-grid" style="grid-template-columns: repeat(3, 1fr); gap: 15px;">
+
+  <div class="dt-card" style="margin-top:0;">
+    <h4>Modèle MVC</h4>
+    <p style="margin-top: 10px; font-size: 0.95em; line-height: 1.4;">Découpage structuré avec le framework Laravel.</p>
+  </div>
+
+  <div class="dt-card" style="margin-top:0; border-top-color: #27ae60;">
+    <h4>Architecture 3-Tiers</h4>
+    <p style="margin-top: 10px; font-size: 0.95em; line-height: 1.4;">Séparation nette entre présentation, logique métier et données.</p>
+  </div>
+
+  
+</div>
+
+
 
 ---
 

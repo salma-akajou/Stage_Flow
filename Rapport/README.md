@@ -44,7 +44,38 @@
 
 ## Liste des figures
 
-
+- [Figure 1 : Contexte de projet](#figure-1--contexte-de-projet)
+- [Figure 2 : Méthode Scrum](#figure-2--méthode-scrum)
+- [Figure 3 : Design thinking](#figure-3--design-thinking)
+- [Figure 4 : Processus 2TUP](#figure-4--processus-2tup)
+- [Figure 5 : Carte d'empathie d'apprenant](#figure-5--carte-dempathie-dapprenant)
+- [Figure 6 : Carte d'empathie d'entreprise](#figure-6--carte-dempathie-dentreprise)
+- [Figure 7 : Carte d'empathie d'admin](#figure-7--carte-dempathie-dadmin)
+- [Figure 8 : Diagramme de cas d'utilisation espace public](#figure-8--diagramme-de-cas-dutilisation-espace-public)
+- [Figure 9 : Diagramme de cas d'utilisation espace étudiant](#figure-9--diagramme-de-cas-dutilisation-espace-étudiant)
+- [Figure 10 : Diagramme de cas d'utilisation espace entreprise](#figure-10--diagramme-de-cas-dutilisation-espace-entreprise)
+- [Figure 11 : Diagramme de cas d'utilisation admin](#figure-11--diagramme-de-cas-dutilisation-admin)
+- [Figure 12 : Diagramme de cas d'utilisation Mobile](#figure-12--diagramme-de-cas-dutilisation-mobile)
+- [Figure 13 : Diagramme de cas d'utilisation sprint 1 web](#figure-13--diagramme-de-cas-dutilisation-sprint-1-web)
+- [Figure 14 : Diagramme de cas d'utilisation sprint 1 Mobile](#figure-14--diagramme-de-cas-dutilisation-sprint-1-mobile)
+- [Figure 15 : Diagramme de cas d'utilisation sprint 2 web](#figure-15--diagramme-de-cas-dutilisation-sprint-2-web)
+- [Figure 16 : Diagramme de cas d'utilisation sprint 2 Mobile](#figure-16--diagramme-de-cas-dutilisation-sprint-2-mobile)
+- [Figure 17 : Diagramme de cas d'utilisation sprint 3](#figure-17--diagramme-de-cas-dutilisation-sprint-3)
+- [Figure 18 : Architecture globale de projet](#figure-18--architecture-globale-de-projet)
+- [Figure 19 : Diagramme de classe](#figure-19--diagramme-de-classe)
+- [Figure 20 : Charte graphique](#figure-20--charte-graphique)
+- [Figure 21 : Maquette Landing page](#figure-21--maquette-landing-page)
+- [Figure 22 : Maquette Tableau de bord étudiant](#figure-22--maquette-tableau-de-bord-étudiant)
+- [Figure 23 : Maquette Tableau de bord entreprise](#figure-23--maquette-tableau-de-bord-entreprise)
+- [Figure 24 : Maquette Tableau de bord administrateur](#figure-24--maquette-tableau-de-bord-administrateur)
+- [Figure 25 : Maquette de l'application mobile](#figure-25--maquette-de-lapplication-mobile)
+- [Figure 26 : Interface Tableau de bord étudiant](#figure-26--interface-tableau-de-bord-étudiant)
+- [Figure 27 : Interface Liste des offres](#figure-27--interface-liste-des-offres)
+- [Figure 28 : Interface Candidatures étudiant](#figure-28--interface-candidatures-étudiant)
+- [Figure 29 : Interface Tableau de bord entreprise](#figure-29--interface-tableau-de-bord-entreprise)
+- [Figure 30 : Interface Gestion des offres](#figure-30--interface-gestion-des-offres)
+- [Figure 31 : Interface Candidatures reçues](#figure-31--interface-candidatures-reçues)
+- [Figure 32 : Interfaces de l'application mobile](#figure-32--interfaces-de-lapplication-mobile)
 
 ---
 
@@ -70,16 +101,17 @@ De leur côté, les entreprises éprouvent des difficultés à gérer efficaceme
 
 ## Contexte de projet
 
-![Contexte du projet](images/contexte.png)
-
 Dans le cadre de ma formation en développement web, nous devons réaliser un projet de fin de formation qui reflète nos compétences et répond à un besoin réel. En discutant avec mes collègues et en observant les difficultés rencontrées par les étudiants de mon établissement, j’ai constaté que beaucoup avaient du mal à trouver un stage correspondant à leur profil.
 
 Les offres étaient dispersées sur plusieurs sites et réseaux sociaux, et il était difficile de suivre l’état des candidatures. Cette situation a inspiré l’idée du projet Stage Flow, une application web visant à centraliser les offres de stages, simplifier la recherche pour les étudiants et faciliter la gestion des candidatures pour les entreprises.
 
+![Contexte du projet](images/contexte.png)
+<p align="center" id="figure-1--contexte-de-projet"><em>Figure 1 : Contexte de projet</em></p>
+
 ---
 
 ## Cahier de charge
-
+Dans le cadre de la réalisation du projet Stage Flow, ce cahier des charges présente les besoins fonctionnels et techniques de la plateforme. Il définit les objectifs du projet, les différents utilisateurs concernés ainsi que les principales fonctionnalités attendues afin d’assurer une gestion efficace, simple et centralisée des offres de stage et des candidatures. 
 ### Description
 Stage Flow est une plateforme web centralisée qui permet aux étudiants de rechercher, consulter et postuler aux offres de stage, et aux entreprises de publier et gérer leurs offres et candidatures facilement. 
 
@@ -114,6 +146,8 @@ Stage Flow est une plateforme web centralisée qui permet aux étudiants de rech
 - Les statistiques sont claires et précises.
 - Les fonctionnalités prévues dans les deux sprints sont implémentées et testées.
 
+En conclusion, le projet Stage Flow vise à offrir une plateforme moderne et efficace facilitant la gestion des stages pour les étudiants, les entreprises et les administrateurs. Grâce aux fonctionnalités prévues, cette solution permettra de simplifier les processus de recherche, de candidature et de suivi des stages tout en garantissant une expérience utilisateur fluide, sécurisée et adaptée aux besoins des différents acteurs.
+
 ---
 
 ## Méthode de travail
@@ -131,6 +165,9 @@ Dans le cadre de ce projet, nous avons organisé le travail selon les principes 
 - **Adaptation :** L’équipe ajuste le plan de travail selon les résultats des sprints précédents.
 
 ![Scrum](images/scrum.png)
+<p align="center" id="figure-2--méthode-scrum"><em>Figure 2 : Méthode Scrum</em></p>
+
+En résumé, la méthodologie Scrum a garanti une gestion de projet agile, flexible et structurée, permettant une livraison progressive et efficace de StageFlow. 
 
 ### Design thinking
 Le Design Thinking est une méthodologie de conception centrée sur l’utilisateur, qui vise à comprendre ses besoins réels afin de proposer des solutions innovantes et adaptées. Cette approche favorise la créativité, la collaboration et la résolution efficace de problèmes complexes en plaçant l’expérience de l’utilisateur au cœur du processus.
@@ -145,6 +182,9 @@ Cette méthode repose sur cinq étapes principales :
 Dans notre projet, le Design Thinking nous a permis de concevoir une plateforme répondant efficacement aux besoins des étudiants, des entreprises et des administrateurs.
 
 ![Design thinking](images/designthinking.png)
+<p align="center" id="figure-3--design-thinking"><em>Figure 3 : Design thinking</em></p>
+
+En résumé, le Design Thinking a permis de concevoir une plateforme innovante et centrée sur l'utilisateur, répondant précisément aux besoins réels de chaque acteur de StageFlow. 
 
 ### 2TUP 
 La méthode 2TUP (Two Tracks Unified Process) est un processus de développement logiciel itératif et incrémental, issu du Unified Process (UP). Elle se distingue par une structure en « Y » qui sépare le projet en deux branches complémentaires : la branche fonctionnelle, dédiée à l’analyse des besoins et des fonctionnalités attendues, et la branche technique, consacrée à la conception de l’architecture et au choix des technologies.
@@ -152,6 +192,10 @@ La méthode 2TUP (Two Tracks Unified Process) est un processus de développement
 Ces deux branches évoluent en parallèle puis se rejoignent dans une phase de convergence, où sont réalisées la conception détaillée, le développement et les tests de l’application. Cette approche permet d’anticiper les contraintes techniques tout en garantissant une solution cohérente et adaptée aux besoins des utilisateurs.
 
 ![2TUP](images/2TUP.png)
+<p align="center" id="figure-4--processus-2tup"><em>Figure 4 : Processus 2TUP</em></p>
+
+En résumé, la méthode 2TUP a permis de séparer les besoins fonctionnels et techniques, garantissant à StageFlow une architecture robuste et parfaitement adaptée aux utilisateurs.
+
 ---
 
 ## Branche fonctionnelle
@@ -179,6 +223,7 @@ L’apprenant souhaite disposer d’une plateforme centralisée lui permettant d
   - Des notifications pour les nouvelles offres et les réponses des entreprises.
 
 ![Carte empathie apprenant](images/carte_d'empathie_apprenant.png)
+<p align="center" id="figure-5--carte-dempathie-dapprenant"><em>Figure 5 : Carte d'empathie d'apprenant</em></p>
 
 #### Profil : Entreprise à la recherche de stagiaires — LadrissiCom
 L’entreprise souhaite disposer d’une plateforme centralisée lui permettant de recevoir, trier et suivre efficacement les candidatures afin de sélectionner rapidement les profils les plus adaptés à ses besoins.
@@ -197,6 +242,9 @@ L’entreprise souhaite disposer d’une plateforme centralisée lui permettant 
   - Une réduction du temps consacré au traitement des candidatures.
 
   ![Carte empathie entreprise](images/carte_d'empathie_entreprise.png)
+  <p align="center" id="figure-6--carte-dempathie-dentreprise"><em>Figure 6 : Carte d'empathie d'entreprise</em></p>
+
+  
 
 #### Profil : Administrateur de la plateforme 
 L’administrateur souhaite disposer d’un espace de gestion lui permettant de superviser l’ensemble de la plateforme, de contrôler les utilisateurs et d’assurer son bon fonctionnement.
@@ -213,6 +261,7 @@ L’administrateur souhaite disposer d’un espace de gestion lui permettant de 
   - Des outils de modération et de contrôle du contenu.
 
 ![Carte empathie admin](images/carte_d'empathie_admin.png)
+<p align="center" id="figure-7--carte-dempathie-dadmin"><em>Figure 7 : Carte d'empathie d'admin</em></p>
 
 ### Définition de problème
 
@@ -238,20 +287,28 @@ Le diagramme de cas d’utilisation de notre application Stage Flow illustre les
 
 #### Diagramme de cas d’utilisation globale : Web
 
+Le diagramme de cas d'utilisation global modélise les interactions entre les différents acteurs et l'application web StageFlow. Il cartographie de manière synthétique les fonctionnalités principales accessibles à chaque profil utilisateur. 
+
 **Espace Public :** 
 ![diagramme use case public](images/global_usecase_public.png)
+<p align="center" id="figure-8--diagramme-de-cas-dutilisation-espace-public"><em>Figure 8 : Diagramme de cas d'utilisation espace public</em></p>
 
 **Espace Etudiant :** 
 ![diagramme use case etudiant](images/global_usecase_etudiant.png)
+<p align="center" id="figure-9--diagramme-de-cas-dutilisation-espace-étudiant"><em>Figure 9 : Diagramme de cas d'utilisation espace étudiant</em></p>
 
 **Espace Entreprise :** 
 ![diagramme use case entreprise](images/global_usecase_entreprise.png)
+<p align="center" id="figure-10--diagramme-de-cas-dutilisation-espace-entreprise"><em>Figure 10 : Diagramme de cas d'utilisation espace entreprise</em></p>
 
 **Espace Administrateur :** 
 ![diagramme use case admin](images/global_usecase_admin.png)
+<p align="center" id="figure-11--diagramme-de-cas-dutilisation-admin"><em>Figure 11 : Diagramme de cas d'utilisation admin</em></p>
 
 #### Diagramme de cas d’utilisation globale : Mobile
+Le diagramme de cas d'utilisation mobile cartographie les fonctionnalités majeures de StageFlow adaptées aux téléphones. Il illustre de manière synthétique comment les acteurs interagissent avec l'application pour un usage nomade et fluide. 
 ![diagramme use case mobile](images/global_usecase_mobile.png)
+<p align="center" id="figure-12--diagramme-de-cas-dutilisation-mobile"><em>Figure 12 : Diagramme de cas d'utilisation Mobile</em></p>
 
 ### Diagramme de cas d’utilisation sprint 1
 
@@ -259,6 +316,7 @@ Le diagramme de cas d’utilisation de notre application Stage Flow illustre les
 Ce premier sprint correspond au MVP de Stage Flow. Il met en place les fonctionnalités essentielles permettant aux étudiants de consulter et postuler aux offres de stage, aux entreprises de publier et gérer leurs offres et candidatures, et à l’administrateur de gérer les comptes utilisateurs de manière sécurisée et modérer les feedbacks.
 
 ![diagramme use case sprint 1 web](images/use_case_sprint1_web.png)
+<p align="center" id="figure-13--diagramme-de-cas-dutilisation-sprint-1-web"><em>Figure 13 : Diagramme de cas d'utilisation sprint 1 web</em></p>
 
 Ce sprint établit ainsi le fonctionnement de base de la plateforme avant l’ajout des fonctionnalités avancées.
 
@@ -266,6 +324,7 @@ Ce sprint établit ainsi le fonctionnement de base de la plateforme avant l’aj
 Ce premier sprint de l’application mobile met en place les fonctionnalités essentielles destinées aux étudiants. Il permet de consulter la page d’accueil, d’accéder au tableau de bord, de visualiser les offres de stage ainsi que les candidatures soumises. Les données affichées dans l’application mobile sont fournies par l’API développée dans la plateforme web.
 
 ![diagramme use case sprint 1 mobile](images/use_case_sprint1_mobile.png)
+<p align="center" id="figure-14--diagramme-de-cas-dutilisation-sprint-1-mobile"><em>Figure 14 : Diagramme de cas d'utilisation sprint 1 Mobile</em></p>
 
 
 Ce sprint établit ainsi les fonctionnalités de base de l’application mobile, avant l’intégration des fonctionnalités avancées et des interactions en temps réel. 
@@ -278,6 +337,7 @@ Ce deuxième sprint introduit les fonctionnalités avancées de la plateforme St
 Par ailleurs, l’administrateur bénéficie de fonctionnalités de supervision avancées, notamment la consultation de statistiques détaillées et l’export des données des utilisateurs.
 
 ![diagramme use case sprint 2 web](images/use_case_sprint2_web.png)
+<p align="center" id="figure-15--diagramme-de-cas-dutilisation-sprint-2-web"><em>Figure 15 : Diagramme de cas d'utilisation sprint 2 web</em></p>
 
 
 Ce sprint renforce ainsi les capacités de gestion et de suivi de la plateforme tout en améliorant la communication entre les différents acteurs. 
@@ -288,9 +348,21 @@ Ce deuxième sprint de l’application mobile apporte des fonctionnalités suppl
 Ce sprint repose également sur une intégration avec le backend web via une API dédiée, garantissant la synchronisation et la continuité des données entre les deux plateformes. 
 
 ![diagramme use case sprint 2](images/use_case_sprint2_mobile.png)
+<p align="center" id="figure-16--diagramme-de-cas-dutilisation-sprint-2-mobile"><em>Figure 16 : Diagramme de cas d'utilisation sprint 2 Mobile</em></p>
 
 
 Ce sprint a pour objectif d’enrichir l’application mobile avec des fonctionnalités essentielles tout en assurant une synchronisation sécurisée et fluide des données avec le backend web via une API. 
+
+---
+
+### Diagramme de cas d’utilisation sprint 3
+
+Ce troisième sprint introduit un Assistant Virtuel (Chatbot) afin d'offrir une assistance instantanée sur StageFlow. Il permet aux étudiants, entreprises et visiteurs de poser une question et de recevoir une réponse automatique. Pour les utilisateurs enregistrés, l'accès à ces fonctionnalités inclut l'étape obligatoire de s'authentifier. 
+
+![diagramme use case sprint 3](images/use_case_sprint3.png)
+<p align="center" id="figure-17--diagramme-de-cas-dutilisation-sprint-3"><em>Figure 17 : Diagramme de cas d'utilisation sprint 3</em></p>
+
+Ce sprint établit ainsi les fonctionnalités de base de l’application mobile, avant l’intégration des fonctionnalités avancées et des interactions en temps réel. 
 
 ---
 
@@ -323,6 +395,8 @@ Pour la réalisation de StageFlow, plusieurs technologies ont été sélectionn�
 - **Mermaid :** outil permettant de générer des schémas et diagrammes à partir d’une syntaxe textuelle simple.
 - **PlantUML :** solution utilisée pour concevoir les différents diagrammes UML nécessaires à l’analyse et à la documentation du système.
 
+En résumé, cette stack technique moderne et cohérente garantit à StageFlow une base robuste, performante et évolutive, parfaitement optimisée pour un développement rapide et une expérience utilisateur fluide. 
+
 ### Architecture de projet 
 
 Le projet StageFlow repose sur une architecture structurée combinant le modèle MVC, l’architecture 3-tiers et une architecture globale intégrant l’application web, l’API et l’application mobile développée avec NativePHP. Cette organisation facilite la maintenance et l’évolution du système. 
@@ -340,41 +414,27 @@ Le système repose sur une architecture centralisée dans laquelle l’applicati
 Cette approche garantit la cohérence des fonctionnalités sur toutes les plateformes et simplifie l’évolution de l’application.
 
 ![architecture](images/architecture.png)
+<p align="center" id="figure-18--architecture-globale-de-projet"><em>Figure 18 : Architecture globale de projet</em></p>
+
+En résumé, cette architecture hybride et centralisée garantit une séparation claire des responsabilités et une cohérence totale entre le web et le mobile, assurant ainsi la pérennité, la sécurité et la maintenabilité de StageFlow. 
 
 
-### Prototype (Fonctionnalitées, Classes)
+### Prototype (Fonctionnalités, Classes)
 
-La plateforme StageFlow est organisée en plusieurs espaces sécurisés, accessibles selon le rôle de l’utilisateur (administrateur, étudiant ou entreprise). Chaque espace offre des fonctionnalités adaptées aux besoins de son utilisateur. 
+Avant de commencer le développement de StageFlow, j'ai réalisé un **projet technique** servant de prototype : une **application de gestion et de filtrage de films**, développée avec la stack technologique cible (Laravel, Tailwind CSS, Preline UI, Alpine.js, Spatie, AJAX, API, NativePHP). Ce projet a été construit en 8 versions progressives pour maîtriser chaque brique technologique avant le projet principal.
 
-**Espace Administrateur**
-- Gestion des comptes utilisateurs (étudiants et entreprises).
-- Validation et modération des feedbacks.
-- Consultation des statistiques globales de la plateforme.
-- Supervision générale du bon fonctionnement du système.
+**Fonctionnalités clés :**
+- **Visiteur :** Navigation sur la page d'accueil, recherche et consultation des détails des films.
+- **Admin :** Gestion complète (CRUD) des films et des catégories, filtrage et recherche dynamique.
 
-**Espace Étudiant (Web & Mobile)**
-- Création et mise à jour du profil personnel.
-- Recherche et consultation des offres de stage.
-- Ajout d’offres aux favoris.
-- Dépôt de candidatures avec CV et message de motivation.
-- Suivi de l’état des candidatures.
+**Classes principales du modèle :**
+- **Film :** `{id, titre, description, directeur, image}`
+- **Categorie :** `{id, nom}`
+- **User :** `{id, nom, email, mot_de_passe}`
 
-**Espace Entreprise**
-- Gestion du profil de l’entreprise.
-- Publication, modification et suppression des offres de stage.
-- Consultation des candidatures reçues.
-- Évaluation et retour d’expérience via les feedbacks.
-
-**Classes principales du modèle**
-- **Utilisateur :** `{id, prénom, nom, email, password, statut}`
-- **Étudiant :** `{filière, niveau_etudes, photo, bio, GitHub, LinkedIn}`
-- **Entreprise :** `{nom_entreprise, secteur, adresse, logo, taille}`
-- **Administrateur :** `gestion et supervision de la plateforme`
-- **Offre :** `{titre, description, type_stage, durée, format, secteur, statut}`
-- **Candidature :** `{statut, téléphone, message_motivation, date_creation}`
-- **DocumentCV :** `{file_path, date_creation}`
-- **Favoris :** `{date_creation}`
-- **Feedback :** `{texte, note, valide}`
+**Relations principales :**
+- **Film <-> Categorie :** Relation Many-to-Many (plusieurs-à-plusieurs).
+- **User <-> Film :** Relation One-to-Many (un-à-plusieurs, créateur du film).
 
 ### Conception
 
@@ -384,10 +444,12 @@ Dans la phase de conception, nous avons défini la structure fonctionnelle et te
 
 Le diagramme de classes représente la structure interne de l’application StageFlow et illustre les différentes entités du système ainsi que les relations entre elles. Il met en évidence les classes principales telles que Utilisateur, Étudiant, Entreprise et Administrateur, qui représentent les différents acteurs de la plateforme.
 
-![diagramme de classe](images/diagram_class.png)
+Il structure l'application StageFlow en reliant ses acteurs (Étudiant, Entreprise, Administrateur) à ses fonctionnalités clés. Il modélise ainsi la publication des offres, la gestion des candidatures, les interactions (feedbacks, favoris, notifications) et le contrôle des accès via les rôles et permissions. 
 
-- Le diagramme de classes présente la structure interne de l’application StageFlow et les relations entre ses différentes entités. Il met en évidence les classes principales telles que Étudiant, Entreprise et Administrateur, qui représentent les acteurs de la plateforme.
-- Les entreprises peuvent publier des offres de stage, tandis que les étudiants peuvent consulter les offres, postuler et suivre leurs candidatures via la classe Candidature. Le système inclut également des fonctionnalités comme les feedbacks, les favoris et les notifications, ainsi qu’un mécanisme de gestion des rôles et des permissions pour contrôler les accès.
+![diagramme de classe](images/diagram_class.png)
+<p align="center" id="figure-19--diagramme-de-classe"><em>Figure 19 : Diagramme de classe</em></p>
+
+En résumé, ce diagramme de classes fournit une cartographie précise de la base de données de StageFlow, garantissant une structure relationnelle robuste et cohérente pour soutenir toutes les fonctionnalités de la plateforme. 
 
 #### Charte graphique 
 
@@ -396,6 +458,9 @@ La charte graphique de StageFlow définit l’identité visuelle de la plateform
 Cette charte intègre également un ensemble de composants UI standardisés (boutons, badges, états) permettant d’uniformiser les interfaces et de garantir une meilleure ergonomie sur l’ensemble de la plateforme web et mobile.
 
 ![la charte graphique](images/charte_graphique.png)
+<p align="center" id="figure-20--charte-graphique"><em>Figure 20 : Charte graphique</em></p>
+
+En conclusion, cette charte graphique assure à StageFlow une identité visuelle cohérente, moderne et professionnelle, garantissant une expérience utilisateur fluide et uniforme sur toutes les interfaces. 
 
 #### Maquettes
 
@@ -403,18 +468,23 @@ Les maquettes de l’application Stage Flow présentent une interface simple et 
 
 **Maquette 1 : Landing page**  
 ![maquette landing page](images/landing.png)
+<p align="center" id="figure-21--maquette-landing-page"><em>Figure 21 : Maquette Landing page</em></p>
 
 **Maquette 2 : Tableau de bord étudiant**  
 ![maquette dashboard étudiant](images/maquette_dashboard_student.png)
+<p align="center" id="figure-22--maquette-tableau-de-bord-étudiant"><em>Figure 22 : Maquette Tableau de bord étudiant</em></p>
 
 **Maquette 3 : Tableau de bord entreprise**  
 ![maquette dashboard entreprise](images/maquette_dashboard_entreprise.png)
+<p align="center" id="figure-23--maquette-tableau-de-bord-entreprise"><em>Figure 23 : Maquette Tableau de bord entreprise</em></p>
 
 **Maquette 4 : Tableau de bord administrateur**  
 ![maquette dashboard admin](images/maquette_dashboard_admin.png)
+<p align="center" id="figure-24--maquette-tableau-de-bord-administrateur"><em>Figure 24 : Maquette Tableau de bord administrateur</em></p>
 
 **Maquettes Mobile :**  
 ![maquettes de l'application mobile](images/maquettes_mobile.png)
+<p align="center" id="figure-25--maquette-de-lapplication-mobile"><em>Figure 25 : Maquette de l'application mobile</em></p>
 
 En conclusion, ces maquettes illustrent l’interface de l’application Stage Flow sur web et mobile et donnent un aperçu global de l’organisation des écrans et de la navigation.
 
@@ -426,15 +496,33 @@ La phase de réalisation constitue l’étape durant laquelle les maquettes et l
 
 ### Interfaces
 
+Cette section présente l'ensemble des interfaces graphiques de la plateforme StageFlow, développées et codées au fil des différents sprints. Conçues pour être modernes, ergonomiques et entièrement responsives, ces pages concrétisent visuellement l'ensemble des fonctionnalités et des parcours utilisateurs du système.
+ 
 **Interfaces Web Sprint 1 :**  
 ![iterface dashboard etudiant](images/dashboard_etudiant.png)
+<p align="center" id="figure-26--interface-tableau-de-bord-étudiant"><em>Figure 26 : Interface Tableau de bord étudiant</em></p>
+
 ![iterface offres etudiant](images/offres.png)
+<p align="center" id="figure-27--interface-liste-des-offres"><em>Figure 27 : Interface Liste des offres</em></p>
+
 ![iterface candidatures etudiant](images/candidatures_etudiant.png)
+<p align="center" id="figure-28--interface-candidatures-étudiant"><em>Figure 28 : Interface Candidatures étudiant</em></p>
+
 ![iterface dashboard entreprise](images/dashboard_entreprise.png)
+<p align="center" id="figure-29--interface-tableau-de-bord-entreprise"><em>Figure 29 : Interface Tableau de bord entreprise</em></p>
+
 ![iterface offres entreprise](images/offers.png)
+<p align="center" id="figure-30--interface-gestion-des-offres"><em>Figure 30 : Interface Gestion des offres</em></p>
+
 ![iterface candidatures entreprise](images/candidatures_entreprise.png)
-**Interfaces Mobile Sprint 1 :**  
+<p align="center" id="figure-31--interface-candidatures-reçues"><em>Figure 31 : Interface Candidatures reçues</em></p>
+
+**Interfaces Mobile Sprint 1 :**
+
 ![iterfaces de l'application mobile](images/interfaces_mobile.png)
+
+<p align="center" id="figure-32--interfaces-de-lapplication-mobile"><em>Figure 32 : Interfaces de l'application mobile</em></p>
+
 
 
 **Interfaces Sprint 2 :**  
