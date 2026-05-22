@@ -159,10 +159,9 @@ style: |
   <div class="sommaire-item"><div class="sommaire-num">1</div><div class="sommaire-text">Contexte du projet</div></div>
   <div class="sommaire-item"><div class="sommaire-num">2</div><div class="sommaire-text">Méthodologie de travail</div></div>
   <div class="sommaire-item"><div class="sommaire-num">3</div><div class="sommaire-text">Branche Fonctionnelle</div></div>
-  <div class="sommaire-item"><div class="sommaire-num">4</div><div class="sommaire-text">Branche Technique</div></div>
-  <div class="sommaire-item"><div class="sommaire-num">5</div><div class="sommaire-text">Conception</div></div>
-    <div class="sommaire-item"><div class="sommaire-num">6</div><div class="sommaire-text">Démonstration</div></div>
-  <div class="sommaire-item"><div class="sommaire-num">7</div><div class="sommaire-text">Conclusion</div></div>
+  <div class="sommaire-item"><div class="sommaire-num">4</div><div class="sommaire-text">Conception</div></div>
+    <div class="sommaire-item"><div class="sommaire-num">5</div><div class="sommaire-text">Réalisation</div></div>
+  <div class="sommaire-item"><div class="sommaire-num">6</div><div class="sommaire-text">Conclusion</div></div>
 </div>
 
 ---
@@ -268,7 +267,19 @@ style: |
 ---
 
 
-## 4. Branche Technique : Tech Stack
+
+
+
+## 4. Conception : Diagramme de classe
+
+<h3>Modélisation des données</h3>
+<div class="img-container">
+  <img src="images/diagram_class.png" class="img-diagram-class" alt="MLD Diagram">
+</div>
+
+---
+
+## 5. Réalisation : Stack technique
 <div class="sommaire-grid">
 
   <div class="dt-card" style="margin-top:0;">
@@ -285,7 +296,7 @@ style: |
     <ul>
       <li><strong>Preline, tailwind Css</strong></li>
       <li><strong>Alpine.js</strong></li>
-      <li><strong>AJAX</strong></li>
+      <li><strong>Lucide icons</strong></li>
     </ul>
   </div>
   
@@ -293,33 +304,39 @@ style: |
 
 ---
 
-## Branche Technique : Architecture de projet
-<div class="sommaire-grid" style="grid-template-columns: repeat(3, 1fr); gap: 15px;">
+## 5. Réalisation : Outils utilisés
+<div class="sommaire-grid">
 
   <div class="dt-card" style="margin-top:0;">
-    <h4>Modèle MVC</h4>
-    <p style="margin-top: 10px; font-size: 0.95em; line-height: 1.4;">Découpage structuré avec le framework Laravel.</p>
+    <ul>
+      <li><strong>Antigravity</strong></li>
+      <li><strong>MySQL Workbench</strong></li>
+      <li><strong>Github</strong></li>
+    </ul>
   </div>
 
   <div class="dt-card" style="margin-top:0; border-top-color: #27ae60;">
-    <h4>Architecture 3-Tiers</h4>
-    <p style="margin-top: 10px; font-size: 0.95em; line-height: 1.4;">Séparation nette entre présentation, logique métier et données.</p>
+    <ul>
+      <li><strong>PlantUML</strong></li>
+      <li><strong>Mermaid</strong></li>
+    </ul>
   </div>
 
-  
-</div>
 
+</div>
 
 
 ---
 
 
-## 5. Conception : Diagramme de classe
+## Réalisation : Architecture de projet
 
-<h3>Modélisation des données</h3>
 <div class="img-container">
-  <img src="images/diagram_class.png" class="img-diagram-class" alt="MLD Diagram">
+  <img src="images/architecture.png" class="img-methodo" alt="architecture ">
 </div>
+
+  
+
 
 
 ---
