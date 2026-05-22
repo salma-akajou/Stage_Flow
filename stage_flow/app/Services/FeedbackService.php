@@ -13,6 +13,16 @@ class FeedbackService extends BaseService
         $this->model = new Feedback(); 
     }
 
+    public function submitFeedback(int $auteurId, int $note, string $commentaire): Feedback
+    {
+        return $this->create([
+            'note' => $note,
+            'texte' => $commentaire,
+            'auteur_id' => $auteurId,
+            'valide' => false
+        ]);
+    }
+
     public function getLandingFeedbacks(int $limit = 3)
     {
         return $this->model->with(['auteur.etudiant', 'auteur.entreprise'])->where('valide', true)->latest()->take($limit)->get();

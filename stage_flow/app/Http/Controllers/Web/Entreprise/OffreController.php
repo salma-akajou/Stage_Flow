@@ -48,13 +48,8 @@ class OffreController extends Controller
      */
     public function store(StoreOffreRequest $request)
     {
-        $data = $request->validated();
         $entreprise = auth()->user()->entreprise;
-        
-        $data['entreprise_id'] = auth()->id();
-        $data['secteur'] = $entreprise->secteur;
-
-        $this->offreService->create($data);
+        $this->offreService->publierOffre(auth()->id(), $request->validated(), $entreprise->secteur);
 
         return redirect()->route('entreprise.offres.index')
             ->with('success', 'Votre offre a été publiée avec succès !');
@@ -74,11 +69,8 @@ class OffreController extends Controller
      */
     public function update(UpdateOffreRequest $request, int $id)
     {
-        $data = $request->validated();
         $entreprise = auth()->user()->entreprise;
-        $data['secteur'] = $entreprise->secteur;
-
-        $this->offreService->update($id, $data);
+        $this->offreService->updateOffre($id, $request->validated(), $entreprise->secteur);
 
         return redirect()->route('entreprise.offres.index')
             ->with('success', 'L\'offre a été mise à jour avec succès.');

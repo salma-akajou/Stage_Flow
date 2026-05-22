@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Web\Student;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Student\StoreCandidatureRequest;
-use App\Models\Candidature;
-use App\Models\Etudiant;
 use App\Services\CandidatureService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -47,18 +45,11 @@ class CandidatureController extends Controller
 
     public function destroy(int $id)
     {
-        $etudiantId = auth()->id();
-        $candidature = Candidature::findOrFail($id);
+        $result = $this->candidatureService->retirerCandidature($id, auth()->id());
 
-        if ($candidature->etudiant_id !== $etudiantId) {
-            abort(403);
+        if ($result !== true) {
+            return back()->with('error', $result);
         }
-
-        if ($candidature->statut !== 'En attente') {
-            return back()->with('error', 'Impossible de retirer une candidature déjà traitée.');
-        }
-
-        $this->candidatureService->delete($id);
 
         return back()->with('success', 'Candidature retirée avec succès.');
     }

@@ -32,6 +32,8 @@ package "Application Mobile" {
     usecase "Consulter candidatures" as UC4
     usecase "Fournir l'API mobile" as UC5
     usecase "S'authentifier" as UC6
+    usecase "Ajouter aux favoris" as UC7
+    usecase "Consulter profil" as UC8
 
 }
 
@@ -39,11 +41,15 @@ E -- UC1
 E -- UC2
 E -- UC3
 E -- UC4
+E -- UC7
+E -- UC8
 
 W -- UC5
 
 UC2 ..> UC6 : <<include>>
 UC3 ..> UC6 : <<include>>
 UC4 ..> UC6 : <<include>>
+UC7 ..> UC6 : <<include>>
+UC8 ..> UC6 : <<include>>
 
 @enduml

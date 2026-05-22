@@ -29,7 +29,9 @@ usecase "Postuler stage" as UC4
 usecase "Téléverser CV" as UC5
 usecase "Suivre candidatures" as UC6
 usecase "Ajouter favoris" as UC7
-usecase "Ajouter commentaire" as UC8
+usecase "Ajouter un feedback" as UC8
+usecase "Recevoir des notifications" as UC17
+usecase "Utiliser le chatbot" as UC22
 
 
 '=====================
@@ -40,7 +42,10 @@ usecase "Tableau de bord entreprise" as UC9
 usecase "Gérer offres" as UC10
 usecase "Consulter candidatures" as UC11
 usecase "Gérer candidatures" as UC12
-usecase "Ajouter commentaire" as UC13
+usecase "Ajouter un feedback" as UC13
+usecase "Recevoir des notifications" as UC18
+usecase "Exporter candidatures (PDF/Excel)" as UC20
+usecase "Utiliser le chatbot" as UC23
 
 
 '=====================
@@ -48,8 +53,10 @@ usecase "Ajouter commentaire" as UC13
 '=====================
 
 usecase "Gérer comptes" as UC14
-usecase "Modérer commentaires" as UC15
+usecase "Modérer feedbacks" as UC15
 usecase "Voir statistiques" as UC16
+usecase "Consulter statistiques avancées" as UC19
+usecase "Exporter les données (utilisateurs)" as UC21
 
 
 '=====================
@@ -77,6 +84,8 @@ E -- UC4
 E -- UC6
 E -- UC7
 E -- UC8
+E -- UC17
+E -- UC22
 
 UC4 ..> UC5 : <<include>>
 
@@ -90,6 +99,9 @@ Ent -- UC10
 Ent -- UC11
 Ent -- UC12
 Ent -- UC13
+Ent -- UC18
+Ent -- UC20
+Ent -- UC23
 
 
 '=====================
@@ -99,6 +111,8 @@ Ent -- UC13
 Admin -- UC14
 Admin -- UC15
 Admin -- UC16
+Admin -- UC19
+Admin -- UC21
 
 
 '=====================
@@ -129,5 +143,11 @@ UC12 ..> Auth : <<include>>
 UC14 ..> Auth : <<include>>
 UC15 ..> Auth : <<include>>
 UC16 ..> Auth : <<include>>
+
+UC17 ..> Auth : <<include>>
+UC18 ..> Auth : <<include>>
+UC19 ..> Auth : <<include>>
+UC20 ..> Auth : <<include>>
+UC21 ..> Auth : <<include>>
 
 @enduml

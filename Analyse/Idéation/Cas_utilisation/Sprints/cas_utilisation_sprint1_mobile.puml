@@ -1,0 +1,36 @@
+@startuml StageFlow_Mobile_Sprint1
+left to right direction
+skinparam actorStyle awesome
+
+skinparam package {
+    BackgroundColor White
+    BorderColor #2C3E50
+}
+
+skinparam usecase {
+    BackgroundColor #E8F6F3
+    BorderColor #117864
+}
+
+actor "Étudiant" as E
+actor "Web" as W
+
+
+package "Sprint 1 – Mobile (StageFlow)" {
+
+    usecase "Consulter landing page" as UC1
+    usecase "Tableau de bord étudiant" as UC2
+    usecase "Consulter offres" as UC3
+    usecase "Consulter candidatures" as UC4
+    usecase "Fournir l'API mobile" as UC5
+
+}
+
+E -- UC1
+E -- UC2
+E -- UC3
+E -- UC4
+
+W -- UC5
+
+@enduml

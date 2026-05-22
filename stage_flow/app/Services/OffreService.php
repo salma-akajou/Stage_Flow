@@ -90,4 +90,18 @@ class OffreService extends BaseService
             ->get();
     }
 
+    public function publierOffre(int $entrepriseId, array $data, string $secteur): Offre
+    {
+        $data['entreprise_id'] = $entrepriseId;
+        $data['secteur'] = $secteur;
+
+        return $this->create($data);
+    }
+
+    public function updateOffre(int $id, array $data, string $secteur): Offre
+    {
+        $data['secteur'] = $secteur;
+
+        return $this->update($id, $data);
+    }
 }

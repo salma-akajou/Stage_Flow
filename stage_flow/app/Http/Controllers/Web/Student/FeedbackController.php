@@ -18,14 +18,11 @@ class FeedbackController extends Controller
 
     public function store(StoreFeedbackRequest $request)
     {
-        $data = [
-            'note' => $request->note,
-            'texte' => $request->commentaire, 
-            'auteur_id' => auth()->id() ?? 1, 
-            'valide' => false
-        ];
-
-        $this->feedbackService->create($data);
+        $this->feedbackService->submitFeedback(
+            auth()->id() ?? 1,
+            (int) $request->note,
+            (string) $request->commentaire
+        );
 
         return redirect()->route('student.dashboard')->with('success', 'Merci pour votre feedback !');
     }

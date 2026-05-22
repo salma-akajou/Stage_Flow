@@ -18,7 +18,6 @@ skinparam usecase {
 skinparam nodesep 25
 skinparam ranksep 25
 
-
 actor "Étudiant" as E
 actor "Entreprise" as Ent
 actor "Administrateur" as Admin
@@ -27,14 +26,18 @@ actor "Mobile" as Mob
 package "Partie Publique" {
 
     usecase "Consulter landing page" as UC1
-    usecase "Consommer l'api" as UC2
+    usecase "Utiliser le chatbot" as UC2
+    usecase "Consommer l'api" as UC3
 }
 
-
 E -- UC1
+E -- UC2
+
 Ent -- UC1
-Mob -- UC2
+Ent -- UC2
+
 Admin -- UC1
 
+Mob -- UC3
 
 @enduml

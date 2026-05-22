@@ -118,6 +118,23 @@ class CandidatureService extends BaseService
         return $candidature->delete();
     }
 
+    public function retirerCandidature(int $id, int $etudiantId): bool|string
+    {
+        $candidature = $this->findOrFail($id);
+
+        if ($candidature->etudiant_id !== $etudiantId) {
+            abort(403);
+        }
+
+        if ($candidature->statut !== 'En attente') {
+            return 'Impossible de retirer une candidature déjà traitée.';
+        }
+
+        $this->delete($id);
+
+        return true;
+    }
+
     public function getRecentsCandidatures(int $etudiantId, int $limit = 3): \Illuminate\Support\Collection
     {
         return $this->model->where('etudiant_id', $etudiantId)

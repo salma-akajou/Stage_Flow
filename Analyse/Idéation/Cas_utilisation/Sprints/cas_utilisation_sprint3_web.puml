@@ -1,0 +1,40 @@
+@startuml StageFlow_Sprint3
+left to right direction
+skinparam actorStyle awesome
+
+skinparam package {
+    BackgroundColor White
+    BorderColor #2C3E50
+}
+
+skinparam usecase {
+    BackgroundColor #E8F6F3
+    BorderColor #117864
+    ArrowColor #117864
+}
+
+actor "Visiteur" as V
+actor "Étudiant" as E
+actor "Entreprise" as Ent
+
+package "Sprint 3 – Assistant Virtuel (Chatbot)" {
+
+    usecase "Utiliser le chatbot" as UC1
+    usecase "Poser une question" as UC2
+    usecase "Recevoir une réponse automatique" as UC3
+    usecase "S'authentifier" as Auth
+
+    V -- UC1
+    E -- UC1
+    Ent -- UC1
+
+    UC1 ..> UC2 : <<include>>
+    UC1 ..> UC3 : <<include>>
+
+    ' L'authentification est requise uniquement
+    ' pour l'étudiant et l'entreprise
+    E ..> Auth : <<include>>
+    Ent ..> Auth : <<include>>
+}
+
+@enduml

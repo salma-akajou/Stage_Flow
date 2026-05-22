@@ -189,7 +189,7 @@ style: |
 
 
 <div class="img-container">
-  <img src="images/scrum.jpg" class="img-methodo" alt="Scrum">
+  <img src="images/scrum.png" class="img-methodo" alt="Scrum">
 </div>
 
 ---
@@ -227,7 +227,7 @@ style: |
 **Espace Entreprise**
 
 <div class="img-container">
-  <img src="images/global_usecase_admin_entreprise.puml.png" class="img-usecase" alt="Global Use Case admin">
+  <img src="images/global_usecase_admin_entreprise.png" class="img-usecase" alt="Global Use Case admin">
 </div>
 
 ---
@@ -267,21 +267,6 @@ style: |
 
 ---
 
-## Branche Fonctionnelle : Maquette (partie publique)
-
-<div class="img-container">
-  <img src="images/landing.png"  alt="Maquettes UI">
-</div>
-
----
-
-## Branche Fonctionnelle : Maquette (dashboard entreprise)
-
-<div class="img-container">
-  <img src="images/dashboard_entreprise.png"  alt="Maquettes UI">
-</div>
-
----
 
 ## 4. Branche Technique : Tech Stack
 <div class="sommaire-grid">
@@ -303,8 +288,28 @@ style: |
       <li><strong>AJAX</strong></li>
     </ul>
   </div>
-
+  
 </div>
+
+---
+
+## Branche Technique : Architecture de projet
+<div class="sommaire-grid" style="grid-template-columns: repeat(3, 1fr); gap: 15px;">
+
+  <div class="dt-card" style="margin-top:0;">
+    <h4>Modèle MVC</h4>
+    <p style="margin-top: 10px; font-size: 0.95em; line-height: 1.4;">Découpage structuré avec le framework Laravel.</p>
+  </div>
+
+  <div class="dt-card" style="margin-top:0; border-top-color: #27ae60;">
+    <h4>Architecture 3-Tiers</h4>
+    <p style="margin-top: 10px; font-size: 0.95em; line-height: 1.4;">Séparation nette entre présentation, logique métier et données.</p>
+  </div>
+
+  
+</div>
+
+
 
 ---
 
