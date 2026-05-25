@@ -11,32 +11,32 @@
         </div>
 
         <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto ml-auto">
-            <div x-data="{ open: false }" class="relative inline-flex">
-                <button @click="open = !open" @click.away="open = false" type="button" 
+            <div x-data="dropdownFilter" class="relative inline-flex">
+                <button @click="toggle()" @click.away="close()" type="button" 
                     class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-xl border border-slate-200 bg-white text-gray-700 shadow-none hover:bg-gray-50 focus:outline-none transition-all">
                     <span x-text="statusLabel()"></span>
                     <svg :class="{ 'rotate-180': open }" class="size-4 text-gray-400 shrink-0 transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
                 </button>
                 <div x-show="open" x-transition.opacity style="display: none;" class="absolute top-full right-0 mt-2 z-[60] bg-white shadow-xl rounded-xl p-2 border border-gray-100 min-w-[160px]">
-                    <a @click.prevent="status = ''; open = false; fetchCandidatures()" href="#" class="flex items-center py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 font-bold mb-1">Tous les statuts</a>
+                    <a @click.prevent="status = ''; close(); fetchCandidatures()" href="#" class="flex items-center py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 font-bold mb-1">Tous les statuts</a>
                     @foreach(['En attente', 'Accepté', 'Refusé'] as $s)
-                        <a @click.prevent="status = '{{ $s }}'; open = false; fetchCandidatures()" href="#" 
+                        <a @click.prevent="status = '{{ $s }}'; close(); fetchCandidatures()" href="#" 
                             class="flex items-center py-2 px-3 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition"
                             :class="status == '{{ $s }}' ? 'bg-indigo-50 text-indigo-700 font-bold' : ''">{{ $s }}</a>
                     @endforeach
                 </div>
             </div>
 
-            <div x-data="{ open: false }" class="relative inline-flex">
-                <button @click="open = !open" @click.away="open = false" type="button" 
+            <div x-data="dropdownFilter" class="relative inline-flex">
+                <button @click="toggle()" @click.away="close()" type="button" 
                     class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-xl border border-slate-200 bg-white text-gray-700 shadow-none hover:bg-gray-50 focus:outline-none transition-all">
                     <span x-text="offreLabel()"></span>
                     <svg :class="{ 'rotate-180': open }" class="size-4 text-gray-400 shrink-0 transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
                 </button>
                 <div x-show="open" x-transition.opacity style="display: none;" class="absolute top-full right-0 mt-2 z-[60] bg-white shadow-xl rounded-xl p-2 border border-gray-100 min-w-[200px]">
-                    <a @click.prevent="offreId = ''; open = false; fetchCandidatures()" href="#" class="flex items-center py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 font-bold mb-1">Toutes les offres</a>
+                    <a @click.prevent="offreId = ''; close(); fetchCandidatures()" href="#" class="flex items-center py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 font-bold mb-1">Toutes les offres</a>
                     @foreach($offres as $o)
-                        <a @click.prevent="offreId = '{{ $o->id }}'; offreTitre = '{{ $o->titre }}'; open = false; fetchCandidatures()" href="#" 
+                        <a @click.prevent="offreId = '{{ $o->id }}'; offreTitre = '{{ $o->titre }}'; close(); fetchCandidatures()" href="#" 
                             class="flex items-center py-2 px-3 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition"
                             :class="offreId == '{{ $o->id }}' ? 'bg-indigo-50 text-indigo-700 font-bold' : ''">{{ $o->titre }}</a>
                     @endforeach

@@ -14,7 +14,7 @@
             <div class="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-100">
                 
                 <div class="relative mb-16">
-                    <div class="h-32 bg-gradient-to-r from-indigo-600 to-violet-600 w-full"></div>
+                    <div class="h-32 bg-gray-50/50 w-full border-b border-gray-100"></div>
                     <div class="absolute -bottom-12 left-1/2 -translate-x-1/2">
                         <div class="size-28 rounded-3xl overflow-hidden border-[5px] border-white shadow-xl bg-gray-50 flex items-center justify-center ring-1 ring-black/5">
                             <img id="stu-photo" src="" class="size-full object-cover">

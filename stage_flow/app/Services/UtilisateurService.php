@@ -38,6 +38,10 @@ class UtilisateurService extends BaseService
                 $query->has('etudiant');
             } elseif ($filters['role'] === 'entreprise') {
                 $query->has('entreprise');
+            } elseif ($filters['role'] === 'moderateur') {
+                $query->whereHas('roles', function($q) {
+                    $q->where('name', 'moderateur');
+                });
             }
         }
 

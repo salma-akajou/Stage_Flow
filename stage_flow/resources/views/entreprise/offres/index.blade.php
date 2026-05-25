@@ -48,67 +48,6 @@
 
 @push('scripts')
 <script>
-    function offreManager() {
-        return {
-            init() {
-                document.addEventListener('click', (e) => {
-                    const link = e.target.closest('#table-container nav a');
-                    if (link) {
-                        e.preventDefault();
-                        fetchOffers(link.href);
-                    }
-                });
-            }
-        }
-    }
-
-    function fetchOffers(url = null) {
-        const container = document.getElementById('table-content');
-        const form = document.getElementById('search-form');
-        
-        const fetchUrl = url || `${form.action}?${new URLSearchParams(new FormData(form)).toString()}`;
-
-        fetch(fetchUrl, {
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            }
-        })
-        .then(res => res.text())
-        .then(html => {
-            container.innerHTML = html;
-            if (typeof AOS !== 'undefined') AOS.refresh();
-        });
-    }
-
-    function openOfferModal(isNew = true) {
-        if (isNew) {
-            window.dispatchEvent(new CustomEvent('reset-modal'));
-        }
-        const wrapper = document.getElementById('offer-modal-wrapper');
-        const card = document.getElementById('offer-modal-card');
-        wrapper.style.display = 'block';
-        setTimeout(() => {
-            wrapper.classList.replace('opacity-0', 'opacity-100');
-            card.classList.replace('scale-95', 'scale-100');
-        }, 10);
-        document.body.style.overflow = 'hidden';
-    }
-
-    function openEditModal(id) {
-        window.dispatchEvent(new CustomEvent('open-modal', { detail: id }));
-    }
-
-    function closeOfferModal() {
-        const wrapper = document.getElementById('offer-modal-wrapper');
-        const card = document.getElementById('offer-modal-card');
-        wrapper.classList.replace('opacity-100', 'opacity-0');
-        card.classList.replace('scale-100', 'scale-95');
-        setTimeout(() => {
-            wrapper.style.display = 'none';
-            document.body.style.overflow = '';
-        }, 300);
-    }
-
     @if($errors->any())
         document.addEventListener('DOMContentLoaded', () => {
             openOfferModal(false);

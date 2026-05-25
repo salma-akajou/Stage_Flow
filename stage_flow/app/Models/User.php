@@ -44,10 +44,12 @@ class User extends Authenticatable
 
     public function getRoleAttribute(): string
     {
+        if (method_exists($this, 'getRoleNames') && $this->getRoleNames()->isNotEmpty()) {
+            return $this->getRoleNames()->first();
+        }
         if ($this->etudiant) return 'etudiant';
         if ($this->entreprise) return 'entreprise';
         
-
         if ($this->etudiant()->exists()) return 'etudiant';
         if ($this->entreprise()->exists()) return 'entreprise';
         

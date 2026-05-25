@@ -20,7 +20,7 @@
                     <input type="hidden" name="offre_id" value="{{ $offre->id }}">
                     <div class="space-y-8">
 
-                        <div x-data="{ photoUrl: '', photoName: '' }">
+                        <div x-data="photoUpload('')">
                             <label class="block text-sm font-bold mb-3 text-gray-800">Photo de profil pour cette candidature</label>
                             <div class="flex items-center gap-5">
                                 <div class="shrink-0">
@@ -43,17 +43,17 @@
                                         <p class="text-sm text-rose-600 font-semibold mt-1">{{ $message }}</p>
                                     @enderror
                                     <input id="form-photo-upload" name="photo" type="file" accept="image/*" class="hidden"
-                                        @change="const file = $event.target.files[0]; if(file) { photoUrl = URL.createObjectURL(file); photoName = file.name; }">
+                                        @change="updatePhoto($event)">
                                 </div>
                             </div>
                         </div>
 
-                        <div x-data="{ fileName: '' }">
+                        <div x-data="fileUpload()">
                             <label class="block text-sm font-bold mb-2 text-gray-800">Votre CV (PDF) <span class="text-rose-500">*</span></label>
                             <label for="cv-upload-form"
                                 class="group p-6 flex flex-col items-center justify-center cursor-pointer text-center border-2 border-dashed border-gray-200 rounded-xl bg-gray-50 hover:bg-indigo-50/50 hover:border-indigo-300 transition-all">
                                 <input id="cv-upload-form" name="cv" type="file" accept=".pdf" class="sr-only"
-                                    @change="fileName = $event.target.files[0]?.name || ''">
+                                    @change="updateFile($event)">
                                 <svg class="size-8 text-indigo-300 group-hover:text-indigo-500 transition-colors mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
                                 <span class="block text-sm text-indigo-700 font-bold mb-1" x-text="fileName || 'Télécharger le CV'"></span>
                                 <span class="block text-xs font-bold text-gray-400 uppercase tracking-widest">Formats : PDF (Max. 20MB)</span>
