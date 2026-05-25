@@ -309,7 +309,6 @@ style: |
 
   <div class="dt-card" style="margin-top:0;">
     <ul>
-      <li><strong>Antigravity</strong></li>
       <li><strong>MySQL Workbench</strong></li>
       <li><strong>Github</strong></li>
     </ul>
