@@ -4,11 +4,7 @@
         Parcours Académique
     </h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div class="space-y-2 relative" x-data="{ 
-            open: false, 
-            selected: '{{ $etudiant->etablissement }}',
-            options: ['Solicode', 'Faculté', 'ISTA', 'EMSI', 'ENSI', 'BTS', 'Autre']
-        }" :class="{ 'z-[70]': open, 'z-[10]': !open }">
+        <div class="space-y-2 relative" x-data="customSelect('{{ $etudiant->etablissement }}', ['Solicode', 'Faculté', 'ISTA', 'EMSI', 'ENSI', 'BTS', 'Autre'])" :class="{ 'z-[70]': open, 'z-[10]': !open }">
             <label class="block text-sm font-bold text-gray-700">École / Université</label>
             <div class="relative">
                 <button @click="open = !open" @click.away="open = false" type="button" 
@@ -19,7 +15,7 @@
                 <input type="hidden" name="etablissement" :value="selected">
                 <div x-show="open" x-transition.opacity class="absolute top-full left-0 w-full mt-2 z-[80] bg-white shadow-2xl rounded-2xl p-2 border border-gray-100 max-h-60 overflow-y-auto scrollbar-none">
                     <template x-for="opt in options">
-                        <button @click="selected = opt; open = false" type="button" 
+                        <button @click="select(opt)" type="button" 
                             class="flex items-center w-full py-2.5 px-4 rounded-xl text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition font-bold mb-1"
                             :class="selected == opt ? 'bg-indigo-50 text-indigo-700' : ''"
                             x-text="opt"></button>
@@ -28,11 +24,7 @@
             </div>
         </div>
 
-        <div class="space-y-2 relative" x-data="{ 
-            open: false, 
-            selected: '{{ $etudiant->niveau_etudes }}',
-            options: ['Bac+2', 'Bac+3', 'Master', 'Doctorat', 'Autre']
-        }" :class="{ 'z-[70]': open, 'z-[10]': !open }">
+        <div class="space-y-2 relative" x-data="customSelect('{{ $etudiant->niveau_etudes }}', ['Bac+2', 'Bac+3', 'Master', 'Doctorat', 'Autre'])" :class="{ 'z-[70]': open, 'z-[10]': !open }">
             <label class="block text-sm font-bold text-gray-700">Niveau d'études</label>
             <div class="relative">
                 <button @click="open = !open" @click.away="open = false" type="button" 
@@ -43,7 +35,7 @@
                 <input type="hidden" name="niveau_etudes" :value="selected">
                 <div x-show="open" x-transition.opacity class="absolute top-full left-0 w-full mt-2 z-[80] bg-white shadow-2xl rounded-2xl p-2 border border-gray-100 max-h-60 overflow-y-auto scrollbar-none">
                     <template x-for="opt in options">
-                        <button @click="selected = opt; open = false" type="button" 
+                        <button @click="select(opt)" type="button" 
                             class="flex items-center w-full py-2.5 px-4 rounded-xl text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition font-bold mb-1"
                             :class="selected == opt ? 'bg-indigo-50 text-indigo-700' : ''"
                             x-text="opt"></button>

@@ -12,6 +12,11 @@ class EtudiantService extends BaseService
         $this->model = new Etudiant();
     }
 
+    public function getProfile(int $id): Etudiant
+    {
+        return Etudiant::with('user', 'ville')->findOrFail($id);
+    }
+
     public function updateProfile(int $id, array $data): Etudiant
     {
         $etudiant = Etudiant::with('user')->findOrFail($id);

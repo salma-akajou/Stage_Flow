@@ -26,12 +26,12 @@
             </div>
         @endif
 
-        <form action="{{ route('entreprise.feedback.store') }}" method="POST" x-data="{ rating: 3 }">
+        <form action="{{ route('entreprise.feedback.store') }}" method="POST" x-data="starRating(3)">
             @csrf
             <div class="flex items-center gap-1 mb-3">
                 <template x-for="i in 5">
                     <button type="button" 
-                        @click="rating = i" 
+                        @click="setRating(i)" 
                         class="text-2xl transition-colors duration-200 focus:outline-none"
                         :style="rating >= i ? 'color: #fde047 !important' : 'color: rgba(255,255,255,0.4) !important'">
                         ★

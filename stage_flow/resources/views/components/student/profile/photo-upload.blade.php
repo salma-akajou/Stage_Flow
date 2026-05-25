@@ -1,4 +1,4 @@
-<div class="mb-10 flex items-center gap-6" x-data="{ photoUrl: '{{ $etudiant->photo ? asset('storage/'.$etudiant->photo) : '' }}' }">
+<div class="mb-10 flex items-center gap-6" x-data="photoUpload('{{ $etudiant->photo ? asset('storage/'.$etudiant->photo) : '' }}')">
     <div class="relative group">
         <div class="size-24 rounded-full bg-indigo-50 border-4 border-white shadow-md flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105">
             <template x-if="photoUrl">
@@ -11,7 +11,7 @@
         <label for="profile-photo" class="absolute bottom-0 right-0 size-8 bg-indigo-600 text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer transform hover:scale-110 active:scale-95 transition-all">
             <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
             <input id="profile-photo" name="photo" type="file" accept="image/*" class="sr-only" 
-                @change="const file = $event.target.files[0]; photoUrl = URL.createObjectURL(file);">
+                @change="updatePhoto($event)">
         </label>
     </div>
     <div>

@@ -32,6 +32,11 @@ class DashboardService
         ];
     }
 
+    public function getVilles(): \Illuminate\Support\Collection
+    {
+        return Ville::select('id', 'nom')->get();
+    }
+
     public function getEtudiantStats(int $etudiantId): array
     {
         $etudiant = Etudiant::findOrFail($etudiantId);

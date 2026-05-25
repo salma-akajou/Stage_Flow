@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Services\EtudiantService;
 use App\Services\DashboardService;
-use App\Models\Etudiant;
 use Illuminate\Http\JsonResponse;
 
 class EtudiantApiController extends Controller
@@ -25,7 +24,7 @@ class EtudiantApiController extends Controller
     public function profile($etudiantId): JsonResponse
     {
         try {
-            $etudiant = Etudiant::with('user', 'ville')->findOrFail($etudiantId);
+            $etudiant = $this->etudiantService->getProfile($etudiantId);
             return response()->json([
                 'success' => true,
                 'data' => $etudiant

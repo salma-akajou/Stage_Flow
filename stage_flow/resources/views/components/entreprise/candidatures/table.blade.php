@@ -47,7 +47,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center justify-center gap-2" id="actions-{{ $c->id }}">
-                                    <button onclick="openCandidatureDetails(this, {{ $c->id }})" class="btn-action p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all hover:scale-110" title="Voir les détails">
+                                    <button onclick="openDetailModal({{ $c->id }}, this)" class="btn-action p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all hover:scale-110" title="Voir les détails">
                                         <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                             <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
                                             <circle cx="12" cy="12" r="3" />

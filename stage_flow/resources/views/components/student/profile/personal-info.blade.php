@@ -17,12 +17,7 @@
             <input type="text" name="nom" value="{{ $etudiant->user->nom }}"
                 class="py-2.5 px-4 block w-full border-gray-200 rounded-xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition shadow-sm">
         </div>
-        <div class="space-y-2 relative sm:col-span-2" x-data="{ 
-            open: false, 
-            selectedId: '{{ $etudiant->ville_id }}',
-            selectedNom: '{{ $etudiant->ville->nom ?? "Choisir une ville" }}',
-            villes: @js($villes)
-        }" :class="{ 'z-[70]': open, 'z-[10]': !open }">
+        <div class="space-y-2 relative sm:col-span-2" x-data="selectVille('{{ $etudiant->ville_id }}', '{{ $etudiant->ville->nom ?? 'Choisir une ville' }}', @js($villes))" :class="{ 'z-[70]': open, 'z-[10]': !open }">
             <label class="block text-sm font-bold text-gray-700">Ville</label>
             <div class="relative">
                 <button @click="open = !open" @click.away="open = false" type="button" 
@@ -33,7 +28,7 @@
                 <input type="hidden" name="ville_id" :value="selectedId">
                 <div x-show="open" x-transition.opacity class="absolute top-full left-0 w-full mt-2 z-[80] bg-white shadow-2xl rounded-2xl p-2 border border-gray-100 max-h-60 overflow-y-auto scrollbar-none">
                     <template x-for="v in villes">
-                        <button @click="selectedId = v.id; selectedNom = v.nom; open = false" type="button" 
+                        <button @click="select(v.id, v.nom)" type="button" 
                             class="flex items-center w-full py-2.5 px-4 rounded-xl text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition font-bold mb-1"
                             :class="selectedId == v.id ? 'bg-indigo-50 text-indigo-700' : ''"
                             x-text="v.nom"></button>

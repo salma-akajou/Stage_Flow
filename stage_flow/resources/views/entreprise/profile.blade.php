@@ -31,21 +31,3 @@
     </div>
 @endsection
 
-@push('scripts')
-<script>
-    function previewImage(event) {
-        const input = event.target;
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('logo-preview').src = e.target.result;
-                document.getElementById('logo-preview').classList.remove('hidden');
-                if (document.getElementById('logo-placeholder')) {
-                    document.getElementById('logo-placeholder').classList.add('hidden');
-                }
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
-@endpush

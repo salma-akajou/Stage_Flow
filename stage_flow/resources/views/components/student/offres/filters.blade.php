@@ -13,7 +13,7 @@
             <input type="hidden" id="ville-input" name="ville_id" value="{{ request('ville_id') }}">
             <input type="hidden" id="secteur-input" name="secteur" value="{{ request('secteur') }}">
 
-            <div x-data="{ open: false }" class="relative inline-flex w-full sm:w-48">
+            <div x-data="dropdownFilter" class="relative inline-flex w-full sm:w-48">
                 @php $activeVille = $villes->firstWhere('id', request('ville_id')); @endphp
                 <button @click="open = !open" @click.away="open = false" type="button" class="py-3 px-4 w-full inline-flex items-center justify-between gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none">
                     <span class="truncate">{{ $activeVille ? $activeVille->nom : 'Toutes les villes' }}</span>
@@ -31,7 +31,7 @@
                 </div>
             </div>
 
-            <div x-data="{ open: false }" class="relative inline-flex w-full sm:w-56">
+            <div x-data="dropdownFilter" class="relative inline-flex w-full sm:w-56">
                 <button @click="open = !open" @click.away="open = false" type="button" class="py-3 px-4 w-full inline-flex items-center justify-between gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none">
                     <span class="truncate">{{ request('secteur') ?: 'Tous les secteurs' }}</span>
                     <svg :class="{ 'rotate-180': open }" class="size-4 text-gray-500 shrink-0 transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>

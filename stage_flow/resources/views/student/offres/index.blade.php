@@ -4,11 +4,7 @@
 @section('breadcrumb', 'Catalogue des Offres')
 
 @section('content')
-<div class="space-y-10" x-data="{ 
-    search: '{{ addslashes(request('titre')) }}',
-    ville: '{{ request('ville_id') }}',
-    secteur: '{{ addslashes(request('secteur')) }}'
-}">
+<div class="space-y-10" x-data="offresCatalog('{{ addslashes(request('titre')) }}', '{{ request('ville_id') }}', '{{ addslashes(request('secteur')) }}')">
 
     <div class="text-center max-w-2xl mx-auto" data-aos="fade-down">
                 <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Offres de stages</h2>

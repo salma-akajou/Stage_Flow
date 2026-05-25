@@ -16,16 +16,16 @@
             <input type="hidden" id="status-input" name="status" value="{{ request('status') }}">
             <input type="hidden" id="type-input" name="type_stage" value="{{ request('type_stage') }}">
 
-            <div x-data="{ open: false, selected: '{{ request('status') ?: 'Tous les statuts' }}' }" class="relative inline-flex w-full sm:w-48">
-                <button @click="open = !open" @click.away="open = false" type="button" 
+            <div x-data="{ ...dropdownFilter(), selected: '{{ request('status') ?: 'Tous les statuts' }}' }" class="relative inline-flex w-full sm:w-48">
+                <button @click="toggle()" @click.away="close()" type="button" 
                     class="py-2.5 px-4 w-full inline-flex items-center justify-between gap-x-2 text-sm font-semibold rounded-xl border border-gray-200 bg-white text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none transition-all">
                     <span class="truncate" x-text="selected"></span>
                     <svg :class="{ 'rotate-180': open }" class="size-4 text-gray-500 shrink-0 transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
                 </button>
                 <div x-show="open" x-transition.opacity style="display: none;" class="absolute top-full left-0 mt-2 z-[60] w-full bg-white shadow-xl rounded-2xl p-2 border border-gray-100">
-                    <a @click.prevent="document.getElementById('status-input').value = ''; selected = 'Tous les statuts'; open = false; fetchOffers()" href="#" class="flex items-center py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 font-bold mb-1">Tous les statuts</a>
+                    <a @click.prevent="document.getElementById('status-input').value = ''; selected = 'Tous les statuts'; close(); fetchOffers()" href="#" class="flex items-center py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 font-bold mb-1">Tous les statuts</a>
                     <template x-for="s in ['Active', 'Expirée']">
-                        <a @click.prevent="document.getElementById('status-input').value = s; selected = s; open = false; fetchOffers()" href="#" 
+                        <a @click.prevent="document.getElementById('status-input').value = s; selected = s; close(); fetchOffers()" href="#" 
                             class="flex items-center py-2 px-3 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition"
                             :class="selected == s ? 'bg-indigo-50 text-indigo-700 font-bold' : ''"
                             x-text="s"></a>
@@ -33,16 +33,16 @@
                 </div>
             </div>
 
-            <div x-data="{ open: false, selected: '{{ request('type_stage') ?: 'Tous les types' }}' }" class="relative inline-flex w-full sm:w-48">
-                <button @click="open = !open" @click.away="open = false" type="button" 
+            <div x-data="{ ...dropdownFilter(), selected: '{{ request('type_stage') ?: 'Tous les types' }}' }" class="relative inline-flex w-full sm:w-48">
+                <button @click="toggle()" @click.away="close()" type="button" 
                     class="py-2.5 px-4 w-full inline-flex items-center justify-between gap-x-2 text-sm font-semibold rounded-xl border border-gray-200 bg-white text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none transition-all">
                     <span class="truncate" x-text="selected"></span>
                     <svg :class="{ 'rotate-180': open }" class="size-4 text-gray-500 shrink-0 transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
                 </button>
                 <div x-show="open" x-transition.opacity style="display: none;" class="absolute top-full left-0 mt-2 z-[60] w-full bg-white shadow-xl rounded-2xl p-2 border border-gray-100">
-                    <a @click.prevent="document.getElementById('type-input').value = ''; selected = 'Tous les types'; open = false; fetchOffers()" href="#" class="flex items-center py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 font-bold mb-1">Tous les types</a>
+                    <a @click.prevent="document.getElementById('type-input').value = ''; selected = 'Tous les types'; close(); fetchOffers()" href="#" class="flex items-center py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 font-bold mb-1">Tous les types</a>
                     <template x-for="t in ['PFE', 'Technique', 'Observation']">
-                        <a @click.prevent="document.getElementById('type-input').value = t; selected = t; open = false; fetchOffers()" href="#" 
+                        <a @click.prevent="document.getElementById('type-input').value = t; selected = t; close(); fetchOffers()" href="#" 
                             class="flex items-center py-2 px-3 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition"
                             :class="selected == t ? 'bg-indigo-50 text-indigo-700 font-bold' : ''"
                             x-text="t"></a>

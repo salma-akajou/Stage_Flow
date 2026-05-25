@@ -45,7 +45,7 @@
         [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-[#fafbfc] overflow-x-hidden font-sans" x-data="{ activeLink: 'accueil' }">
+<body class="bg-[#fafbfc] overflow-x-hidden font-sans" x-data="publicLayout">
 
     <!-- Background Decor (Marble Style) -->
     <div class="fixed inset-0 pointer-events-none z-0 text-indigo-500/10">

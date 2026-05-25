@@ -48,7 +48,7 @@
                         S'inscrire
                     </a>
                 @else
-                    <div class="relative inline-flex" x-data="{ open: false }">
+                    <div class="relative inline-flex" x-data="navbarPublic">
                         <button @click="open = !open" @click.away="open = false" type="button" class="size-10 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-2xl border border-slate-200 bg-white text-slate-800 shadow-sm hover:bg-slate-50 transition-all overflow-hidden">
                             @if(auth()->user()->avatar_url)
                                 <img src="{{ asset('storage/' . auth()->user()->avatar_url) }}" class="size-full object-cover">
