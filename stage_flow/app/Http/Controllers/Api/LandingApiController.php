@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Services\DashboardService;
 use App\Services\FeedbackService;
+use App\Models\Offre;
 use Illuminate\Http\JsonResponse;
 
 class LandingApiController extends Controller
@@ -49,6 +50,21 @@ class LandingApiController extends Controller
         return response()->json([
             'success' => true,
             'data' => $this->dashboardService->getVilles()
+        ]);
+    }
+
+    /**
+     * Retourne la liste de tous les secteurs distincts pour le filtrage
+     */
+    public function secteurs(): JsonResponse
+    {
+        $secteurs = Offre::distinct()->pluck('secteur')->filter()->values();
+        if ($secteurs->isEmpty()) {
+            $secteurs = collect(['Informatique', 'Design', 'Marketing', 'Commerce', 'Industrie', 'Autre']);
+        }
+        return response()->json([
+            'success' => true,
+            'data' => $secteurs
         ]);
     }
 }

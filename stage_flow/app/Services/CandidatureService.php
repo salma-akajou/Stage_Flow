@@ -46,7 +46,7 @@ class CandidatureService extends BaseService
 
     public function listEtudiantCandidatures(int $etudiantId, array $filters = [], int $perPage = 9, bool $includeStats = false): LengthAwarePaginator|array
     {
-        $query = $this->model->where('etudiant_id', $etudiantId)->with('offre.entreprise');
+        $query = $this->model->where('etudiant_id', $etudiantId)->with(['offre.entreprise', 'offre.ville']);
 
         if (!empty($filters['statut'])) {
             $query->where('statut', $filters['statut']);
@@ -138,7 +138,7 @@ class CandidatureService extends BaseService
     public function getRecentsCandidatures(int $etudiantId, int $limit = 3): \Illuminate\Support\Collection
     {
         return $this->model->where('etudiant_id', $etudiantId)
-            ->with(['offre.entreprise']) 
+            ->with(['offre.entreprise', 'offre.ville']) 
             ->latest()
             ->take($limit)
             ->get();

@@ -14,7 +14,7 @@ class EtudiantService extends BaseService
 
     public function getProfile(int $id): Etudiant
     {
-        return Etudiant::with('user', 'ville')->findOrFail($id);
+        return Etudiant::with('user', 'ville')->withCount(['candidatures', 'favoris'])->findOrFail($id);
     }
 
     public function updateProfile(int $id, array $data): Etudiant
