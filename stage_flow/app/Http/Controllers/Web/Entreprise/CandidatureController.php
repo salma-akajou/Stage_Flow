@@ -32,6 +32,24 @@ class CandidatureController extends Controller
         return view('entreprise.candidatures.index', compact('entreprise', 'candidatures', 'offres'));
     }
 
+    public function export(Request $request)
+    {
+        $headers = [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+            'Content-Disposition' => 'attachment; filename="candidatures_' . now()->format('Y-m-d_H-i') . '.csv"',
+            'Pragma' => 'no-cache',
+            'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+            'Expires' => '0'
+        ];
+
+        return response()->stream(function() use ($request) {
+            $this->candidatureService->exportCandidaturesToCsv(
+                auth()->id(), 
+                $request->only(['offre_id', 'statut', 'search'])
+            );
+        }, 200, $headers);
+    }
+
     public function updateStatus(Request $request, $id)
     {
         $request->validate([

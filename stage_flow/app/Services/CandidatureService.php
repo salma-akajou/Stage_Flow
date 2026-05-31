@@ -35,7 +35,7 @@ class CandidatureService extends BaseService
             $photoPath = $data['photo']->store('photos/candidatures', 'public');
         }
 
-        return $this->create([
+        $candidature = $this->create([
             'etudiant_id'        => $etudiantId,
             'offre_id'           => $offreId,
             'cv_id'              => $cvId,
@@ -45,6 +45,31 @@ class CandidatureService extends BaseService
             'photo'              => $photoPath,
             'portfolio_url'      => $data['portfolio_url'] ?? null,
         ]);
+
+        // Notify the company user
+        $candidature->load(['offre.entreprise.user']);
+        $entrepriseUser = $candidature->offre->entreprise->user ?? null;
+        if ($entrepriseUser) {
+            $studentNom = auth()->user()->prenom . ' ' . auth()->user()->nom;
+            $offreTitre = $candidature->offre->titre;
+            
+            $title = "Nouvelle candidature reçue";
+            $message = "Le candidat {$studentNom} a postulé à votre offre : \"{$offreTitre}\".";
+
+            $this->notificationService->createNotification(
+                $entrepriseUser->id,
+                'new_candidature',
+                $title,
+                $message,
+                [
+                    'candidature_id' => $candidature->id,
+                    'offre_id' => $candidature->offre_id,
+                    'student_name' => $studentNom
+                ]
+            );
+        }
+
+        return $candidature;
     }
 
     public function listEtudiantCandidatures(int $etudiantId, array $filters = [], int $perPage = 9, bool $includeStats = false): LengthAwarePaginator|array
@@ -81,7 +106,7 @@ class CandidatureService extends BaseService
         return $results;
     }
 
-    public function listEntrepriseCandidatures(int $entrepriseId, array $filters = [], int $perPage = 9): LengthAwarePaginator
+    private function buildEntrepriseCandidaturesQuery(int $entrepriseId, array $filters = [])
     {
         $query = $this->model->whereHas('offre', function ($q) use ($entrepriseId) {
             $q->where('entreprise_id', $entrepriseId);
@@ -102,7 +127,46 @@ class CandidatureService extends BaseService
             });
         }
 
-        return $query->latest()->paginate($perPage);
+        return $query->latest();
+    }
+
+    public function listEntrepriseCandidatures(int $entrepriseId, array $filters = [], int $perPage = 9): LengthAwarePaginator
+    {
+        return $this->buildEntrepriseCandidaturesQuery($entrepriseId, $filters)->paginate($perPage);
+    }
+
+    public function exportCandidaturesToCsv(int $entrepriseId, array $filters = []): void
+    {
+        $candidatures = $this->buildEntrepriseCandidaturesQuery($entrepriseId, $filters)->get();
+
+        // Add UTF-8 BOM for Microsoft Excel compatibility
+        echo chr(0xEF).chr(0xBB).chr(0xBF);
+
+        $file = fopen('php://output', 'w');
+        
+        fputcsv($file, [
+            'Candidat',
+            'Email',
+            'Téléphone',
+            'Offre de stage',
+            'Statut',
+            'Date de postulation',
+            'Lien Portfolio'
+        ], ';');
+
+        foreach ($candidatures as $candidature) {
+            fputcsv($file, [
+                $candidature->etudiant->user->prenom . ' ' . $candidature->etudiant->user->nom,
+                $candidature->etudiant->user->email,
+                $candidature->telephone,
+                $candidature->offre->titre,
+                $candidature->statut,
+                $candidature->created_at->format('d/m/Y H:i'),
+                $candidature->portfolio_url ?? 'N/A'
+            ], ';');
+        }
+
+        fclose($file);
     }
 
     public function changeStatus(int $id, string $status): bool
