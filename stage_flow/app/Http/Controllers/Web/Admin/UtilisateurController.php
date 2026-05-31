@@ -44,6 +44,7 @@ class UtilisateurController extends Controller
         }, 200, $headers);
     }
 
+    
     public function show(int $id)
     {
         $user = $this->utilisateurService->getUserDetails($id);
