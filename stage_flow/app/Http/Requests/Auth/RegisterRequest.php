@@ -33,7 +33,19 @@ class RegisterRequest extends FormRequest
                 'etablissement' => ['required', 'string', 'in:Solicode,Faculté,ISTA,EMSI,ENSI,BTS,Autre'],
                 'filiere' => ['required', 'string', 'max:255'],
                 'niveau_etude' => ['required', 'string', 'in:Bac+2,Bac+3,Master,Doctorat,Autre'],
-                'photo' => ['nullable', 'image', 'max:2048'],
+                'photo' => [
+                    'nullable',
+                    'max:2048',
+                    function ($attribute, $value, $fail) {
+                        if ($value instanceof \Illuminate\Http\UploadedFile) {
+                            $extension = strtolower($value->getClientOriginalExtension());
+                            $allowedExtensions = ['jpeg', 'png', 'jpg', 'gif', 'svg', 'webp'];
+                            if (!in_array($extension, $allowedExtensions)) {
+                                $fail('La photo doit être au format jpeg, png, jpg, gif, svg ou webp.');
+                            }
+                        }
+                    }
+                ],
                 'github' => ['nullable', 'url', 'max:255'],
                 'linkedin' => ['nullable', 'url', 'max:255'],
             ]);
@@ -45,7 +57,19 @@ class RegisterRequest extends FormRequest
                 'adresse' => ['required', 'string', 'max:500'],
                 'email_contact' => ['required', 'email', 'max:255'],
                 'registre_commerce' => ['required', 'string', 'max:100'],
-                'logo' => ['nullable', 'image', 'max:2048'],
+                'logo' => [
+                    'nullable',
+                    'max:2048',
+                    function ($attribute, $value, $fail) {
+                        if ($value instanceof \Illuminate\Http\UploadedFile) {
+                            $extension = strtolower($value->getClientOriginalExtension());
+                            $allowedExtensions = ['jpeg', 'png', 'jpg', 'gif', 'svg', 'webp'];
+                            if (!in_array($extension, $allowedExtensions)) {
+                                $fail('Le logo doit être au format jpeg, png, jpg, gif, svg ou webp.');
+                            }
+                        }
+                    }
+                ],
                 'taille' => ['required', 'string', 'in:TPE / PME,Grande Entreprise,Multinationale'],
             ]);
         }
@@ -60,6 +84,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'prenom.required' => 'Le prénom est obligatoire.',
+            'etablissement.in' => 'Établissement invalide.',
             'nom.required' => 'Le nom est obligatoire.',
             'email.required' => 'L\'adresse email est obligatoire.',
             'email.unique' => 'Cet email est déjà utilisé.',
@@ -78,7 +103,9 @@ class RegisterRequest extends FormRequest
             'registre_commerce.required' => 'Le numéro de RC est obligatoire.',
             'taille.required' => 'La taille de l\'entreprise est obligatoire.',
             'photo.image' => 'La photo doit être une image.',
+            'photo.mimes' => 'La photo doit être au format jpeg, png, jpg, gif, svg ou webp.',
             'logo.image' => 'Le logo doit être une image.',
+            'logo.mimes' => 'Le logo doit être au format jpeg, png, jpg, gif, svg ou webp.',
         ];
     }
 }
