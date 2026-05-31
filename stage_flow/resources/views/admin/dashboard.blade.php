@@ -21,7 +21,10 @@
     @include('components.admin.dashboard.chart', ['chartData' => $chartData])
     @include('components.admin.dashboard.repartition', ['repartition' => $stats['repartition_users']])
 </div>
+
+@include('components.admin.dashboard.advanced_stats', ['stats' => $stats])
 @endsection
+
 
 @push('styles')
 <style>

@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable, HasRoles, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -42,6 +45,11 @@ class User extends Authenticatable
         return $this->hasMany(Feedback::class, 'auteur_id');
     }
 
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
     public function getRoleAttribute(): string
     {
         if (method_exists($this, 'getRoleNames') && $this->getRoleNames()->isNotEmpty()) {
@@ -65,6 +73,45 @@ class User extends Authenticatable
             return $this->entreprise->logo;
         }
         return null;
+    }
+
+    /**
+     * Enregistre un étudiant avec son profil associé.
+     */
+    public static function registerStudent(array $data): self
+    {
+        return DB::transaction(function() use ($data) {
+            $user = self::create([
+                'prenom'   => $data['prenom'],
+                'nom'      => $data['nom'],
+                'email'    => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+
+            if (method_exists($user, 'assignRole')) {
+                $user->assignRole('etudiant');
+            }
+
+            $photoPath = null;
+            if (isset($data['photo']) && $data['photo'] instanceof \Illuminate\Http\UploadedFile) {
+                $photoPath = $data['photo']->store('avatars', 'public');
+            }
+
+            Etudiant::create([
+                'user_id'       => $user->id,
+                'ville_id'      => $data['ville_id'],
+                'etablissement' => $data['etablissement'],
+                'filiere'       => $data['filiere'],
+                'niveau_etudes' => $data['niveau_etude'],
+                'photo'         => $photoPath,
+                'bio'           => $data['bio'] ?? null,
+                'github'        => $data['github'] ?? null,
+                'linkedin'      => $data['linkedin'] ?? null,
+                'vues'          => 0,
+            ]);
+
+            return $user;
+        });
     }
 
     /**

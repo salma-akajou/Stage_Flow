@@ -27,6 +27,24 @@ class UtilisateurController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
+    public function export(Request $request)
+    {
+        $headers = [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+            'Content-Disposition' => 'attachment; filename="utilisateurs_' . now()->format('Y-m-d_H-i') . '.csv"',
+            'Pragma' => 'no-cache',
+            'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+            'Expires' => '0'
+        ];
+
+        return response()->stream(function() use ($request) {
+            $this->utilisateurService->exportUsersToCsv(
+                $request->only(['search', 'statut', 'role'])
+            );
+        }, 200, $headers);
+    }
+
+    
     public function show(int $id)
     {
         $user = $this->utilisateurService->getUserDetails($id);

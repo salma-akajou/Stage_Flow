@@ -8,17 +8,20 @@ use App\Http\Controllers\Web\Student\EntrepriseController;
 use App\Http\Controllers\Web\Student\CandidatureController;
 use App\Http\Controllers\Web\Student\FavoriController;
 use App\Http\Controllers\Web\Student\FeedbackController as StudentFeedback;
+use App\Http\Controllers\Web\Student\NotificationController;
 use App\Http\Controllers\Web\Entreprise\FeedbackController as EntrepriseFeedback;
 use App\Http\Controllers\Web\Entreprise\DashboardController as EntrepriseDashboard;
 use App\Http\Controllers\Web\Entreprise\OffreController as EntrepriseOffre;
 use App\Http\Controllers\Web\Entreprise\CandidatureController as EntrepriseCandidature;
 use App\Http\Controllers\Web\Entreprise\StudentController as EntrepriseStudent;
 use App\Http\Controllers\Web\Entreprise\ProfileController as EntrepriseProfile;
+use App\Http\Controllers\Web\Entreprise\NotificationController as EntrepriseNotification;
 use App\Http\Controllers\Web\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Web\Admin\UtilisateurController as AdminUser;
 use App\Http\Controllers\Web\Admin\FeedbackController as AdminFeedback;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 
@@ -40,6 +43,9 @@ Route::middleware(['auth', 'role:etudiant'])->prefix('student')->name('student.'
     Route::get('/favoris', [FavoriController::class, 'index'])->name('favoris');
     Route::post('/favoris/{offreId}/toggle', [FavoriController::class, 'toggle'])->name('favoris.toggle');
     Route::post('/feedback/store', [StudentFeedback::class, 'store'])->name('feedback.store');
+
+    Route::post('/notifications/{id}/mark-read', [NotificationController::class, 'markRead'])->name('notifications.markRead');
+    Route::post('/notifications/mark-all-read', [NotificationController::class, 'markAllRead'])->name('notifications.markAllRead');
 });
 
 // Espace Entreprise
@@ -57,6 +63,7 @@ Route::middleware(['auth', 'role:entreprise'])->prefix('entreprise')->name('entr
 
     Route::prefix('candidatures')->name('candidatures.')->group(function () {
         Route::get('', [EntrepriseCandidature::class, 'index'])->name('index');
+        Route::get('export', [EntrepriseCandidature::class, 'export'])->name('export');
         Route::post('{id}/status', [EntrepriseCandidature::class, 'updateStatus'])->name('update_status');
         Route::get('student/{id}', [EntrepriseStudent::class, 'showAjax'])->name('show_student');
         Route::get('details/{id}', [EntrepriseCandidature::class, 'showCandidatureAjax'])->name('show_details');
@@ -64,6 +71,9 @@ Route::middleware(['auth', 'role:entreprise'])->prefix('entreprise')->name('entr
 
     Route::get('profile', [EntrepriseProfile::class, 'index'])->name('profile');
     Route::put('profile', [EntrepriseProfile::class, 'update'])->name('profile.update');
+
+    Route::post('/notifications/{id}/mark-read', [EntrepriseNotification::class, 'markRead'])->name('notifications.markRead');
+    Route::post('/notifications/mark-all-read', [EntrepriseNotification::class, 'markAllRead'])->name('notifications.markAllRead');
 });
 
 // Espace Admin (accessible par admin ET modérateur)
@@ -73,6 +83,7 @@ Route::middleware(['auth', 'role:admin|moderateur'])->prefix('admin')->name('adm
     // Gestion des utilisateurs - lecture seule pour tous (admin + modérateur)
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('', [AdminUser::class, 'index'])->name('index');
+        Route::get('export', [AdminUser::class, 'export'])->name('export');
         Route::get('{id}', [AdminUser::class, 'show'])->name('show');
 
         // Actions réservées à ceux qui ont la permission gerer-utilisateurs (admin seulement)

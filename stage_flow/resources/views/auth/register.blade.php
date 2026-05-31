@@ -111,64 +111,100 @@
                     @error('role') <p class="text-[10px] text-rose-500 font-bold mt-2 text-center">{{ $message }}</p> @enderror
                 </div>
 
+
                 <!-- Dynamic Student Fields -->
                 <div x-show="role === 'etudiant'" x-transition class="space-y-6 pt-6 border-t border-slate-50">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Établissement</label>
-                            <select name="etablissement" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 font-medium">
-                                <option value="Solicode">Solicode</option>
-                                <option value="Faculté">Faculté</option>
-                                <option value="ISTA">ISTA</option>
-                                <option value="EMSI">EMSI</option>
-                                <option value="ENSI">ENSI</option>
-                                <option value="BTS">BTS</option>
-                                <option value="Autre">Autre</option>
-                            </select>
+                            <div x-data="{
+                                open: false,
+                                value: '{{ old('etablissement', 'Solicode') }}',
+                                labels: { 'Solicode': 'Solicode', 'Faculté': 'Faculté', 'ISTA': 'ISTA', 'EMSI': 'EMSI', 'ENSI': 'ENSI', 'BTS': 'BTS', 'Autre': 'Autre' }
+                            }" class="relative">
+                                <input type="hidden" name="etablissement" x-model="value" :disabled="role !== 'etudiant'">
+                                <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
+                                    <span x-text="labels[value]"></span>
+                                    <svg class="size-4 text-slate-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                                </button>
+                                <div x-show="open" @click.outside="open = false" x-transition class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 max-h-60 overflow-y-auto">
+                                    <template x-for="(label, key) in labels" :key="key">
+                                        <div @click="value = key; open = false" class="px-4 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer font-semibold transition" :class="{ 'bg-indigo-50/50 text-indigo-600': value === key }">
+                                            <span x-text="label"></span>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                            @error('etablissement') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Filière</label>
-                            <input type="text" name="filiere" value="{{ old('filiere') }}" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Génie Logiciel">
+                            <input type="text" name="filiere" :disabled="role !== 'etudiant'" value="{{ old('filiere') }}" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 font-medium" placeholder="Génie Logiciel">
+                            @error('filiere') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                         </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Niveau d'études</label>
-                            <select name="niveau_etude" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 font-medium">
-                                <option value="Bac+2">Bac +2</option>
-                                <option value="Bac+3">Bac +3</option>
-                                <option value="Master">Master</option>
-                                <option value="Doctorat">Doctorat</option>
-                                <option value="Autre">Autre</option>
-                            </select>
+                            <div x-data="{
+                                open: false,
+                                value: '{{ old('niveau_etude', 'Bac+2') }}',
+                                labels: { 'Bac+2': 'Bac +2', 'Bac+3': 'Bac +3', 'Master': 'Master', 'Doctorat': 'Doctorat', 'Autre': 'Autre' }
+                            }" class="relative">
+                                <input type="hidden" name="niveau_etude" x-model="value" :disabled="role !== 'etudiant'">
+                                <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
+                                    <span x-text="labels[value]"></span>
+                                    <svg class="size-4 text-slate-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                                </button>
+                                <div x-show="open" @click.outside="open = false" x-transition class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 max-h-60 overflow-y-auto">
+                                    <template x-for="(label, key) in labels" :key="key">
+                                        <div @click="value = key; open = false" class="px-4 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer font-semibold transition" :class="{ 'bg-indigo-50/50 text-indigo-600': value === key }">
+                                            <span x-text="label"></span>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                            @error('niveau_etude') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Ville</label>
-                            <select name="ville_id" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 font-medium">
-                                @foreach($villes as $ville)
-                                    <option value="{{ $ville->id }}" {{ old('ville_id') == $ville->id ? 'selected' : '' }}>{{ $ville->nom }}</option>
-                                @endforeach
-                            </select>
+                            <div x-data="{ open: false, value: '{{ old('ville_id', $villes->first()->id ?? '') }}', label: '{{ old('ville_id') ? $villes->find(old('ville_id'))?->nom : ($villes->first()->nom ?? '') }}' }" class="relative">
+                                <input type="hidden" name="ville_id" x-model="value" :disabled="role !== 'etudiant'">
+                                <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
+                                    <span x-text="label"></span>
+                                    <svg class="size-4 text-slate-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                                </button>
+                                <div x-show="open" @click.outside="open = false" x-transition class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 max-h-60 overflow-y-auto">
+                                    @foreach($villes as $ville)
+                                    <div @click="value = '{{ $ville->id }}'; label = '{{ $ville->nom }}'; open = false" class="px-4 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer font-semibold transition" :class="{ 'bg-indigo-50/50 text-indigo-600': value === '{{ $ville->id }}' }">
+                                        {{ $ville->nom }}
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            @error('ville_id') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                         </div>
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">À propos de moi (Bio)</label>
-                        <textarea name="bio" rows="3" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all font-medium" placeholder="Décrivez votre parcours en quelques mots...">{{ old('bio') }}</textarea>
+                        <textarea name="bio_etudiant" :disabled="role !== 'etudiant'" rows="3" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all font-medium" placeholder="Décrivez votre parcours en quelques mots...">{{ old('bio_etudiant') }}</textarea>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">LinkedIn</label>
-                            <input type="url" name="linkedin" value="{{ old('linkedin') }}" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all font-medium" placeholder="https://linkedin.com/in/...">
+                            <input type="url" name="linkedin" :disabled="role !== 'etudiant'" value="{{ old('linkedin') }}" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all font-medium" placeholder="https://linkedin.com/in/...">
+                            @error('linkedin') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">GitHub</label>
-                            <input type="url" name="github" value="{{ old('github') }}" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all font-medium" placeholder="https://github.com/...">
+                            <input type="url" name="github" :disabled="role !== 'etudiant'" value="{{ old('github') }}" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all font-medium" placeholder="https://github.com/...">
+                            @error('github') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                         </div>
                     </div>
                     <div class="space-y-2">
                         <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Photo de profil</label>
                         <div class="relative group cursor-pointer">
-                            <input type="file" name="photo" @change="fileName = $event.target.files[0].name" class="absolute inset-0 w-full h-full opacity-0 z-20 cursor-pointer">
+                            <input type="file" name="photo" :disabled="role !== 'etudiant'" @change="fileName = $event.target.files[0].name" class="absolute inset-0 w-full h-full opacity-0 z-20 cursor-pointer">
                             <div class="py-4 px-6 bg-slate-50 border-2 border-dashed border-slate-200 rounded-2xl flex items-center gap-4 transition-all group-hover:bg-indigo-50 group-hover:border-indigo-200">
                                 <div class="size-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-indigo-600">
                                     <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
@@ -176,6 +212,7 @@
                                 <span class="text-sm font-bold text-slate-500 truncate" x-text="fileName"></span>
                             </div>
                         </div>
+                        @error('photo') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                     </div>
                 </div>
 
@@ -184,60 +221,99 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Nom Entreprise</label>
-                            <input type="text" name="nom_entreprise" value="{{ old('nom_entreprise') }}" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="OCP Group">
+                            <input type="text" name="nom_entreprise" :disabled="role !== 'entreprise'" value="{{ old('nom_entreprise') }}" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 font-medium" placeholder="OCP Group">
+                            @error('nom_entreprise') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Secteur</label>
-                            <select name="secteur" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 font-medium">
-                                <option value="Informatique">Informatique</option>
-                                <option value="Design">Design</option>
-                                <option value="Marketing">Marketing</option>
-                                <option value="Commerce">Commerce</option>
-                                <option value="Industrie">Industrie</option>
-                                <option value="Autre">Autre</option>
-                            </select>
+                            <div x-data="{
+                                open: false,
+                                value: '{{ old('secteur', 'Informatique') }}',
+                                labels: { 'Informatique': 'Informatique', 'Design': 'Design', 'Marketing': 'Marketing', 'Commerce': 'Commerce', 'Industrie': 'Industrie', 'Autre': 'Autre' }
+                            }" class="relative">
+                                <input type="hidden" name="secteur" x-model="value" :disabled="role !== 'entreprise'">
+                                <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
+                                    <span x-text="labels[value]"></span>
+                                    <svg class="size-4 text-slate-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                                </button>
+                                <div x-show="open" @click.outside="open = false" x-transition class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 max-h-60 overflow-y-auto">
+                                    <template x-for="(label, key) in labels" :key="key">
+                                        <div @click="value = key; open = false" class="px-4 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer font-semibold transition" :class="{ 'bg-indigo-50/50 text-indigo-600': value === key }">
+                                            <span x-text="label"></span>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                            @error('secteur') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                         </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Taille</label>
-                            <select name="taille" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 font-medium">
-                                <option value="TPE / PME">TPE / PME</option>
-                                <option value="Grande Entreprise">Grande Entreprise</option>
-                                <option value="Multinationale">Multinationale</option>
-                            </select>
+                            <div x-data="{
+                                open: false,
+                                value: '{{ old('taille', 'TPE / PME') }}',
+                                labels: { 'TPE / PME': 'TPE / PME', 'Grande Entreprise': 'Grande Entreprise', 'Multinationale': 'Multinationale' }
+                            }" class="relative">
+                                <input type="hidden" name="taille" x-model="value" :disabled="role !== 'entreprise'">
+                                <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
+                                    <span x-text="labels[value]"></span>
+                                    <svg class="size-4 text-slate-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                                </button>
+                                <div x-show="open" @click.outside="open = false" x-transition class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 max-h-60 overflow-y-auto">
+                                    <template x-for="(label, key) in labels" :key="key">
+                                        <div @click="value = key; open = false" class="px-4 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer font-semibold transition" :class="{ 'bg-indigo-50/50 text-indigo-600': value === key }">
+                                            <span x-text="label"></span>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                            @error('taille') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Ville du siège</label>
-                            <select name="ville_id" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 font-medium">
-                                @foreach($villes as $ville)
-                                    <option value="{{ $ville->id }}" {{ old('ville_id') == $ville->id ? 'selected' : '' }}>{{ $ville->nom }}</option>
-                                @endforeach
-                            </select>
+                            <div x-data="{ open: false, value: '{{ old('ville_id', $villes->first()->id ?? '') }}', label: '{{ old('ville_id') ? $villes->find(old('ville_id'))?->nom : ($villes->first()->nom ?? '') }}' }" class="relative">
+                                <input type="hidden" name="ville_id" x-model="value" :disabled="role !== 'entreprise'">
+                                <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
+                                    <span x-text="label"></span>
+                                    <svg class="size-4 text-slate-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                                </button>
+                                <div x-show="open" @click.outside="open = false" x-transition class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 max-h-60 overflow-y-auto">
+                                    @foreach($villes as $ville)
+                                    <div @click="value = '{{ $ville->id }}'; label = '{{ $ville->nom }}'; open = false" class="px-4 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer font-semibold transition" :class="{ 'bg-indigo-50/50 text-indigo-600': value === '{{ $ville->id }}' }">
+                                        {{ $ville->nom }}
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            @error('ville_id') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                         </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Adresse complète</label>
-                            <input type="text" name="adresse" value="{{ old('adresse') }}" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="12 Rue des Oliviers">
+                            <input type="text" name="adresse" :disabled="role !== 'entreprise'" value="{{ old('adresse') }}" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 font-medium" placeholder="12 Rue des Oliviers">
+                            @error('adresse') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Email de contact RH</label>
-                            <input type="email" name="email_contact" value="{{ old('email_contact') }}" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="rh@entreprise.ma">
+                            <input type="email" name="email_contact" :disabled="role !== 'entreprise'" value="{{ old('email_contact') }}" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 font-medium" placeholder="rh@entreprise.ma">
+                            @error('email_contact') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                         </div>
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Registre de Commerce (RC)</label>
-                        <input type="text" name="registre_commerce" value="{{ old('registre_commerce') }}" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 font-medium" placeholder="RC 123456">
+                        <input type="text" name="registre_commerce" :disabled="role !== 'entreprise'" value="{{ old('registre_commerce') }}" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 font-medium" placeholder="RC 123456">
+                        @error('registre_commerce') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Présentation de l'entreprise</label>
-                        <textarea name="bio" rows="3" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all font-medium" placeholder="Parlez-nous de vos missions...">{{ old('bio') }}</textarea>
+                        <textarea name="bio_entreprise" :disabled="role !== 'entreprise'" rows="3" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all font-medium" placeholder="Parlez-nous de vos missions...">{{ old('bio_entreprise') }}</textarea>
                     </div>
                     <div class="space-y-2">
                         <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Logo de l'entreprise</label>
                         <div class="relative group cursor-pointer">
-                            <input type="file" name="logo" @change="fileName = $event.target.files[0].name" class="absolute inset-0 w-full h-full opacity-0 z-20 cursor-pointer">
+                            <input type="file" name="logo" :disabled="role !== 'entreprise'" @change="fileName = $event.target.files[0].name" class="absolute inset-0 w-full h-full opacity-0 z-20 cursor-pointer">
                             <div class="py-4 px-6 bg-slate-50 border-2 border-dashed border-slate-200 rounded-2xl flex items-center gap-4 transition-all group-hover:bg-indigo-50 group-hover:border-indigo-200">
                                 <div class="size-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-indigo-600">
                                     <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
@@ -245,6 +321,7 @@
                                 <span class="text-sm font-bold text-slate-500 truncate" x-text="fileName"></span>
                             </div>
                         </div>
+                        @error('logo') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                     </div>
                 </div>
 

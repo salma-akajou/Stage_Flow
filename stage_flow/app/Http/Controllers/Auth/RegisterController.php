@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends BaseController
@@ -34,7 +35,7 @@ class RegisterController extends BaseController
         }
 
         return $request->wantsJson()
-                    ? new \Illuminate\Http\JsonResponse([], 201)
+                    ? new JsonResponse([], 201)
                     : redirect($this->redirectPath());
     }
 
@@ -86,7 +87,7 @@ class RegisterController extends BaseController
                     'filiere' => $data['filiere'],
                     'niveau_etudes' => $data['niveau_etude'],
                     'photo' => $photoPath,
-                    'bio' => $data['bio'] ?? null,
+                    'bio' => $data['bio_etudiant'] ?? null,
                     'github' => $data['github'] ?? null,
                     'linkedin' => $data['linkedin'] ?? null,
                 ]);
@@ -102,7 +103,7 @@ class RegisterController extends BaseController
                     'email_contact' => $data['email_contact'],
                     'logo' => $logoPath,
                     'registre_commerce' => $data['registre_commerce'],
-                    'bio' => $data['bio'] ?? null,
+                    'bio' => $data['bio_entreprise'] ?? null,
                     'taille' => $data['taille'],
                 ]);
             }

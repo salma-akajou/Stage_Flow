@@ -12,7 +12,7 @@ class UtilisateurService extends BaseService
         $this->model = new User();
     }
 
-    public function listUsers(array $filters = [], int $perPage = 9): LengthAwarePaginator
+    private function buildUsersQuery(array $filters = [])
     {
         $query = $this->model->newQuery();
 
@@ -45,7 +45,43 @@ class UtilisateurService extends BaseService
             }
         }
 
-        return $query->latest()->paginate($perPage);
+        return $query->latest();
+    }
+
+    public function listUsers(array $filters = [], int $perPage = 9): LengthAwarePaginator
+    {
+        return $this->buildUsersQuery($filters)->paginate($perPage);
+    }
+
+
+    public function exportUsersToCsv(array $filters = []): void
+    {
+        $users = $this->buildUsersQuery($filters)->get();
+
+        // Add UTF-8 BOM for Microsoft Excel compatibility
+        echo chr(0xEF).chr(0xBB).chr(0xBF);
+
+        $file = fopen('php://output', 'w');
+        
+        fputcsv($file, [
+            'Nom complet',
+            'Email',
+            'Rôle',
+            'Statut',
+            'Date d\'inscription'
+        ], ';');
+
+        foreach ($users as $user) {
+            fputcsv($file, [
+                $user->prenom . ' ' . $user->nom,
+                $user->email,
+                $user->role === 'moderateur' ? 'Modérateur' : ($user->role === 'etudiant' ? 'Étudiant' : 'Entreprise'),
+                $user->statut === 'actif' ? 'Actif' : 'Suspendu',
+                $user->created_at->format('d/m/Y H:i')
+            ], ';');
+        }
+
+        fclose($file);
     }
 
     public function getUserDetails(int $id)
