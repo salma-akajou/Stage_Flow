@@ -22,6 +22,7 @@ use App\Http\Controllers\Web\Admin\FeedbackController as AdminFeedback;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 Route::middleware(['auth', 'role:etudiant'])->prefix('student')->name('student.')->group(function () {

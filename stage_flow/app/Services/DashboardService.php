@@ -9,6 +9,7 @@ use App\Models\Etudiant;
 use App\Models\Feedback;
 use App\Models\Candidature;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class DashboardService
 {
@@ -122,28 +123,71 @@ class DashboardService
 
     public function getAdminStats(): array
     {
-        $feedbacksAModerer = Feedback::where('valide', false)->count(); // Feedbacks non validés
+        $feedbacksAModerer = Feedback::where('valide', false)->count();
         $nouveauxUsersCeMois = User::whereMonth('created_at', now()->month)->count();
         $nouvellesOffresCeMois = Offre::whereMonth('created_at', now()->month)->count();
+
+        // --- Statistiques avancées (UC3) ---
+
+        // Taux d'acceptation des candidatures
+        $totalTraitees = Candidature::whereIn('statut', ['Accepté', 'Refusé'])->count();
+        $totalAcceptees = Candidature::where('statut', 'Accepté')->count();
+        $tauxAcceptation = $totalTraitees > 0 ? round(($totalAcceptees / $totalTraitees) * 100) : 0;
+
+        // Durée moyenne de traitement (en heures) entre postulation et décision
+        $dureeTraitement = Candidature::whereIn('statut', ['Accepté', 'Refusé'])
+            ->selectRaw('AVG(TIMESTAMPDIFF(HOUR, date_postulation, updated_at)) as avg_heures')
+            ->value('avg_heures');
+        $dureeTraitement = $dureeTraitement ? round($dureeTraitement) : 0;
+
+        // Taux d'engagement étudiant (ont posté au moins une candidature)
+        $totalEtudiants = Etudiant::count();
+        $etudiantsActifs = Etudiant::has('candidatures')->count();
+        $tauxEngagement = $totalEtudiants > 0 ? round(($etudiantsActifs / $totalEtudiants) * 100) : 0;
+
+        // Top 3 secteurs par nombre d'offres
+        $topSecteurs = Offre::select('secteur', DB::raw('COUNT(*) as total'))
+            ->whereNotNull('secteur')
+            ->groupBy('secteur')
+            ->orderByDesc('total')
+            ->limit(3)
+            ->get();
+
+        // Top 3 villes par nombre d'offres
+        $topVilles = Offre::select('ville_id', DB::raw('COUNT(*) as total'))
+            ->with('ville:id,nom')
+            ->whereNotNull('ville_id')
+            ->groupBy('ville_id')
+            ->orderByDesc('total')
+            ->limit(3)
+            ->get();
 
         return [
             'total_utilisateurs' => User::count(),
             'nouveaux_users_mois' => $nouveauxUsersCeMois,
-            
+
             'total_offres' => Offre::count(),
             'nouvelles_offres_mois' => $nouvellesOffresCeMois,
-            
+
             'total_commentaires' => Feedback::count(),
             'feedbacks_a_moderer' => $feedbacksAModerer,
-            
+
             'total_candidatures' => Candidature::count(),
             'candidatures_semaine' => Candidature::where('created_at', '>=', now()->subWeek())->count(),
-            
+
             'repartition_users' => [
-                'etudiants' => Etudiant::count(),
+                'etudiants' => $totalEtudiants,
                 'entreprises' => Entreprise::count(),
                 'admins' => 1,
             ],
+
+            // KPIs avancés
+            'taux_acceptation' => $tauxAcceptation,
+            'duree_traitement_heures' => $dureeTraitement,
+            'taux_engagement_etudiants' => $tauxEngagement,
+            'etudiants_actifs' => $etudiantsActifs,
+            'top_secteurs' => $topSecteurs,
+            'top_villes' => $topVilles,
         ];
     }
 

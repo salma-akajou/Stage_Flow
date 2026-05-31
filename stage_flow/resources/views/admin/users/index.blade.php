@@ -3,6 +3,7 @@
 @section('breadcrumb', 'Utilisateurs')
 
 @section('content')
+
 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8" data-aos="fade-down"
      x-data="{ search: '', role: '', statut: '' }"
      @users-filter-changed.window="search = $event.detail.search; role = $event.detail.role; statut = $event.detail.statut">
