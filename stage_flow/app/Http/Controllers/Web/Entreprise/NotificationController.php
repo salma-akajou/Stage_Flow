@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web\Student;
+namespace App\Http\Controllers\Web\Entreprise;
 
 use App\Http\Controllers\Controller;
 use App\Services\NotificationService;
@@ -18,7 +18,7 @@ class NotificationController extends Controller
     }
 
     /**
-     * Marquer une notification comme lue et rediriger.
+     * Marquer une notification comme lue et rediriger vers la liste des candidatures.
      */
     public function markRead(int $id): RedirectResponse
     {
@@ -30,19 +30,8 @@ class NotificationController extends Controller
 
         $this->notificationService->markAsRead($id);
 
-    
-        if ($notification->type === 'candidature_status') {
-            return redirect()->route('student.candidatures');
-        }
-
-        if ($notification->type === 'new_offre') {
-            $offreId = $notification->data['offre_id'] ?? null;
-            if ($offreId) {
-                return redirect()->route('student.offres.show', $offreId);
-            }
-        }
-
-        return redirect()->back();
+        // For company, all notifications point to the candidatures list
+        return redirect()->route('entreprise.candidatures.index');
     }
 
     /**

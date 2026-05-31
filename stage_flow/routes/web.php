@@ -15,6 +15,7 @@ use App\Http\Controllers\Web\Entreprise\OffreController as EntrepriseOffre;
 use App\Http\Controllers\Web\Entreprise\CandidatureController as EntrepriseCandidature;
 use App\Http\Controllers\Web\Entreprise\StudentController as EntrepriseStudent;
 use App\Http\Controllers\Web\Entreprise\ProfileController as EntrepriseProfile;
+use App\Http\Controllers\Web\Entreprise\NotificationController as EntrepriseNotification;
 use App\Http\Controllers\Web\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Web\Admin\UtilisateurController as AdminUser;
 use App\Http\Controllers\Web\Admin\FeedbackController as AdminFeedback;
@@ -61,6 +62,7 @@ Route::middleware(['auth', 'role:entreprise'])->prefix('entreprise')->name('entr
 
     Route::prefix('candidatures')->name('candidatures.')->group(function () {
         Route::get('', [EntrepriseCandidature::class, 'index'])->name('index');
+        Route::get('export', [EntrepriseCandidature::class, 'export'])->name('export');
         Route::post('{id}/status', [EntrepriseCandidature::class, 'updateStatus'])->name('update_status');
         Route::get('student/{id}', [EntrepriseStudent::class, 'showAjax'])->name('show_student');
         Route::get('details/{id}', [EntrepriseCandidature::class, 'showCandidatureAjax'])->name('show_details');
@@ -68,6 +70,9 @@ Route::middleware(['auth', 'role:entreprise'])->prefix('entreprise')->name('entr
 
     Route::get('profile', [EntrepriseProfile::class, 'index'])->name('profile');
     Route::put('profile', [EntrepriseProfile::class, 'update'])->name('profile.update');
+
+    Route::post('/notifications/{id}/mark-read', [EntrepriseNotification::class, 'markRead'])->name('notifications.markRead');
+    Route::post('/notifications/mark-all-read', [EntrepriseNotification::class, 'markAllRead'])->name('notifications.markAllRead');
 });
 
 // Espace Admin (accessible par admin ET modérateur)
@@ -77,6 +82,7 @@ Route::middleware(['auth', 'role:admin|moderateur'])->prefix('admin')->name('adm
     // Gestion des utilisateurs - lecture seule pour tous (admin + modérateur)
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('', [AdminUser::class, 'index'])->name('index');
+        Route::get('export', [AdminUser::class, 'export'])->name('export');
         Route::get('{id}', [AdminUser::class, 'show'])->name('show');
 
         // Actions réservées à ceux qui ont la permission gerer-utilisateurs (admin seulement)
