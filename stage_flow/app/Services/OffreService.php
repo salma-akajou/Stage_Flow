@@ -4,13 +4,17 @@ namespace App\Services;
 
 use App\Models\Offre;
 use App\Models\Ville;
+use App\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 class OffreService extends BaseService
 {
-    public function __construct()
+    protected NotificationService $notificationService;
+
+    public function __construct(NotificationService $notificationService)
     {
         $this->model = new Offre();
+        $this->notificationService = $notificationService;
     }
 
     /**
@@ -68,7 +72,7 @@ class OffreService extends BaseService
      */
     public function getDetails(int $id): Offre
     {
-        return $this->model->with(['entreprise', 'ville'])->findOrFail($id);
+        return Offre::with(['entreprise', 'ville'])->findOrFail($id);
     }
 
     public function getRecommended(int $limit = 3): Collection
@@ -95,7 +99,29 @@ class OffreService extends BaseService
         $data['entreprise_id'] = $entrepriseId;
         $data['secteur'] = $secteur;
 
-        return $this->create($data);
+        $offre = $this->create($data);
+
+        // Notify all students
+        $students = User::role('etudiant')->get();
+        
+        $entrepriseNom = $offre->entreprise->nom_entreprise ?? 'Une entreprise';
+        $title = "Nouvelle offre de stage";
+        $message = "L'entreprise {$entrepriseNom} a publié une nouvelle offre : \"{$offre->titre}\".";
+
+        foreach ($students as $student) {
+            $this->notificationService->createNotification(
+                $student->id,
+                'new_offre',
+                $title,
+                $message,
+                [
+                    'offre_id' => $offre->id,
+                    'entreprise_id' => $entrepriseId
+                ]
+            );
+        }
+
+        return $offre;
     }
 
     public function updateOffre(int $id, array $data, string $secteur): Offre

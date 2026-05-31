@@ -8,6 +8,7 @@ use App\Http\Controllers\Web\Student\EntrepriseController;
 use App\Http\Controllers\Web\Student\CandidatureController;
 use App\Http\Controllers\Web\Student\FavoriController;
 use App\Http\Controllers\Web\Student\FeedbackController as StudentFeedback;
+use App\Http\Controllers\Web\Student\NotificationController;
 use App\Http\Controllers\Web\Entreprise\FeedbackController as EntrepriseFeedback;
 use App\Http\Controllers\Web\Entreprise\DashboardController as EntrepriseDashboard;
 use App\Http\Controllers\Web\Entreprise\OffreController as EntrepriseOffre;
@@ -40,6 +41,9 @@ Route::middleware(['auth', 'role:etudiant'])->prefix('student')->name('student.'
     Route::get('/favoris', [FavoriController::class, 'index'])->name('favoris');
     Route::post('/favoris/{offreId}/toggle', [FavoriController::class, 'toggle'])->name('favoris.toggle');
     Route::post('/feedback/store', [StudentFeedback::class, 'store'])->name('feedback.store');
+
+    Route::post('/notifications/{id}/mark-read', [NotificationController::class, 'markRead'])->name('notifications.markRead');
+    Route::post('/notifications/mark-all-read', [NotificationController::class, 'markAllRead'])->name('notifications.markAllRead');
 });
 
 // Espace Entreprise

@@ -71,8 +71,86 @@
 
             <div class="flex flex-row items-center justify-end gap-x-2 sm:gap-x-4">
                 @if($etudiant)
-                <div class="hs-dropdown [--placement:bottom-right] relative inline-flex">
-                    <button id="hs-dropdown-account" type="button" class="size-9 flex justify-center items-center text-sm font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none">
+                
+                <!-- Notifications Dropdown -->
+                @php
+                    $unreadNotifications = auth()->user()->notifications()->whereNull('read_at')->latest()->get();
+                    $unreadCount = $unreadNotifications->count();
+                @endphp
+                <div x-data="{ showNotif: false }" class="relative inline-flex">
+                    <button @click="showNotif = !showNotif" type="button" class="size-9 flex justify-center items-center text-sm font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none relative">
+                        <svg class="shrink-0 size-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+                        </svg>
+                        @if($unreadCount > 0)
+                            <span class="absolute top-0 right-0 flex h-3 w-3">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-3 w-3 bg-rose-500"></span>
+                            </span>
+                        @endif
+                    </button>
+
+                    <div x-show="showNotif" @click.away="showNotif = false" x-cloak class="absolute right-0 mt-12 w-[350px] bg-white border border-gray-200 rounded-xl shadow-lg p-2 z-[150]">
+                        <div class="flex items-center justify-between px-3 py-2 border-b border-gray-100">
+                            <h3 class="font-semibold text-gray-800 text-sm">Notifications</h3>
+                            @if($unreadCount > 0)
+                                <form action="{{ route('student.notifications.markAllRead') }}" method="POST" class="m-0 p-0">
+                                    @csrf
+                                    <button type="submit" class="text-xs font-medium text-indigo-600 hover:text-indigo-800 transition">Tout lire</button>
+                                </form>
+                            @endif
+                        </div>
+                        
+                        <div class="mt-2 max-h-80 overflow-y-auto space-y-1">
+                            @forelse($unreadNotifications as $notification)
+                                <form action="{{ route('student.notifications.markRead', $notification->id) }}" method="POST" class="w-full">
+                                    @csrf
+                                    <button type="submit" class="w-full text-left flex items-start gap-x-3 p-3 rounded-lg hover:bg-gray-50 transition duration-150">
+                                        <div class="shrink-0 mt-0.5">
+                                            @if($notification->type === 'candidature_status')
+                                                @if(($notification->data['status'] ?? '') === 'Accepté')
+                                                    <span class="flex justify-center items-center size-8 rounded-full bg-emerald-50 text-emerald-600">
+                                                        <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                                    </span>
+                                                @else
+                                                    <span class="flex justify-center items-center size-8 rounded-full bg-rose-50 text-rose-600">
+                                                        <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                                                    </span>
+                                                @endif
+                                            @elseif($notification->type === 'new_offre')
+                                                <span class="flex justify-center items-center size-8 rounded-full bg-indigo-50 text-indigo-600">
+                                                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v3.75m-9.75-3h1.5" /></svg>
+                                                </span>
+                                            @else
+                                                <span class="flex justify-center items-center size-8 rounded-full bg-gray-100 text-gray-600">
+                                                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="grow">
+                                            <p class="font-medium text-gray-800 text-xs flex justify-between items-center">
+                                                <span>{{ $notification->title }}</span>
+                                                <span class="text-[10px] text-gray-400 font-normal shrink-0">{{ $notification->created_at->diffForHumans(null, true) }}</span>
+                                            </p>
+                                            <p class="text-xs text-gray-500 mt-1 line-clamp-2">{{ $notification->message }}</p>
+                                        </div>
+                                    </button>
+                                </form>
+                            @empty
+                                <div class="py-8 px-4 text-center">
+                                    <svg class="mx-auto size-8 text-gray-300 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                                    </svg>
+                                    <p class="text-xs text-gray-400 font-medium">Aucune nouvelle notification</p>
+                                </div>
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
+
+                <div x-data="{ showAccount: false }" class="relative inline-flex">
+                    <button @click="showAccount = !showAccount" type="button" class="size-9 flex justify-center items-center text-sm font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none">
                         @if($etudiant->photo)
                             <img class="shrink-0 size-9 rounded-full object-cover" src="{{ asset('storage/'.$etudiant->photo) }}" alt="Avatar">
                         @else
@@ -82,7 +160,7 @@
                         @endif
                     </button>
 
-                    <div class="hs-dropdown-menu hs-dropdown-open:opacity-100 w-60 transition-[opacity,margin] duration opacity-0 hidden z-[60] bg-white border border-gray-200 rounded-lg shadow-md p-1 mt-2">
+                    <div x-show="showAccount" @click.away="showAccount = false" x-cloak class="absolute right-0 mt-12 w-60 bg-white border border-gray-200 rounded-lg shadow-md p-1 z-[150]">
                         <div class="py-3 px-5 -m-1 bg-gray-100 rounded-t-lg font-medium text-gray-800 text-sm">
                             {{ $etudiant->user->email }}
                         </div>

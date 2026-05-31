@@ -45,6 +45,11 @@ class User extends Authenticatable
         return $this->hasMany(Feedback::class, 'auteur_id');
     }
 
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
     public function getRoleAttribute(): string
     {
         if (method_exists($this, 'getRoleNames') && $this->getRoleNames()->isNotEmpty()) {
