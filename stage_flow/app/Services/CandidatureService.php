@@ -9,9 +9,12 @@ use Illuminate\Support\Facades\Storage;
 
 class CandidatureService extends BaseService
 {
-    public function __construct()
+    protected NotificationService $notificationService;
+
+    public function __construct(NotificationService $notificationService)
     {
         $this->model = new Candidature();
+        $this->notificationService = $notificationService;
     }
 
     public function postuler(int $etudiantId, int $offreId, array $data): Candidature
@@ -104,7 +107,33 @@ class CandidatureService extends BaseService
 
     public function changeStatus(int $id, string $status): bool
     {
-        return (bool) $this->update($id, ['statut' => $status]);
+        $candidature = $this->model->with(['etudiant.user', 'offre.entreprise'])->findOrFail($id);
+        $updated = (bool) $candidature->update(['statut' => $status]);
+
+        if ($updated) {
+            $studentUser = $candidature->etudiant->user ?? null;
+            if ($studentUser) {
+                $entrepriseNom = $candidature->offre->entreprise->nom_entreprise ?? 'Une entreprise';
+                $offreTitre = $candidature->offre->titre;
+                
+                $title = "Candidature " . ($status === 'Accepté' ? 'acceptée' : 'refusée');
+                $message = "Votre candidature pour l'offre \"{$offreTitre}\" chez {$entrepriseNom} a été " . ($status === 'Accepté' ? 'acceptée' : 'refusée') . ".";
+
+                $this->notificationService->createNotification(
+                    $studentUser->id,
+                    'candidature_status',
+                    $title,
+                    $message,
+                    [
+                        'candidature_id' => $candidature->id,
+                        'offre_id' => $candidature->offre_id,
+                        'status' => $status
+                    ]
+                );
+            }
+        }
+
+        return $updated;
     }
 
     public function delete(int $id): ?bool
