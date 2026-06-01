@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 
 use App\Services\EntrepriseService;
 use App\Services\OffreService;
-use App\Models\Entreprise;
 use Illuminate\Http\JsonResponse;
 
 class EntrepriseController extends Controller
@@ -15,7 +14,7 @@ class EntrepriseController extends Controller
     {
         try {
             $entrepriseService->incrementViews($id);
-            $entreprise = Entreprise::with('ville')->findOrFail($id);
+            $entreprise = $entrepriseService->getDetails($id);
             $logoUrl = $entreprise->logo ? asset('storage/' . $entreprise->logo) : null;
             $lettreInitiale = substr($entreprise->nom_entreprise, 0, 1);
             $offres = $offreService->getActiveByEntreprise($id, 3);

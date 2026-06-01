@@ -6,6 +6,7 @@ use App\Models\Candidature;
 use App\Models\DocumentCv;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
+use App\Services\NotificationService;
 
 class CandidatureService extends BaseService
 {

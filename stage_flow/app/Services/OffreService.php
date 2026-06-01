@@ -7,6 +7,7 @@ use App\Models\Ville;
 use App\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use App\Services\NotificationService;
 class OffreService extends BaseService
 {
     protected NotificationService $notificationService;
@@ -129,5 +130,17 @@ class OffreService extends BaseService
         $data['secteur'] = $secteur;
 
         return $this->update($id, $data);
+    }
+
+    /**
+     * Retourne la liste de tous les secteurs distincts pour le filtrage
+     */
+    public function getDistinctSecteurs(): Collection
+    {
+        $secteurs = $this->model->distinct()->pluck('secteur')->filter()->values();
+        if ($secteurs->isEmpty()) {
+            return collect(['Informatique', 'Design', 'Marketing', 'Commerce', 'Industrie', 'Autre']);
+        }
+        return $secteurs;
     }
 }

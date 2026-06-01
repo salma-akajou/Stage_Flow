@@ -5,20 +5,23 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Services\DashboardService;
 use App\Services\FeedbackService;
-use App\Models\Offre;
+use App\Services\OffreService;
 use Illuminate\Http\JsonResponse;
 
 class LandingApiController extends Controller
 {
     protected DashboardService $dashboardService;
     protected FeedbackService $feedbackService;
+    protected OffreService $offreService;
 
     public function __construct(
         DashboardService $dashboardService, 
-        FeedbackService $feedbackService
+        FeedbackService $feedbackService,
+        OffreService $offreService
     ) {
         $this->dashboardService = $dashboardService;
         $this->feedbackService = $feedbackService;
+        $this->offreService = $offreService;
     }
 
     public function index(): JsonResponse
@@ -58,13 +61,9 @@ class LandingApiController extends Controller
      */
     public function secteurs(): JsonResponse
     {
-        $secteurs = Offre::distinct()->pluck('secteur')->filter()->values();
-        if ($secteurs->isEmpty()) {
-            $secteurs = collect(['Informatique', 'Design', 'Marketing', 'Commerce', 'Industrie', 'Autre']);
-        }
         return response()->json([
             'success' => true,
-            'data' => $secteurs
+            'data' => $this->offreService->getDistinctSecteurs()
         ]);
     }
 }

@@ -59,4 +59,9 @@ class EntrepriseService extends BaseService
     {
         $this->model->where('user_id', $id)->increment('vues');
     }
+
+    public function getDetails(int $id): Entreprise
+    {
+        return Entreprise::with('ville')->findOrFail($id);
+    }
 }

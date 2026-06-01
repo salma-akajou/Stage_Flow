@@ -3,44 +3,48 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\JsonResponse;
-
-use App\Models\User;
-use App\Models\Etudiant;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
+use App\Services\AuthService;
 use App\Http\Requests\Auth\RegisterRequest;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class AuthApiController extends Controller
 {
+    protected AuthService $authService;
+
+    public function __construct(AuthService $authService)
+    {
+        $this->authService = $authService;
+    }
+
     /**
      * Enregistre un nouvel étudiant et retourne le token Sanctum
      */
     public function register(RegisterRequest $request): JsonResponse
     {
         try {
-            $user = User::registerStudent($request->validated());
-            $token = $user->createToken('mobile-token')->plainTextToken;
+            $result = $this->authService->registerStudent($request->validated());
 
             return response()->json([
                 'success' => true,
                 'message' => 'Inscription réussie',
                 'data'    => [
-                    'token'   => $token,
+                    'token'   => $result['token'],
                     'student' => [
-                        'user_id' => $user->id,
-                        'nom'     => $user->nom,
-                        'prenom'  => $user->prenom,
-                        'email'   => $user->email,
-                        'avatar'  => $user->etudiant->photo ?? null,
+                        'user_id' => $result['user']->id,
+                        'nom'     => $result['user']->nom,
+                        'prenom'  => $result['user']->prenom,
+                        'email'   => $result['user']->email,
+                        'avatar'  => $result['user']->etudiant->photo ?? null,
                     ],
                 ],
             ], 201);
         } catch (\Exception $e) {
             \Log::error('Registration API Error: ' . $e->getMessage());
-            return response()->json(['success' => false, 'message' => 'Erreur lors de l\'inscription.'], 500);
+            return response()->json([
+                'success' => false,
+                'message' => 'Erreur lors de l\'inscription.'
+            ], 500);
         }
     }
 
@@ -54,32 +58,30 @@ class AuthApiController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-
-            if ($user->role !== 'etudiant') {
-                Auth::logout();
-                return response()->json(['success' => false, 'message' => 'Accès réservé aux étudiants'], 403);
-            }
-
-            $token = $user->createToken('mobile-token')->plainTextToken;
+        try {
+            $result = $this->authService->loginStudent($credentials);
 
             return response()->json([
                 'success' => true,
                 'data'    => [
-                    'token'   => $token,
+                    'token'   => $result['token'],
                     'student' => [
-                        'user_id' => $user->id,
-                        'nom'     => $user->nom,
-                        'prenom'  => $user->prenom,
-                        'email'   => $user->email,
-                        'avatar'  => $user->avatar_url,
+                        'user_id' => $result['user']->id,
+                        'nom'     => $result['user']->nom,
+                        'prenom'  => $result['user']->prenom,
+                        'email'   => $result['user']->email,
+                        'avatar'  => $result['user']->avatar_url,
                     ],
                 ],
             ]);
+        } catch (\Exception $e) {
+            $code = $e->getCode();
+            $statusCode = in_array($code, [401, 403]) ? $code : 500;
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], $statusCode);
         }
-
-        return response()->json(['success' => false, 'message' => 'Identifiants incorrects'], 401);
     }
 
     /**
@@ -87,10 +89,11 @@ class AuthApiController extends Controller
      */
     public function logout(Request $request): JsonResponse
     {
-        if ($request->user()) {
-            $request->user()->currentAccessToken()->delete();
-        }
+        $this->authService->logoutUser($request->user());
 
-        return response()->json(['success' => true, 'message' => 'Déconnecté avec succès']);
+        return response()->json([
+            'success' => true,
+            'message' => 'Déconnecté avec succès'
+        ]);
     }
 }

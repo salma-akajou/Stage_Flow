@@ -28,4 +28,10 @@ class FavoriService extends BaseService
         $etudiant = $this->findOrFail($etudiantId);
         return $etudiant->favoris()->with('entreprise')->latest()->paginate($perPage);
     }
+
+    public function getFavoriteIds(int $etudiantId): array
+    {
+        $etudiant = $this->findOrFail($etudiantId);
+        return $etudiant->favoris()->pluck('offres.id')->toArray();
+    }
 }
