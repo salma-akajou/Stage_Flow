@@ -16,8 +16,6 @@ classDiagram
     }
 
     class Etudiant {
-        +int user_id
-        +int ville_id
         +enum etablissement
         +string filiere
         +enum niveau_etudes
@@ -29,10 +27,8 @@ classDiagram
     }
 
     class Entreprise {
-        +int user_id
         +string nom_entreprise
         +enum secteur
-        +int ville_id
         +string adresse
         +string email_contact
         +text bio
@@ -60,7 +56,6 @@ classDiagram
         +enum remuneration
         +enum format
         +enum secteur
-        +int ville_id
         +text responsabilites
         +text profil_recherche
         +json competences_techniques
@@ -68,7 +63,6 @@ classDiagram
         +datetime date_publication
         +date date_debut
         +date date_fin
-        +int entreprise_id
     }
 
     class Candidature {
@@ -77,37 +71,40 @@ classDiagram
         +string telephone
         +text message_motivation
         +datetime created_at
-        +int etudiant_id
-        +int offre_id
-        +int cv_id
     }
 
     class DocumentCV {
         +int id
         +string file_path
         +datetime created_at
-        +int etudiant_id
     }
 
     class Feedback {
         +int id
         +text texte
         +int note
-        +int auteur_id
         +boolean valide
         +datetime created_at
     }
 
     class Favoris {
         +int id
-        +int etudiant_id
-        +int offre_id
         +datetime created_at
     }
 
     class Ville {
         +int id
         +string nom
+    }
+
+    class Notification {
+        +int id
+        +enum type
+        +string title
+        +string message
+        +json data
+        +datetime read_at
+        +datetime created_at
     }
 
     %% ====================
@@ -139,3 +136,6 @@ classDiagram
     Administrateur "1" -- "*" Feedback : modère
 
     Candidature "1" -- "1" DocumentCV : utilise
+
+    Etudiant "1" -- "0..*" Notification : est notifié
+    Entreprise "1" -- "0..*" Notification : est notifiée
