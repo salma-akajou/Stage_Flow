@@ -47,7 +47,7 @@
                 <p class="text-sm text-gray-500 line-clamp-2 mb-4 leading-relaxed">{{ Str::limit($offre->description, 80) }}</p>
                 
                 <div class="flex flex-wrap gap-2 mb-6">
-                    <span class="py-1 px-2.5 rounded-lg text-[10px] font-bold bg-indigo-50 text-indigo-700 uppercase tracking-tight border border-indigo-100">{{ $offre->secteur }}</span>
+                    <span class="py-1 px-2.5 rounded-lg text-[10px] font-bold bg-indigo-50 text-indigo-700 uppercase tracking-tight border border-indigo-100">{{ $offre->secteur?->nom ?? '' }}</span>
                     <span class="py-1 px-2.5 rounded-lg text-[10px] font-bold bg-gray-50 text-gray-400 border border-gray-100 uppercase tracking-tight">{{ $offre->duree }}</span>
                 </div>
 

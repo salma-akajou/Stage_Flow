@@ -51,18 +51,5 @@ class LoginController extends BaseController
         return redirect()->route('login');
     }
 
-    /**
-     * L'utilisateur a été authentifié.
-     */
-    protected function authenticated(\Illuminate\Http\Request $request, $user)
-    {
-        if ($user->statut !== 'actif') {
-            Auth::logout();
-            return redirect()->route('login')
-                ->withInput($request->only($this->username(), 'remember'))
-                ->withErrors([$this->username() => 'Votre compte est suspendu. Veuillez contacter l\'administration.']);
-        }
 
-        return redirect()->intended($this->redirectPath());
-    }
 }

@@ -119,28 +119,45 @@
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Établissement</label>
                             <div x-data="{
                                 open: false,
-                                value: '{{ old('etablissement', 'Solicode') }}',
-                                labels: { 'Solicode': 'Solicode', 'Faculté': 'Faculté', 'ISTA': 'ISTA', 'EMSI': 'EMSI', 'ENSI': 'ENSI', 'BTS': 'BTS', 'Autre': 'Autre' }
+                                value: '{{ old('etablissement_id', $etablissements->first()->id ?? '') }}',
+                                label: '{{ old('etablissement_id') && $etablissements->find(old('etablissement_id')) ? $etablissements->find(old('etablissement_id'))->nom : ($etablissements->first()->nom ?? '') }}'
                             }" class="relative">
-                                <input type="hidden" name="etablissement" x-model="value" :disabled="role !== 'etudiant'">
+                                <input type="hidden" name="etablissement_id" x-model="value" :disabled="role !== 'etudiant'">
                                 <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
-                                    <span x-text="labels[value]"></span>
+                                    <span x-text="label"></span>
                                     <svg class="size-4 text-slate-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                                 </button>
                                 <div x-show="open" @click.outside="open = false" x-transition class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 max-h-60 overflow-y-auto">
-                                    <template x-for="(label, key) in labels" :key="key">
-                                        <div @click="value = key; open = false" class="px-4 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer font-semibold transition" :class="{ 'bg-indigo-50/50 text-indigo-600': value === key }">
-                                            <span x-text="label"></span>
-                                        </div>
-                                    </template>
+                                    @foreach($etablissements as $etab)
+                                    <div @click="value = '{{ $etab->id }}'; label = '{{ $etab->nom }}'; open = false" class="px-4 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer font-semibold transition" :class="{ 'bg-indigo-50/50 text-indigo-600': value === '{{ $etab->id }}' }">
+                                        {{ $etab->nom }}
+                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
-                            @error('etablissement') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
+                            @error('etablissement_id') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Filière</label>
-                            <input type="text" name="filiere" :disabled="role !== 'etudiant'" value="{{ old('filiere') }}" class="py-3.5 px-5 block w-full border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-indigo-500 font-medium" placeholder="Génie Logiciel">
-                            @error('filiere') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
+                            <div x-data="{
+                                open: false,
+                                value: '{{ old('filiere_id', $filieres->first()->id ?? '') }}',
+                                label: '{{ old('filiere_id') && $filieres->find(old('filiere_id')) ? $filieres->find(old('filiere_id'))->nom : ($filieres->first()->nom ?? '') }}'
+                            }" class="relative">
+                                <input type="hidden" name="filiere_id" x-model="value" :disabled="role !== 'etudiant'">
+                                <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
+                                    <span x-text="label"></span>
+                                    <svg class="size-4 text-slate-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                                </button>
+                                <div x-show="open" @click.outside="open = false" x-transition class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 max-h-60 overflow-y-auto">
+                                    @foreach($filieres as $fil)
+                                    <div @click="value = '{{ $fil->id }}'; label = '{{ $fil->nom }}'; open = false" class="px-4 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer font-semibold transition" :class="{ 'bg-indigo-50/50 text-indigo-600': value === '{{ $fil->id }}' }">
+                                        {{ $fil->nom }}
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            @error('filiere_id') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                         </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -149,7 +166,7 @@
                             <div x-data="{
                                 open: false,
                                 value: '{{ old('niveau_etude', 'Bac+2') }}',
-                                labels: { 'Bac+2': 'Bac +2', 'Bac+3': 'Bac +3', 'Master': 'Master', 'Doctorat': 'Doctorat', 'Autre': 'Autre' }
+                                labels: { 'Bac+2': 'Bac +2', 'Bac+3': 'Bac +3', 'Bac+5': 'Bac +5', 'Doctorat': 'Doctorat' }
                             }" class="relative">
                                 <input type="hidden" name="niveau_etude" x-model="value" :disabled="role !== 'etudiant'">
                                 <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
@@ -228,23 +245,23 @@
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Secteur</label>
                             <div x-data="{
                                 open: false,
-                                value: '{{ old('secteur', 'Informatique') }}',
-                                labels: { 'Informatique': 'Informatique', 'Design': 'Design', 'Marketing': 'Marketing', 'Commerce': 'Commerce', 'Industrie': 'Industrie', 'Autre': 'Autre' }
+                                value: '{{ old('secteur_id', $secteurs->first()->id ?? '') }}',
+                                label: '{{ old('secteur_id') && $secteurs->find(old('secteur_id')) ? $secteurs->find(old('secteur_id'))->nom : ($secteurs->first()->nom ?? '') }}'
                             }" class="relative">
-                                <input type="hidden" name="secteur" x-model="value" :disabled="role !== 'entreprise'">
+                                <input type="hidden" name="secteur_id" x-model="value" :disabled="role !== 'entreprise'">
                                 <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
-                                    <span x-text="labels[value]"></span>
+                                    <span x-text="label"></span>
                                     <svg class="size-4 text-slate-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                                 </button>
                                 <div x-show="open" @click.outside="open = false" x-transition class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 max-h-60 overflow-y-auto">
-                                    <template x-for="(label, key) in labels" :key="key">
-                                        <div @click="value = key; open = false" class="px-4 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer font-semibold transition" :class="{ 'bg-indigo-50/50 text-indigo-600': value === key }">
-                                            <span x-text="label"></span>
-                                        </div>
-                                    </template>
+                                    @foreach($secteurs as $sect)
+                                    <div @click="value = '{{ $sect->id }}'; label = '{{ $sect->nom }}'; open = false" class="px-4 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer font-semibold transition" :class="{ 'bg-indigo-50/50 text-indigo-600': value === '{{ $sect->id }}' }">
+                                        {{ $sect->nom }}
+                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
-                            @error('secteur') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
+                            @error('secteur_id') <p class="text-[10px] text-rose-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                         </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

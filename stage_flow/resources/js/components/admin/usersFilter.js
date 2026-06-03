@@ -1,14 +1,13 @@
-export default (routeIndex = '', initialSearch = '', initialRole = '', initialStatut = '') => ({
+export default (routeIndex = '', initialSearch = '', initialRole = '') => ({
     init() {
         this.dispatchFilter();
     },
     search: initialSearch,
     role: initialRole,
-    statut: initialStatut,
     loading: false,
     dispatchFilter() {
         window.dispatchEvent(new CustomEvent('users-filter-changed', {
-            detail: { search: this.search, role: this.role, statut: this.statut }
+            detail: { search: this.search, role: this.role }
         }));
     },
     submit() {
@@ -16,8 +15,7 @@ export default (routeIndex = '', initialSearch = '', initialRole = '', initialSt
         this.dispatchFilter();
         const params = new URLSearchParams({
             search: this.search,
-            role: this.role,
-            statut: this.statut
+            role: this.role
         });
         
         fetch(routeIndex + '?' + params.toString(), {

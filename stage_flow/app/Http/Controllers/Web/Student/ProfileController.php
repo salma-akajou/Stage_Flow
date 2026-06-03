@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web\Student;
 use App\Http\Controllers\Controller;
 use App\Services\EtudiantService;
 use App\Services\FavoriService;
+use App\Models\Etablissement;
+use App\Models\Filiere;
 use App\Models\Etudiant;
 use App\Models\Ville;
 use App\Http\Requests\Student\UpdateProfileRequest;
@@ -26,11 +28,13 @@ class ProfileController extends Controller
 
     public function index(): View
     {
-        $etudiant = auth()->user()->etudiant()->with('ville')->first();
+        $etudiant = auth()->user()->etudiant()->with(['ville', 'etablissement', 'filiere'])->first();
         if (!$etudiant) abort(404, "Profil étudiant introuvable.");
         
         $villes = Ville::all();
-        return view('student.profile', compact('etudiant', 'villes'));
+        $etablissements = Etablissement::all();
+        $filieres = Filiere::all();
+        return view('student.profile', compact('etudiant', 'villes', 'etablissements', 'filieres'));
     }
 
     public function update(UpdateProfileRequest $request)

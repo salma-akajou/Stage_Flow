@@ -313,7 +313,7 @@ Le diagramme de cas d'utilisation mobile cartographie les fonctionnalités majeu
 ### Diagramme de cas d’utilisation sprint 1
 
 #### Sprint 1 : Web
-Ce premier sprint correspond au MVP de Stage Flow. Il met en place les fonctionnalités essentielles permettant aux étudiants de consulter et postuler aux offres de stage, aux entreprises de publier et gérer leurs offres et candidatures, et à l’administrateur de gérer les comptes utilisateurs de manière sécurisée et modérer les feedbacks.
+Ce premier sprint correspond au MVP de Stage Flow. Il met en place les fonctionnalités essentielles permettant aux étudiants de consulter et postuler aux offres de stage, aux entreprises de publier et gérer leurs offres et candidatures, et à l’administrateur de gérer les établissements , les filières et les secteurs de maniere simple .
 
 ![diagramme use case sprint 1 web](images/use_case_sprint1_web.png)
 <p align="center" id="figure-13--diagramme-de-cas-dutilisation-sprint-1-web"><em>Figure 13 : Diagramme de cas d'utilisation sprint 1 web</em></p>
@@ -334,7 +334,7 @@ Ce sprint établit ainsi les fonctionnalités de base de l’application mobile,
 #### Sprint 2 : Web
 Ce deuxième sprint introduit les fonctionnalités avancées de la plateforme StageFlow, visant à améliorer l’expérience des différents acteurs du système. Il permet aux étudiants et aux entreprises de recevoir des notifications afin de suivre en temps réel les activités et les mises à jour importantes. De plus, les entreprises disposent de la possibilité d’exporter les candidatures au format PDF ou Excel pour faciliter leur gestion et leur analyse.
 
-Par ailleurs, l’administrateur bénéficie de fonctionnalités de supervision avancées, notamment la consultation de statistiques détaillées et l’export des données des utilisateurs.
+Par ailleurs, l’administrateur bénéficie de fonctionnalités de gestion des comptes utilisateurs et la modération des feedbacks 
 
 ![diagramme use case sprint 2 web](images/use_case_sprint2_web.png)
 <p align="center" id="figure-15--diagramme-de-cas-dutilisation-sprint-2-web"><em>Figure 15 : Diagramme de cas d'utilisation sprint 2 web</em></p>
@@ -357,7 +357,7 @@ Ce sprint a pour objectif d’enrichir l’application mobile avec des fonctionn
 
 ### Diagramme de cas d’utilisation sprint 3
 
-Ce troisième sprint introduit un Assistant Virtuel (Chatbot) afin d'offrir une assistance instantanée sur StageFlow. Il permet aux étudiants, entreprises et visiteurs de poser une question et de recevoir une réponse automatique. Pour les utilisateurs enregistrés, l'accès à ces fonctionnalités inclut l'étape obligatoire de s'authentifier. 
+Le Sprint 3 introduit un assistant virtuel intelligent basé sur l'IA pour dynamiser les interactions sur la plateforme. Les étudiants bénéficient de suggestions d'offres de stage ciblées et d'une aide à la rédaction de messages de motivation, tandis que les entreprises disposent d'outils d'aide à la création d'offres et d'analyse simplifiée des candidatures reçues.
 
 ![diagramme use case sprint 3](images/use_case_sprint3.png)
 <p align="center" id="figure-17--diagramme-de-cas-dutilisation-sprint-3"><em>Figure 17 : Diagramme de cas d'utilisation sprint 3</em></p>
@@ -525,8 +525,22 @@ Cette section présente l'ensemble des interfaces graphiques de la plateforme St
 
 
 
-**Interfaces Sprint 2 :**  
+**Interfaces web Sprint 2 :** 
 
+![iterface notifications etudiant](images/notifications_etudiant.png)
+<p align="center" id="figure-33--interface-notifications-etudiant"><em>Figure 33 : Interface notifications etudiant</em></p>
+
+![iterface notifications entreprise](images/notifications_entreprise.png)
+<p align="center" id="figure-34--interface-notifications-entreprise"><em>Figure 34 : Interface notifications entreprise</em></p>
+
+![iterface modération des feedbacks](images/moderation_feedbacks.png)
+<p align="center" id="figure-35--interface-moderation-feedbacks"><em>Figure 35 : Interface modération des feedbacks</em></p>
+
+**Interfaces Mobile Sprint 2 :** 
+
+![iterfaces de l'application mobile](images/interfaces_mobile2.png)
+
+<p align="center" id="figure-36--interfaces-de-lapplication-mobile"><em>Figure 36 : Interfaces de l'application mobile</em></p>
 
 ---
 

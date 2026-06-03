@@ -111,7 +111,7 @@ class CandidatureService extends BaseService
     {
         $query = $this->model->whereHas('offre', function ($q) use ($entrepriseId) {
             $q->where('entreprise_id', $entrepriseId);
-        })->with(['etudiant.user', 'offre']);
+        })->with(['etudiant.user', 'etudiant.filiere', 'offre']);
 
         if (!empty($filters['offre_id'])) {
             $query->where('offre_id', $filters['offre_id']);
@@ -243,7 +243,7 @@ class CandidatureService extends BaseService
         return $this->model->whereHas('offre', function ($q) use ($entrepriseId) {
                 $q->where('entreprise_id', $entrepriseId);
             })
-            ->with(['etudiant.user', 'offre'])
+            ->with(['etudiant.user', 'etudiant.filiere', 'offre'])
             ->latest()
             ->take($limit)
             ->get();

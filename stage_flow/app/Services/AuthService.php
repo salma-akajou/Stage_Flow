@@ -43,11 +43,6 @@ class AuthService extends BaseService
             throw new Exception('Accès réservé aux étudiants', 403);
         }
 
-        if ($user->statut !== 'actif') {
-            Auth::logout();
-            throw new Exception('Votre compte est suspendu. Veuillez contacter l\'administration.', 403);
-        }
-
         $token = $user->createToken('mobile-token')->plainTextToken;
 
         return [

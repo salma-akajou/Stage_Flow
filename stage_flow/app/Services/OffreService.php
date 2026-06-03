@@ -5,9 +5,12 @@ namespace App\Services;
 use App\Models\Offre;
 use App\Models\Ville;
 use App\Models\User;
+use App\Models\Secteur;
+use App\Models\Competence;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use App\Services\NotificationService;
+
 class OffreService extends BaseService
 {
     protected NotificationService $notificationService;
@@ -23,7 +26,7 @@ class OffreService extends BaseService
      */
     public function search(array $filters = [], int $perPage = 9, bool $includeMeta = false): LengthAwarePaginator|array
     {
-        $query = $this->model->newQuery()->with(['entreprise', 'ville'])->withCount('candidatures');
+        $query = $this->model->newQuery()->with(['entreprise', 'ville', 'secteur', 'competences'])->withCount('candidatures');
 
         if (!empty($filters['entreprise_id'])) {
             $query->where('entreprise_id', $filters['entreprise_id']);
@@ -34,7 +37,13 @@ class OffreService extends BaseService
         }
 
         if (!empty($filters['secteur'])) {
-            $query->where('secteur', $filters['secteur']);
+            if (is_numeric($filters['secteur'])) {
+                $query->where('secteur_id', $filters['secteur']);
+            } else {
+                $query->whereHas('secteur', function($q) use ($filters) {
+                    $q->where('nom', $filters['secteur']);
+                });
+            }
         }
 
         if (!empty($filters['ville_id'])) {
@@ -55,30 +64,25 @@ class OffreService extends BaseService
             return [
                 'offres' => $results,
                 'villes' => Ville::all(),
-                'secteurs' => $this->model->distinct()->pluck('secteur'),
-                'existingCompetences' => $this->model->whereNotNull('competences_techniques')
-                    ->pluck('competences_techniques')
-                    ->flatten()
-                    ->unique()
-                    ->values(),
+                'secteurs' => Secteur::all(),
+                'existingCompetences' => Competence::all(),
             ];
         }
 
         return $results;
     }
 
-
     /**
      * Détails complets d'une offre 
      */
     public function getDetails(int $id): Offre
     {
-        return Offre::with(['entreprise', 'ville'])->findOrFail($id);
+        return Offre::with(['entreprise', 'ville', 'secteur', 'competences'])->findOrFail($id);
     }
 
     public function getRecommended(int $limit = 3): Collection
     {
-        return $this->model->with(['entreprise', 'ville'])
+        return $this->model->with(['entreprise', 'ville', 'secteur', 'competences'])
             ->where('status', 'Active')
             ->latest()
             ->take($limit)
@@ -98,9 +102,40 @@ class OffreService extends BaseService
     public function publierOffre(int $entrepriseId, array $data, string $secteur): Offre
     {
         $data['entreprise_id'] = $entrepriseId;
-        $data['secteur'] = $secteur;
+
+        // Map Secteur
+        if (is_numeric($secteur)) {
+            $data['secteur_id'] = (int) $secteur;
+        } else {
+            $sectModel = Secteur::firstOrCreate(['nom' => $secteur]);
+            $data['secteur_id'] = $sectModel->id;
+        }
 
         $offre = $this->create($data);
+
+        // Map Competences Many-to-Many
+        if (isset($data['competences_techniques'])) {
+            $compNames = $data['competences_techniques'];
+            if (is_string($compNames)) {
+                $decoded = json_decode($compNames, true);
+                if (json_last_error() === JSON_ERROR_NONE) {
+                    $compNames = $decoded;
+                } else {
+                    $compNames = explode('|', $compNames);
+                }
+            }
+            $competenceIds = [];
+            if (is_array($compNames)) {
+                foreach ($compNames as $compName) {
+                    $compName = trim($compName);
+                    if (!empty($compName)) {
+                        $compModel = Competence::firstOrCreate(['nom' => $compName]);
+                        $competenceIds[] = $compModel->id;
+                    }
+                }
+            }
+            $offre->competences()->sync($competenceIds);
+        }
 
         // Notify all students
         $students = User::role('etudiant')->get();
@@ -127,9 +162,41 @@ class OffreService extends BaseService
 
     public function updateOffre(int $id, array $data, string $secteur): Offre
     {
-        $data['secteur'] = $secteur;
+        // Map Secteur
+        if (is_numeric($secteur)) {
+            $data['secteur_id'] = (int) $secteur;
+        } else {
+            $sectModel = Secteur::firstOrCreate(['nom' => $secteur]);
+            $data['secteur_id'] = $sectModel->id;
+        }
 
-        return $this->update($id, $data);
+        $offre = $this->update($id, $data);
+
+        // Map Competences Many-to-Many
+        if (isset($data['competences_techniques'])) {
+            $compNames = $data['competences_techniques'];
+            if (is_string($compNames)) {
+                $decoded = json_decode($compNames, true);
+                if (json_last_error() === JSON_ERROR_NONE) {
+                    $compNames = $decoded;
+                } else {
+                    $compNames = explode('|', $compNames);
+                }
+            }
+            $competenceIds = [];
+            if (is_array($compNames)) {
+                foreach ($compNames as $compName) {
+                    $compName = trim($compName);
+                    if (!empty($compName)) {
+                        $compModel = Competence::firstOrCreate(['nom' => $compName]);
+                        $competenceIds[] = $compModel->id;
+                    }
+                }
+            }
+            $offre->competences()->sync($competenceIds);
+        }
+
+        return $offre;
     }
 
     /**
@@ -137,10 +204,6 @@ class OffreService extends BaseService
      */
     public function getDistinctSecteurs(): Collection
     {
-        $secteurs = $this->model->distinct()->pluck('secteur')->filter()->values();
-        if ($secteurs->isEmpty()) {
-            return collect(['Informatique', 'Design', 'Marketing', 'Commerce', 'Industrie', 'Autre']);
-        }
-        return $secteurs;
+        return Secteur::all();
     }
 }

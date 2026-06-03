@@ -39,6 +39,30 @@
                     Tableau de bord
                 </a>
             </li>
+            <li class="pt-4 pb-1">
+                <span class="px-2.5 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Référentiels</span>
+            </li>
+            <li>
+                <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg {{ request()->routeIs('admin.filieres.*') ? 'bg-indigo-100 text-indigo-700 font-semibold' : 'text-gray-700 hover:bg-gray-100' }}" href="{{ route('admin.filieres.index') }}">
+                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10"/></svg>
+                    Filières
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg {{ request()->routeIs('admin.secteurs.*') ? 'bg-indigo-100 text-indigo-700 font-semibold' : 'text-gray-700 hover:bg-gray-100' }}" href="{{ route('admin.secteurs.index') }}">
+                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    Secteurs
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg {{ request()->routeIs('admin.etablissements.*') ? 'bg-indigo-100 text-indigo-700 font-semibold' : 'text-gray-700 hover:bg-gray-100' }}" href="{{ route('admin.etablissements.index') }}">
+                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
+                    Établissements
+                </a>
+            </li>
+            <li class="pt-4 pb-1">
+                <span class="px-2.5 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Gestion</span>
+            </li>
             <li>
                 <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg {{ request()->routeIs('admin.users.*') ? 'bg-indigo-100 text-indigo-700 font-semibold' : 'text-gray-700 hover:bg-gray-100' }}" href="{{ route('admin.users.index') }}">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">

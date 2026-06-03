@@ -4,27 +4,34 @@
         Parcours Académique
     </h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div class="space-y-2 relative" x-data="customSelect('{{ $etudiant->etablissement }}', ['Solicode', 'Faculté', 'ISTA', 'EMSI', 'ENSI', 'BTS', 'Autre'])" :class="{ 'z-[70]': open, 'z-[10]': !open }">
+        <!-- École / Université (Dynamic Dropdown) -->
+        <div class="space-y-2 relative" x-data="{
+            open: false,
+            value: '{{ old('etablissement_id', $etudiant->etablissement_id) }}',
+            label: '{{ old('etablissement_id') && $etablissements->find(old('etablissement_id')) ? $etablissements->find(old('etablissement_id'))->nom : ($etudiant->etablissement->nom ?? 'Choisir une école') }}'
+        }" :class="{ 'z-[70]': open, 'z-[10]': !open }">
             <label class="block text-sm font-bold text-gray-700">École / Université</label>
             <div class="relative">
                 <button @click="open = !open" @click.away="open = false" type="button" 
                     class="py-2.5 px-4 flex items-center justify-between w-full border border-gray-200 bg-white rounded-xl text-sm font-bold focus:border-indigo-500 focus:ring-indigo-500 transition shadow-sm">
-                    <span x-text="selected"></span>
+                    <span x-text="label"></span>
                     <svg :class="{ 'rotate-180': open }" class="size-4 text-gray-400 shrink-0 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
                 </button>
-                <input type="hidden" name="etablissement" :value="selected">
+                <input type="hidden" name="etablissement_id" :value="value">
                 <div x-show="open" x-transition.opacity class="absolute top-full left-0 w-full mt-2 z-[80] bg-white shadow-2xl rounded-2xl p-2 border border-gray-100 max-h-60 overflow-y-auto scrollbar-none">
-                    <template x-for="opt in options">
-                        <button @click="select(opt)" type="button" 
+                    @foreach($etablissements as $etab)
+                        <button @click="value = '{{ $etab->id }}'; label = '{{ $etab->nom }}'; open = false" type="button" 
                             class="flex items-center w-full py-2.5 px-4 rounded-xl text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition font-bold mb-1"
-                            :class="selected == opt ? 'bg-indigo-50 text-indigo-700' : ''"
-                            x-text="opt"></button>
-                    </template>
+                            :class="value == '{{ $etab->id }}' ? 'bg-indigo-50 text-indigo-700' : ''">
+                            {{ $etab->nom }}
+                        </button>
+                    @endforeach
                 </div>
             </div>
         </div>
 
-        <div class="space-y-2 relative" x-data="customSelect('{{ $etudiant->niveau_etudes }}', ['Bac+2', 'Bac+3', 'Master', 'Doctorat', 'Autre'])" :class="{ 'z-[70]': open, 'z-[10]': !open }">
+        <!-- Niveau d'études (Corrected values: Bac+2, Bac+3, Bac+5, Doctorat) -->
+        <div class="space-y-2 relative" x-data="customSelect('{{ old('niveau_etudes', $etudiant->niveau_etudes) }}', ['Bac+2', 'Bac+3', 'Bac+5', 'Doctorat'])" :class="{ 'z-[70]': open, 'z-[10]': !open }">
             <label class="block text-sm font-bold text-gray-700">Niveau d'études</label>
             <div class="relative">
                 <button @click="open = !open" @click.away="open = false" type="button" 
@@ -43,11 +50,31 @@
                 </div>
             </div>
         </div>
-        <div class="space-y-2 sm:col-span-2">
+
+        <!-- Filière (Dynamic Dropdown) -->
+        <div class="space-y-2 sm:col-span-2 relative" x-data="{
+            open: false,
+            value: '{{ old('filiere_id', $etudiant->filiere_id) }}',
+            label: '{{ old('filiere_id') && $filieres->find(old('filiere_id')) ? $filieres->find(old('filiere_id'))->nom : ($etudiant->filiere->nom ?? 'Choisir une filière') }}'
+        }" :class="{ 'z-[70]': open, 'z-[10]': !open }">
             <label class="block text-sm font-bold text-gray-700">Filière</label>
-            <input type="text" name="filiere" value="{{ $etudiant->filiere }}"
-                class="py-2.5 px-4 block w-full border-gray-200 rounded-xl text-sm focus:border-indigo-500 focus:ring-indigo-500 transition shadow-sm"
-                placeholder="Ex: Développement Fullstack">
+            <div class="relative">
+                <button @click="open = !open" @click.away="open = false" type="button" 
+                    class="py-2.5 px-4 flex items-center justify-between w-full border border-gray-200 bg-white rounded-xl text-sm font-bold focus:border-indigo-500 focus:ring-indigo-500 transition shadow-sm">
+                    <span x-text="label"></span>
+                    <svg :class="{ 'rotate-180': open }" class="size-4 text-gray-400 shrink-0 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <input type="hidden" name="filiere_id" :value="value">
+                <div x-show="open" x-transition.opacity class="absolute top-full left-0 w-full mt-2 z-[80] bg-white shadow-2xl rounded-2xl p-2 border border-gray-100 max-h-60 overflow-y-auto scrollbar-none">
+                    @foreach($filieres as $fil)
+                        <button @click="value = '{{ $fil->id }}'; label = '{{ $fil->nom }}'; open = false" type="button" 
+                            class="flex items-center w-full py-2.5 px-4 rounded-xl text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 transition font-bold mb-1"
+                            :class="value == '{{ $fil->id }}' ? 'bg-indigo-50 text-indigo-700' : ''">
+                            {{ $fil->nom }}
+                        </button>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 </div>

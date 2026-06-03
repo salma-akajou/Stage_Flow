@@ -28,7 +28,7 @@
                         <h4 class="font-bold text-slate-900 text-sm">{{ $feedback->auteur->prenom ?? '' }} {{ $feedback->auteur->nom ?? 'Utilisateur' }}</h4>
                         <p class="text-[10px] text-slate-400 font-black uppercase tracking-widest leading-none mt-1">
                             @if($feedback->auteur->etudiant)
-                                Étudiant - {{ $feedback->auteur->etudiant->filiere }}
+                                Étudiant - {{ $feedback->auteur->etudiant->filiere?->nom ?? '' }}
                             @elseif($feedback->auteur->entreprise)
                                 Entreprise - {{ $feedback->auteur->entreprise->nom_entreprise }}
                             @else

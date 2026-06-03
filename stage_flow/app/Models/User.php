@@ -99,16 +99,16 @@ class User extends Authenticatable
             }
 
             Etudiant::create([
-                'user_id'       => $user->id,
-                'ville_id'      => $data['ville_id'],
-                'etablissement' => $data['etablissement'],
-                'filiere'       => $data['filiere'],
-                'niveau_etudes' => $data['niveau_etude'],
-                'photo'         => $photoPath,
-                'bio'           => $data['bio'] ?? null,
-                'github'        => $data['github'] ?? null,
-                'linkedin'      => $data['linkedin'] ?? null,
-                'vues'          => 0,
+                'user_id'          => $user->id,
+                'ville_id'         => $data['ville_id'],
+                'etablissement_id' => $data['etablissement_id'],
+                'filiere_id'       => $data['filiere_id'],
+                'niveau_etudes'    => $data['niveau_etude'],
+                'photo'            => $photoPath,
+                'bio'              => $data['bio'] ?? null,
+                'github'           => $data['github'] ?? null,
+                'linkedin'         => $data['linkedin'] ?? null,
+                'vues'             => 0,
             ]);
 
             return $user;

@@ -49,19 +49,22 @@ class OffreController extends Controller
     public function store(StoreOffreRequest $request)
     {
         $entreprise = auth()->user()->entreprise;
-        $this->offreService->publierOffre(auth()->id(), $request->validated(), $entreprise->secteur);
+        $this->offreService->publierOffre(auth()->id(), $request->validated(), $entreprise->secteur_id);
 
         return redirect()->route('entreprise.offres.index')
             ->with('success', 'Votre offre a été publiée avec succès !');
     }
 
-    /**
-     * Récupération d'une offre pour édition (via AJAX pour la modale)
-     */
     public function edit(int $id)
     {
         $offre = $this->offreService->find($id);
-        return response()->json($offre);
+        if ($offre) {
+            $offre->load('competences');
+            $offreArray = $offre->toArray();
+            $offreArray['competences_techniques'] = $offre->competences->pluck('nom')->toArray();
+            return response()->json($offreArray);
+        }
+        return response()->json(['message' => 'Offre introuvable'], 404);
     }
 
     /**
@@ -70,7 +73,7 @@ class OffreController extends Controller
     public function update(UpdateOffreRequest $request, int $id)
     {
         $entreprise = auth()->user()->entreprise;
-        $this->offreService->updateOffre($id, $request->validated(), $entreprise->secteur);
+        $this->offreService->updateOffre($id, $request->validated(), $entreprise->secteur_id);
 
         return redirect()->route('entreprise.offres.index')
             ->with('success', 'L\'offre a été mise à jour avec succès.');

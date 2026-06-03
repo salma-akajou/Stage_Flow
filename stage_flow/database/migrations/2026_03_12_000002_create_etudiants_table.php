@@ -11,9 +11,9 @@ return new class extends Migration
         Schema::create('etudiants', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->primary();
             $table->foreignId('ville_id')->constrained('villes');
-            $table->enum('etablissement', ['Solicode', 'Faculté', 'ISTA', 'EMSI', 'ENSI', 'BTS', 'Autre']);
-            $table->string('filiere');
-            $table->enum('niveau_etudes', ['Bac+2', 'Bac+3', 'Master', 'Doctorat', 'Autre']);
+            $table->foreignId('etablissement_id')->constrained('etablissements');
+            $table->foreignId('filiere_id')->constrained('filieres');
+            $table->enum('niveau_etudes', ['Bac+2', 'Bac+3', 'Bac+5', 'Doctorat']);
             $table->string('photo')->nullable();
             $table->text('bio')->nullable();
             $table->string('github')->nullable();

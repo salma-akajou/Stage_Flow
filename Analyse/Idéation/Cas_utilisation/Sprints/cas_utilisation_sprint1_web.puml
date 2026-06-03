@@ -55,12 +55,16 @@ Ent -- UC9
 ' Administrateur
 ' =========================
 
-usecase "Gérer comptes utilisateurs" as UC10
-usecase "Consulter statistiques globales" as UC11
+usecase "Consulter dashboard" as UC11
+usecase "Gérer les filières" as UC12
+usecase "Gérer les secteurs" as UC13
+usecase "Gérer les établissements" as UC14
 
 
-Admin -- UC10
 Admin -- UC11
+Admin -- UC12
+Admin -- UC13
+Admin -- UC14
 
 
 
@@ -88,8 +92,10 @@ UC6 ..> Auth : <<include>>
 UC7 ..> Auth : <<include>>
 UC8 ..> Auth : <<include>>
 UC9 ..> Auth : <<include>>
-UC10 ..> Auth : <<include>>
 UC11 ..> Auth : <<include>>
+UC12 ..> Auth : <<include>>
+UC13 ..> Auth : <<include>>
+UC14 ..> Auth : <<include>>
 
 
 @enduml

@@ -24,6 +24,7 @@ class EntrepriseController extends Controller
                 'data' => [
                     'entreprise' => [
                         ...$entreprise->toArray(),
+                        'secteur' => $entreprise->secteur?->nom ?? 'N/A',
                         'logoUrl' => $logoUrl,
                         'lettreInitiale' => $lettreInitiale
                     ],

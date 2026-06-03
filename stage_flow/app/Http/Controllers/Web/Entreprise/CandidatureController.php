@@ -74,7 +74,7 @@ class CandidatureController extends Controller
             'data' => [
                 'id' => $candidature->id,
                 'nom_complet' => $candidature->etudiant->user->prenom . ' ' . $candidature->etudiant->user->nom,
-                'specialite' => $candidature->etudiant->filiere ?? 'Candidat Etudiant',
+                'specialite' => $candidature->etudiant->filiere?->nom ?? 'Candidat Etudiant',
                 'bio' => $candidature->etudiant->bio ?? 'Aucune bio renseignée.',
                 'motivation' => $candidature->message_motivation,
                 'cv_url' => $candidature->cv_id ? asset('storage/' . $candidature->cv->file_path) : null,

@@ -12,8 +12,8 @@ class Etudiant extends Model
     protected $fillable = [
         'user_id',
         'ville_id',
-        'etablissement',
-        'filiere',
+        'etablissement_id',
+        'filiere_id',
         'niveau_etudes',
         'photo',
         'bio',
@@ -30,6 +30,16 @@ class Etudiant extends Model
     public function ville()
     {
         return $this->belongsTo(Ville::class);
+    }
+
+    public function etablissement()
+    {
+        return $this->belongsTo(Etablissement::class, 'etablissement_id');
+    }
+
+    public function filiere()
+    {
+        return $this->belongsTo(Filiere::class, 'filiere_id');
     }
 
     public function candidatures()
