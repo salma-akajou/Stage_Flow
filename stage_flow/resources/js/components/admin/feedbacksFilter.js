@@ -10,4 +10,5 @@ export default (routeIndex = '') => ({
             document.getElementById('feedbacks-table-container').innerHTML = html;
         });
     }
+    
 });

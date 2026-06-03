@@ -11,6 +11,7 @@
                 placeholder="Rechercher un utilisateur (nom, email)...">
         </div>
 
+        
         <div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
             <!-- Dropdown Role -->
             <div x-data="dropdownFilter" class="relative w-full sm:w-48">

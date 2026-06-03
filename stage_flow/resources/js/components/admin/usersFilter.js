@@ -28,3 +28,4 @@ export default (routeIndex = '', initialSearch = '', initialRole = '') => ({
         });
     }
 });
+

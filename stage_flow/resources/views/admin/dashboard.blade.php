@@ -24,6 +24,7 @@
 @endsection
 
 
+
 @push('styles')
 <style>
     .sticker-float { animation: stickerFloat 12s ease-in-out infinite; }

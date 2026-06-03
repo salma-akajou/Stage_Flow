@@ -6,6 +6,7 @@
             $badgeText = 'Commentaire positif';
             $badgeIcon = '<svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5" /></svg>';
             
+            
             if($feedback->note == 3) {
                 $badgeColor = 'amber';
                 $badgeText = 'Suggestion d\'amélioration';
