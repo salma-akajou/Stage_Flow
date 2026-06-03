@@ -53,7 +53,7 @@ class DashboardService
     }
     public function getEtudiantDashboardData(int $etudiantId): array
     {
-        $etudiant = Etudiant::with(['user', 'ville'])->findOrFail($etudiantId);
+        $etudiant = Etudiant::with(['user', 'ville', 'filiere', 'etablissement'])->findOrFail($etudiantId);
         
         return [
             'etudiant' => $etudiant,
