@@ -16,6 +16,7 @@ skinparam usecase {
 actor "Étudiant" as E
 actor "Entreprise" as Ent
 
+
 package "Sprint 3 – Assistant Virtuel & IA" {
 
     usecase "Générer un message de motivation (IA)" as UC_Motiv
