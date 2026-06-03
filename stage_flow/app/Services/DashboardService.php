@@ -40,6 +40,7 @@ class DashboardService
         return Ville::select('id', 'nom')->get();
     }
 
+    
     public function getEtudiantStats(int $etudiantId): array
     {
         $etudiant = Etudiant::findOrFail($etudiantId);

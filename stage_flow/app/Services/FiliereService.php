@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Filiere;
 use Illuminate\Pagination\LengthAwarePaginator;
 
+
 class FiliereService extends BaseService
 {
     public function __construct()

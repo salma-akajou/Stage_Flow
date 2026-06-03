@@ -59,3 +59,4 @@ class UtilisateurController extends Controller
         return back()->with('success', 'Utilisateur supprimé avec succès.');
     }
 }
+

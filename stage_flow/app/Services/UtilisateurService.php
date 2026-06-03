@@ -98,3 +98,4 @@ class UtilisateurService extends BaseService
         return $this->delete($id);
     }
 }
+

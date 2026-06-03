@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\FiliereService;
 use Illuminate\Http\Request;
 
+
 class FiliereController extends Controller
 {
     protected FiliereService $filiereService;

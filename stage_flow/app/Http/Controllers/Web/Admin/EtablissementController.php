@@ -27,6 +27,7 @@ class EtablissementController extends Controller
         return view('admin.etablissements.index', compact('etablissements'));
     }
 
+    
     public function store(Request $request)
     {
         $request->validate([

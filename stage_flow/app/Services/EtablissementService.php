@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Etablissement;
 use Illuminate\Pagination\LengthAwarePaginator;
 
+
 class EtablissementService extends BaseService
 {
     public function __construct()

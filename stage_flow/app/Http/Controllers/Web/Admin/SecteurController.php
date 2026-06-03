@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\SecteurService;
 use Illuminate\Http\Request;
 
+
 class SecteurController extends Controller
 {
     protected SecteurService $secteurService;
