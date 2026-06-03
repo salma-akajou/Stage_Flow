@@ -13,3 +13,4 @@ class Etablissement extends Model
         return $this->hasMany(Etudiant::class, 'etablissement_id', 'user_id');
     }
 }
+

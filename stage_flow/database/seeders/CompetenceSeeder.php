@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Competence;
 
+
 class CompetenceSeeder extends Seeder
 {
     public function run(): void

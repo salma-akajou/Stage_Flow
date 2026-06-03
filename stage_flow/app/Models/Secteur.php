@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Secteur extends Model
 {
     protected $fillable = ['nom'];

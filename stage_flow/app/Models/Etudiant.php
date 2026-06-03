@@ -31,7 +31,6 @@ class Etudiant extends Model
     {
         return $this->belongsTo(Ville::class);
     }
-
     public function etablissement()
     {
         return $this->belongsTo(Etablissement::class, 'etablissement_id');

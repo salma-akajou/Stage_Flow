@@ -13,3 +13,4 @@ class Filiere extends Model
         return $this->hasMany(Etudiant::class, 'filiere_id', 'user_id');
     }
 }
+

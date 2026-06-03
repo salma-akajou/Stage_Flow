@@ -9,6 +9,7 @@ use App\Models\Ville;
 use App\Models\Secteur;
 use Illuminate\Support\Facades\Hash;
 
+
 class EntrepriseSeeder extends Seeder
 {
     public function run(): void

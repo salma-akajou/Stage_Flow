@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Secteur;
 use App\Models\Competence;
 
+
 class OffreSeeder extends Seeder
 {
     public function run(): void

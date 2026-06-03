@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Etablissement;
 
+
 class EtablissementSeeder extends Seeder
 {
     public function run(): void

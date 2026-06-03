@@ -13,3 +13,4 @@ class Competence extends Model
         return $this->belongsToMany(Offre::class, 'competence_offre', 'competence_id', 'offre_id');
     }
 }
+
