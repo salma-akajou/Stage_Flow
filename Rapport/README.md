@@ -10,6 +10,7 @@
 
 ---
 
+
 ## Table de matière
 
 - [Liste des figures](#liste-des-figures)
@@ -191,7 +192,7 @@ La méthode 2TUP (Two Tracks Unified Process) est un processus de développement
 
 Ces deux branches évoluent en parallèle puis se rejoignent dans une phase de convergence, où sont réalisées la conception détaillée, le développement et les tests de l’application. Cette approche permet d’anticiper les contraintes techniques tout en garantissant une solution cohérente et adaptée aux besoins des utilisateurs.
 
-![2TUP](images/2TUP.png)
+![2TUP](images/2_TUP.png)
 <p align="center" id="figure-4--processus-2tup"><em>Figure 4 : Processus 2TUP</em></p>
 
 En résumé, la méthode 2TUP a permis de séparer les besoins fonctionnels et techniques, garantissant à StageFlow une architecture robuste et parfaitement adaptée aux utilisateurs.
