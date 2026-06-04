@@ -58,6 +58,7 @@ usecase "Consulter dashboard" as UC16
 usecase "Gérer les filières" as UC24
 usecase "Gérer les secteurs" as UC25
 usecase "Gérer les établissements" as UC26
+usecase "Utiliser l'assistant virtuel (IA)" as UC27
 
 
 '=====================
@@ -115,6 +116,7 @@ Admin -- UC16
 Admin -- UC24
 Admin -- UC25
 Admin -- UC26
+Admin -- UC27
 
 
 '=====================
@@ -155,5 +157,6 @@ UC20 ..> Auth : <<include>>
 UC24 ..> Auth : <<include>>
 UC25 ..> Auth : <<include>>
 UC26 ..> Auth : <<include>>
+UC27 ..> Auth : <<include>>
 
 @enduml
