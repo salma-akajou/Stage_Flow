@@ -19,7 +19,7 @@ class CandidatureServiceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->service = new CandidatureService();
+        $this->service = app(CandidatureService::class);
     }
 
     public function test_it_can_list_etudiant_candidatures()

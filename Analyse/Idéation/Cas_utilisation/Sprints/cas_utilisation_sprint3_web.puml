@@ -26,7 +26,7 @@ package "Sprint 3 – Assistant Virtuel & IA" {
     usecase "Gérer les offres via l'IA" as UC_Offres
     usecase "Gérer les candidatures via l'IA" as UC_Cands
 
-    usecase "Modérer les feedbacks via l'IA" as UC_Mod
+    usecase "Gérer les ressources (établissements, filières, secteurs) via l'IA" as UC_Res
     usecase "Générer des rapports statistiques (IA)" as UC_Stats
     
     usecase "S'authentifier" as Auth
@@ -37,14 +37,14 @@ package "Sprint 3 – Assistant Virtuel & IA" {
     Ent -- UC_Offres
     Ent -- UC_Cands
 
-    Admin -- UC_Mod
+    Admin -- UC_Res
     Admin -- UC_Stats
 
     UC_Motiv ..> Auth : <<include>>
     UC_Recom ..> Auth : <<include>>
     UC_Offres ..> Auth : <<include>>
     UC_Cands ..> Auth : <<include>>
-    UC_Mod ..> Auth : <<include>>
+    UC_Res ..> Auth : <<include>>
     UC_Stats ..> Auth : <<include>>
 }
 

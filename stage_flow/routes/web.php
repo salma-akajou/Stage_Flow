@@ -138,3 +138,8 @@ Route::middleware(['auth', 'role:admin|moderateur'])->prefix('admin')->name('adm
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// Route Chatbot IA
+use App\Http\Controllers\Web\ChatbotController;
+Route::post('/chatbot/message', [ChatbotController::class, 'handleMessage'])->name('chatbot.message');
+
