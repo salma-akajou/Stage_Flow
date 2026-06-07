@@ -19,8 +19,12 @@ use App\Http\Controllers\Web\Entreprise\NotificationController as EntrepriseNoti
 use App\Http\Controllers\Web\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Web\Admin\UtilisateurController as AdminUser;
 use App\Http\Controllers\Web\Admin\FeedbackController as AdminFeedback;
+use App\Http\Controllers\Web\Admin\FiliereController;
+use App\Http\Controllers\Web\Admin\SecteurController;
+use App\Http\Controllers\Web\Admin\EtablissementController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+
 
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
@@ -88,8 +92,6 @@ Route::middleware(['auth', 'role:admin|moderateur'])->prefix('admin')->name('adm
 
         // Actions réservées à ceux qui ont la permission gerer-utilisateurs (admin seulement)
         Route::middleware('can:gerer-utilisateurs')->group(function () {
-            Route::post('{id}/suspend', [AdminUser::class, 'suspend'])->name('suspend');
-            Route::post('{id}/reactivate', [AdminUser::class, 'reactivate'])->name('reactivate');
             Route::delete('{id}', [AdminUser::class, 'destroy'])->name('destroy');
         });
     });
@@ -100,9 +102,44 @@ Route::middleware(['auth', 'role:admin|moderateur'])->prefix('admin')->name('adm
         Route::post('{id}/approve', [AdminFeedback::class, 'approve'])->name('approve');
         Route::delete('{id}', [AdminFeedback::class, 'destroy'])->name('destroy');
     });
+
+    // Gestion des filières
+    Route::prefix('filieres')->name('filieres.')->group(function () {
+        Route::get('', [FiliereController::class, 'index'])->name('index');
+        Route::middleware('can:gerer-utilisateurs')->group(function () {
+            Route::post('', [FiliereController::class, 'store'])->name('store');
+            Route::put('{id}', [FiliereController::class, 'update'])->name('update');
+            Route::delete('{id}', [FiliereController::class, 'destroy'])->name('destroy');
+        });
+    });
+
+    // Gestion des secteurs
+    Route::prefix('secteurs')->name('secteurs.')->group(function () {
+        Route::get('', [SecteurController::class, 'index'])->name('index');
+        Route::middleware('can:gerer-utilisateurs')->group(function () {
+            Route::post('', [SecteurController::class, 'store'])->name('store');
+            Route::put('{id}', [SecteurController::class, 'update'])->name('update');
+            Route::delete('{id}', [SecteurController::class, 'destroy'])->name('destroy');
+        });
+    });
+
+    // Gestion des établissements
+    Route::prefix('etablissements')->name('etablissements.')->group(function () {
+        Route::get('', [EtablissementController::class, 'index'])->name('index');
+        Route::middleware('can:gerer-utilisateurs')->group(function () {
+            Route::post('', [EtablissementController::class, 'store'])->name('store');
+            Route::put('{id}', [EtablissementController::class, 'update'])->name('update');
+            Route::delete('{id}', [EtablissementController::class, 'destroy'])->name('destroy');
+        });
+    });
 });
 
 
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// Route Chatbot IA
+use App\Http\Controllers\Web\ChatbotController;
+Route::post('/chatbot/message', [ChatbotController::class, 'handleMessage'])->name('chatbot.message');
+

@@ -12,7 +12,7 @@ class Entreprise extends Model
     protected $fillable = [
         'user_id',
         'nom_entreprise',
-        'secteur',
+        'secteur_id',
         'ville_id',
         'adresse',
         'email_contact',
@@ -20,6 +20,7 @@ class Entreprise extends Model
         'registre_commerce',
         'logo',
         'taille',
+        'vues',
     ];
 
     public function user()
@@ -32,9 +33,15 @@ class Entreprise extends Model
         return $this->belongsTo(Ville::class);
     }
 
+    public function secteur()
+    {
+        return $this->belongsTo(Secteur::class, 'secteur_id');
+    }
+
     public function offres()
     {
         return $this->hasMany(Offre::class, 'entreprise_id', 'user_id');
     }
 
 }
+

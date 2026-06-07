@@ -41,8 +41,8 @@
                         Tous les secteurs
                     </a>
                     @foreach($secteurs as $s)
-                        <a @click.prevent="document.getElementById('secteur-input').value = '{{ addslashes($s) }}'; $event.target.closest('form').submit()" href="#" class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm {{ request('secteur') == $s ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-700 hover:bg-gray-50' }}">
-                            {{ $s }}
+                        <a @click.prevent="document.getElementById('secteur-input').value = '{{ addslashes($s->nom) }}'; $event.target.closest('form').submit()" href="#" class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm {{ request('secteur') == $s->nom ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-700 hover:bg-gray-50' }}">
+                            {{ $s->nom }}
                         </a>
                     @endforeach
                 </div>

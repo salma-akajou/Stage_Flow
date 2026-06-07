@@ -64,3 +64,4 @@ export default (series = [], categories = []) => ({
         }
     }
 });
+

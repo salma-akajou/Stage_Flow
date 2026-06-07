@@ -135,3 +135,4 @@ window.closeUserDetailModal = function() {
         setTimeout(() => { wrapper.style.display = 'none'; }, 300);
     }
 };
+

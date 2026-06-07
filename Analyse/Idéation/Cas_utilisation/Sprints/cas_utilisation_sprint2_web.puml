@@ -48,13 +48,11 @@ package "Sprint 2 – Fonctionnalités Avancées (StageFlow)" {
     ' ========================
     ' Améliorations Administrateur
     ' ========================
-        usecase "Consulter statistiques avancées" as UC3
+        usecase "Gérer les comptes" as UC3
         usecase "Modérer les feedbacks" as UC8
 
     Admin -- UC3
     Admin -- UC8
-    usecase "Exporter les données (utilisateurs)" as UC5
-    Admin -- UC5
 
     usecase "S'authentifier" as Auth
 
@@ -62,7 +60,6 @@ UC1 ..> Auth : <<include>>
 UC2 ..> Auth : <<include>>
 UC3 ..> Auth : <<include>>
 UC4 ..> Auth : <<include>>
-UC5 ..> Auth : <<include>>
 UC6 ..> Auth : <<include>>
 UC7 ..> Auth : <<include>>
 UC8 ..> Auth : <<include>>

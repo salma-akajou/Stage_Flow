@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\Etudiant;
+use App\Models\Etablissement;
+use App\Models\Filiere;
 use Illuminate\Support\Facades\Storage;
 
 class EtudiantService extends BaseService
@@ -14,7 +16,7 @@ class EtudiantService extends BaseService
 
     public function getProfile(int $id): Etudiant
     {
-        return Etudiant::with('user', 'ville')->withCount(['candidatures', 'favoris'])->findOrFail($id);
+        return Etudiant::with(['user', 'ville', 'etablissement', 'filiere'])->withCount(['candidatures', 'favoris'])->findOrFail($id);
     }
 
     public function updateProfile(int $id, array $data): Etudiant
@@ -37,17 +39,30 @@ class EtudiantService extends BaseService
             $data['photo'] = $data['photo']->store('avatars', 'public');
         }
 
-
-        $etudiant->update(array_filter([
+        $updateData = [
             'ville_id'      => $data['ville_id'] ?? null,
-            'etablissement' => $data['etablissement'] ?? null,
-            'filiere'       => $data['filiere'] ?? null,
             'niveau_etudes' => $data['niveau_etudes'] ?? null,
             'bio'           => $data['bio'] ?? null,
             'github'        => $data['github'] ?? null,
             'linkedin'      => $data['linkedin'] ?? null,
             'photo'         => $data['photo'] ?? $etudiant->photo,
-        ], fn($val) => !is_null($val)));
+        ];
+
+        if (isset($data['etablissement_id'])) {
+            $updateData['etablissement_id'] = $data['etablissement_id'];
+        } elseif (isset($data['etablissement'])) {
+            $etab = Etablissement::firstOrCreate(['nom' => $data['etablissement']]);
+            $updateData['etablissement_id'] = $etab->id;
+        }
+
+        if (isset($data['filiere_id'])) {
+            $updateData['filiere_id'] = $data['filiere_id'];
+        } elseif (isset($data['filiere'])) {
+            $fil = Filiere::firstOrCreate(['nom' => $data['filiere']]);
+            $updateData['filiere_id'] = $fil->id;
+        }
+
+        $etudiant->update(array_filter($updateData, fn($val) => !is_null($val)));
 
         return $etudiant;
     }

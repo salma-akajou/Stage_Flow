@@ -19,7 +19,19 @@ class StoreCandidatureRequest extends FormRequest
             'message_motivation' => 'required|string|min:20',
             'telephone' => 'required|string|max:20',
             'portfolio_url' => 'nullable|url',
-            'photo' => 'nullable|image|max:2048',
+            'photo' => [
+                'nullable',
+                'max:2048',
+                function ($attribute, $value, $fail) {
+                    if ($value instanceof \Illuminate\Http\UploadedFile) {
+                        $extension = strtolower($value->getClientOriginalExtension());
+                        $allowedExtensions = ['jpeg', 'png', 'jpg', 'gif', 'svg', 'webp'];
+                        if (!in_array($extension, $allowedExtensions)) {
+                            $fail('La photo doit être au format jpeg, png, jpg, gif, svg ou webp.');
+                        }
+                    }
+                }
+            ],
         ];
     }
 

@@ -25,7 +25,7 @@
         remuns: ['Payé', 'Non-payé'],
         formats: ['Hybride', 'Télétravail', 'Présentiel'],
         statuses: ['Active', 'Expirée'],
-        existingCompetences: {{ $existingCompetences->toJson() }},
+        existingCompetences: {{ $existingCompetences->pluck('nom')->toJson() }},
 
         resetForm() {
             this.isEdit = false;

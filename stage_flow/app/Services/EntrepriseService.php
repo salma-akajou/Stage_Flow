@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Entreprise;
+use App\Models\Secteur;
 use Illuminate\Support\Facades\Storage;
 
 class EntrepriseService extends BaseService
@@ -25,7 +26,6 @@ class EntrepriseService extends BaseService
             $user->update($userData);
         }
 
-        
         if (isset($data['logo'])) {
             if ($entreprise->logo && Storage::disk('public')->exists($entreprise->logo)) {
                 Storage::disk('public')->delete($entreprise->logo);
@@ -40,9 +40,8 @@ class EntrepriseService extends BaseService
             $data['logo'] = null;
         }
 
-        $entreprise->update(array_filter([
+        $updateData = [
             'nom_entreprise'    => $data['nom_entreprise'] ?? null,
-            'secteur'           => $data['secteur'] ?? null,
             'ville_id'          => $data['ville_id'] ?? null,
             'adresse'           => $data['adresse'] ?? null,
             'email_contact'     => $data['email_contact'] ?? null,
@@ -50,7 +49,16 @@ class EntrepriseService extends BaseService
             'registre_commerce' => $data['registre_commerce'] ?? null,
             'taille'            => $data['taille'] ?? null,
             'logo'              => array_key_exists('logo', $data) ? $data['logo'] : $entreprise->logo,
-        ], fn($val) => !is_null($val)));
+        ];
+
+        if (isset($data['secteur_id'])) {
+            $updateData['secteur_id'] = $data['secteur_id'];
+        } elseif (isset($data['secteur'])) {
+            $sect = Secteur::firstOrCreate(['nom' => $data['secteur']]);
+            $updateData['secteur_id'] = $sect->id;
+        }
+
+        $entreprise->update(array_filter($updateData, fn($val) => !is_null($val)));
 
         return $entreprise;
     }
@@ -58,5 +66,10 @@ class EntrepriseService extends BaseService
     public function incrementViews(int $id): void
     {
         $this->model->where('user_id', $id)->increment('vues');
+    }
+
+    public function getDetails(int $id): Entreprise
+    {
+        return Entreprise::with(['ville', 'secteur'])->findOrFail($id);
     }
 }

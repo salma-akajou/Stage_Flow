@@ -22,7 +22,7 @@
             </div>
             <p class="text-xs text-gray-600 line-clamp-2 mb-4 leading-relaxed lowercase">{{ $offre->description }}</p>
             <div class="flex flex-wrap gap-2 mb-6">
-                <span class="py-1 px-2.5 rounded-lg text-[10px] font-bold bg-indigo-50 text-indigo-700">{{ $offre->secteur }}</span>
+                <span class="py-1 px-2.5 rounded-lg text-[10px] font-bold bg-indigo-50 text-indigo-700">{{ $offre->secteur?->nom ?? '' }}</span>
                 <span class="py-1 px-2.5 rounded-lg text-[10px] font-bold bg-gray-100 text-gray-600">{{ $offre->duree }}</span>
                 @if ($offre->remuneration === 'Payé')
                     <span class="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full text-[10px] font-bold bg-green-100 text-green-800">

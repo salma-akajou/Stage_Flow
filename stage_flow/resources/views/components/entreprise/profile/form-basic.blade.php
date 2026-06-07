@@ -44,7 +44,7 @@
                 <label class="block text-xs font-black uppercase text-gray-400 mb-2 tracking-widest">Nom de l'entreprise</label>
                 <input type="text" name="nom_entreprise" value="{{ $entreprise->nom_entreprise }}" required class="py-3 px-4 block w-full border-gray-100 bg-gray-50/50 rounded-xl text-sm font-bold focus:border-indigo-500 focus:ring-indigo-500">
             </div>
-            <div class="relative" x-data="customSelect('{{ $entreprise->secteur }}', ['Informatique', 'Design', 'Marketing', 'Commerce', 'Industrie', 'Autre'])" :class="{ 'z-[70]': open, 'z-[60]': !open }">
+            <div class="relative" x-data="customSelect('{{ $entreprise->secteur?->nom ?? '' }}', ['Informatique', 'Design', 'Marketing', 'Commerce', 'Industrie', 'Autre'])" :class="{ 'z-[70]': open, 'z-[60]': !open }">
                 <label class="block text-xs font-black uppercase text-gray-400 mb-2 tracking-widest">Secteur d'activité</label>
                 <div class="relative">
                     <button @click="open = !open" @click.away="open = false" type="button" 

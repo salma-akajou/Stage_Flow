@@ -29,9 +29,7 @@ class UtilisateurService extends BaseService
             });
         }
 
-        if (!empty($filters['statut'])) {
-            $query->where('statut', $filters['statut']);
-        }
+
 
         if (!empty($filters['role'])) {
             if ($filters['role'] === 'etudiant') {
@@ -67,7 +65,6 @@ class UtilisateurService extends BaseService
             'Nom complet',
             'Email',
             'Rôle',
-            'Statut',
             'Date d\'inscription'
         ], ';');
 
@@ -76,7 +73,6 @@ class UtilisateurService extends BaseService
                 $user->prenom . ' ' . $user->nom,
                 $user->email,
                 $user->role === 'moderateur' ? 'Modérateur' : ($user->role === 'etudiant' ? 'Étudiant' : 'Entreprise'),
-                $user->statut === 'actif' ? 'Actif' : 'Suspendu',
                 $user->created_at->format('d/m/Y H:i')
             ], ';');
         }
@@ -95,28 +91,11 @@ class UtilisateurService extends BaseService
         ])->findOrFail($id);
     }
 
-    public function suspendUser(int $id): bool
-    {
-        $user = $this->findOrFail($id);
-        if ($user) {
-            $user->statut = 'suspendu';
-            return $user->save();
-        }
-        return false;
-    }
 
-    public function reactivateUser(int $id): bool
-    {
-        $user = $this->findOrFail($id);
-        if ($user) {
-            $user->statut = 'actif';
-            return $user->save();
-        }
-        return false;
-    }
 
     public function deleteUser(int $id): ?bool
     {
         return $this->delete($id);
     }
 }
+

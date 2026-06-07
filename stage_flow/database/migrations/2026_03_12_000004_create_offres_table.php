@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 return new class extends Migration
 {
     public function up(): void
@@ -16,11 +17,10 @@ return new class extends Migration
             $table->string('duree');
             $table->enum('remuneration', ['Payé', 'Non-payé']);
             $table->enum('format', ['Hybride', 'Télétravail', 'Présentiel']);
-            $table->enum('secteur', ['Informatique', 'Design', 'Marketing', 'Commerce', 'Industrie', 'Autre']);
+            $table->foreignId('secteur_id')->constrained('secteurs');
             $table->foreignId('ville_id')->constrained('villes');
             $table->text('responsabilites');
             $table->text('profil_recherche');
-            $table->json('competences_techniques')->nullable();
             $table->enum('status', ['Active', 'Expirée'])->default('Active');
             $table->timestamp('date_publication')->useCurrent();
             $table->date('date_debut');

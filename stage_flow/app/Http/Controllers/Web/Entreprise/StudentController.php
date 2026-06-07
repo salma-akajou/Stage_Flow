@@ -36,8 +36,8 @@ class StudentController extends Controller
                     'photo' => $etudiant->photo ? asset('storage/' . $etudiant->photo) : asset('assets/images/default-avatar.png'),
                     'bio' => $etudiant->bio ?? 'Aucune biographie disponible pour le moment.',
                     'ville' => $etudiant->ville->nom ?? 'Non précisée',
-                    'etablissement' => $etudiant->etablissement ?? 'Non renseigné',
-                    'filiere' => $etudiant->filiere ?? 'Étudiant',
+                    'etablissement' => $etudiant->etablissement?->nom ?? 'Non renseigné',
+                    'filiere' => $etudiant->filiere?->nom ?? 'Étudiant',
                     'niveau' => $etudiant->niveau_etudes ?? 'N/A',
                     'github' => $etudiant->github,
                     'linkedin' => $etudiant->linkedin,
@@ -48,7 +48,7 @@ class StudentController extends Controller
                         'description' => $c->offre->description,
                         'entreprise' => $c->offre->entreprise->nom_entreprise,
                         'statut' => $c->statut,
-                        'secteur' => $c->offre->secteur,
+                        'secteur' => $c->offre->secteur?->nom ?? 'N/A',
                         'type' => $c->offre->type_stage,
                         'date' => $c->created_at->format('d/m/Y')
                     ])

@@ -2,7 +2,7 @@
     <div class="relative z-10 max-w-2xl text-white">
         <div class="mb-8">
             <h1 class="text-3xl font-bold">Bonjour, {{ $etudiant->user->prenom }} 👋</h1>
-            <p class="text-indigo-300 text-sm font-medium mt-1">{{ $etudiant->filiere }} - {{ $etudiant->etablissement }}</p>
+            <p class="text-indigo-300 text-sm font-medium mt-1">{{ $etudiant->filiere?->nom ?? '' }} - {{ $etudiant->etablissement?->nom ?? '' }}</p>
         </div>
         <h2 class="text-4xl font-black mb-6 leading-tight">Propulse ton potentiel avec StageFlow.</h2>
         <p class="text-indigo-200 text-lg mb-8 leading-relaxed">Trouve le stage de tes rêves parmi des centaines d'opportunités exclusives et adaptées à ton profil.</p>

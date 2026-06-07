@@ -79,7 +79,7 @@ window.openEntrepriseModal = function(id) {
                 offres.forEach(offre => {
                     const descriptionShort = offre.description ? offre.description.substring(0, 180) + (offre.description.length > 180 ? '...' : '') : '';
                     list.innerHTML += `
-                    <a href="/offres/${offre.id}" class="block bg-white border border-gray-100 rounded-xl p-4 hover:border-indigo-300 hover:shadow-md transition-all duration-300 group">
+                    <a href="/student/offres/${offre.id}" class="block bg-white border border-gray-100 rounded-xl p-4 hover:border-indigo-300 hover:shadow-md transition-all duration-300 group">
                         <h5 class="text-sm font-bold text-gray-900 group-hover:text-indigo-600 transition leading-snug mb-2.5">${offre.titre}</h5>
                         <div class="flex flex-wrap gap-2 mb-3">
                             ${offre.secteur ? `<span class="text-[10px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-md">${offre.secteur}</span>` : ''}

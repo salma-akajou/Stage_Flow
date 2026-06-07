@@ -26,6 +26,12 @@ class FavoriService extends BaseService
     public function list(int $etudiantId, int $perPage = 9): LengthAwarePaginator
     {
         $etudiant = $this->findOrFail($etudiantId);
-        return $etudiant->favoris()->with('entreprise')->latest()->paginate($perPage);
+        return $etudiant->favoris()->with(['entreprise', 'ville', 'secteur'])->latest()->paginate($perPage);
+    }
+
+    public function getFavoriteIds(int $etudiantId): array
+    {
+        $etudiant = $this->findOrFail($etudiantId);
+        return $etudiant->favoris()->pluck('offres.id')->toArray();
     }
 }

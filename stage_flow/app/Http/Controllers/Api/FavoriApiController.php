@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Etudiant;
 use App\Services\FavoriService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -57,8 +56,7 @@ class FavoriApiController extends Controller
     public function ids($etudiantId): JsonResponse
     {
         try {
-            $etudiant = Etudiant::findOrFail((int) $etudiantId);
-            $ids = $etudiant->favoris()->pluck('offres.id')->toArray();
+            $ids = $this->favoriService->getFavoriteIds((int) $etudiantId);
             return response()->json(['success' => true, 'data' => $ids]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Erreur'], 500);

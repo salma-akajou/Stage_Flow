@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Offre extends Model
 {
     protected $fillable = [
@@ -13,11 +14,10 @@ class Offre extends Model
         'duree',
         'remuneration',
         'format',
-        'secteur',
+        'secteur_id',
         'ville_id',
         'responsabilites',
         'profil_recherche',
-        'competences_techniques',
         'status',
         'date_publication',
         'date_debut',
@@ -26,7 +26,6 @@ class Offre extends Model
     ];
 
     protected $casts = [
-        'competences_techniques' => 'json',
         'date_publication' => 'datetime',
         'date_debut' => 'date',
         'date_fin' => 'date',
@@ -40,6 +39,16 @@ class Offre extends Model
     public function ville()
     {
         return $this->belongsTo(Ville::class);
+    }
+
+    public function secteur()
+    {
+        return $this->belongsTo(Secteur::class, 'secteur_id');
+    }
+
+    public function competences()
+    {
+        return $this->belongsToMany(Competence::class, 'competence_offre', 'offre_id', 'competence_id');
     }
 
     public function candidatures()

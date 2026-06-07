@@ -17,7 +17,7 @@ class UtilisateurController extends Controller
 
     public function index(Request $request)
     {
-        $filters = $request->only(['search', 'statut', 'role']);
+        $filters = $request->only(['search', 'role']);
         $users = $this->utilisateurService->listUsers($filters, 9);
         
         if ($request->ajax()) {
@@ -39,7 +39,7 @@ class UtilisateurController extends Controller
 
         return response()->stream(function() use ($request) {
             $this->utilisateurService->exportUsersToCsv(
-                $request->only(['search', 'statut', 'role'])
+                $request->only(['search', 'role'])
             );
         }, 200, $headers);
     }
@@ -51,17 +51,7 @@ class UtilisateurController extends Controller
         return response()->json($user);
     }
 
-    public function suspend($id)
-    {
-        $this->utilisateurService->suspendUser($id);
-        return back()->with('success', 'Utilisateur suspendu avec succès.');
-    }
 
-    public function reactivate($id)
-    {
-        $this->utilisateurService->reactivateUser($id);
-        return back()->with('success', 'Utilisateur réactivé avec succès.');
-    }
 
     public function destroy($id)
     {
@@ -69,3 +59,4 @@ class UtilisateurController extends Controller
         return back()->with('success', 'Utilisateur supprimé avec succès.');
     }
 }
+

@@ -25,7 +25,7 @@ class FeedbackService extends BaseService
 
     public function getLandingFeedbacks(int $limit = 3)
     {
-        return $this->model->with(['auteur.etudiant', 'auteur.entreprise'])->where('valide', true)->latest()->take($limit)->get();
+        return $this->model->with(['auteur.etudiant.filiere', 'auteur.entreprise'])->where('valide', true)->latest()->take($limit)->get();
     }
 
     public function moderate(int $id, string $action): bool

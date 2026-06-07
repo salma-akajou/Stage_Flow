@@ -31,7 +31,7 @@ usecase "Suivre candidatures" as UC6
 usecase "Ajouter favoris" as UC7
 usecase "Ajouter un feedback" as UC8
 usecase "Recevoir des notifications" as UC17
-usecase "Utiliser le chatbot" as UC22
+usecase "Utiliser l'assistant virtuel (IA)" as UC22
 
 
 '=====================
@@ -45,7 +45,7 @@ usecase "Gérer candidatures" as UC12
 usecase "Ajouter un feedback" as UC13
 usecase "Recevoir des notifications" as UC18
 usecase "Exporter candidatures (PDF/Excel)" as UC20
-usecase "Utiliser le chatbot" as UC23
+usecase "Utiliser l'assistant virtuel (IA)" as UC23
 
 
 '=====================
@@ -54,9 +54,11 @@ usecase "Utiliser le chatbot" as UC23
 
 usecase "Gérer comptes" as UC14
 usecase "Modérer feedbacks" as UC15
-usecase "Voir statistiques" as UC16
-usecase "Consulter statistiques avancées" as UC19
-usecase "Exporter les données (utilisateurs)" as UC21
+usecase "Consulter dashboard" as UC16
+usecase "Gérer les filières" as UC24
+usecase "Gérer les secteurs" as UC25
+usecase "Gérer les établissements" as UC26
+usecase "Utiliser l'assistant virtuel (IA)" as UC27
 
 
 '=====================
@@ -111,8 +113,10 @@ Ent -- UC23
 Admin -- UC14
 Admin -- UC15
 Admin -- UC16
-Admin -- UC19
-Admin -- UC21
+Admin -- UC24
+Admin -- UC25
+Admin -- UC26
+Admin -- UC27
 
 
 '=====================
@@ -134,11 +138,14 @@ UC4 ..> Auth : <<include>>
 UC6 ..> Auth : <<include>>
 UC7 ..> Auth : <<include>>
 UC8 ..> Auth : <<include>>
+UC22 ..> Auth : <<include>>
 
 UC9 ..> Auth : <<include>>
 UC10 ..> Auth : <<include>>
 UC11 ..> Auth : <<include>>
 UC12 ..> Auth : <<include>>
+UC13 ..> Auth : <<include>>
+UC23 ..> Auth : <<include>>
 
 UC14 ..> Auth : <<include>>
 UC15 ..> Auth : <<include>>
@@ -146,8 +153,10 @@ UC16 ..> Auth : <<include>>
 
 UC17 ..> Auth : <<include>>
 UC18 ..> Auth : <<include>>
-UC19 ..> Auth : <<include>>
 UC20 ..> Auth : <<include>>
-UC21 ..> Auth : <<include>>
+UC24 ..> Auth : <<include>>
+UC25 ..> Auth : <<include>>
+UC26 ..> Auth : <<include>>
+UC27 ..> Auth : <<include>>
 
 @enduml

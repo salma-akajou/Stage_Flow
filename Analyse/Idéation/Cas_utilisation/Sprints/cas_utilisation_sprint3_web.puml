@@ -13,28 +13,39 @@ skinparam usecase {
     ArrowColor #117864
 }
 
-actor "Visiteur" as V
 actor "Étudiant" as E
 actor "Entreprise" as Ent
+actor "Administrateur" as Admin
 
-package "Sprint 3 – Assistant Virtuel (Chatbot)" {
 
-    usecase "Utiliser le chatbot" as UC1
-    usecase "Poser une question" as UC2
-    usecase "Recevoir une réponse automatique" as UC3
+package "Sprint 3 – Assistant Virtuel & IA" {
+
+    usecase "Générer un message de motivation (IA)" as UC_Motiv
+    usecase "Obtenir des offres recommandées (IA)" as UC_Recom
+    
+    usecase "Gérer les offres via l'IA" as UC_Offres
+    usecase "Gérer les candidatures via l'IA" as UC_Cands
+
+    usecase "Gérer les ressources (établissements, filières, secteurs) via l'IA" as UC_Res
+    usecase "Générer des rapports statistiques (IA)" as UC_Stats
+    
     usecase "S'authentifier" as Auth
 
-    V -- UC1
-    E -- UC1
-    Ent -- UC1
+    E -- UC_Motiv
+    E -- UC_Recom
 
-    UC1 ..> UC2 : <<include>>
-    UC1 ..> UC3 : <<include>>
+    Ent -- UC_Offres
+    Ent -- UC_Cands
 
-    ' L'authentification est requise uniquement
-    ' pour l'étudiant et l'entreprise
-    E ..> Auth : <<include>>
-    Ent ..> Auth : <<include>>
+    Admin -- UC_Res
+    Admin -- UC_Stats
+
+    UC_Motiv ..> Auth : <<include>>
+    UC_Recom ..> Auth : <<include>>
+    UC_Offres ..> Auth : <<include>>
+    UC_Cands ..> Auth : <<include>>
+    UC_Res ..> Auth : <<include>>
+    UC_Stats ..> Auth : <<include>>
 }
 
 @enduml

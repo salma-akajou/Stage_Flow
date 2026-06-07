@@ -30,9 +30,9 @@ class RegisterRequest extends FormRequest
         if ($this->role === 'etudiant') {
             $rules = array_merge($rules, [
                 'ville_id' => ['required', 'exists:villes,id'],
-                'etablissement' => ['required', 'string', 'in:Solicode,Faculté,ISTA,EMSI,ENSI,BTS,Autre'],
-                'filiere' => ['required', 'string', 'max:255'],
-                'niveau_etude' => ['required', 'string', 'in:Bac+2,Bac+3,Master,Doctorat,Autre'],
+                'etablissement_id' => ['required', 'exists:etablissements,id'],
+                'filiere_id' => ['required', 'exists:filieres,id'],
+                'niveau_etude' => ['required', 'string', 'in:Bac+2,Bac+3,Bac+5,Doctorat'],
                 'photo' => [
                     'nullable',
                     'max:2048',
@@ -52,7 +52,7 @@ class RegisterRequest extends FormRequest
         } elseif ($this->role === 'entreprise') {
             $rules = array_merge($rules, [
                 'nom_entreprise' => ['required', 'string', 'max:255'],
-                'secteur' => ['required', 'string', 'in:Informatique,Design,Marketing,Commerce,Industrie,Autre'],
+                'secteur_id' => ['required', 'exists:secteurs,id'],
                 'ville_id' => ['required', 'exists:villes,id'],
                 'adresse' => ['required', 'string', 'max:500'],
                 'email_contact' => ['required', 'email', 'max:255'],
@@ -84,7 +84,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'prenom.required' => 'Le prénom est obligatoire.',
-            'etablissement.in' => 'Établissement invalide.',
+            'etablissement_id.exists' => 'Établissement invalide.',
             'nom.required' => 'Le nom est obligatoire.',
             'email.required' => 'L\'adresse email est obligatoire.',
             'email.unique' => 'Cet email est déjà utilisé.',
@@ -93,11 +93,11 @@ class RegisterRequest extends FormRequest
             'password.confirmed' => 'La confirmation du mot de passe ne correspond pas.',
             'role.required' => 'Veuillez choisir un profil.',
             'ville_id.required' => 'La ville est obligatoire.',
-            'etablissement.required' => 'L\'établissement est obligatoire.',
-            'filiere.required' => 'La filière est obligatoire.',
+            'etablissement_id.required' => 'L\'établissement est obligatoire.',
+            'filiere_id.required' => 'La filière est obligatoire.',
             'niveau_etude.required' => 'Le niveau d\'études est obligatoire.',
             'nom_entreprise.required' => 'Le nom de l\'entreprise est obligatoire.',
-            'secteur.required' => 'Le secteur d\'activité est obligatoire.',
+            'secteur_id.required' => 'Le secteur d\'activité est obligatoire.',
             'adresse.required' => 'L\'adresse est obligatoire.',
             'email_contact.required' => 'L\'email de contact est obligatoire.',
             'registre_commerce.required' => 'Le numéro de RC est obligatoire.',

@@ -10,6 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Notification;
 
 class User extends Authenticatable
 {
@@ -35,6 +36,7 @@ class User extends Authenticatable
         return $this->hasOne(Etudiant::class);
     }
 
+    
     public function entreprise()
     {
         return $this->hasOne(Entreprise::class);
@@ -98,16 +100,16 @@ class User extends Authenticatable
             }
 
             Etudiant::create([
-                'user_id'       => $user->id,
-                'ville_id'      => $data['ville_id'],
-                'etablissement' => $data['etablissement'],
-                'filiere'       => $data['filiere'],
-                'niveau_etudes' => $data['niveau_etude'],
-                'photo'         => $photoPath,
-                'bio'           => $data['bio'] ?? null,
-                'github'        => $data['github'] ?? null,
-                'linkedin'      => $data['linkedin'] ?? null,
-                'vues'          => 0,
+                'user_id'          => $user->id,
+                'ville_id'         => $data['ville_id'],
+                'etablissement_id' => $data['etablissement_id'],
+                'filiere_id'       => $data['filiere_id'],
+                'niveau_etudes'    => $data['niveau_etude'],
+                'photo'            => $photoPath,
+                'bio'              => $data['bio'] ?? null,
+                'github'           => $data['github'] ?? null,
+                'linkedin'         => $data['linkedin'] ?? null,
+                'vues'             => 0,
             ]);
 
             return $user;

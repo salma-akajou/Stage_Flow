@@ -13,6 +13,7 @@ style: |
     padding: 60px 80px;
   }
 
+
   footer { 
     width: 100%; 
     text-align: right; 
@@ -188,7 +189,7 @@ style: |
 
 
 <div class="img-container">
-  <img src="images/scrum.png" class="img-methodo" alt="Scrum">
+  <img src="images/methode_scrum.png" class="img-methodo" alt="Scrum">
 </div>
 
 ---

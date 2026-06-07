@@ -1,9 +1,9 @@
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#ffffff'}}}%%
 classDiagram
-    direction LR
+    direction TB
 
     %% ====================
-    %% Classes de base (Utilisateurs)
+    %% Noyau Utilisateurs & Rôles
     %% ====================
     class Utilisateur {
         +int id
@@ -12,14 +12,14 @@ classDiagram
         +string email
         +string password
         +enum statut
-        +datetime created_at
+    }
+
+    class Role {
+        +int id
+        +string name
     }
 
     class Etudiant {
-        +int user_id
-        +int ville_id
-        +enum etablissement
-        +string filiere
         +enum niveau_etudes
         +string photo
         +text bio
@@ -29,10 +29,7 @@ classDiagram
     }
 
     class Entreprise {
-        +int user_id
         +string nom_entreprise
-        +enum secteur
-        +int ville_id
         +string adresse
         +string email_contact
         +text bio
@@ -42,14 +39,36 @@ classDiagram
         +int vues
     }
 
-    class Administrateur {
-        +gerer_comptes()
-        +moderer_feedbacks()
-        +voir_statistiques()
+    %% ====================
+    %% Tables de Référence / Nomenclature
+    %% ====================
+    class Ville {
+        +int id
+        +string nom
+    }
+
+    class Etablissement {
+        +int id
+        +string nom
+    }
+
+    class Filiere {
+        +int id
+        +string nom
+    }
+
+    class Secteur {
+        +int id
+        +string nom
+    }
+
+    class Competence {
+        +int id
+        +string nom
     }
 
     %% ====================
-    %% Entités Métier
+    %% Entités Métier (Offres & Candidatures)
     %% ====================
     class Offre {
         +int id
@@ -59,83 +78,93 @@ classDiagram
         +string duree
         +enum remuneration
         +enum format
-        +enum secteur
-        +int ville_id
         +text responsabilites
         +text profil_recherche
-        +json competences_techniques
         +enum status
-        +datetime date_publication
         +date date_debut
         +date date_fin
-        +int entreprise_id
     }
 
     class Candidature {
         +int id
         +enum statut
         +string telephone
+        +string photo
+        +string portfolio_url
         +text message_motivation
-        +datetime created_at
-        +int etudiant_id
-        +int offre_id
-        +int cv_id
+        +datetime date_postulation
     }
 
     class DocumentCV {
         +int id
         +string file_path
-        +datetime created_at
-        +int etudiant_id
     }
 
     class Feedback {
         +int id
         +text texte
         +int note
-        +int auteur_id
         +boolean valide
-        +datetime created_at
     }
 
     class Favoris {
         +int id
-        +int etudiant_id
-        +int offre_id
-        +datetime created_at
     }
 
-    class Ville {
+    class Notification {
         +int id
-        +string nom
+        +string type
+        +string title
+        +string message
+        +json data
+        +datetime read_at
     }
 
     %% ====================
-    %% Héritage (Logique)
+    %% Héritage (Logique Métier)
     %% ====================
     Utilisateur <|-- Etudiant
     Utilisateur <|-- Entreprise
-    Utilisateur <|-- Administrateur
 
     %% ====================
-    %% Relations & Cardinalités
+    %% Relations & Cardinalités (Sans flèches d'association)
     %% ====================
     
+    %% Rôles
+    Utilisateur "*" -- "*" Role : possède
+
+    %% Localisation (Nomenclatures)
     Ville "1" -- "*" Etudiant : réside
     Ville "1" -- "*" Entreprise : située
     Ville "1" -- "*" Offre : localisée
 
+    %% Nomenclatures Étudiant
+    Etablissement "1" -- "*" Etudiant : héberge
+    Filiere "1" -- "*" Etudiant : inscrit dans
+
+    %% Nomenclatures Entreprise & Offre
+    Secteur "1" -- "*" Entreprise : opère dans
+    Secteur "1" -- "*" Offre : appartient à
+
+    %% Étudiant Métier
     Etudiant "1" -- "*" Candidature : postule
     Etudiant "1" -- "*" Favoris : ajoute
     Etudiant "1" -- "*" DocumentCV : possède
-    Etudiant "1" -- "0..*" Feedback : écrit
+    Etudiant "1" -- "*" Feedback : écrit
     
-    Entreprise "1" -- "0..*" Feedback : écrit
+    %% Entreprise Métier
+    Entreprise "1" -- "*" Feedback : écrit
     Entreprise "1" -- "*" Offre : publie
     
+    %% Offre Métier
     Offre "1" -- "*" Candidature : concerne
     Offre "1" -- "*" Favoris : est ciblé par
+    Offre "*" -- "*" Competence : requiert
     
-    Administrateur "1" -- "*" Feedback : modère
+    %% Modération & Services transverses
+    Utilisateur "1" -- "*" Feedback : modère
+    DocumentCV "1" -- "*" Candidature : associé à
 
-    Candidature "1" -- "1" DocumentCV : utilise
+    %% Notifications
+    Etudiant "1" -- "*" Notification : est notifié
+    Entreprise "1" -- "*" Notification : est notifiée

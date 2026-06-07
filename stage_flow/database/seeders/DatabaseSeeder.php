@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
@@ -19,6 +20,10 @@ class DatabaseSeeder extends Seeder
             RolesAndPermissionsSeeder::class,
             UserSeeder::class,
             VilleSeeder::class,
+            SecteurSeeder::class,
+            EtablissementSeeder::class,
+            FiliereSeeder::class,
+            CompetenceSeeder::class,
             EtudiantSeeder::class,
             EntrepriseSeeder::class,
             OffreSeeder::class,

@@ -42,7 +42,10 @@ class RegisterController extends BaseController
     public function showRegistrationForm()
     {
         $villes = Ville::all();
-        return view('auth.register', compact('villes'));
+        $etablissements = \App\Models\Etablissement::all();
+        $filieres = \App\Models\Filiere::all();
+        $secteurs = \App\Models\Secteur::all();
+        return view('auth.register', compact('villes', 'etablissements', 'filieres', 'secteurs'));
     }
 
     protected function redirectTo()
@@ -83,8 +86,8 @@ class RegisterController extends BaseController
                 Etudiant::create([
                     'user_id' => $user->id,
                     'ville_id' => $data['ville_id'],
-                    'etablissement' => $data['etablissement'],
-                    'filiere' => $data['filiere'],
+                    'etablissement_id' => $data['etablissement_id'],
+                    'filiere_id' => $data['filiere_id'],
                     'niveau_etudes' => $data['niveau_etude'],
                     'photo' => $photoPath,
                     'bio' => $data['bio_etudiant'] ?? null,
@@ -97,7 +100,7 @@ class RegisterController extends BaseController
                 Entreprise::create([
                     'user_id' => $user->id,
                     'nom_entreprise' => $data['nom_entreprise'],
-                    'secteur' => $data['secteur'],
+                    'secteur_id' => $data['secteur_id'],
                     'ville_id' => $data['ville_id'],
                     'adresse' => $data['adresse'],
                     'email_contact' => $data['email_contact'],

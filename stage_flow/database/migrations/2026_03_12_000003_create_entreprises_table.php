@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 return new class extends Migration
 {
     public function up(): void
@@ -11,7 +12,7 @@ return new class extends Migration
         Schema::create('entreprises', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->primary();
             $table->string('nom_entreprise');
-            $table->enum('secteur', ['Informatique', 'Design', 'Marketing', 'Commerce', 'Industrie', 'Autre']);
+            $table->foreignId('secteur_id')->constrained('secteurs');
             $table->foreignId('ville_id')->constrained('villes');
             $table->string('adresse');
             $table->string('email_contact');

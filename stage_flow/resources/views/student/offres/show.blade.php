@@ -149,7 +149,7 @@
                         <div class="p-2 bg-purple-50 text-purple-600 rounded-lg"><svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg></div>
                         <div>
                             <p class="text-[10px] font-bold text-gray-400 uppercase">Secteur</p>
-                            <p class="text-sm font-bold text-gray-800">{{ $offre->secteur }}</p>
+                            <p class="text-sm font-bold text-gray-800">{{ $offre->secteur?->nom ?? '' }}</p>
                         </div>
                     </div>
                 </div>
@@ -172,11 +172,11 @@
                 </div>
             </div>
 
-            @if($offre->competences_techniques)
+            @if($offre->competences && $offre->competences->isNotEmpty())
                 <div class="bg-white border border-gray-200 shadow-sm rounded-2xl p-6" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="text-xs font-black text-gray-800 uppercase tracking-widest font-heading mb-4">Compétences Techniques</h3>
-                    <div class="border-b border-gray-50 mb-8"></div>
-                    <div class="flex flex-wrap gap-x-3 gap-y-4">
+                    <h3 class="text-xs sm:text-sm font-black text-gray-800 uppercase tracking-widest font-heading mb-4">Compétences Techniques</h3>
+                    <div class="border-b border-gray-50 mb-6"></div>
+                    <div class="flex flex-wrap gap-x-2.5 gap-y-3">
                         @php
                             $skillBgs = [
                                 'bg-indigo-50 text-indigo-600 border-indigo-100',
@@ -186,12 +186,9 @@
                                 'bg-emerald-50 text-emerald-600 border-emerald-100',
                             ];
                         @endphp
-                        @php
-                            $skills = is_array($offre->competences_techniques) ? $offre->competences_techniques : json_decode($offre->competences_techniques, true) ?? [];
-                        @endphp
-                        @foreach($skills as $index => $skill)
-                            <span class="py-2 px-4 {{ $skillBgs[$index % count($skillBgs)] }} text-xs font-bold rounded-xl border transition-colors hover:shadow-sm">
-                                {{ $skill }}
+                        @foreach($offre->competences as $index => $competence)
+                            <span class="py-2 px-4.5 {{ $skillBgs[$index % count($skillBgs)] }} text-xs font-bold rounded-xl border transition-colors hover:shadow-sm" style="padding-left: 1rem; padding-right: 1rem;">
+                                {{ $competence->nom }}
                             </span>
                         @endforeach
                     </div>

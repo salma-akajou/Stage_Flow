@@ -13,3 +13,4 @@
     
     <div id="hs-single-area-chart" class="min-h-[240px]"></div>
 </div>
+

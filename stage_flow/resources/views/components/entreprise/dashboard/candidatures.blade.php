@@ -16,7 +16,7 @@
                 </div>
                 <div class="flex-1 min-w-0">
                     <p class="text-sm font-semibold text-gray-800 truncate">{{ $cand->etudiant->user->prenom }} {{ $cand->etudiant->user->nom }}</p>
-                    <p class="text-xs text-gray-500 truncate">{{ $cand->etudiant->filiere }}</p>
+                    <p class="text-xs text-gray-500 truncate">{{ $cand->etudiant->filiere?->nom ?? '' }}</p>
                 </div>
                 <span class="text-[10px] font-black px-2.5 py-1 rounded-full shrink-0 uppercase tracking-widest
                     @if($cand->statut === 'En attente') bg-orange-50 text-orange-600 border border-orange-100 @elseif($cand->statut === 'Accepté') bg-emerald-50 text-emerald-600 border border-emerald-100 @else bg-rose-50 text-rose-600 border border-rose-100 @endif">
