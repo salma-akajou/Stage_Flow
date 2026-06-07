@@ -18,7 +18,7 @@ class OffreServiceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->service = new OffreService();
+        $this->service = app(OffreService::class);
     }
 
     public function test_it_can_get_all_offers()
@@ -52,6 +52,7 @@ class OffreServiceTest extends TestCase
     {
         $entreprise = Entreprise::first();
         $ville = Ville::first();
+        $secteur = \App\Models\Secteur::first() ?? \App\Models\Secteur::create(['nom' => 'Informatique']);
 
         $data = [
             'titre' => 'Nouveau Stage Test',
@@ -60,7 +61,7 @@ class OffreServiceTest extends TestCase
             'duree' => '3 mois',
             'remuneration' => 'Payé',
             'format' => 'Présentiel',
-            'secteur' => 'Informatique',
+            'secteur_id' => $secteur->id,
             'ville_id' => $ville->id,
             'status' => 'Active',
             'entreprise_id' => $entreprise->user_id,

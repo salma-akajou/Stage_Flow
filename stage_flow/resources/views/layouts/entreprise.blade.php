@@ -287,6 +287,7 @@
     @include('components.entreprise.profile-etudiant-modal')
 
     @stack('modals')
+    <x-chatbot />
     @stack('scripts')
 </body>
-</html>ml>
+</html>

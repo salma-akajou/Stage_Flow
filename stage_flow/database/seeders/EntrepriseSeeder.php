@@ -21,6 +21,7 @@ class EntrepriseSeeder extends Seeder
         $header = array_shift($rows);
 
         foreach ($rows as $row) {
+            if (empty($row) || count($row) !== count($header) || trim($row[0]) === '') continue;
             $data = array_combine($header, $row);
             
             // Create user first

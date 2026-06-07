@@ -22,6 +22,7 @@ class OffreSeeder extends Seeder
         $header = array_shift($rows);
 
         foreach ($rows as $row) {
+            if (empty($row) || count($row) !== count($header) || trim($row[0]) === '') continue;
             $data = array_combine($header, $row);
             
             $user = User::where('email', $data['company_email'])->first();

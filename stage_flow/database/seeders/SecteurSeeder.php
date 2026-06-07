@@ -17,8 +17,11 @@ class SecteurSeeder extends Seeder
         $header = array_shift($rows);
 
         foreach ($rows as $row) {
+            if (empty($row) || count($row) !== count($header) || trim($row[0]) === '') continue;
             $data = array_combine($header, $row);
-            Secteur::firstOrCreate(['nom' => $data['nom']]);
+            if (!empty($data['nom'])) {
+                Secteur::firstOrCreate(['nom' => $data['nom']]);
+            }
         }
     }
 }

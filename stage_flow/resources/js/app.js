@@ -23,6 +23,8 @@ import usersFilter from './components/admin/usersFilter';
 import feedbacksFilter from './components/admin/feedbacksFilter';
 import adminChart from './components/admin/adminChart';
 
+import chatbotApp from './chatbot';
+
 document.addEventListener('alpine:init', () => {
     Alpine.data('publicLayout',       publicLayout);
     Alpine.data('navbarPublic',       navbarPublic);
@@ -42,4 +44,5 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('usersFilter',        usersFilter);
     Alpine.data('feedbacksFilter',    feedbacksFilter);
     Alpine.data('adminChart',         adminChart);
+    Alpine.data('chatbotApp',         chatbotApp);
 });

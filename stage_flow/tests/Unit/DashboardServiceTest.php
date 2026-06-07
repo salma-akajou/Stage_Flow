@@ -21,7 +21,7 @@ class DashboardServiceTest extends TestCase
     {
         parent::setUp();
         // Injection des dépendances réelles pour les tests unitaires
-        $this->service = new DashboardService(new OffreService(), new CandidatureService());
+        $this->service = app(DashboardService::class);
     }
 
     public function test_it_can_get_landing_stats()

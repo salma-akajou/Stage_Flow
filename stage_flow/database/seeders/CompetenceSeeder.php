@@ -17,8 +17,11 @@ class CompetenceSeeder extends Seeder
         $header = array_shift($rows);
 
         foreach ($rows as $row) {
+            if (empty($row) || count($row) !== count($header) || trim($row[0]) === '') continue;
             $data = array_combine($header, $row);
-            Competence::firstOrCreate(['nom' => $data['nom']]);
+            if (!empty($data['nom'])) {
+                Competence::firstOrCreate(['nom' => $data['nom']]);
+            }
         }
     }
 }
