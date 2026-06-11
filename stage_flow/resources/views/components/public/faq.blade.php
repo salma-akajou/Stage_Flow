@@ -24,11 +24,11 @@
             </div>
             <div class="hs-accordion bg-white border border-slate-200 rounded-[2rem] overflow-hidden" id="faq-3">
                 <button class="hs-accordion-toggle hs-accordion-active:text-indigo-600 inline-flex justify-between items-center w-full font-bold text-slate-800 py-6 px-8 hover:bg-slate-50 transition-all">
-                    Puis-je filtrer les candidats ?
+                    Puis-je exporter les candidatures reçues ?
                     <svg class="hs-accordion-active:rotate-180 size-5 transition-transform" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6" /></svg>
                 </button>
                 <div class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300">
-                    <div class="pb-6 px-8 text-sm text-slate-500">Oui, notre algorithme de matching vous propose les profils les plus adaptés à vos besoins. Vous pouvez également filtrer par écoles, technologies ou durée de stage.</div>
+                    <div class="pb-6 px-8 text-sm text-slate-500">Oui, les entreprises peuvent exporter toutes les candidatures reçues au format Excel directement depuis leur tableau de bord pour faciliter leur traitement externe.</div>
                 </div>
             </div>
             <div class="hs-accordion bg-white border border-slate-200 rounded-[2rem] overflow-hidden" id="faq-4">

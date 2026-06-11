@@ -23,7 +23,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="flex flex-wrap items-center sm:justify-end gap-3 sm:gap-6">
+                <div class="flex flex-row items-center justify-between w-full sm:w-auto gap-3 pt-3 sm:pt-0 border-t border-gray-100 sm:border-t-0 sm:justify-end">
                     <div class="text-left sm:text-right">
                         @php
                             $statusClasses = [
@@ -41,7 +41,7 @@
                             <span class="size-1.5 inline-block {{ $statusIcon[$candidature->statut] ?? 'bg-gray-500' }} rounded-full"></span>
                             {{ $candidature->statut }}
                         </span>
-                        <p class="text-[11px] text-gray-400 mt-1.5 italic font-medium">Postulé {{ $candidature->created_at->diffForHumans() }}</p>
+                        <p class="text-[10px] text-gray-400 mt-1 italic font-medium">Postulé {{ $candidature->created_at->diffForHumans() }}</p>
                     </div>
                     <div class="flex items-center gap-x-2">
                         <a href="{{ route('student.offres.show', $candidature->offre_id) }}"

@@ -20,3 +20,9 @@
     --color-primary-800: #3730a3;
     --color-primary-900: #312e81;
 }
+
+/* Fix pour l'affichage de la sidebar mobile Preline UI */
+.hs-overlay.open,
+.hs-overlay.opened {
+    transform: translate(0) !important;
+}

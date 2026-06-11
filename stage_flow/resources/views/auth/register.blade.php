@@ -60,7 +60,7 @@
                 <p class="text-sm font-medium text-slate-500">Rejoignez l'élite des stagiaires et recruteurs au Maroc</p>
             </div>
 
-            <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data" class="space-y-6" x-data="{ role: '{{ old('role', '') }}', fileName: 'Aucun fichier choisi' }">
+            <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data" class="space-y-6" x-data="{ role: '{{ old('role', '') }}', fileName: 'Aucun fichier choisi' }" novalidate>
                 @csrf
 
                 <!-- Common Fields -->
@@ -119,12 +119,12 @@
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Établissement</label>
                             <div x-data="{
                                 open: false,
-                                value: '{{ old('etablissement_id', $etablissements->first()->id ?? '') }}',
-                                label: '{{ old('etablissement_id') && $etablissements->find(old('etablissement_id')) ? $etablissements->find(old('etablissement_id'))->nom : ($etablissements->first()->nom ?? '') }}'
+                                value: '{{ old('etablissement_id', '') }}',
+                                label: '{{ old('etablissement_id') && $etablissements->find(old('etablissement_id')) ? $etablissements->find(old('etablissement_id'))->nom : 'Sélectionner un établissement' }}'
                             }" class="relative">
                                 <input type="hidden" name="etablissement_id" x-model="value" :disabled="role !== 'etudiant'">
                                 <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
-                                    <span x-text="label"></span>
+                                    <span x-text="label" :class="{ 'text-slate-400': !value }"></span>
                                     <svg class="size-4 text-slate-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                                 </button>
                                 <div x-show="open" @click.outside="open = false" x-transition class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 max-h-60 overflow-y-auto">
@@ -141,12 +141,12 @@
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Filière</label>
                             <div x-data="{
                                 open: false,
-                                value: '{{ old('filiere_id', $filieres->first()->id ?? '') }}',
-                                label: '{{ old('filiere_id') && $filieres->find(old('filiere_id')) ? $filieres->find(old('filiere_id'))->nom : ($filieres->first()->nom ?? '') }}'
+                                value: '{{ old('filiere_id', '') }}',
+                                label: '{{ old('filiere_id') && $filieres->find(old('filiere_id')) ? $filieres->find(old('filiere_id'))->nom : 'Sélectionner une filière' }}'
                             }" class="relative">
                                 <input type="hidden" name="filiere_id" x-model="value" :disabled="role !== 'etudiant'">
                                 <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
-                                    <span x-text="label"></span>
+                                    <span x-text="label" :class="{ 'text-slate-400': !value }"></span>
                                     <svg class="size-4 text-slate-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                                 </button>
                                 <div x-show="open" @click.outside="open = false" x-transition class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 max-h-60 overflow-y-auto">
@@ -165,12 +165,12 @@
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Niveau d'études</label>
                             <div x-data="{
                                 open: false,
-                                value: '{{ old('niveau_etude', 'Bac+2') }}',
-                                labels: { 'Bac+2': 'Bac +2', 'Bac+3': 'Bac +3', 'Bac+5': 'Bac +5', 'Doctorat': 'Doctorat' }
+                                value: '{{ old('niveau_etude', '') }}',
+                                labels: { '': 'Sélectionner un niveau d\'études', 'Bac+2': 'Bac +2', 'Bac+3': 'Bac +3', 'Bac+5': 'Bac +5', 'Doctorat': 'Doctorat' }
                             }" class="relative">
                                 <input type="hidden" name="niveau_etude" x-model="value" :disabled="role !== 'etudiant'">
                                 <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
-                                    <span x-text="labels[value]"></span>
+                                    <span x-text="labels[value] || 'Sélectionner un niveau d\'études'" :class="{ 'text-slate-400': !value }"></span>
                                     <svg class="size-4 text-slate-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                                 </button>
                                 <div x-show="open" @click.outside="open = false" x-transition class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 max-h-60 overflow-y-auto">
@@ -185,10 +185,10 @@
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Ville</label>
-                            <div x-data="{ open: false, value: '{{ old('ville_id', $villes->first()->id ?? '') }}', label: '{{ old('ville_id') ? $villes->find(old('ville_id'))?->nom : ($villes->first()->nom ?? '') }}' }" class="relative">
+                            <div x-data="{ open: false, value: '{{ old('ville_id', '') }}', label: '{{ old('ville_id') ? $villes->find(old('ville_id'))?->nom : 'Sélectionner une ville' }}' }" class="relative">
                                 <input type="hidden" name="ville_id" x-model="value" :disabled="role !== 'etudiant'">
                                 <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
-                                    <span x-text="label"></span>
+                                    <span x-text="label" :class="{ 'text-slate-400': !value }"></span>
                                     <svg class="size-4 text-slate-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                                 </button>
                                 <div x-show="open" @click.outside="open = false" x-transition class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 max-h-60 overflow-y-auto">
@@ -245,12 +245,12 @@
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Secteur</label>
                             <div x-data="{
                                 open: false,
-                                value: '{{ old('secteur_id', $secteurs->first()->id ?? '') }}',
-                                label: '{{ old('secteur_id') && $secteurs->find(old('secteur_id')) ? $secteurs->find(old('secteur_id'))->nom : ($secteurs->first()->nom ?? '') }}'
+                                value: '{{ old('secteur_id', '') }}',
+                                label: '{{ old('secteur_id') && $secteurs->find(old('secteur_id')) ? $secteurs->find(old('secteur_id'))->nom : 'Sélectionner un secteur d\'activité' }}'
                             }" class="relative">
                                 <input type="hidden" name="secteur_id" x-model="value" :disabled="role !== 'entreprise'">
                                 <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
-                                    <span x-text="label"></span>
+                                    <span x-text="label" :class="{ 'text-slate-400': !value }"></span>
                                     <svg class="size-4 text-slate-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                                 </button>
                                 <div x-show="open" @click.outside="open = false" x-transition class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 max-h-60 overflow-y-auto">
@@ -269,12 +269,12 @@
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Taille</label>
                             <div x-data="{
                                 open: false,
-                                value: '{{ old('taille', 'TPE / PME') }}',
-                                labels: { 'TPE / PME': 'TPE / PME', 'Grande Entreprise': 'Grande Entreprise', 'Multinationale': 'Multinationale' }
+                                value: '{{ old('taille', '') }}',
+                                labels: { '': 'Sélectionner la taille', 'TPE / PME': 'TPE / PME', 'Grande Entreprise': 'Grande Entreprise', 'Multinationale': 'Multinationale' }
                             }" class="relative">
                                 <input type="hidden" name="taille" x-model="value" :disabled="role !== 'entreprise'">
                                 <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
-                                    <span x-text="labels[value]"></span>
+                                    <span x-text="labels[value] || 'Sélectionner la taille'" :class="{ 'text-slate-400': !value }"></span>
                                     <svg class="size-4 text-slate-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                                 </button>
                                 <div x-show="open" @click.outside="open = false" x-transition class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 max-h-60 overflow-y-auto">
@@ -289,10 +289,10 @@
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Ville du siège</label>
-                            <div x-data="{ open: false, value: '{{ old('ville_id', $villes->first()->id ?? '') }}', label: '{{ old('ville_id') ? $villes->find(old('ville_id'))?->nom : ($villes->first()->nom ?? '') }}' }" class="relative">
+                            <div x-data="{ open: false, value: '{{ old('ville_id', '') }}', label: '{{ old('ville_id') ? $villes->find(old('ville_id'))?->nom : 'Sélectionner une ville' }}' }" class="relative">
                                 <input type="hidden" name="ville_id" x-model="value" :disabled="role !== 'entreprise'">
                                 <button @click="open = !open" type="button" class="w-full flex justify-between items-center py-3.5 px-5 border border-slate-200 rounded-2xl text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 font-medium bg-white text-slate-700 transition">
-                                    <span x-text="label"></span>
+                                    <span x-text="label" :class="{ 'text-slate-400': !value }"></span>
                                     <svg class="size-4 text-slate-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                                 </button>
                                 <div x-show="open" @click.outside="open = false" x-transition class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 max-h-60 overflow-y-auto">

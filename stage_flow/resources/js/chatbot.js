@@ -14,15 +14,15 @@ export default function chatbotApp(config) {
         }
         if (role === 'entreprise') {
             return [
-                { label: "Publier une offre de stage", prompt: "Publie un stage de Développeur Laravel pour 3 mois, non payé en Présentiel", icon: "➕" },
-                { label: "Analyser une candidature", prompt: "Analyse la candidature #[Entrez ID de candidature]", icon: "🔍" },
-                { label: "Supprimer une offre", prompt: "Supprime l'offre #[Entrez ID de l'offre]", icon: "🗑️" }
+                { label: "Modifier une offre", prompt: "Modifie l'offre '[Titre de l'offre]'", icon: "✏️" },
+                { label: "Analyser une candidature", prompt: "Analyse la candidature de [Nom du candidat]", icon: "🔍" },
+                { label: "Supprimer une offre", prompt: "Supprime l'offre '[Titre de l'offre]'", icon: "🗑️" }
             ];
         }
         if (role === 'etudiant') {
             return [
                 { label: "Recommander des stages", prompt: "Recommande-moi des offres de stage selon mon profil", icon: "🎓" },
-                { label: "Rédiger un message de motivation", prompt: "Rédige-moi une lettre de motivation pour l'offre #[Entrez ID de l'offre]", icon: "✍️" }
+                { label: "Rédiger un message de motivation", prompt: "Rédige-moi une lettre de motivation pour l'offre '[Titre de l'offre]'", icon: "✍️" }
             ];
         }
         return [
@@ -68,6 +68,9 @@ export default function chatbotApp(config) {
             if (stored) {
                 try {
                     this.messages = JSON.parse(stored);
+                    if (this.messages.length > 0 && this.messages[0].sender === 'bot') {
+                        this.messages[0].options = getOptionsByRole(role);
+                    }
                 } catch (e) {
                     this.messages = [getWelcomeMessage(role)];
                 }

@@ -1,16 +1,11 @@
 @php
-    $total = $repartition['etudiants'] + $repartition['entreprises'];
+    $total = $repartition['etudiants'] + $repartition['entreprises'] + $repartition['admins'];
     // Avoid division by zero
     $totalUsers = $total > 0 ? $total : 1; 
-    
-    // We add a hypothetical 10% for Admins just like the mockup, or calculate real admins if we had Spatie setup.
-    // For now, let's just use etudiants and entreprises, and mock 1 admin.
-    $total = $total + 1; // 1 admin
-    $totalUsers = $total;
 
     $pctEtudiants = round(($repartition['etudiants'] / $totalUsers) * 100);
     $pctEntreprises = round(($repartition['entreprises'] / $totalUsers) * 100);
-    $pctAdmins = round((1 / $totalUsers) * 100);
+    $pctAdmins = round(($repartition['admins'] / $totalUsers) * 100);
 @endphp
 
 <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">

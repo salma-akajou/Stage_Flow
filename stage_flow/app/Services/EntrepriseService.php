@@ -33,13 +33,6 @@ class EntrepriseService extends BaseService
             $data['logo'] = $data['logo']->store('logos/entreprises', 'public');
         }
 
-        if (!empty($data['supprimer_logo'])) {
-            if ($entreprise->logo && Storage::disk('public')->exists($entreprise->logo)) {
-                Storage::disk('public')->delete($entreprise->logo);
-            }
-            $data['logo'] = null;
-        }
-
         $updateData = [
             'nom_entreprise'    => $data['nom_entreprise'] ?? null,
             'ville_id'          => $data['ville_id'] ?? null,
@@ -54,8 +47,10 @@ class EntrepriseService extends BaseService
         if (isset($data['secteur_id'])) {
             $updateData['secteur_id'] = $data['secteur_id'];
         } elseif (isset($data['secteur'])) {
-            $sect = Secteur::firstOrCreate(['nom' => $data['secteur']]);
-            $updateData['secteur_id'] = $sect->id;
+            $sect = Secteur::where('nom', $data['secteur'])->first();
+            if ($sect) {
+                $updateData['secteur_id'] = $sect->id;
+            }
         }
 
         $entreprise->update(array_filter($updateData, fn($val) => !is_null($val)));

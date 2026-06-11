@@ -1,4 +1,4 @@
-<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" data-aos="fade-up" data-aos-delay="100">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" data-aos="fade-up" data-aos-delay="100">
     <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-2xl p-4 sm:p-5">
         <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Total Candidatures</p>
         <h3 class="text-2xl font-black text-gray-800 mt-2">{{ $stats['total'] }}</h3>

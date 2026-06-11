@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Entreprise;
 
 use App\Http\Controllers\Controller;
 use App\Models\Entreprise;
+use App\Models\Secteur;
 use App\Models\Ville;
 use App\Services\EntrepriseService;
 use Illuminate\Http\Request;
@@ -25,7 +26,8 @@ class ProfileController extends Controller
         if (!$entreprise) abort(404, "Profil entreprise introuvable.");
 
         $villes = Ville::all();
-        return view('entreprise.profile', compact('entreprise', 'villes'));
+        $secteurs = Secteur::all();
+        return view('entreprise.profile', compact('entreprise', 'villes', 'secteurs'));
     }
 
     public function update(UpdateProfileRequest $request)

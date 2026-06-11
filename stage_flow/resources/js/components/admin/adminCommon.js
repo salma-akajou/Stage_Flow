@@ -11,11 +11,9 @@ window.openUserDetailModal = function(userId) {
         document.getElementById('modal-user-email').textContent = user.email;
         document.getElementById('modal-user-photo').src = user.avatar_url ? `/storage/${user.avatar_url}` : `https://ui-avatars.com/api/?name=${user.prenom}+${user.nom}&background=random`;
         
-        // Role & Status
+        // Role
         const role = user.role ? user.role.toUpperCase() : 'UTILISATEUR';
         document.getElementById('modal-user-role-badge').textContent = role;
-        document.getElementById('modal-user-status-badge').textContent = (user.statut || 'ACTIF').toUpperCase();
-        document.getElementById('modal-user-status-badge').className = `py-1 px-3 ${user.statut === 'actif' ? 'bg-emerald-500' : 'bg-rose-500'} text-white text-[10px] font-black uppercase tracking-widest rounded-full shadow-sm`;
         
         document.getElementById('modal-user-bio').textContent = user.etudiant?.bio || user.entreprise?.bio || 'Aucune description fournie.';
         
@@ -36,21 +34,21 @@ window.openUserDetailModal = function(userId) {
                         </div>
                         <div class="min-w-0">
                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">${label}</p>
-                            <p class="text-xs font-black text-gray-800 truncate">${value || 'N/A'}</p>
+                            <p class="text-xs font-black text-gray-800 truncate">${value ?? 'N/A'}</p>
                         </div>
                     </div>`;
             };
 
             if(user.role === 'etudiant') {
-                addInfo('<svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14v7"/></svg>', 'École', user.etudiant.etablissement, 'blue');
+                addInfo('<svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14v7"/></svg>', 'École', user.etudiant.etablissement?.nom, 'blue');
                 addInfo('<svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14v7"/></svg>', 'Niveau', user.etudiant.niveau_etudes, 'emerald');
                 addInfo('<svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>', 'Ville', user.etudiant.ville?.nom, 'amber');
-                addInfo('<svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>', 'Vues', user.etudiant.vues, 'rose');
+                addInfo('<svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>', 'Vues', user.etudiant.vues ?? 0, 'rose');
             } else if(user.role === 'entreprise') {
-                addInfo('<svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5"/></svg>', 'Secteur', user.entreprise.secteur, 'indigo');
+                addInfo('<svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5"/></svg>', 'Secteur', user.entreprise.secteur?.nom, 'indigo');
                 addInfo('<svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857"/></svg>', 'Taille', user.entreprise.taille, 'blue');
                 addInfo('<svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>', 'Adresse', user.entreprise.adresse, 'amber');
-                addInfo('<svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>', 'Vues', user.entreprise.vues, 'rose');
+                addInfo('<svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>', 'Vues', user.entreprise.vues ?? 0, 'rose');
             }
         }
 

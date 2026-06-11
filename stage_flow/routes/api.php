@@ -21,6 +21,8 @@ use App\Http\Controllers\Api\FavoriApiController;
 Route::get('/landing', [LandingApiController::class, 'index']);
 Route::get('/villes', [LandingApiController::class, 'villes']);
 Route::get('/secteurs', [LandingApiController::class, 'secteurs']);
+Route::get('/etablissements', [LandingApiController::class, 'etablissements']);
+Route::get('/filieres', [LandingApiController::class, 'filieres']);
 
 // --- Routes pour les Offres ---
 Route::prefix('offres')->group(function () {

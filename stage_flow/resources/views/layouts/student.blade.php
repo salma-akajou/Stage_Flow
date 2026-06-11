@@ -50,6 +50,12 @@
                 radial-gradient(at 100% 0%, hsla(225, 39%, 30%, 0.03) 0, transparent 50%),
                 radial-gradient(at 50% 100%, hsla(217, 91%, 60%, 0.02) 0, transparent 50%);
         }
+
+        /* Fix sidebar mobile Preline */
+        .hs-overlay.open,
+        .hs-overlay.opened {
+            transform: translate(0) !important;
+        }
     </style>
 </head>
 <body class="bg-mesh h-full overflow-x-hidden">

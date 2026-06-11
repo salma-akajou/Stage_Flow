@@ -1,4 +1,4 @@
-<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" data-aos="fade-up">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" data-aos="fade-up">
     <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl p-5 hover:border-indigo-200 transition group">
         <div class="flex items-center justify-between mb-2">
             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Candidatures</p>
@@ -8,7 +8,6 @@
         </div>
         <div class="flex items-center gap-x-2">
             <h3 class="text-3xl font-bold text-gray-800 tracking-tight">{{ sprintf('%02d', $stats['candidatures']) }}</h3>
-            <span class="text-emerald-500 text-[10px] font-bold">+15%</span>
         </div>
     </div>
     <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl p-5 hover:border-indigo-200 transition group">

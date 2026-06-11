@@ -40,27 +40,15 @@ class EtudiantService extends BaseService
         }
 
         $updateData = [
-            'ville_id'      => $data['ville_id'] ?? null,
-            'niveau_etudes' => $data['niveau_etudes'] ?? null,
-            'bio'           => $data['bio'] ?? null,
-            'github'        => $data['github'] ?? null,
-            'linkedin'      => $data['linkedin'] ?? null,
-            'photo'         => $data['photo'] ?? $etudiant->photo,
+            'ville_id'          => $data['ville_id'] ?? null,
+            'etablissement_id'  => $data['etablissement_id'] ?? null,
+            'filiere_id'        => $data['filiere_id'] ?? null,
+            'niveau_etudes'     => $data['niveau_etudes'] ?? null,
+            'bio'               => $data['bio'] ?? null,
+            'github'            => $data['github'] ?? null,
+            'linkedin'          => $data['linkedin'] ?? null,
+            'photo'             => $data['photo'] ?? $etudiant->photo,
         ];
-
-        if (isset($data['etablissement_id'])) {
-            $updateData['etablissement_id'] = $data['etablissement_id'];
-        } elseif (isset($data['etablissement'])) {
-            $etab = Etablissement::firstOrCreate(['nom' => $data['etablissement']]);
-            $updateData['etablissement_id'] = $etab->id;
-        }
-
-        if (isset($data['filiere_id'])) {
-            $updateData['filiere_id'] = $data['filiere_id'];
-        } elseif (isset($data['filiere'])) {
-            $fil = Filiere::firstOrCreate(['nom' => $data['filiere']]);
-            $updateData['filiere_id'] = $fil->id;
-        }
 
         $etudiant->update(array_filter($updateData, fn($val) => !is_null($val)));
 

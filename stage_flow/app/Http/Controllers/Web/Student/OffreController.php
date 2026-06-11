@@ -19,7 +19,7 @@ class OffreController extends Controller
 
     public function index(Request $request): View
     {
-        $filters = $request->only(['titre', 'secteur', 'ville_id', 'type_stage']);
+        $filters = $request->only(['titre', 'secteur', 'ville_id']);
         $data = $this->offreService->search($filters, 9, true);
 
         $etudiant = auth()->user() ? auth()->user()->etudiant : null;

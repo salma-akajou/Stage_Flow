@@ -23,7 +23,6 @@
                     </div>
                     <div class="absolute -bottom-6 left-36 flex flex-wrap items-center gap-2">
                         <span id="modal-user-role-badge" class="py-1 px-3 bg-white/90 backdrop-blur-sm text-[10px] font-black uppercase tracking-widest rounded-full shadow-sm border border-gray-100">...</span>
-                        <span id="modal-user-status-badge" class="py-1 px-3 text-white text-[10px] font-black uppercase tracking-widest rounded-full shadow-sm">...</span>
                     </div>
                 </div>
 

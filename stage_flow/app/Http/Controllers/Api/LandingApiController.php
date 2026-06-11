@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Services\DashboardService;
 use App\Services\FeedbackService;
 use App\Services\OffreService;
+use App\Models\Etablissement;
+use App\Models\Filiere;
 use Illuminate\Http\JsonResponse;
 
 class LandingApiController extends Controller
@@ -64,6 +66,28 @@ class LandingApiController extends Controller
         return response()->json([
             'success' => true,
             'data' => $this->offreService->getDistinctSecteurs()
+        ]);
+    }
+
+    /**
+     * Retourne la liste de tous les établissements
+     */
+    public function etablissements(): JsonResponse
+    {
+        return response()->json([
+            'success' => true,
+            'data' => Etablissement::select('id', 'nom')->get()
+        ]);
+    }
+
+    /**
+     * Retourne la liste de toutes les filières
+     */
+    public function filieres(): JsonResponse
+    {
+        return response()->json([
+            'success' => true,
+            'data' => Filiere::select('id', 'nom')->get()
         ]);
     }
 }

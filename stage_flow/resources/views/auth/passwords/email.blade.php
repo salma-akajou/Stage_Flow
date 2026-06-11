@@ -64,7 +64,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('password.email') }}" method="POST" class="space-y-6">
+            <form action="{{ route('password.email') }}" method="POST" class="space-y-6" novalidate>
                 @csrf
 
                 <div>

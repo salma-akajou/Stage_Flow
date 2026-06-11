@@ -58,7 +58,7 @@
                 <p class="text-xs font-medium text-slate-500">Heureux de vous revoir sur StageFlow.</p>
             </div>
 
-            <form action="{{ route('login') }}" method="POST" class="space-y-5">
+            <form action="{{ route('login') }}" method="POST" class="space-y-5" novalidate>
                 @csrf
 
                 <!-- Email -->

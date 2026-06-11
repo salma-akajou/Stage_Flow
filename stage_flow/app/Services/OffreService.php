@@ -7,6 +7,7 @@ use App\Models\Ville;
 use App\Models\User;
 use App\Models\Secteur;
 use App\Models\Competence;
+use App\Models\Entreprise;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use App\Services\NotificationService;
@@ -58,6 +59,7 @@ class OffreService extends BaseService
             $query->where('type_stage', $filters['type_stage']);
         }
 
+
         $results = $query->latest()->paginate($perPage);
 
         if ($includeMeta) {
@@ -99,39 +101,32 @@ class OffreService extends BaseService
             ->get();
     }
 
-    public function publierOffre(int $entrepriseId, array $data, string $secteur): Offre
+    public function publierOffre(int $entrepriseId, array $data, string|int|null $secteur = null): Offre
     {
         $data['entreprise_id'] = $entrepriseId;
 
-        // Map Secteur
-        if (is_numeric($secteur)) {
-            $data['secteur_id'] = (int) $secteur;
-        } else {
-            $sectModel = Secteur::firstOrCreate(['nom' => $secteur]);
-            $data['secteur_id'] = $sectModel->id;
+        if ($secteur) {
+            $data['secteur_id'] = is_numeric($secteur)
+                ? (int) $secteur
+                : Secteur::where('nom', $secteur)->first()?->id;
+        }
+
+        if (empty($data['secteur_id'])) {
+            $data['secteur_id'] = Entreprise::where('user_id', $entrepriseId)->value('secteur_id');
         }
 
         $offre = $this->create($data);
 
         // Map Competences Many-to-Many
         if (isset($data['competences_techniques'])) {
-            $compNames = $data['competences_techniques'];
-            if (is_string($compNames)) {
-                $decoded = json_decode($compNames, true);
-                if (json_last_error() === JSON_ERROR_NONE) {
-                    $compNames = $decoded;
-                } else {
-                    $compNames = explode('|', $compNames);
-                }
-            }
+            $compNames = is_array($data['competences_techniques'])
+                ? $data['competences_techniques']
+                : explode('|', $data['competences_techniques']);
+
             $competenceIds = [];
-            if (is_array($compNames)) {
-                foreach ($compNames as $compName) {
-                    $compName = trim($compName);
-                    if (!empty($compName)) {
-                        $compModel = Competence::firstOrCreate(['nom' => $compName]);
-                        $competenceIds[] = $compModel->id;
-                    }
+            foreach ($compNames as $name) {
+                if ($nom = trim($name)) {
+                    $competenceIds[] = Competence::firstOrCreate(['nom' => $nom])->id;
                 }
             }
             $offre->competences()->sync($competenceIds);
@@ -160,37 +155,33 @@ class OffreService extends BaseService
         return $offre;
     }
 
-    public function updateOffre(int $id, array $data, string $secteur): Offre
+    public function updateOffre(int $id, array $data, string|int|null $secteur = null): Offre
     {
-        // Map Secteur
-        if (is_numeric($secteur)) {
-            $data['secteur_id'] = (int) $secteur;
-        } else {
-            $sectModel = Secteur::firstOrCreate(['nom' => $secteur]);
-            $data['secteur_id'] = $sectModel->id;
+        if ($secteur) {
+            $data['secteur_id'] = is_numeric($secteur)
+                ? (int) $secteur
+                : Secteur::where('nom', $secteur)->first()?->id;
+        }
+
+        if (empty($data['secteur_id'])) {
+            $offreExistante = Offre::find($id);
+            if ($offreExistante) {
+                $data['secteur_id'] = Entreprise::where('user_id', $offreExistante->entreprise_id)->value('secteur_id');
+            }
         }
 
         $offre = $this->update($id, $data);
 
         // Map Competences Many-to-Many
         if (isset($data['competences_techniques'])) {
-            $compNames = $data['competences_techniques'];
-            if (is_string($compNames)) {
-                $decoded = json_decode($compNames, true);
-                if (json_last_error() === JSON_ERROR_NONE) {
-                    $compNames = $decoded;
-                } else {
-                    $compNames = explode('|', $compNames);
-                }
-            }
+            $compNames = is_array($data['competences_techniques'])
+                ? $data['competences_techniques']
+                : explode('|', $data['competences_techniques']);
+
             $competenceIds = [];
-            if (is_array($compNames)) {
-                foreach ($compNames as $compName) {
-                    $compName = trim($compName);
-                    if (!empty($compName)) {
-                        $compModel = Competence::firstOrCreate(['nom' => $compName]);
-                        $competenceIds[] = $compModel->id;
-                    }
+            foreach ($compNames as $name) {
+                if ($nom = trim($name)) {
+                    $competenceIds[] = Competence::firstOrCreate(['nom' => $nom])->id;
                 }
             }
             $offre->competences()->sync($competenceIds);

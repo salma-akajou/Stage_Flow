@@ -201,32 +201,35 @@ class CandidatureService extends BaseService
         return $updated;
     }
 
-    public function delete(int $id): ?bool
+    public function delete(int $id, ?int $etudiantId = null): ?bool
     {
         $candidature = $this->findOrFail($id);
+
+        if ($etudiantId !== null) {
+            if ($candidature->etudiant_id !== $etudiantId) {
+                abort(403);
+            }
+
+            if ($candidature->statut !== 'En attente') {
+                return false;
+            }
+        }
 
         if ($candidature->photo && Storage::disk('public')->exists($candidature->photo)) {
             Storage::disk('public')->delete($candidature->photo);
         }
 
+        if ($candidature->cv_id) {
+            $cv = DocumentCv::find($candidature->cv_id);
+            if ($cv) {
+                if ($cv->file_path && Storage::disk('public')->exists($cv->file_path)) {
+                    Storage::disk('public')->delete($cv->file_path);
+                }
+                $cv->delete();
+            }
+        }
+
         return $candidature->delete();
-    }
-
-    public function retirerCandidature(int $id, int $etudiantId): bool|string
-    {
-        $candidature = $this->findOrFail($id);
-
-        if ($candidature->etudiant_id !== $etudiantId) {
-            abort(403);
-        }
-
-        if ($candidature->statut !== 'En attente') {
-            return 'Impossible de retirer une candidature déjà traitée.';
-        }
-
-        $this->delete($id);
-
-        return true;
     }
 
     public function getRecentsCandidatures(int $etudiantId, int $limit = 3): \Illuminate\Support\Collection
