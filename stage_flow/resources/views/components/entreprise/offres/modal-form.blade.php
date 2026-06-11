@@ -238,7 +238,7 @@
                         <label class="block text-[11px] font-black text-gray-400 uppercase tracking-wider mb-2 ms-1">Responsabilités</label>
                         <textarea name="responsabilites" x-model="formData.responsabilites" rows="4" required
                             class="w-full px-6 py-4 bg-gray-50 border-gray-100 rounded-2xl text-sm font-medium leading-relaxed focus:bg-white focus:ring-4 focus:ring-indigo-100 border transition-all"
-                            placeholder="Énumérez les tâches principales du stagiaire ..."></textarea>
+                            placeholder="Listez les tâches du stagiaire (ex : - Développement d'APIs - Rédaction de spécifications - Tests unitaires)"></textarea>
                         @error('responsabilites') <span class="inline-block px-3 py-1 bg-rose-50 text-rose-600 text-[9px] font-black rounded-xl border border-rose-100 mt-2 ms-1 uppercase shadow-sm animate-in fade-in slide-in-from-top-1">{{ $message }}</span> @enderror
                     </div>
 
@@ -246,7 +246,7 @@
                         <label class="block text-[11px] font-black text-gray-400 uppercase tracking-wider mb-2 ms-1">Profil recherché</label>
                         <textarea name="profil_recherche" x-model="formData.profil_recherche" rows="4" required
                             class="w-full px-6 py-4 bg-gray-50 border-gray-100 rounded-2xl text-sm font-medium leading-relaxed focus:bg-white focus:ring-4 focus:ring-indigo-100 border transition-all"
-                            placeholder="Décrivez les compétences, le niveau d'études ou l'état d'esprit recherché..."></textarea>
+                            placeholder="Listez le profil recherché (ex : - Étudiant Bac+3/5 en informatique - Maîtrise de Laravel - Esprit d'équipe)"></textarea>
                         @error('profil_recherche') <span class="inline-block px-3 py-1 bg-rose-50 text-rose-600 text-[9px] font-black rounded-xl border border-rose-100 mt-2 ms-1 uppercase shadow-sm animate-in fade-in slide-in-from-top-1">{{ $message }}</span> @enderror
                     </div>
 

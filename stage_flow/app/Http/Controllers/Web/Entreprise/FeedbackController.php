@@ -21,7 +21,7 @@ class FeedbackController extends Controller
         $data = [
             'note' => $request->note,
             'texte' => $request->commentaire, 
-            'auteur_id' => auth()->id() ?? \App\Models\User::where('email', 'like', '%manpower%')->first()?->id ?? 1, 
+            'auteur_id' => auth()->id() ?? 1,
             'valide' => false
         ];
 

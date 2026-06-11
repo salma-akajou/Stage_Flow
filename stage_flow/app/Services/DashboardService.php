@@ -90,7 +90,6 @@ class DashboardService
                 'titre' => 'Offre publiée',
                 'description' => 'Nouvelle offre "' . $o->titre . '" mise en ligne',
                 'date' => $o->created_at,
-                'lien' => route('entreprise.offres.index')
             ]))
             ->merge($candidaturesRecentes->map(fn($c) => [
                 'type' => $c->statut === 'En attente' ? 'candidature' : ($c->statut === 'Accepté' ? 'acceptation' : 'refus'),
@@ -98,7 +97,6 @@ class DashboardService
                 'titre' => $c->statut === 'En attente' ? 'Nouvelle candidature reçue' : ($c->statut === 'Accepté' ? 'Candidature acceptée' : 'Candidature refusée'),
                 'description' => $c->etudiant->user->prenom . ' ' . $c->etudiant->user->nom . ($c->statut === 'En attente' ? ' a postulé au poste ' : ' pour ') . $c->offre->titre,
                 'date' => $c->statut === 'En attente' ? $c->created_at : $c->updated_at,
-                'lien' => route('entreprise.candidatures.index')
             ]))
             ->sortByDesc('date')
             ->take(3);
@@ -143,7 +141,7 @@ class DashboardService
             'repartition_users' => [
                 'etudiants' => $totalEtudiants,
                 'entreprises' => Entreprise::count(),
-                'admins' => 1,
+                'admins' => User::role(['admin', 'moderateur'])->count(),
             ],
         ];
     }

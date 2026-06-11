@@ -1,4 +1,4 @@
-<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="50">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="50">
     <div class="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
         <div class="flex items-center gap-3 mb-3">
             <div class="size-10 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600">

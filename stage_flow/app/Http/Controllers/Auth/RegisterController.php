@@ -8,6 +8,9 @@ use App\Models\User;
 use App\Models\Etudiant;
 use App\Models\Entreprise;
 use App\Models\Ville;
+use App\Models\Etablissement;
+use App\Models\Filiere;
+use App\Models\Secteur;
 use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -42,9 +45,9 @@ class RegisterController extends BaseController
     public function showRegistrationForm()
     {
         $villes = Ville::all();
-        $etablissements = \App\Models\Etablissement::all();
-        $filieres = \App\Models\Filiere::all();
-        $secteurs = \App\Models\Secteur::all();
+        $etablissements = Etablissement::all();
+        $filieres = Filiere::all();
+        $secteurs = Secteur::all();
         return view('auth.register', compact('villes', 'etablissements', 'filieres', 'secteurs'));
     }
 

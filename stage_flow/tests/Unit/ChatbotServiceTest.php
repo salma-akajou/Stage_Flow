@@ -8,6 +8,8 @@ use App\Models\Ville;
 use App\Models\Secteur;
 use App\Models\User;
 use App\Models\Entreprise;
+use App\Models\Etablissement;
+use App\Models\Filiere;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ChatbotServiceTest extends TestCase
@@ -74,8 +76,8 @@ class ChatbotServiceTest extends TestCase
         $this->assertTrue($result['success']);
         $this->assertDatabaseHas('offres', [
             'titre' => 'Stage Test',
-            'responsabilites' => 'Tâche 1|Tâche 2|Tâche 3',
-            'profil_recherche' => 'Exigence 1|Exigence 2',
+            'responsabilites' => "- Tâche 1\n- Tâche 2\n- Tâche 3",
+            'profil_recherche' => "- Exigence 1\n- Exigence 2",
         ]);
     }
 
@@ -92,9 +94,9 @@ class ChatbotServiceTest extends TestCase
         ]);
 
         // Create initial resources
-        $etab = \App\Models\Etablissement::create(['nom' => 'Etab A']);
-        $filiere = \App\Models\Filiere::create(['nom' => 'Filiere A']);
-        $secteur = \App\Models\Secteur::create(['nom' => 'Secteur A']);
+        $etab = Etablissement::create(['nom' => 'Etab A']);
+        $filiere = Filiere::create(['nom' => 'Filiere A']);
+        $secteur = Secteur::create(['nom' => 'Secteur A']);
 
         $aiResponse = [
             'action' => 'gerer_ressources_admin',
@@ -133,5 +135,18 @@ class ChatbotServiceTest extends TestCase
         $this->assertDatabaseMissing('filieres', ['id' => $filiere->id]);
 
         $this->assertDatabaseHas('secteurs', ['nom' => 'Secteur B']);
+    }
+
+    public function test_gemini_service_fallback_parser_works_for_actions()
+    {
+        \Illuminate\Support\Facades\Http::fake([
+            'generativelanguage.googleapis.com/*' => \Illuminate\Support\Facades\Http::response([], 500)
+        ]);
+
+        $service = app(\App\Services\GeminiService::class);
+        $context = [];
+
+        $this->expectException(\RuntimeException::class);
+        $service->generate($context, "supprimer l'offre Stage Test Exceptionnel", 'entreprise');
     }
 }

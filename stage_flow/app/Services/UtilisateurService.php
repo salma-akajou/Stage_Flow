@@ -84,7 +84,9 @@ class UtilisateurService extends BaseService
     {
         return $this->model->with([
             'etudiant.ville', 
+            'etudiant.etablissement',
             'entreprise.ville', 
+            'entreprise.secteur', 
             'feedbacks' => fn($q) => $q->latest()->take(5),
             'etudiant.candidatures.offre',
             'entreprise.offres' => fn($q) => $q->withCount('candidatures')->latest()->take(5)

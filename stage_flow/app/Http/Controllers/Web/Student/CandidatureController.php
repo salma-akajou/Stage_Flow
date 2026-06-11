@@ -45,10 +45,10 @@ class CandidatureController extends Controller
 
     public function destroy(int $id)
     {
-        $result = $this->candidatureService->retirerCandidature($id, auth()->id());
+        $result = $this->candidatureService->delete($id, auth()->id());
 
-        if ($result !== true) {
-            return back()->with('error', $result);
+        if (!$result) {
+            return back()->with('error', 'Impossible de retirer une candidature déjà traitée.');
         }
 
         return back()->with('success', 'Candidature retirée avec succès.');

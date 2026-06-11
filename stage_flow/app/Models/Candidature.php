@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Notification;
 
 class Candidature extends Model
 {
@@ -35,5 +36,12 @@ class Candidature extends Model
     public function cv()
     {
         return $this->belongsTo(DocumentCv::class, 'cv_id');
+    }
+
+    protected static function booted()
+    {
+        static::deleting(function ($candidature) {
+            Notification::where('data->candidature_id', $candidature->id)->delete();
+        });
     }
 }

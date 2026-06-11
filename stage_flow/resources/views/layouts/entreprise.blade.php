@@ -62,6 +62,12 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 30px -5px rgba(79, 70, 229, 0.12);
         }
+
+        /* Fix sidebar mobile Preline */
+        .hs-overlay.open,
+        .hs-overlay.opened {
+            transform: translate(0) !important;
+        }
     </style>
 </head>
 <body class="bg-mesh h-full overflow-x-hidden">

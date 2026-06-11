@@ -5,10 +5,10 @@
 @section('content')
 
 <div x-data="{
-    openModal: false,
-    editMode: false,
-    itemId: null,
-    itemNom: '',
+    openModal: {{ $errors->has('nom') ? 'true' : 'false' }},
+    editMode: {{ old('_method') === 'PUT' ? 'true' : 'false' }},
+    itemId: {{ old('itemId') ?? 'null' }},
+    itemNom: '{{ old('nom') ?? '' }}',
     search: '',
     
     openAdd() {
@@ -37,7 +37,7 @@
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8" data-aos="fade-down">
         <div>
             <h1 class="text-3xl font-extrabold text-gray-900 font-heading">Gestion des <span class="text-indigo-600">Établissements</span></h1>
-            <p class="text-sm text-gray-500 mt-1">Gérez les établissements d'enseignement disponibles sur la plateforme.</p>
+            <p class="text-sm text-gray-500 mt-1">Gerez les établissements d'enseignement de la plateforme.</p>
         </div>
         @can('gerer-utilisateurs')
         <div>
@@ -99,13 +99,19 @@
                     <template x-if="editMode">
                         <input type="hidden" name="_method" value="PUT">
                     </template>
+                    <input type="hidden" name="itemId" :value="itemId">
 
                     <div class="space-y-4">
                         <div>
                             <label for="nom" class="block text-sm font-bold text-gray-700 mb-2">Nom de l'établissement</label>
-                            <input type="text" name="nom" id="nom" x-model="itemNom" required
-                                class="py-3 px-4 block w-full border-gray-200 rounded-xl text-sm focus:border-indigo-500 focus:ring-indigo-500 shadow-sm"
-                                placeholder="Ex: Solicode Tanger">
+                            <input type="text" name="nom" id="nom" x-model="itemNom"
+                                class="py-3 px-4 block w-full @error('nom') border-rose-300 focus:border-rose-500 focus:ring-rose-500 @else border-gray-200 focus:border-indigo-500 focus:ring-indigo-500 @enderror rounded-xl text-sm shadow-sm"
+                                placeholder="Entrer le nom de l'établissement">
+                            @error('nom')
+                                <span class="inline-block px-3 py-1 bg-rose-50 text-rose-600 text-[9px] font-black rounded-xl border border-rose-100 mt-2 ms-1 uppercase shadow-sm animate-in fade-in slide-in-from-top-1">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="flex justify-end gap-x-2 pt-4">

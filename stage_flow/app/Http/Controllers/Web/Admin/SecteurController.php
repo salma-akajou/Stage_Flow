@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Web\Admin;
 use App\Http\Controllers\Controller;
 use App\Services\SecteurService;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Admin\StoreSecteurRequest;
+use App\Http\Requests\Admin\UpdateSecteurRequest;
 
 class SecteurController extends Controller
 {
@@ -28,23 +29,15 @@ class SecteurController extends Controller
         return view('admin.secteurs.index', compact('secteurs'));
     }
 
-    public function store(Request $request)
+    public function store(StoreSecteurRequest $request)
     {
-        $request->validate([
-            'nom' => 'required|string|max:255|unique:secteurs,nom',
-        ]);
-
         $this->secteurService->create($request->only('nom'));
 
         return back()->with('success', 'Secteur créé avec succès.');
     }
 
-    public function update(Request $request, int $id)
+    public function update(UpdateSecteurRequest $request, int $id)
     {
-        $request->validate([
-            'nom' => 'required|string|max:255|unique:secteurs,nom,' . $id,
-        ]);
-
         $this->secteurService->update($id, $request->only('nom'));
 
         return back()->with('success', 'Secteur modifié avec succès.');

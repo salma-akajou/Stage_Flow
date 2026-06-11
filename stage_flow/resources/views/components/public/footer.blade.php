@@ -1,16 +1,16 @@
 <footer class="bg-slate-950 text-white py-20 relative z-10 border-t border-white/5">
     <div class="max-w-[85rem] mx-auto px-6 lg:px-8">
-        <div class="grid grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
-            <div class="col-span-full lg:col-span-2">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 mb-16 text-center sm:text-left">
+            <div class="col-span-full lg:col-span-2 flex flex-col items-center lg:items-start text-center lg:text-left">
                 <a class="flex items-center gap-x-2 text-2xl font-bold font-heading mb-6" href="{{ route('landing') }}" @click="activeLink = 'accueil'">
                     <img src="{{ asset('logo_app.png') }}" alt="Logo" class="size-10 object-contain brightness-0 invert">
                     StageFlow
                 </a>
-                <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
+                <p class="text-slate-400 text-sm leading-relaxed max-w-sm mx-auto lg:mx-0">
                     Propulsez les talents de demain vers leur premier défi professionnel au Maroc.
                 </p>
             </div>
-            <div>
+            <div class="flex flex-col items-center sm:items-start">
                 <h4 class="text-xs font-bold uppercase tracking-widest text-white mb-6">Plateforme</h4>
                 <ul class="space-y-4 text-sm text-slate-400">
                     @php
@@ -33,7 +33,7 @@
                     <li><a href="{{ $candidaturesRoute }}" class="hover:text-indigo-400 transition">Candidatures</a></li>
                 </ul>
             </div>
-            <div>
+            <div class="flex flex-col items-center sm:items-start">
                 <h4 class="text-xs font-bold uppercase tracking-widest text-white mb-6">Support</h4>
                 <ul class="space-y-4 text-sm text-slate-400">
                     <li><a href="#faq" 
@@ -43,9 +43,9 @@
                     <li><a href="{{ route('register') }}" class="hover:text-indigo-400 transition">Inscription</a></li>
                 </ul>
             </div>
-            <div class="col-span-full lg:col-span-1">
+            <div class="col-span-full sm:col-span-1 lg:col-span-1 flex flex-col items-center sm:items-start">
                 <h4 class="text-xs font-bold uppercase tracking-widest text-white mb-6">Contact</h4>
-                <ul class="space-y-4 text-sm text-slate-400">
+                <ul class="space-y-4 text-sm text-slate-400 flex flex-col items-center sm:items-start">
                     <li class="flex items-center gap-x-3 transition hover:text-white"><span class="text-indigo-500">📍</span> Maroc</li>
                     <li class="flex items-center gap-x-3 transition hover:text-white"><span class="text-indigo-500">📧</span> contact@stageflow.ma</li>
                 </ul>

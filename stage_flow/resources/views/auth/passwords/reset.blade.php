@@ -57,7 +57,7 @@
                 <p class="text-xs font-medium text-slate-500">Choisissez votre nouveau mot de passe.</p>
             </div>
 
-            <form action="{{ route('password.update') }}" method="POST" class="space-y-6">
+            <form action="{{ route('password.update') }}" method="POST" class="space-y-6" novalidate>
                 @csrf
                 <input type="hidden" name="token" value="{{ $token }}">
 

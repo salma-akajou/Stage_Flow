@@ -15,7 +15,7 @@ Votre rôle est d'analyser la requête de l'utilisateur (dont le rôle actuel es
 
 Retournez UNIQUEMENT un objet JSON valide, sans blocs de code markdown (pas de ```json ... ```), avec le schéma suivant :
 {
-  "action": "creer_offre | modifier_offre | supprimer_offre | recommander_offres | generer_lettre_motivation | analyser_candidature | modifier_statut_candidature | generer_rapport | gerer_ressources_admin | respond_user",
+  "action": "creer_offre | modifier_offre | supprimer_offre | recommander_offres | generer_lettre_motivation | analyser_candidature | generer_rapport | gerer_ressources_admin | respond_user",
   "data": {},
   "message": ""
 }
@@ -23,58 +23,57 @@ Retournez UNIQUEMENT un objet JSON valide, sans blocs de code markdown (pas de `
 Règles importantes :
 - Ne retournez jamais de format Markdown ni de texte explicatif autour du JSON.
 - N'inventez pas d'identifiants de base de données. Référez-vous toujours aux données fournies dans le contexte (Context).
-- Ne mentionnez jamais d'identifiants ou d'ID techniques (ex: "ID: X") dans le champ "message" destiné à l'utilisateur.
 - Si l'action n'est pas claire, si des données obligatoires sont manquantes ou s'il s'agit d'une simple discussion, utilisez "action": "respond_user" et répondez poliment en français dans le champ "message".
+- Pour l'action "creer_offre", si l'utilisateur ne fournit pas explicitement tous les détails de l'offre (titre, description, type_stage, duree, remuneration, format, secteur, ville, responsabilites, profil_recherche, date_debut, date_fin, competences_techniques), n'inventez PAS ces détails. Retournez l'action "respond_user" et demandez poliment à l'utilisateur de fournir les informations manquantes.
 
 Détails des Actions selon les Rôles :
 
 1. Pour le rôle 'entreprise' :
-   - "creer_offre" : Publier une offre. Vous devez obligatoirement remplir TOUS les champs ci-dessous selon les besoins exprimés par l'entreprise (n'hésitez pas à lui poser des questions de clarification s'il manque des informations clés) :
+   - "creer_offre" : Publier une offre (uniquement si toutes les informations sont explicitement fournies). data doit contenir :
      {
-       "titre": "Titre du poste",
-       "description": "Description détaillée du poste et du contexte",
+       "titre": "Titre",
+       "description": "Description",
        "type_stage": "Observation | PFE | Technique",
-       "duree": "Durée (ex: 3 mois)",
+       "duree": "Ex: 3 mois",
        "remuneration": "Payé | Non-payé",
        "format": "Hybride | Présentiel | Télétravail",
        "secteur": "Nom du secteur (ex: Informatique, Industrie...)",
-       "ville_id": ID_de_la_ville,
-       "responsabilites": "liste des tâches séparées par des tirets - (ex: Tâche 1 - Tâche 2 - Tâche 3)",
-       "profil_recherche": "exigences séparées par des tirets - (ex: Exigence 1 - Exigence 2)",
-       "date_debut": "YYYY-MM-DD (Date de début obligatoire)",
-       "date_fin": "YYYY-MM-DD (Date de fin obligatoire)",
-       "competences_techniques": "compétences clés séparées par des barres verticales |"
+       "ville": "Nom de la ville (ex: Tanger, Casablanca...)",
+       "responsabilites": "liste des tâches sous forme de tirets (ex: - tâche 1\\n- tâche 2)",
+       "profil_recherche": "exigences sous forme de tirets (ex: - exigence 1\\n- exigence 2)",
+       "date_debut": "YYYY-MM-DD (obligatoire)",
+       "date_fin": "YYYY-MM-DD (obligatoire)",
+       "competences_techniques": "compétences clés sous forme de tirets (ex: - compétence 1\\n- compétence 2)"
      }
-   - "modifier_offre" : Modifier une offre existante. data doit contenir le "id" de l'offre (trouvé dans le contexte via son titre) et les champs à modifier.
-   - "supprimer_offre" : Supprimer une offre. data doit contenir le "id" de l'offre à supprimer.
-   - "analyser_candidature" : Évaluer un candidat pour une de ses offres. data doit contenir "candidature_id" (trouvé dans le contexte). Vous devez identifier le candidat demandé en comparant son nom, son identifiant, ou sa position dans la liste ("position_dans_la_liste" allant de 1 à N). Vous devez obligatoirement analyser et comparer son CV ("cv_contenu") et sa lettre de motivation ("lettre_motivation") de la candidature avec l'offre de stage pour fonder votre avis. Le champ "message" doit contenir un rapport d'évaluation en français (Forces, faiblesses, adéquation) et se terminer obligatoirement par la recommandation claire: "Recommandation : Accepté" ou "Recommandation : Refusé". Ne modifiez PAS directement le statut de la candidature en base de données lors de cette étape d'analyse (n'appelez pas modifier_statut_candidature).
-   - "modifier_statut_candidature" : Accepter ou refuser une candidature. data doit contenir "candidature_id" (trouvé dans le contexte en faisant correspondre le nom ou la position) et "statut" ("Accepté" ou "Refusé"). Le champ "message" doit confirmer l'action à l'utilisateur de manière positive ou informative.
+   - "modifier_offre" : Modifier une offre existante. data doit contenir le "titre_original" de l'offre à modifier (trouvé dans le contexte) et les champs à modifier.
+   - "supprimer_offre" : Supprimer une offre. data doit contenir le "titre" de l'offre à supprimer (trouvé dans le contexte).
+   - "analyser_candidature" : Évaluer un candidat par son nom complet. data doit contenir "candidat_nom" (trouvé dans le contexte). Le champ "message" doit contenir un rapport d'évaluation structuré en français (Forces, faiblesses, adéquation). Le "Conseil final" doit obligatoirement être et s'écrire uniquement "Conseil final : Accepté" ou "Conseil final : Refusé", sans aucun paragraphe ou mot d'explication supplémentaire.
 
 2. Pour le rôle 'etudiant' :
-   - "recommander_offres" : Rechercher des offres correspondant à sa filière ou ses compétences. data doit être vide {}. Le champ "message" doit lister brièvement les offres trouvées dans le contexte qui correspondent et expliquer pourquoi.
-   - "generer_lettre_motivation" : Rédiger un message de motivation. data doit contenir "offre_id". Trouvez silencieusement cet identifiant dans le contexte (en comparant le titre de l'offre et l'entreprise). Ne demandez JAMAIS de confirmation ou de précision sur l'ID ou l'offre, générez et retournez directement la lettre rédigée de manière professionnelle et personnalisée en français dans le champ "message".
+   - "recommander_offres" : Rechercher des offres correspondant à sa filière ou ses compétences. data doit être vide {}. Le champ "message" doit lister et recommander les offres du contexte uniquement selon leurs caractéristiques (sans mentionner ou chercher leurs IDs).
+   - "generer_lettre_motivation" : Rédiger un message de motivation. data doit contenir "offre_titre" (trouvé dans le contexte). Le champ "message" doit contenir la lettre rédigée de manière professionnelle et personnalisée en français.
 
 3. Pour le rôle 'admin' :
    - "generer_rapport" : Compiler un rapport sur l'activité du site. data doit être vide {}. Le champ "message" contiendra un résumé textuel structuré (nombre d'utilisateurs, candidatures, feedbacks).
-   - "gerer_ressources_admin" : Ajouter, modifier (renommer) ou supprimer des filières, des établissements ou des secteurs. data doit contenir la structure suivante (omettez ou laissez vides les listes d'opérations non demandées) :
+   - "gerer_ressources_admin" : Gérer les ressources (créer, modifier, supprimer des filières, secteurs ou établissements). data doit avoir la structure suivante :
      {
        "etablissements": {
-         "creer": ["Nom 1", "Nom 2"],
-         "modifier": [{"id": ID, "nom": "Nouveau Nom"}],
+         "creer": ["Nom1", "Nom2"],
+         "modifier": [{"id": ID, "nom": "NouveauNom"}],
          "supprimer": [ID1, ID2]
        },
        "filieres": {
-         "creer": ["Nom 1", "Nom 2"],
-         "modifier": [{"id": ID, "nom": "Nouveau Nom"}],
-         "supprimer": [ID1, ID2]
+         "creer": ["Nom1"],
+         "modifier": [{"id": ID, "nom": "NouveauNom"}],
+         "supprimer": [ID1]
        },
        "secteurs": {
-         "creer": ["Nom 1", "Nom 2"],
-         "modifier": [{"id": ID, "nom": "Nouveau Nom"}],
-         "supprimer": [ID1, ID2]
+         "creer": ["Nom1"],
+         "modifier": [{"id": ID, "nom": "NouveauNom"}],
+         "supprimer": [ID1]
        }
      }
-     Pour modifier ou supprimer, trouvez les identifiants "id" correspondants dans le contexte (depuis les listes "etablissements", "filieres" et le global "secteurs"). Le champ "message" doit résumer l'action effectuée à l'administrateur.
+     (Retrouvez les IDs requis pour les modifications ou suppressions dans le contexte).
 
 4. Pour le rôle 'guest' (visiteur de la landing page) :
    - Toujours retourner "action": "respond_user" et répondre en français dans "message" aux questions sur la plateforme à l'aide des informations publiques du contexte.
@@ -109,42 +108,62 @@ PROMPT;
         $model = config('services.gemini.model', 'gemini-2.5-flash');
 
         if (!$apiKey) {
-            return [
-                'action' => 'respond_user',
-                'data' => [],
-                'message' => 'La clé API Gemini n\'est pas configurée dans le fichier .env.'
-            ];
+            throw new \RuntimeException("Clé API Gemini non configurée.");
+        }
+
+        $maxRetries = 3;
+        $attempt = 0;
+        $response = null;
+
+        while ($attempt < $maxRetries) {
+            try {
+                $response = Http::withoutVerifying()
+                    ->timeout(12)
+                    ->acceptJson()
+                    ->post(
+                        "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key={$apiKey}",
+                        $body
+                    );
+
+                if ($response->successful()) {
+                    break;
+                }
+
+                if ($response->status() === 503) {
+                    Log::warning("Gemini 503 error, retrying...", ['attempt' => $attempt + 1]);
+                    $attempt++;
+                    if ($attempt < $maxRetries) {
+                        usleep(1000000 * $attempt); // Attendre 1s puis 2s
+                        continue;
+                    }
+                }
+
+                break;
+            } catch (\Throwable $e) {
+                Log::warning("Gemini exception during call, retrying...", ['attempt' => $attempt + 1, 'error' => $e->getMessage()]);
+                $attempt++;
+                if ($attempt >= $maxRetries) {
+                    Log::error('Exception Service Gemini finale', [
+                        'message' => $e->getMessage(),
+                        'file' => $e->getFile(),
+                        'line' => $e->getLine(),
+                    ]);
+                    throw new \RuntimeException("Exception de connexion Gemini : " . $e->getMessage());
+                }
+                usleep(1000000 * $attempt);
+            }
+        }
+
+        if (!$response || $response->failed()) {
+            Log::error('Erreur API Gemini finale', [
+                'status' => $response ? $response->status() : 'No response',
+                'response' => $response ? $response->body() : 'No body',
+            ]);
+            $status = $response ? $response->status() : 'inconnu';
+            throw new \RuntimeException("L'appel API Gemini a échoué avec le statut {$status}.");
         }
 
         try {
-            $response = Http::withoutVerifying()
-                ->timeout(30)
-                ->acceptJson()
-                ->post(
-                    "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key={$apiKey}",
-                    $body
-                );
-
-            if ($response->failed()) {
-                $status = $response->status();
-                $message = 'Impossible de communiquer avec le service d\'intelligence artificielle.';
-                
-                if ($status === 429) {
-                    $message = 'Le service d\'IA (Google Gemini) est temporairement surchargé (limite de requêtes atteinte). Veuillez patienter 1 minute avant de réessayer.';
-                }
-
-                Log::error('Erreur API Gemini', [
-                    'status' => $status,
-                    'response' => $response->body(),
-                ]);
-
-                return [
-                    'action' => 'respond_user',
-                    'data' => [],
-                    'message' => $message
-                ];
-            }
-
             $result = $response->json();
             $text = $result['candidates'][0]['content']['parts'][0]['text'] ?? '{}';
 
@@ -152,7 +171,6 @@ PROMPT;
                 'response' => $text
             ]);
 
-            // Nettoyage éventuel si Gemini encapsule dans du markdown malgré les instructions
             $text = trim($text);
             if (str_starts_with($text, '```json')) {
                 $text = substr($text, 7);
@@ -172,28 +190,18 @@ PROMPT;
                     'json_error' => json_last_error_msg(),
                     'response' => $text
                 ]);
-
-                return [
-                    'action' => 'respond_user',
-                    'data' => [],
-                    'message' => 'L\'assistant virtuel a renvoyé une réponse dans un format illisible.'
-                ];
+                throw new \RuntimeException("La réponse générée par l'IA n'est pas un JSON valide.");
             }
 
             return $decoded;
 
         } catch (\Throwable $e) {
-            Log::error('Exception Service Gemini', [
+            Log::error('Exception Service Gemini traitement', [
                 'message' => $e->getMessage(),
                 'file' => $e->getFile(),
                 'line' => $e->getLine(),
             ]);
-
-            return [
-                'action' => 'respond_user',
-                'data' => [],
-                'message' => 'Une erreur imprévue est survenue avec l\'assistant virtuel.'
-            ];
+            throw new \RuntimeException("Erreur lors du traitement de la réponse Gemini : " . $e->getMessage());
         }
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web\Admin;
 use App\Http\Controllers\Controller;
 use App\Services\EtablissementService;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\StoreEtablissementRequest;
+use App\Http\Requests\Admin\UpdateEtablissementRequest;
 
 class EtablissementController extends Controller
 {
@@ -28,23 +30,15 @@ class EtablissementController extends Controller
     }
 
     
-    public function store(Request $request)
+    public function store(StoreEtablissementRequest $request)
     {
-        $request->validate([
-            'nom' => 'required|string|max:255|unique:etablissements,nom',
-        ]);
-
         $this->etablissementService->create($request->only('nom'));
 
         return back()->with('success', 'Établissement créé avec succès.');
     }
 
-    public function update(Request $request, int $id)
+    public function update(UpdateEtablissementRequest $request, int $id)
     {
-        $request->validate([
-            'nom' => 'required|string|max:255|unique:etablissements,nom,' . $id,
-        ]);
-
         $this->etablissementService->update($id, $request->only('nom'));
 
         return back()->with('success', 'Établissement modifié avec succès.');

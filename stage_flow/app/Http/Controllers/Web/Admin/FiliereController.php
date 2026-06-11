@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Web\Admin;
 use App\Http\Controllers\Controller;
 use App\Services\FiliereService;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Admin\StoreFiliereRequest;
+use App\Http\Requests\Admin\UpdateFiliereRequest;
 
 class FiliereController extends Controller
 {
@@ -28,23 +29,15 @@ class FiliereController extends Controller
         return view('admin.filieres.index', compact('filieres'));
     }
 
-    public function store(Request $request)
+    public function store(StoreFiliereRequest $request)
     {
-        $request->validate([
-            'nom' => 'required|string|max:255|unique:filieres,nom',
-        ]);
-
         $this->filiereService->create($request->only('nom'));
 
         return back()->with('success', 'Filière créée avec succès.');
     }
 
-    public function update(Request $request, int $id)
+    public function update(UpdateFiliereRequest $request, int $id)
     {
-        $request->validate([
-            'nom' => 'required|string|max:255|unique:filieres,nom,' . $id,
-        ]);
-
         $this->filiereService->update($id, $request->only('nom'));
 
         return back()->with('success', 'Filière modifiée avec succès.');
