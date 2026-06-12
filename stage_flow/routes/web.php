@@ -87,7 +87,6 @@ Route::middleware(['auth', 'role:admin|moderateur'])->prefix('admin')->name('adm
     // Gestion des utilisateurs - lecture seule pour tous (admin + modérateur)
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('', [AdminUser::class, 'index'])->name('index');
-        Route::get('export', [AdminUser::class, 'export'])->name('export');
         Route::get('{id}', [AdminUser::class, 'show'])->name('show');
 
         // Actions réservées à ceux qui ont la permission gerer-utilisateurs (admin seulement)
