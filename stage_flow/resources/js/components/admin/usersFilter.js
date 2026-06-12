@@ -1,18 +1,9 @@
 export default (routeIndex = '', initialSearch = '', initialRole = '') => ({
-    init() {
-        this.dispatchFilter();
-    },
     search: initialSearch,
     role: initialRole,
     loading: false,
-    dispatchFilter() {
-        window.dispatchEvent(new CustomEvent('users-filter-changed', {
-            detail: { search: this.search, role: this.role }
-        }));
-    },
     submit() {
         this.loading = true;
-        this.dispatchFilter();
         const params = new URLSearchParams({
             search: this.search,
             role: this.role

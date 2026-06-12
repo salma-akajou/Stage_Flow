@@ -52,33 +52,7 @@ class UtilisateurService extends BaseService
     }
 
 
-    public function exportUsersToCsv(array $filters = []): void
-    {
-        $users = $this->buildUsersQuery($filters)->get();
 
-        // Add UTF-8 BOM for Microsoft Excel compatibility
-        echo chr(0xEF).chr(0xBB).chr(0xBF);
-
-        $file = fopen('php://output', 'w');
-        
-        fputcsv($file, [
-            'Nom complet',
-            'Email',
-            'Rôle',
-            'Date d\'inscription'
-        ], ';');
-
-        foreach ($users as $user) {
-            fputcsv($file, [
-                $user->prenom . ' ' . $user->nom,
-                $user->email,
-                $user->role === 'moderateur' ? 'Modérateur' : ($user->role === 'etudiant' ? 'Étudiant' : 'Entreprise'),
-                $user->created_at->format('d/m/Y H:i')
-            ], ';');
-        }
-
-        fclose($file);
-    }
 
     public function getUserDetails(int $id)
     {
